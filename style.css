@@ -9,7 +9,7 @@ body {
 }
 
 main {
-  background-color: rebeccapurple;
+  background-color: #F5F5F5;
   width: 100%;
   height: calc(100vh - 89px);
   margin-top: 89px;
@@ -138,28 +138,59 @@ main {
 }
 
 
+/* ##################### Contacts ################################# */
+.contacts-main-S {
+  display: flex;
+}
 
-
-
-
-main {
-  background-color: rebeccapurple;
-  width: 100%;
+.contacts-list-S {
+  background-color: white;
+  width: 30%;
   height: calc(100vh - 89px);
-  margin-top: 89px;
-  margin-left: 232px;
+  padding: 0 65px;
+  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+
 }
 
-.contacts-list-wrapper-S {
-  /* Frame 97 */
-  position: absolute;
-  width: 453px;
-  height: 935px;
-  left: 232px;
-  top: 89px;
-  background: #FFFFFF;
-  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+.contacts-list-alphabet-char-S {
+  width: 323px;
+  padding: 20px;
+  border-bottom: 1px solid #D1D1D1;
 }
+
+.contacts-content-S {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rebeccapurple;
+}
+
+.contacts-header-wrapper-S {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.contacts-header-wrapper-S h3 {
+  border-right: 3px solid #29ABE2;
+  font-size: 48px;
+  font-weight: 700;
+  padding: 0 25px 0 50px;
+}
+
+.contacts-header-wrapper-S span {
+  padding: 25px;
+  font-size: 27px;
+}
+
+.contacts-footer-wrapper-S {
+  padding: 50px;
+}
+
+
+
 
 
 /* #################### Paul ################### */
