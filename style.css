@@ -1,20 +1,18 @@
 /* #################### Globale CSS variables ################### */
+/* LEGAL Download der Schriftarten einbinden */
 
-.font-family {
-  font-family: 'Roboto';
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-;
-
-.fs-24 {
-  font-size: 24px;
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* ########## HIntergrundfarben ############### */
+/* ########## Hintergrundfarben ############### */
 
 .bg-darkblue {
   background-color: #2A3647;
@@ -28,17 +26,11 @@
   background-color: hsl(0, 0%, 96%);
 }
 
+
+
 /* #################### Sascha ################### */
 
-.body-S {
-  position: relative;
-  width: 1440px;
-  height: 1024px;
-  background: #F6F7F8;
-  margin: 0;
-}
-
-.navbar-destop-S {
+.navbar-desktop-S {
   /* Frame 3 */
   display: flex;
   flex-direction: column;
@@ -47,12 +39,53 @@
   gap: 103px;
   position: absolute;
   width: 232px;
-  height: 1024px;
+  height: 100vh;
   left: 0px;
   top: 0px;
   background: #2A3647;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0px;
+
+}
+
+.navbar-logo-S {
+  display: flex;
+  z-index: 5;
+}
+
+.navbar-logo-S img {
+  width: 100px;
+  height: 120px;
+}
+
+.navbar {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  padding-left: 21px;
+}
+
+.navbar-link {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+}
+
+.navbar-link img {
+  width: 22px;
+  height: 22px;
 }
 
 .header-S {
@@ -63,15 +96,38 @@
   align-items: center;
   padding: 0px 36px 0px 348px;
   gap: 34px;
-
   position: absolute;
-  width: 100%;
   height: 89px;
   left: 0px;
   top: 0px;
+  right: 0;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
+
+.header-right-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-item-logo {
+  width: 31px;
+  height: 31px;
+  object-fit: cover;
+}
+
+.header-item-portrait {
+  width: 49px;
+  height: 49px;
+  object-fit: cover;
+  background-color: #2A3647;
+  border-radius: 50%;
+  padding: 6px;
+  outline: 2px solid white;
+  outline-offset: -6px;
+}
+
 
 
 .contacts-list-wrapper-S {
