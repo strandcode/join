@@ -1,0 +1,79 @@
+.width {
+    width: 422px;
+}
+
+
+.main-content-J {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  .nav-task-J {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 235px;
+  background-color: green;
+  position: absolute;
+  width: 18%;
+  height: 884px;
+  left: 0px;
+  top: 137px;
+  }
+
+  .task-button-J {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 15px;
+    background: #FFFFFF;
+    position: absolute;
+    width: 40%;
+    height: 884px;
+    left: 800px;
+    top: 137px;
+    margin-left: 48px;
+  }
+
+  .button-container-J {
+    display: flex;
+    width: 40%;
+    gap: 20px;
+    margin-bottom: 80px;
+    margin-right: 60px;
+  }
+
+  .button-container-J input {
+    border-radius: 6px;
+    width: 100px;
+    height: 50px;
+    background-color:#2A3647;
+  }
+  
+  .task-mask-J {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: #FFFFFF;
+    position: absolute;
+    width: 50%;
+    height: 854px;
+    left: 280px;
+    top: 137px;
+    padding-top: 32px;
+  }
+  
+  .input-substack-J {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+ 
