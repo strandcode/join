@@ -1,27 +1,20 @@
 /* #################### Globale CSS variables ################### */
-/* LEGAL Download der Schriftarten einbinden */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
+.font-family {
+  font-family: 'Roboto';
 }
 
-main {
-  background-color: #F5F5F5;
-  width: 100%;
-  height: calc(100vh - 89px);
-  margin-top: 89px;
-  margin-left: 232px;
-}
+;
 
+.fs-24 {
+  font-size: 24px;
+}
 
 * {
   box-sizing: border-box;
 }
 
-/* ########## Hintergrundfarben ############### */
+/* ########## HIntergrundfarben ############### */
 
 .bg-darkblue {
   background-color: #2A3647;
@@ -35,11 +28,17 @@ main {
   background-color: hsl(0, 0%, 96%);
 }
 
-
-
 /* #################### Sascha ################### */
 
-.navbar-desktop-S {
+.body-S {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background: #F6F7F8;
+  margin: 0;
+}
+
+.navbar-destop-S {
   /* Frame 3 */
   display: flex;
   flex-direction: column;
@@ -48,53 +47,12 @@ main {
   gap: 103px;
   position: absolute;
   width: 232px;
-  height: 100vh;
+  height: 1024px;
   left: 0px;
   top: 0px;
   background: #2A3647;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-
-}
-
-.navbar-logo-S {
-  display: flex;
-  z-index: 5;
-}
-
-.navbar-logo-S img {
-  width: 100px;
-  height: 120px;
-}
-
-.navbar {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-  justify-content: space-between;
-  height: 40vh;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: white;
-  padding-left: 21px;
-}
-
-.navbar-link {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-link-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 39px;
-}
-
-.navbar-link img {
-  width: 22px;
-  height: 22px;
+  border-radius: 0px;
 }
 
 .header-S {
@@ -105,91 +63,27 @@ main {
   align-items: center;
   padding: 0px 36px 0px 348px;
   gap: 34px;
+
   position: absolute;
+  width: 100%;
   height: 89px;
   left: 0px;
   top: 0px;
-  right: 0;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-right-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
 
-.header-item-logo {
-  width: 31px;
-  height: 31px;
-  object-fit: cover;
-}
-
-.header-item-portrait {
-  width: 49px;
-  height: 49px;
-  object-fit: cover;
-  background-color: #2A3647;
-  border-radius: 50%;
-  padding: 6px;
-  outline: 2px solid white;
-  outline-offset: -6px;
-}
-
-
-/* ##################### Contacts ################################# */
-.contacts-main-S {
-  display: flex;
-}
-
-.contacts-list-S {
-  background-color: white;
-  width: 30%;
-  height: calc(100vh - 89px);
-  padding: 0 65px;
+.contacts-list-wrapper-S {
+  /* Frame 97 */
+  position: absolute;
+  width: 453px;
+  height: 935px;
+  left: 232px;
+  top: 89px;
+  background: #FFFFFF;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
-
 }
-
-.contacts-list-alphabet-char-S {
-  width: 323px;
-  padding: 20px;
-  border-bottom: 1px solid #D1D1D1;
-}
-
-.contacts-content-S {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rebeccapurple;
-}
-
-.contacts-header-wrapper-S {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: flex-start;
-}
-
-.contacts-header-wrapper-S h3 {
-  border-right: 3px solid #29ABE2;
-  font-size: 48px;
-  font-weight: 700;
-  padding: 0 25px 0 50px;
-}
-
-.contacts-header-wrapper-S span {
-  padding: 25px;
-  font-size: 27px;
-}
-
-.contacts-footer-wrapper-S {
-  padding: 50px;
-}
-
-
 
 
 
@@ -198,3 +92,66 @@ main {
 /* #################### Daniel ################### */
 
 /* #################### Patrick ################### */
+
+.main-content-J {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background-color: black;
+}
+
+.header-task-J {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 39px;
+  gap: 34px;
+  background-color: green;
+  position: absolute;
+  width: 1440px;
+  height: 97.3px;
+  left: 0px;
+  top: 0px;
+}
+
+.nav-task-J {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 66px 20px;
+gap: 235px;
+background-color: red;
+position: absolute;
+width: 232px;
+height: 932px;
+left: 0px;
+top: 92px;
+}
+
+.task-mask-J {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 25px;
+  background-color: orange;
+  position: absolute;
+  width: 561px;
+  height: 1056px;
+  left: 320px;
+  top: 137px;
+}
+
+.task-button-J {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 25px;
+  background-color: grey;
+  width: 341px;
+  height: 61px;
+  
+}
