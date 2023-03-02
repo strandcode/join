@@ -8,6 +8,15 @@ body {
   margin: 0;
 }
 
+main {
+  background-color: rebeccapurple;
+  width: 100%;
+  height: calc(100vh - 89px);
+  margin-top: 89px;
+  margin-left: 232px;
+}
+
+
 * {
   box-sizing: border-box;
 }
@@ -63,7 +72,7 @@ body {
   flex-direction: column;
   gap: 39px;
   justify-content: space-between;
-  height: 50vh;
+  height: 40vh;
 }
 
 .navbar a {
@@ -130,6 +139,17 @@ body {
 
 
 
+
+
+
+main {
+  background-color: rebeccapurple;
+  width: 100%;
+  height: calc(100vh - 89px);
+  margin-top: 89px;
+  margin-left: 232px;
+}
+
 .contacts-list-wrapper-S {
   /* Frame 97 */
   position: absolute;
@@ -140,7 +160,6 @@ body {
   background: #FFFFFF;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
 }
-
 
 
 /* #################### Paul ################### */
