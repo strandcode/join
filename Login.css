@@ -80,8 +80,12 @@
 /* // Hintergrund Bild Mail */
 .email {
     background: url(assets/img/icon-mail-user.svg) no-repeat scroll 7px 7px;
-    
-    
+    background-position: right;
+}
+
+.password {
+    background: url(assets/img/icon-lock-user.svg) no-repeat scroll 7px 7px;
+    background-position: right;
 }
 
 .content-remeber-J {
