@@ -3,20 +3,32 @@
 /* LEGAL Download der Schriftarten einbinden */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
+  font-size: 16px;
   margin: 0;
+}
+
+main {
+  background-color: #F5F5F5;
+  height: calc(100vh - 89px);
+  margin-top: 89px;
+  margin-left: 232px;
 }
 
 .fs-24 {
   font-size: 24px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-/* ########## HIntergrundfarben ############### */
+/* Contacts avatar bg-color */
 
 .bg-darkblue {
   background-color: #2A3647;
@@ -26,76 +38,180 @@ body {
   background-color: #F5F5F5;
 }
 
-.bg-white {
-  background-color: hsl(0, 0%, 96%);
+.bg-antiquewhite {
+  background-color: #f5f5f5;
 }
 
-/* #################### Sascha ################### */
-
-.body-S {
-  position: relative;
-  width: 1440px;
-  height: 1024px;
-  background: #F6F7F8;
-  margin: 0;
+.bg-orange {
+  background-color: #FF7A00;
 }
 
-.contacts-main-S {
-  background-color: rebeccapurple;
-  background-color: #F5F5F5;
-  width: 100%;
-  height: calc(100vh - 89px);
-  margin-top: 89px;
-  margin-left: 232px;
+.bg-purple {
+  background-color: #9327FF;
 }
 
-.navbar-destop-S {
-  /* Frame 3 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 66px 20px;
-  gap: 103px;
-  position: absolute;
-  width: 232px;
-  height: 1024px;
-  left: 0px;
-  top: 0px;
-  background: #2A3647;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0px;
+.bg-turquoise {
+  background-color: #29ABE2;
 }
 
-.header-S {
-  /* Frame 41 */
+.bg-pink {
+  background-color: #FC71FF;
+}
+
+.bg-green {
+  background-color: #02CF2F;
+}
+
+.bg-darkred {
+  background-color: #AF1616;
+}
+
+.bg-darkpurple {
+  background-color: #462F8A;
+}
+
+.fc-blue {
+  color: #007CEE;
+}
+
+
+.font-size-21 {
+  font-size: 21px;
+}
+
+.font-size-27 {
+  font-size: 27px;
+}
+
+.font-size-48 {
+  font-size: 48px;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-weight-700 {
+  font-weight: 700;
+}
+
+.icon-size-42 {
+  height: 42px;
+  width: 42px;
+  object-fit: cover;
+}
+
+.icon-size-32 {
+  height: 32px;
+  width: 32px;
+  object-fit: fill;
+}
+
+.icon-size-49 {
+  height: 49px;
+  width: 49px;
+  object-fit: cover;
+}
+
+.icon-size-120 {
+  height: 120px;
+  width: 120px;
+  object-fit: contain;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+
+/* ######################## Desktop header [Frame 41] ######################### */
+.desktop-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 36px 0px 348px;
   gap: 34px;
-
   position: absolute;
-  width: 100%;
   height: 89px;
   left: 0px;
   top: 0px;
+  right: 0;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-.contacts-list-wrapper-S {
-  /* Frame 97 */
-  position: absolute;
-  width: 453px;
-  height: 935px;
-  left: 232px;
-  top: 89px;
-  background: #FFFFFF;
-  box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+.desktop-header-right-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
+.portrait-blue-ring {
+  background-color: #2A3647;
+  border-radius: 50%;
+  padding: 6px;
+  outline: 2px solid white;
+  outline-offset: -6px;
+}
+
+/* ##################### Desktop navbar left [Frame 3] ######################### */
+
+.desktop-navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 70px 35px;
+  gap: 100px;
+  position: absolute;
+  width: 232px;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background: #2A3647;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.desktop-navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.desktop-navbar-top {
+  display: flex;
+  gap: 100px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.desktop-navbar-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.desktop-navbar-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder h3 {
+  font-size: 5rem;
+  color: #2A3647
+}
+
+/* 
 
 
 /* #################### Paul ################### */
@@ -103,7 +219,7 @@ body {
 /* #################### Daniel ################### */
 
 /* #################### Patrick ################### */
-
+/* 
 .main-content-J {
   position: relative;
   width: 1440px;
@@ -165,4 +281,4 @@ body {
   width: 341px;
   height: 61px;
 
-}
+} */
