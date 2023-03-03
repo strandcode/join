@@ -22,6 +22,7 @@ main {
   height: calc(100vh - 89px);
   margin-top: 89px;
   margin-left: 232px;
+  display: flex;
 }
 
 .fs-24 {
