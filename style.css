@@ -1,10 +1,12 @@
 /* #################### Globale CSS variables ################### */
 
-.font-family {
-  font-family: 'Roboto';
-}
+/* LEGAL Download der Schriftarten einbinden */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-;
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
 
 .fs-24 {
   font-size: 24px;
@@ -36,6 +38,15 @@
   height: 1024px;
   background: #F6F7F8;
   margin: 0;
+}
+
+.contacts-main-S {
+  background-color: rebeccapurple;
+  background-color: #F5F5F5;
+  width: 100%;
+  height: calc(100vh - 89px);
+  margin-top: 89px;
+  margin-left: 232px;
 }
 
 .navbar-destop-S {
@@ -116,17 +127,17 @@
 }
 
 .nav-task-J {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 66px 20px;
-gap: 235px;
-background-color: red;
-position: absolute;
-width: 232px;
-height: 932px;
-left: 0px;
-top: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 66px 20px;
+  gap: 235px;
+  background-color: red;
+  position: absolute;
+  width: 232px;
+  height: 932px;
+  left: 0px;
+  top: 92px;
 }
 
 .task-mask-J {
@@ -153,5 +164,5 @@ top: 92px;
   background-color: grey;
   width: 341px;
   height: 61px;
-  
+
 }
