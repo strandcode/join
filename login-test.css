@@ -1,0 +1,148 @@
+    /* LEGAL Download der Schriftarten einbinden */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        margin: 0;
+    }
+
+
+    /* ###################### Login ######################## */
+
+    .login-form-Wrapper-S {
+        height: 100vh;
+    }
+
+    .header-login-J {
+        display: flex;
+        justify-content: space-between;
+        background-color: #F5F5F5;
+        padding: 50px;
+        height: 200px;
+    }
+
+    .signup-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 15px;
+    }
+
+    .signup-button button {
+        background-color: #2A3647;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    .header-login-J img {
+        width: 71px;
+        height: 75px;
+    }
+
+    /* ##################### Login form ######################## */
+
+    .main-content-login-J {
+        background-color: #F5F5F5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 200px);
+    }
+
+    .main-login-J {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        background-color: white;
+        padding: 15px;
+        width: 35%;
+        /* height: 60%; */
+        border-radius: 30px;
+        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+        min-width: 300px;
+    }
+
+    .main-login-J h1 {
+        font-size: 60px;
+        font-weight: 700;
+        font-style: normal;
+        line-height: 120%;
+        border-bottom: 3px solid #29ABE2;
+    }
+
+    .input-login-J {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .input-login-J input {
+        padding: 10px;
+        border-radius: 6px;
+        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    /* // Hintergrund Bild Mail */
+    .input-login-email {
+        background: url(assets/img/icon-mail-user.svg) no-repeat;
+        background-position: top 8px right 10px;
+    }
+
+    .input-login-password {
+        background: url(assets/img/icon-lock-user.svg) no-repeat;
+        background-position: top 8px right 10px;
+    }
+
+    .content-remember-J {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .buttoncontainer-login-J {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 18px;
+        width: 100%;
+    }
+
+    .buttoncontainer-login-J button {
+        width: 120px;
+        height: 35px;
+    }
+
+    .button-login-J {
+        background-color: #2A3647;
+        color: white;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .button-guest-J {
+        background-color: white;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .d-none {
+        display: none;
+    }
