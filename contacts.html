@@ -11,83 +11,117 @@
 </head>
 
 <body>
+  <div id="contactContainer">
 
-  <header class="desktop-header">
-    <h2 class="font-weight-400">Kanban Project Management Tool</h2>
-    <div class="desktop-header-right-wrapper">
-      <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
-      <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
-    </div>
-  </header>
+    <header class="desktop-header">
+      <h2 class="font-weight-400">Kanban Project Management Tool</h2>
+      <div class="desktop-header-right-wrapper">
+        <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
+        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+      </div>
+    </header>
 
-  <nav class="desktop-navbar">
-    <div class="desktop-navbar-top">
-      <a href="index.html">
-        <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
-      </a>
+    <nav class="desktop-navbar">
+      <div class="desktop-navbar-top">
+        <a href="index.html">
+          <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
+        </a>
+
+        <div class="desktop-navbar-wrapper">
+          <a class="desktop-navbar-link" href="index.html"><img class="icon-size-32" src="assets/img/icon-summary.svg"
+              alt="">Summary</a>
+          <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
+              alt="">Board</a>
+          <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32"
+              src="assets/img/icon-add-task.svg" alt="">Add task</a>
+          <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
+              src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
+        </div>
+      </div>
 
       <div class="desktop-navbar-wrapper">
-        <a class="desktop-navbar-link" href="index.html"><img class="icon-size-32" src="assets/img/icon-summary.svg"
-            alt="">Summary</a>
-        <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
-            alt="">Board</a>
-        <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
-            alt="">Add task</a>
-        <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
-            src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
+        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+            alt="">Legal
+          notice</a>
+        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+            alt="">Privacy
+          policy</a>
       </div>
-    </div>
+    </nav>
 
-    <div class="desktop-navbar-wrapper">
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-          alt="">Legal
-        notice</a>
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-          alt="">Privacy
-        policy</a>
-    </div>
-  </nav>
+    <main class="contacts-main-S">
 
-  <main class="contacts-main-S">
-
-    <!-- NOTE Register and contacts will be rendered by renderContactList() -->
-    <div id="contactsListS" class="contacts-list-S"></div>
+      <!-- NOTE Register and contacts will be rendered by renderContactList() -->
+      <div id="contactsListS" class="contacts-list-S"></div>
 
 
-    <!-- ################# Contact ############## -->
-    <div class="contacts-content-S">
-      <div>
+      <!-- ################# Contact ############## -->
+      <div class="contacts-content-S">
+        <div>
 
-        <div class="contacts-header-wrapper-S">
-          <h3>Contacts</h3>
-          <span>Better with a team</span>
+          <div class="contacts-header-wrapper-S">
+            <h3>Contacts</h3>
+            <span>Better with a team</span>
+          </div>
+
+
+          <!-- NOTE Active contact will be rendered by templateContactsActiveContact(activeContact) -->
+          <div class="contacts-main-wrapper-S">
+
+            <div id="contactsMainHeader" class="contacts-main-header"></div>
+
+            <div class="contacts-list-main-edit-S">
+              <h4 class="font-size-27">Contact Information</h4>
+              <div class="contacts-active-contact-edit" onclick="showEditContact()">
+                <img src="assets/img/pencil-no-bg.svg" alt="">
+                <span>Edit Contact</span>
+              </div>
+            </div>
+            <div id="contactsMainBody" class="contacts-list-main-data"></div>
+          </div>
         </div>
 
+        <div class="contacts-footer-wrapper-S">
+          <button>New contact
+            <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
+          </button>
+        </div>
+      </div>
 
-        <!-- NOTE Active contact will be rendered by templateContactsActiveContact(activeContact) -->
-        <div class="contacts-main-wrapper-S">
+    </main>
 
-          <div id="contactsMainHeader" class="contacts-main-header"></div>
+  </div>
 
-          <div class="contacts-list-main-edit-S">
-            <h4 class="font-size-27">Contact Information</h4>
-            <div class="edit-contact">
-              <img src="assets/img/pencil-no-bg.svg" alt="">
-              <span>Edit Contact</span>
+  <!-- #################### NOTE Edit contact overlay #################### -->
+
+  <div id="editContact" class="edit-contact d-none">
+    <div class="contact-overlay-container">
+
+      <div class="contact-overlay-left">
+        <img src="assets/img/logo-white.svg" alt="Join us">
+        <h2>Edit contact</h2>
+        <div class="blue-line"></div>
+      </div>
+
+      <div class="contact-overlay-right">
+        <div class="contact-overlay-right-header">
+          <img src="assets/img/icons-cancel.svg" onclick="closeEditContact()" alt="close">
+        </div>
+        <div class="contact-overlay-right-main">
+          <div class="contact-overlay-right-avatar" style="background-color: #ffc700">TW
+          </div>
+          <div class="contact-overlay-right-input">
+            <input class="input-login-email" placeholder="Name" type="email" name="" id="contactEditName">
+            <input class="input-login-password" placeholder="Email" type="password" name="" id="contactEditEmail">
+            <input class="input-login-password" placeholder="Phone" type="password" name="" id="contactEditPhone">
+            <div class="contact-overlay-right-footer">
+              <button class="contact-overlay-button">Save</button>
             </div>
           </div>
-          <div id="contactsMainBody" class="contacts-list-main-data"></div>
         </div>
       </div>
-
-      <div class="contacts-footer-wrapper-S">
-        <button>New contact
-          <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
-        </button>
-      </div>
     </div>
-
-  </main>
+  </div>
 
   <script src="contacts.js"></script>
 </body>

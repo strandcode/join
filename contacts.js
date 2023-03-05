@@ -10,7 +10,7 @@ var contacts = [
   {
     "firstName": "Herta-Emilia-Victoria",
     "lastName": "Schmidt",
-    "email": "herta.schmidtkhjkjhkjhlkhjhkjhkjhkhj@example.dfgfdggfdgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfgdfgdf.com",
+    "email": "herta.schmidt@example.com",
     "phone": "+49 123 45678",
     "avatar_initials": "BS",
     "avatar_bg_color": "#2ecc71"
@@ -112,8 +112,6 @@ function renderContactsList() {
 
 function templateContactsListContact(c) {
   let [email_name, email_domain] = contacts[c].email.split('@');
-  console.log(email_name + '@' + email_domain);
-
   return /*html*/  `
     <div class="contacts-list-contact-wrapper-S" onclick="templateContactsActiveContact(${c})">
       <div class="contacts-list-contact-avatar" style="background-color: ${contacts[c].avatar_bg_color}">${contacts[c].avatar_initials}</div>
@@ -163,5 +161,20 @@ function templateContactsActiveContact(activeContact) {
 }
 
 
+function showEditContact(c) {
+  let contactContainer = document.getElementById('contactContainer');
+  contactContainer.classList.add('d-none');
+  let editContact = document.getElementById('editContact');
+  editContact.classList.remove('d-none');
+}
+
+function closeEditContact(c) {
+  let contactContainer = document.getElementById('contactContainer');
+  contactContainer.classList.remove('d-none');
+  let editContact = document.getElementById('editContact');
+  editContact.classList.add('d-none');
+}
+
+
 renderContactsList();
-templateContactsActiveContact(1);
+templateContactsActiveContact(0);
