@@ -166,6 +166,7 @@ function showEditContact(c) {
   contactContainer.classList.add('d-none');
   let editContact = document.getElementById('editContact');
   editContact.classList.remove('d-none');
+  templateEditContactActiveContact(4);
 }
 
 function closeEditContact(c) {
@@ -175,6 +176,32 @@ function closeEditContact(c) {
   editContact.classList.add('d-none');
 }
 
+function templateEditContactActiveContact(c) {
+  let contactOverlayActiveContact = document.getElementById('contactOverlayActiveContact');
+  contactOverlayActiveContact.innerHTML = '';
+  contactOverlayActiveContact.innerHTML += `
+    <div class="contact-overlay-right-avatar" 
+         style="background-color: #ffc700">${contacts[c].avatar_initials}
+    </div>
+    <div class="contact-overlay-right-input">
+
+      <input id="contactEditName" name="contactEditName" type="text" value="${contacts[c].firstName} ${contacts[c].lastName}" 
+      class="contact-overlay-right-input-name" placeholder="Firstname Lastname">
+      
+      <input id="contactEditEmail" name="contactEditEmail" type="email" value="${contacts[c].email}" 
+      class="contact-overlay-right-input-email" placeholder="Email">
+      
+      <input id="contactEditPhone" name="contactEditPhone" type="tel" value="${contacts[c].phone}" 
+      class="contact-overlay-right-input-phone" placeholder="Phone">
+     
+      <div class="contact-overlay-right-footer">
+        <button class="contact-overlay-button">Save</button>
+      </div>
+    </div>
+  `;
+}
+
+// templateEditContactActiveContact(0);
 
 renderContactsList();
 templateContactsActiveContact(0);

@@ -204,9 +204,6 @@
   word-break: break-all;
 }
 
-.d-none {
-  display: none;
-}
 
 /* ######################## Edit contact ########################### */
 
@@ -343,6 +340,23 @@
   border: 1px solid #D1D1D1;
 }
 
+.contact-overlay-right-input-name {
+  background: url(assets/img/name_input.svg) no-repeat;
+  background-position: top 8px right 10px;
+}
+
+.contact-overlay-right-input-email {
+  background: url(assets/img/icon-mail-user.svg) no-repeat;
+  background-position: top 8px right 10px;
+}
+
+.contact-overlay-right-input-phone {
+  background: url(assets/img/icon-phone.svg) no-repeat;
+  background-position: top 8px right 10px;
+}
+
+
+
 .contact-overlay-right-footer {
   display: flex;
   justify-content: center;
@@ -370,93 +384,15 @@
 
 
 
-
-.main-content-login-J {
-  background-color: #F5F5F5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 200px);
-}
-
-.main-login-J {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  background-color: white;
-  padding: 15px;
-  width: 35%;
-  /* height: 60%; */
-  border-radius: 30px;
-  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-  min-width: 300px;
-}
-
-.main-login-J h1 {
-  font-size: 60px;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 120%;
-  border-bottom: 3px solid #29ABE2;
-}
-
-.input-login-J {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100px;
-  margin-bottom: 30px;
-  width: 100%;
-}
-
-.input-login-J input {
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-}
-
-/* // Hintergrund Bild Mail */
-.input-login-email {
-  background: url(assets/img/icon-mail-user.svg) no-repeat;
-  background-position: top 8px right 10px;
-}
-
 .input-login-password {
   background: url(assets/img/icon-lock-user.svg) no-repeat;
   background-position: top 8px right 10px;
 }
 
-.content-remember-J {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.buttoncontainer-login-J {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 18px;
-  width: 100%;
-}
-
-.buttoncontainer-login-J button {
-  width: 120px;
-  height: 35px;
-}
 
 
 
-.button-guest-J {
-  background-color: white;
-  border-radius: 8px;
-  font-weight: 700;
-}
+
 
 .d-none {
   display: none;
