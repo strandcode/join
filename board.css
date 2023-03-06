@@ -17,7 +17,6 @@ main {
 }
 
 .board-head-D {
-    width: 1145px;
     height: 327px;
     left: 267px;
     top: 57px;
@@ -71,6 +70,7 @@ main {
 .find-add-container-D {
     display: flex;
     gap: 35px;
+    margin-right: 37px;
 }
 
 .work-steps-D {
@@ -112,4 +112,81 @@ h4:hover {
     background-color: #29ABE2;
     cursor: pointer;
 
+}
+
+.work-task-D {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px 19px;
+    gap: 10px;
+    width: 250px;
+    height: 239px;
+    /* white */
+    background: #FFFFFF;
+    /* shadoe backlog box */
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+}
+
+.work-task-headline-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    color: #2A3647;
+}
+
+.work-task-content-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+
+}
+
+.work-user-D {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.work-task-user-D {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 8px;
+    gap: 10px;
+    width: 35px;
+    height: 35px;
+    background: #0190E0;
+    /* white */
+    border: 1px solid #FFFFFF;
+    border-radius: 58px;
+    color: #FFFFFF;
+}
+
+.urgency-D {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 10px;
+    width: 32px;
+    height: 32px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.work-category-D {
+    padding: 4px 25px;
+    width: 103px;
+    height: 27px;
+    background: #FF7A00;
+    border-radius: 8px;
+    color: #FFFFFF;
+    margin-top: 22px;
 }
