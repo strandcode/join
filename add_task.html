@@ -1,97 +1,69 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="add_task_style.css">
-    <title>add_task</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="add_task_style.css">
+  <title>add_task</title>
 </head>
-<body>
 
-   
-  
-    <div class="main-content-J">
-      <header class="desktop-header">
-        <h2 class="font-weight-400">Kanban Project Management Tool</h2>
-        <div class="desktop-header-right-wrapper">
-          <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
-          <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
-        </div>
-      </header>
-    
-      <nav class="desktop-navbar">
-        <div class="desktop-navbar-top">
-          <a href="index.html">
-            <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
-          </a>
-    
-          <div class="desktop-navbar-wrapper">
-            <a class="desktop-navbar-link" href="index.html"><img class="icon-size-32" src="assets/img/icon-summary.svg"
-                alt="">Summary</a>
-            <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
-                alt="">Board</a>
-            <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
-                alt="">Add task</a>
-            <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
-                src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
-          </div>
-        </div>
-    
-        <div class="desktop-navbar-wrapper">
-          <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-              alt="">Legal
-            notice</a>
-          <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-              alt="">Privacy
-            policy</a>
-        </div>
-      </nav> 
+<body id="home" onload="init()">
 
-  
-       
+  <header id="desktopHeader" class="desktop-header"></header>
+  <nav id="desktopNavbar" class="desktop-navbar"></nav>
+
+  <header id="mobileHeader" class="mobile-header"></header>
+  <nav id="mobileNavbar" class="mobile-navbar"></nav>
+
+  <div class="main-content-J">
+
     <div class="task-mask-J">
-      
-          <div class="left-taskfield-J">
-            <h1>Add Task</h1>
-            <span>Title</span>
-            <input type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
-            
-            <span>Description</span>
-            <textarea class="width" placeholder="Enter a Description" name="Description" id="" cols="30" rows="10"></textarea>
-           
-            <span>Category</span>
-            <input class="width" type="text" placeholder="Select task category " name="" id="">
-            
-            <span>Assigned to</span>
-            <select class="width"  name="Select Contacts to assign" placeholder="Select Contacts to assign" id=""></select>
-          </div>
 
-          <div class="task-button-J">
-              <div class="input-substack-J">
-                  <span>Due date</span>
-              <input class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
-              <div>
-                  <button>Urgent<img src="img/prio-urgent.svg"></button>
-                  <button>Medium<img src="img/prio-medium.svg"></button>
-                  <button>Low<img src="img/prio-low.svg"></button>
-              </div>
-              <span>Substack</span>
-              <input class="width" placeholder="Add new substack" type="text" name="" id="">
-              <div><input class="width" type="checkbox" name="" id=""><span>Substack 1</span></div>
-              
-              <div class="button-container-J">
-                <button>Clear<img src="assets/img/icon-black-clear.svg"></button>
-                <button>Create Task<img src="assets/img/icon-white-create.svg"></button>
-                </div>
-            </div>
-      
-            
+      <div class="left-taskfield-J">
+        <h1>Add Task</h1>
+        <span>Title</span>
+        <input type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
+
+        <span>Description</span>
+        <textarea class="width" placeholder="Enter a Description" name="Description" id="" cols="30"
+          rows="10"></textarea>
+
+        <span>Category</span>
+        <input class="width" type="text" placeholder="Select task category " name="" id="">
+
+        <span>Assigned to</span>
+        <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id=""></select>
+      </div>
+
+      <div class="task-button-J">
+
+        <div class="input-substack-J">
+          <span>Due date</span>
+          <input class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
+          <div class="button-urgent-J">
+            <button>Urgent<img src="assets/img/prio-urgent.svg"></button>
+            <button>Medium<img src="assets/img/prio-medium.svg"></button>
+            <button>Low<img src="assets/img/prio-low.svg"></button>
           </div>
-          
+          <span>Substack</span>
+          <input class="width add-substack-J" placeholder="Add new substack" type="text" name="" id="">
+          <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
+
+          <div class="button-container-J">
+            <button class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
+            <button class="create">Create Task<img src="assets/img/icon-white-create.svg"></button>
+          </div>
         </div>
+
+
+      </div>
+
     </div>
-    
+  </div>
+  <script src="script.js"></script>
 </body>
+
 </html>
