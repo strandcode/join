@@ -6,53 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>JOIN | Navbar</title>
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <title>JOIN | Kanban Project Management Tool</title>
 </head>
 
-<body id="home">
+<body id="home" onload="init()">
 
-  <header class="desktop-header">
-    <h2 class="font-weight-400">Kanban Project Management Tool</h2>
-    <div class="desktop-header-right-wrapper">
-      <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
-      <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
-    </div>
-  </header>
+  <header id="desktopHeader" class="desktop-header"></header>
+  <nav id="desktopNavbar" class="desktop-navbar"></nav>
 
-  <nav class="desktop-navbar">
-    <div class="desktop-navbar-top">
-      <a href="index.html">
-        <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
-      </a>
+  <header id="mobileHeader" class="mobile-header"></header>
+  <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
-      <div class="desktop-navbar-wrapper">
-        <a class="desktop-navbar-link" href="index.html"><img class="icon-size-32" src="assets/img/icon-summary.svg"
-            alt="">Summary</a>
-        <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
-            alt="">Board</a>
-        <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
-            alt="">Add task</a>
-        <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
-            src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
-      </div>
-    </div>
 
-    <div class="desktop-navbar-wrapper">
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-          alt="">Legal
-        notice</a>
-      <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32"
-          src="assets/img/icon-legal.svg" alt="">Privacy
-        policy</a>
-    </div>
-  </nav>
 
 
   <main class="placeholder">
     <!-- Summary Content -->
     <h3>Summary</h3>
   </main>
-
+  <script src="script.js"></script>
 </body>
 
 </html>

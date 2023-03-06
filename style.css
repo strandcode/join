@@ -263,7 +263,7 @@ main {
     margin-top: 80px;
     margin-left: 0;
     overflow-y: scroll;
-    padding-bottom: 300px;
+    /* padding-bottom: 300px; */
   }
 
   .desktop-header {

@@ -40,7 +40,7 @@ function templateDesktopNavbar() {
           alt="">Legal
         notice
       </a>
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+      <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
           alt="">Privacy
         policy
       </a>
