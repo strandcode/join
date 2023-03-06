@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="board.css">
   <title>JOIN | Kanban board</title>
 </head>
 
@@ -47,9 +48,24 @@
   </nav>
 
 
-  <main class="placeholder">
-    <!-- Summary Content -->
-    <h3>Kanban board</h3>
+  <main class="board-main-D">
+    <!-- Board Content -->
+    <div class="board-head-D">
+      <h3 class="headline-board-D">Board</h3>
+      <div class="find-add-container-D">
+        <input class="find-task-D" id="findTask" type="text" placeholder="Find Task">
+        <button class="add-task-D " onclick="addTask()">
+          Add Task <img src="assets/img/Icon-plus.svg" alt="">
+        </button>
+      </div>
+    </div>
+    <div class="work-steps-D" id="workSteps">
+      <h4>To do</h4>
+      <h4>In Progress</h4>
+      <h4> Awaiting Feedback</h4>
+      <h4>Done</h4>
+    </div>
+
   </main>
 
 </body>
