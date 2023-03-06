@@ -175,18 +175,14 @@ function templateContactsActiveContact(activeContact) {
 
 
 function showEditContact(c) {
-  let contactContainer = document.getElementById('contactContainer');
-  // contactContainer.classList.add('d-none');
-  let editContact = document.getElementById('editContact');
-  editContact.classList.remove('d-none');
+  document.getElementById('editContact').classList.remove('d-none');
+  // Slide-In-Funktion
   templateEditContactActiveContact(c);
 }
 
 function closeEditContact() {
-  let contactContainer = document.getElementById('contactContainer');
-  // contactContainer.classList.remove('d-none');
-  let editContact = document.getElementById('editContact');
-  editContact.classList.add('d-none');
+  // Slide-Out-Funktion mit setTimeout auf 'd-none'
+  document.getElementById('editContact').classList.add('d-none');
 }
 
 function templateEditContactActiveContact(c) {

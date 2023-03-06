@@ -15,8 +15,10 @@
   <div id="contactContainer">
 
     <header id="desktopHeader" class="desktop-header"></header>
-
     <nav id="desktopNavbar" class="desktop-navbar"></nav>
+
+    <header id="mobileHeader" class="mobile-header"></header>
+    <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
     <main class="contacts-main-S">
 
@@ -51,16 +53,17 @@
 
   <!-- #################### NOTE Edit contact overlay #################### -->
 
-  <div id="editContact" class="edit-contact d-none">
-    <div class="contact-overlay-container">
+  <div id="editContact" class="desktop-overlay d-none">
+    <div class="desktop-overlay-container">
 
-      <div class="contact-overlay-left">
+      <div class="contact-overlay-left-S">
         <img src="assets/img/logo-white.svg" alt="Join us">
         <h2>Edit contact</h2>
+        <p>Tasks are better with a team!</p>
         <div class="blue-line"></div>
       </div>
 
-      <div class="contact-overlay-right">
+      <div class="contact-overlay-right-S">
         <div class="contact-overlay-right-header">
           <img src="assets/img/icons-cancel.svg" onclick="closeEditContact()" alt="Close button">
         </div>
