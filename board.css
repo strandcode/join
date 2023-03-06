@@ -113,6 +113,10 @@ h4:hover {
     cursor: pointer;
 
 }
+.work-task-container-D{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .work-task-D {
     display: flex;
@@ -127,6 +131,7 @@ h4:hover {
     /* shadoe backlog box */
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
+    margin-left: 70px;
 }
 
 .work-task-headline-D {
