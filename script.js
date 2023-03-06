@@ -48,7 +48,38 @@ function templateDesktopNavbar() {
   `;
 }
 
+// NOTE Mit activeLogin könen wir die src für das Profilbild ändern
+function templateMobileHeader() {
+  let mobileHeader = document.getElementById('mobileHeader');
+  mobileHeader.innerHTML = '';
+  mobileHeader.innerHTML += /*html*/ `
+   <a href="index.html">
+      <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
+    </a>
+    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+  `;
+}
+
+function templateMobileNavbar() {
+  let mobileNavbar = document.getElementById('mobileNavbar');
+  mobileNavbar.innerHTML = '';
+  mobileNavbar.innerHTML += /*html*/ `
+    <a class="mobile-navbar-link" href="index.html">
+      <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
+    </a>
+    <a class="mobile-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
+        alt="">Board</a>
+    <a class="mobile-navbar-link" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
+        alt="">Add task</a>
+    <a class="mobile-navbar-link" href="contacts.html"><img class="icon-size-32" src="assets/img/icon-contacts 13.svg"
+        alt="">Contacts</a>
+  `;
+}
+
+
 function init() {
   templateDesktopHeader();
   templateDesktopNavbar();
+  templateMobileHeader();
+  templateMobileNavbar();
 }

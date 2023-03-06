@@ -111,7 +111,7 @@ main {
 .icon-size-49 {
   height: 49px;
   width: 49px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .icon-size-120 {
@@ -201,6 +201,47 @@ main {
   gap: 20px;
 }
 
+.mobile-header {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  position: fixed;
+  height: 80px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-navbar {
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+
+  position: fixed;
+  height: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #2A3647;
+}
+
+.mobile-navbar-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+
+/* TODO kann gelöscht werden, wenn alle Seiten mit Inhalt gefüllt */
 .placeholder {
   display: flex;
   align-items: center;
@@ -211,6 +252,40 @@ main {
   font-size: 5rem;
   color: #2A3647
 }
+
+.d-none {
+  display: none;
+}
+
+@media screen and (max-width: 910px) {
+  main {
+    height: calc(100vh - 160px);
+    margin-top: 80px;
+    margin-left: 0;
+    overflow-y: scroll;
+    padding-bottom: 300px;
+  }
+
+  .desktop-header {
+    display: none;
+  }
+
+  .desktop-navbar {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .mobile-navbar {
+    display: flex;
+  }
+
+}
+
+
+
 
 /* 
 
