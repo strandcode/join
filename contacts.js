@@ -89,22 +89,26 @@ var contacts = [
   }
 ];
 
-const contactsRegister = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 
 function renderContactsList() {
   let contactsListS = document.getElementById('contactsListS');
   contactsListS.innerHTML = '';
 
-  for (let r = 0; r < contactsRegister.length; r++) {
+  let contactsRegister = [];
 
-    contactsListS.innerHTML += `
-    <div class="contacts-list-alphabet-char-S">${contactsRegister[r]}</div>
-    `;
+  for (let c = 0; c < contacts.length; c++) {
+    let firstLetter = contacts[c].firstName.charAt(0).toUpperCase();
+    if (!contactsRegister.includes(firstLetter)) {
+      contactsRegister.push(firstLetter);
 
-    for (let c = 0; c < contacts.length; c++) {
-      if (contacts[c].firstName.charAt(0).toUpperCase() == contactsRegister[r].toUpperCase()) {
-        contactsListS.innerHTML += templateContactsListContact(c);
+      contactsListS.innerHTML += `
+        <div class="contacts-list-alphabet-char-S">${firstLetter}</div>
+      `;
+
+      for (let i = c; i < contacts.length; i++) {
+        if (contacts[i].firstName.charAt(0).toUpperCase() == firstLetter) {
+          contactsListS.innerHTML += templateContactsListContact(i);
+        }
       }
     }
   }
@@ -128,23 +132,32 @@ function templateContactsListContact(c) {
 
 
 function templateContactsActiveContact(activeContact) {
-  let contactsMainHeader = document.getElementById('contactsMainHeader');
-  contactsMainHeader.innerHTML = '';
-  contactsMainHeader.innerHTML = /*html*/ `
-    <div class="contacts-active-contact-wrapper-S">
-      <div class="contacts-active-contact-avatar-S icon-size-120 font-size-48 bg-pink contacts-avatar-shadow" style="background-color: ${contacts[activeContact].avatar_bg_color}">
-      ${contacts[activeContact].avatar_initials}
-      </div>
-      <div class="contact-data-wrapper-S">
-        <div class="contact-name-S font-size-48">
-          ${contacts[activeContact].firstName} ${contacts[activeContact].lastName}
+  let contactsMainWrapperS = document.getElementById('contactsMainWrapperS');
+  contactsMainWrapperS.innerHTML = '';
+  contactsMainWrapperS.innerHTML = /*html*/ `
+    <div id="contactsMainHeader" class="contacts-main-header">
+        <div class="contacts-active-contact-wrapper-S">
+          <div class="contacts-active-contact-avatar-S icon-size-120 font-size-48 bg-pink contacts-avatar-shadow"
+            style="background-color: ${contacts[activeContact].avatar_bg_color}">
+            ${contacts[activeContact].avatar_initials}
+          </div>
+          <div class="contact-data-wrapper-S">
+            <div class="contact-name-S font-size-48">
+              ${contacts[activeContact].firstName} ${contacts[activeContact].lastName}
+            </div>
+            <a href="#" class="contact-email-S">+ Add Task</a>
+          </div>
         </div>
-        <a href="#" class="contact-email-S">
-          + Add Task
-        </a>
       </div>
-    </div>
-  `;
+      <div class="contacts-list-main-edit-S">
+        <h4 class="font-size-27">Contact Information</h4>
+        <div class="contacts-active-contact-edit" onclick="showEditContact(${activeContact})">
+          <img src="assets/img/pencil-no-bg.svg" alt="">
+          <span>Edit Contact</span>
+        </div>
+      </div>
+      <div id="contactsMainBody" class="contacts-list-main-data"></div>
+    `;
 
   let contactsMainBody = document.getElementById('contactsMainBody');
   contactsMainBody.innerHTML = '';
@@ -163,15 +176,15 @@ function templateContactsActiveContact(activeContact) {
 
 function showEditContact(c) {
   let contactContainer = document.getElementById('contactContainer');
-  contactContainer.classList.add('d-none');
+  // contactContainer.classList.add('d-none');
   let editContact = document.getElementById('editContact');
   editContact.classList.remove('d-none');
-  templateEditContactActiveContact(4);
+  templateEditContactActiveContact(c);
 }
 
-function closeEditContact(c) {
+function closeEditContact() {
   let contactContainer = document.getElementById('contactContainer');
-  contactContainer.classList.remove('d-none');
+  // contactContainer.classList.remove('d-none');
   let editContact = document.getElementById('editContact');
   editContact.classList.add('d-none');
 }
@@ -195,13 +208,12 @@ function templateEditContactActiveContact(c) {
       class="contact-overlay-right-input-phone" placeholder="Phone">
      
       <div class="contact-overlay-right-footer">
-        <button class="contact-overlay-button">Save</button>
+        <button class="contact-overlay-button" onclick="closeEditContact()">Save</button>
       </div>
     </div>
   `;
 }
 
-// templateEditContactActiveContact(0);
 
 renderContactsList();
 templateContactsActiveContact(0);

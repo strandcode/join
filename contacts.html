@@ -7,47 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="contacts.css">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Contacts</title>
 </head>
 
-<body>
+<body onload="init()">
   <div id="contactContainer">
 
-    <header class="desktop-header">
-      <h2 class="font-weight-400">Kanban Project Management Tool</h2>
-      <div class="desktop-header-right-wrapper">
-        <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
-        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
-      </div>
-    </header>
+    <header id="desktopHeader" class="desktop-header"></header>
 
-    <nav class="desktop-navbar">
-      <div class="desktop-navbar-top">
-        <a href="index.html">
-          <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
-        </a>
-
-        <div class="desktop-navbar-wrapper">
-          <a class="desktop-navbar-link" href="index.html"><img class="icon-size-32" src="assets/img/icon-summary.svg"
-              alt="">Summary</a>
-          <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
-              alt="">Board</a>
-          <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32"
-              src="assets/img/icon-add-task.svg" alt="">Add task</a>
-          <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
-              src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
-        </div>
-      </div>
-
-      <div class="desktop-navbar-wrapper">
-        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-            alt="">Legal
-          notice</a>
-        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-            alt="">Privacy
-          policy</a>
-      </div>
-    </nav>
+    <nav id="desktopNavbar" class="desktop-navbar"></nav>
 
     <main class="contacts-main-S">
 
@@ -64,21 +33,9 @@
             <span>Better with a team</span>
           </div>
 
-
           <!-- NOTE Active contact will be rendered by templateContactsActiveContact(activeContact) -->
-          <div class="contacts-main-wrapper-S">
+          <div id="contactsMainWrapperS" class="contacts-main-wrapper-S"></div>
 
-            <div id="contactsMainHeader" class="contacts-main-header"></div>
-
-            <div class="contacts-list-main-edit-S">
-              <h4 class="font-size-27">Contact Information</h4>
-              <div class="contacts-active-contact-edit" onclick="showEditContact()">
-                <img src="assets/img/pencil-no-bg.svg" alt="">
-                <span>Edit Contact</span>
-              </div>
-            </div>
-            <div id="contactsMainBody" class="contacts-list-main-data"></div>
-          </div>
         </div>
 
         <div class="contacts-footer-wrapper-S">
@@ -105,7 +62,7 @@
 
       <div class="contact-overlay-right">
         <div class="contact-overlay-right-header">
-          <img src="assets/img/icons-cancel.svg" onclick="closeEditContact()" alt="close">
+          <img src="assets/img/icons-cancel.svg" onclick="closeEditContact()" alt="Close button">
         </div>
         <div id="contactOverlayActiveContact" class="contact-overlay-right-main">
         </div>
@@ -114,6 +71,9 @@
   </div>
 
   <script src="contacts.js"></script>
+  <script src="script.js"></script>
+
 </body>
+
 
 </html>
