@@ -53,6 +53,7 @@
     <div class="board-head-D">
       <h3 class="headline-board-D">Board</h3>
       <div class="find-add-container-D">
+        <img src="assets/img/icon-magnifying-glass.svg" alt="">
         <input class="find-task-D" id="findTask" type="text" placeholder="Find Task">
         <button class="add-task-D " onclick="addTask()">
           Add Task <img src="assets/img/Icon-plus.svg" alt="">
@@ -60,10 +61,14 @@
       </div>
     </div>
     <div class="work-steps-D" id="workSteps">
-      <h4>To do</h4>
-      <h4>In Progress</h4>
-      <h4> Awaiting Feedback</h4>
-      <h4>Done</h4>
+      <h4>To do</h4> <button id="smallPlus" class="small-plus-D" onclick="addTask()"><img
+          src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+      <h4>In progress</h4> <button id="smallPlus" class="small-plus-D" onclick="addTask()"><img
+          src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+      <h4>Awaiting Feedback</h4> <button id="smallPlus" class="small-plus-D" onclick="addTask()"><img
+          src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+      <h4>Done</h4> <button id="smallPlus" class="small-plus-D" onclick="addTask()"><img
+          src="assets/img/icon-add-plus-dark.svg" alt=""></button>
     </div>
 
   </main>

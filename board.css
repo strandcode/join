@@ -1,3 +1,8 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 .headline-board-D {
     width: 176px;
     height: 73px;
@@ -17,9 +22,8 @@
     left: 267px;
     top: 57px;
     display: flex;
-    background: #F6F7F8;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .add-task-D {
@@ -37,6 +41,10 @@
     background: #2A3647;
     border: 1px solid #2A3647;
     border-radius: 10px;
+}
+
+.add-task-D img {
+    height: 15px;
 }
 
 .add-task-D:hover {
@@ -67,4 +75,41 @@
 
 .work-steps-D {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+h4 {
+    height: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    color: #2A3647;
+}
+
+h4:hover {
+    cursor: pointer;
+}
+
+.small-plus-D {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    gap: 10px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #2A3647;
+    border-radius: 10px;
+    color: #2A3647;
+}
+
+.small-plus-D:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
+
 }
