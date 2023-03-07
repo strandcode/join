@@ -68,6 +68,49 @@
 
     </div>
   </div>
+
+  <div class="mobil-main-J">
+    <div>
+      <h1>Add Task</h1>
+    </div>
+
+    <div class="mobil-tasks-main-J">
+      <span>Title</span>
+      <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
+
+      <span>Description</span>
+      <textarea required class="width" placeholder="Enter a Description" name="Description" id="" cols="30"
+        rows="10"></textarea>
+
+      <span>Prio</span>
+      <div class="button-urgent-J">
+        <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
+        <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
+        <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
+      </div>
+
+      <span>Due date</span>
+      <input required class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
+
+      <span>Category</span>
+      <select class="width" placeholder="Select task category " id="">
+        <option disabled selected hidden>Category</option>
+        <option value="Category">Category</option>
+      </select>
+
+      <span>Assigned to</span>
+      <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
+        <option disabled selected hidden>Select Contacts to assign</option>
+        <option value="Kontakt">Kontakt</option>
+      </select>
+
+      <span>Substack</span>
+      <input class="width add-substack-J" placeholder="Add new substack" type="text" name="" id="">
+      <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
+    </div>
+
+  </div>
+
   <script src="script.js"></script>
 </body>
 
