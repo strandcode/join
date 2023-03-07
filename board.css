@@ -196,3 +196,18 @@ h4:hover {
     color: #FFFFFF;
     margin-top: 22px;
 }
+
+@media screen and (max-width: 910px) {
+    .board-head-D {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .work-task-container-D {
+        flex-direction: column;
+    }
+
+    .work-steps-D {
+        flex-direction: column;
+    }
+}
