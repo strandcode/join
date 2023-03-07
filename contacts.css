@@ -12,7 +12,7 @@
 .contacts-list-S {
   background-color: white;
   /* width: 30%; */
-  min-width: 320px;
+  min-width: 300px;
   max-width: 450px;
   height: calc(100vh - 89px);
   padding: 10px 32px;
@@ -254,6 +254,37 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.fade-to-gray-overlay {
+  animation: fade-to-gray 1000ms linear;
+}
+
+@keyframes fade-to-gray {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.fade-out-gray-overlay {
+  animation: fade-out-gray 250ms linear;
+}
+
+@keyframes fade-out-gray {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+
+
+
 .desktop-overlay-container {
   display: flex;
   /* Das ist aufgrund dem globalem @media bei 910px */
@@ -264,6 +295,35 @@
 
 
 /* Border radius 20px bei den innenliegenden Containern benutzen */
+
+.desktop-slide-in {
+  animation: slide-in 250ms ease-in-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.desktop-slide-out {
+  animation: slide-out 250ms ease-in-out;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100vw);
+  }
+}
+
 
 .contact-overlay-left-S {
   border-bottom-left-radius: 20px;

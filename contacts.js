@@ -176,13 +176,21 @@ function templateContactsActiveContact(activeContact) {
 
 function showEditContact(c) {
   document.getElementById('editContact').classList.remove('d-none');
-  // Slide-In-Funktion
+  document.getElementById('editContact').classList.add('fade-to-gray-overlay');
+
+  document.getElementById('editContactContainer').classList.add('desktop-slide-in');
   templateEditContactActiveContact(c);
 }
 
 function closeEditContact() {
-  // Slide-Out-Funktion mit setTimeout auf 'd-none'
-  document.getElementById('editContact').classList.add('d-none');
+  document.getElementById('editContactContainer').classList.remove('desktop-slide-in');
+  document.getElementById('editContact').classList.add('fade-out-gray-overlay');
+  document.getElementById('editContactContainer').classList.add('desktop-slide-out');
+  setTimeout(function () {
+    document.getElementById('editContact').classList.add('d-none');
+    document.getElementById('editContact').classList.remove('fade-to-gray-overlay', 'fade-out-gray-overlay');
+    document.getElementById('editContactContainer').classList.remove('desktop-slide-out');
+  }, 240);
 }
 
 function templateEditContactActiveContact(c) {
