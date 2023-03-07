@@ -347,7 +347,7 @@
 
 .contact-overlay-left-S .blue-line {
   background-color: #29abe2;
-  width: 100px;
+  width: 46px;
   height: 3px;
 }
 
@@ -435,6 +435,13 @@
   width: 150px;
   cursor: pointer;
 }
+
+.contact-overlay-right-S form {
+  display: flex;
+  width: 100%;
+}
+
+/* ###################### @media styles #################### */
 
 @media screen and (max-width: 910px) {
 

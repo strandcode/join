@@ -151,7 +151,7 @@ function templateContactsActiveContact(activeContact) {
       </div>
       <div class="contacts-list-main-edit-S">
         <h4 class="font-size-27">Contact Information</h4>
-        <div class="contacts-active-contact-edit" onclick="showEditContact(${activeContact})">
+        <div class="contacts-active-contact-edit" onclick="showOverlay('editContactOverlay', 'editContactContainer')">
           <img src="assets/img/pencil-no-bg.svg" alt="">
           <span>Edit Contact</span>
         </div>
@@ -171,30 +171,29 @@ function templateContactsActiveContact(activeContact) {
       <a href="tel:${contacts[activeContact].phone}" class="contact-email-S break-all">${contacts[activeContact].phone}</a>
     </div>
   `;
+  templateEditContactActiveContact(activeContact);
 }
 
 
-function showEditContact(c) {
-  document.getElementById('editContact').classList.remove('d-none');
-  document.getElementById('editContact').classList.add('fade-to-gray-overlay');
-
-  document.getElementById('editContactContainer').classList.add('desktop-slide-in');
-  templateEditContactActiveContact(c);
+function showOverlay(overlayId, overlayContainerId) {
+  document.getElementById(overlayId).classList.remove('d-none');
+  document.getElementById(overlayId).classList.add('fade-to-gray-overlay');
+  document.getElementById(overlayContainerId).classList.add('desktop-slide-in');
 }
 
-function closeEditContact() {
-  document.getElementById('editContactContainer').classList.remove('desktop-slide-in');
-  document.getElementById('editContact').classList.add('fade-out-gray-overlay');
-  document.getElementById('editContactContainer').classList.add('desktop-slide-out');
+function closeOverlay(overlayId, overlayContainerId) {
+  document.getElementById(overlayContainerId).classList.remove('desktop-slide-in');
+  document.getElementById(overlayContainerId).classList.add('desktop-slide-out');
+  document.getElementById(overlayId).classList.add('fade-out-gray-overlay');
   setTimeout(function () {
-    document.getElementById('editContact').classList.add('d-none');
-    document.getElementById('editContact').classList.remove('fade-to-gray-overlay', 'fade-out-gray-overlay');
-    document.getElementById('editContactContainer').classList.remove('desktop-slide-out');
+    document.getElementById(overlayId).classList.add('d-none');
+    document.getElementById(overlayId).classList.remove('fade-to-gray-overlay', 'fade-out-gray-overlay');
+    document.getElementById(overlayContainerId).classList.remove('desktop-slide-out');
   }, 240);
 }
 
 function templateEditContactActiveContact(c) {
-  let contactOverlayActiveContact = document.getElementById('contactOverlayActiveContact');
+  let contactOverlayActiveContact = document.getElementById('contactFormActiveContact');
   contactOverlayActiveContact.innerHTML = '';
   contactOverlayActiveContact.innerHTML += `
     <div class="contact-overlay-right-avatar" 
@@ -212,12 +211,39 @@ function templateEditContactActiveContact(c) {
       class="contact-overlay-right-input-phone" placeholder="Phone">
      
       <div class="contact-overlay-right-footer">
-        <button class="contact-overlay-button" onclick="closeEditContact()">Save</button>
+        <button class="contact-overlay-button" onclick="closeOverlay('editContactOverlay', 'editContactContainer')">Save</button>
       </div>
     </div>
   `;
 }
 
 
+function templateAddContactForm() {
+  let contactFormNewContact = document.getElementById('contactFormNewContact');
+  contactFormNewContact.innerHTML = '';
+  contactFormNewContact.innerHTML += /*html*/ `
+    <div class="contact-overlay-right-avatar" 
+         style="background-color: gray">NN
+    </div>
+    <form action="">
+    <div class="contact-overlay-right-input">
+        <input id="contactEditName" name="contactEditName" type="text" 
+        class="contact-overlay-right-input-name" placeholder="Name" required>
+        
+        <input id="contactEditEmail" name="contactEditEmail" type="email" 
+        class="contact-overlay-right-input-email" placeholder="Email" required>
+        
+        <input id="contactEditPhone" name="contactEditPhone" type="tel" 
+        class="contact-overlay-right-input-phone" placeholder="Phone" required>
+        
+        <div class="contact-overlay-right-footer">
+          <button class="contact-overlay-button" onclick="closeOverlay('addContactOverlay', 'addContactContainer')">Save</button>
+        </div>
+      </div>
+    </form>
+  `;
+}
+
+templateAddContactForm();
 renderContactsList();
 templateContactsActiveContact(0);
