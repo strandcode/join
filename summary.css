@@ -61,7 +61,7 @@ h4 {
     color: #000000;
 }
 
-.urgency-date-D {
+.deadline-container-D {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -75,4 +75,119 @@ h4 {
     border-radius: 30px;
     margin-top: 35px;
     margin-left: 123px;
+}
+
+.urgency-date-D {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-D {
+    width: 178px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    /* or 25px */
+    color: #2A3647;
+    padding-bottom: 13px;
+}
+
+.date-deadline-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    /* or 19px */
+    color: #2A3647;
+}
+
+.urgency-tasks-D {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+.urgency-number-D {
+    width: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 47px;
+    line-height: 120%;
+    text-align: center;
+    color: #000000;
+}
+
+.to-do-and-done-D {
+    display: flex;
+    margin-top: 35px;
+}
+
+.to-do-D {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 38px 19px;
+    gap: 18px;
+    width: 272.5px;
+    height: 150px;
+    margin-left: 123px;
+    margin-right: 35px;
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.to-dos-D {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.to-do-number-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    color: #000000;
+}
+
+.done-tasks-D {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 38px 19px;
+    gap: 18px;
+    width: 272.5px;
+    height: 150px;
+    margin-right: 35px;
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.done-D {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.done-number-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 120%;
+    text-align: center;
+    color: #000000;
+
 }
