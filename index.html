@@ -6,26 +6,85 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban Project Management Tool</title>
 </head>
 
-<body id="home" onload="init()">
-
-  <header id="desktopHeader" class="desktop-header"></header>
-  <nav id="desktopNavbar" class="desktop-navbar"></nav>
-
-  <header id="mobileHeader" class="mobile-header"></header>
-  <nav id="mobileNavbar" class="mobile-navbar"></nav>
+<body id="home">
+  <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
 
 
 
+  <div id="loginForm" class="login-form-container">
+    <div class="main-login-J">
+      <h1>Log in</h1>
+      <div class="blue-line"></div>
+      <div class="input-login-J">
+        <input class="login-form-input-email" placeholder="Email" type="email" name="">
+        <input class="login-form-input-password" placeholder="Password" type="password" name="">
+      </div>
+      <div class="content-remeber-J">
+        <div><input placeholder="Remember me" type="checkbox" name="" id=""><span>Remember me</span></div>
+        <a href="">Forgot my Password</a>
+      </div>
+      <div class="buttoncontainer-login-J">
+        <button class="button-login-J">Log in</button>
+        <a href="summary.html">
+          <button class="button-guest-J">Guest Log in</button>
+        </a>
+      </div>
+    </div>
+  </div>
 
-  <main class="placeholder">
-    <!-- Summary Content -->
-    <h3>Summary</h3>
-  </main>
-  <script src="script.js"></script>
+  <div id="signUpForm" class="login-form-container d-none">
+    <div class="main-login-J">
+      <h1>Sign up</h1>
+      <div class="blue-line"></div>
+      <div class="input-login-J">
+        <input class="login-form-input-name" placeholder="Email" type="email" name="">
+        <input class="login-form-input-email" placeholder="Email" type="email" name="">
+        <input class="login-form-input-password" placeholder="Password" type="password" name="">
+      </div>
+      <div class="buttoncontainer-login-J">
+        <button class="button-login-J">Sign up</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="forgotPasswordForm" class="login-form-container d-none">
+    <div class="main-login-J">
+      <h1>I forget my password</h1>
+      <div class="blue-line"></div>
+      <p>Don't worry! We will send you an email with the instructions to reset your password.</p>
+      <div class="input-login-J">
+        <input class="login-form-input-email" placeholder="Email" type="email" name="">
+      </div>
+      <div class="buttoncontainer-login-J">
+        <button class="button-login-J">Send me the email</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="login-right">
+    <div class="signup-button">
+      <span>Not a Join user?</span>
+      <button>Sign up</button>
+    </div>
+
+
 </body>
 
 </html>
