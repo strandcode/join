@@ -7,8 +7,8 @@
   margin: 0;
   display: flex;
   flex-direction: row;
-  height: 100vh;
-  background: #F5F5F5;
+  height: 1240px;
+  /* background: #F5F5F5; */
 }
 
 input {
@@ -20,13 +20,15 @@ input {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  /* padding: 0px; */
+  padding-left: 90px;
+
   /* gap: 14px; */
   background: #F5F5F5;
   position: absolute;
-  width: 422px;
-  height: 506px;
-  left: 355px;
+  width: 722px;
+  height: 640px;
+  left: 230px;
   top: 95px;
 }
 
@@ -36,7 +38,7 @@ input {
   display: flex;
   flex-direction: column;
   width: 422px;
-  gap: 30px;
+  gap: 20px;
 }
 
 .left-taskfield-J textarea {
@@ -53,10 +55,10 @@ input {
   /* gap: 175px; */
   background: #F5F5F5;
   position: absolute;
-  width: 422px;
-  height: 506px;
+  width: 548px;
+  height: 640px;
   left: 570px;
-  top: 105px;
+  padding-top: 95px;
   flex-wrap: wrap;
 }
 
@@ -146,8 +148,6 @@ input {
 
 .input-substack-J {
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   flex-direction: column;
   gap: 30px;
   margin-right: 36px;
@@ -161,13 +161,35 @@ input {
   width: 150px;
 }
 
-.mobile-main-J {
+.mobile {
   display: none;
+}
+
+
+
+@media screen and (max-width: 911px) {
+
+  .mobil-main-J {
+    display: none;
+  }
+
+  .mobil-tasks-main-J {
+    display: none;
+  }
+
 }
 
 @media screen and (max-width: 910px) {
 
+  .mobile {
+    display: block;
+  }
+
   .main-content-J {
+    display: none;
+  }
+
+  .task-mask-J {
     display: none;
   }
 
@@ -179,6 +201,28 @@ input {
     width: 100%;
     position: absolute;
     top: 85px;
+  }
+
+  .button-container-mobil {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    height: 41px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .button-container-mobil button {
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+
+  }
+
+  .button-container-mobil image {
+    padding-left: 10px;
   }
 
   .mobil-main-J h1 {
@@ -200,8 +244,11 @@ input {
   }
 
   .button-urgent-J {
+    display: flex;
     margin-left: 25px;
   }
+
+
 
 }
 

@@ -18,63 +18,15 @@
   <header id="mobileHeader" class="mobile-header"></header>
   <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
-  <div class="main-content-J">
-
-    <div class="task-mask-J">
-
-      <div class="left-taskfield-J">
-        <h1>Add Task</h1>
-        <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
-
-        <span>Description</span>
-        <textarea required class="width" placeholder="Enter a Description" name="Description" id="" cols="30"
-          rows="10"></textarea>
-
-        <span>Category</span>
-        <input class="width" type="text" placeholder="Select task category " name="" id="">
-
-        <span>Assigned to</span>
-        <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
-          <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option>
-          <option value="Kontakt">Kontakt</option>
-          <option value="Kontakt">Kontakt</option>
-          <option value="Kontakt">Kontakt</option>
-        </select>
-      </div>
-
-      <div class="task-button-J">
-
-        <div class="input-substack-J">
-          <span>Due date</span>
-          <input required class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
-          <div class="button-urgent-J">
-            <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
-            <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
-            <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
-          </div>
-          <span>Substack</span>
-          <input class="width add-substack-J" placeholder="Add new substack" type="text" name="" id="">
-          <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
-
-          <div class="button-container-J">
-            <button class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
-            <button class="create">Create Task<img src="assets/img/icon-white-create.svg"></button>
-          </div>
-        </div>
 
 
-      </div>
 
-    </div>
-  </div>
+  <!-- <div class="main-content-J"> -->
 
-  <div class="mobil-main-J">
-    <div>
+  <div class="task-mask-J">
+
+    <div class="left-taskfield-J">
       <h1>Add Task</h1>
-    </div>
-
-    <div class="mobil-tasks-main-J">
       <span>Title</span>
       <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
 
@@ -82,31 +34,86 @@
       <textarea required class="width" placeholder="Enter a Description" name="Description" id="" cols="30"
         rows="10"></textarea>
 
-      <span>Prio</span>
-      <div class="button-urgent-J">
-        <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
-        <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
-        <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
+      <span>Category</span>
+      <input class="width" type="text" placeholder="Select task category " name="" id="">
+
+      <span>Assigned to</span>
+      <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
+        <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option>
+        <option value="Kontakt">Kontakt</option>
+        <option value="Kontakt">Kontakt</option>
+        <option value="Kontakt">Kontakt</option>
+      </select>
+    </div>
+
+    <div class="task-button-J">
+
+      <div class="input-substack-J">
+        <span>Due date</span>
+        <input required class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
+        <div class="button-urgent-J">
+          <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
+          <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
+          <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
+        </div>
+        <span>Substack</span>
+        <input class="width add-substack-J" placeholder="Add new substack" type="text" name="" id="">
+        <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
+
+        <div class="button-container-J">
+          <button class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
+          <button class="create">Create Task<img src="assets/img/icon-white-create.svg"></button>
+        </div>
       </div>
 
-      <span>Due date</span>
-      <input required class="width" type="date" placeholder="dd/mm/yyyy" name="" id="">
 
-      <span>Category</span>
-      <select class="width" placeholder="Select task category " id="">
+    </div>
+
+  </div>
+  </div>
+
+  <div class="mobil-main-J">
+    <div class="button-container-mobil mobile">
+      <button class="create mobile">Create Task<img src="assets/img/icon-white-create.svg"></button>
+    </div>
+    <div class="mobile">
+      <h1 class="mobile">Add Task</h1>
+    </div>
+
+    <div class="mobil-tasks-main-J">
+      <span class="mobile">Title</span>
+      <input required type="text" class="input-title-J width mobile" placeholder="Enter a title" name="Title" id="">
+
+      <span class="mobile">Description</span>
+      <textarea required class="width mobile" placeholder="Enter a Description" name="Description" id="" cols="30"
+        rows="10"></textarea>
+
+      <span class="mobile">Prio</span>
+      <div class="button-urgent-J mobile">
+        <button class="urgent-J mobile">Urgent<img src="assets/img/prio-urgent.svg"></button>
+        <button class="medium-J mobile">Medium<img src="assets/img/prio-medium.svg"></button>
+        <button class="low-J mobile">Low<img src="assets/img/prio-low.svg"></button>
+      </div>
+
+      <span class="mobile">Due date</span>
+      <input required class="width mobile" type="date" placeholder="dd/mm/yyyy" name="" id="">
+
+      <span class="mobile">Category</span>
+      <select class="width mobile" placeholder="Select task category " id="">
         <option disabled selected hidden>Category</option>
         <option value="Category">Category</option>
       </select>
 
-      <span>Assigned to</span>
-      <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
+      <span class="mobile">Assigned to</span>
+      <select class="width mobile" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
         <option disabled selected hidden>Select Contacts to assign</option>
         <option value="Kontakt">Kontakt</option>
       </select>
 
-      <span>Substack</span>
-      <input class="width add-substack-J" placeholder="Add new substack" type="text" name="" id="">
-      <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
+      <span class="mobile">Substack</span>
+      <input class="width add-substack-J mobile" placeholder="Add new substack" type="text" name="" id="">
+      <div class="ckeckbox-button-J mobile"><input class="mobile" type="checkbox" name="" id=""><span>Substack 1</span>
+      </div>
     </div>
 
   </div>
