@@ -18,12 +18,12 @@ function templateDesktopNavbar() {
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
     <div class="desktop-navbar-top">
-      <a href="index.html">
+      <a href="summary.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
 
       <div class="desktop-navbar-wrapper">
-        <a class="desktop-navbar-link" href="index.html">
+        <a class="desktop-navbar-link" href="summary.html">
           <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
         </a>
         <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
