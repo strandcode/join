@@ -77,7 +77,7 @@ main {
 .work-steps-D {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
 }
 
 h4 {
@@ -118,6 +118,8 @@ h4:hover {
 .work-task-container-D {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .work-task-D {
@@ -132,7 +134,6 @@ h4:hover {
     /* shadoe backlog box */
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
-    margin-left: 70px;
 }
 
 .work-task-headline-D {
@@ -150,7 +151,12 @@ h4:hover {
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
+}
 
+.work-task-category-D {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .work-user-D {
@@ -209,5 +215,31 @@ h4:hover {
 
     .work-steps-D {
         flex-direction: column;
+    }
+
+    .work-task-D {
+        width: 100%;
+    }
+
+    .button-text-D {
+        display: none;
+    }
+
+    .add-task-D {
+        width: 40px;
+        height: 40px;
+    }
+
+    .find-add-container-D {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        margin-right: 0;
+
+    }
+
+    .headline-board-D {
+        margin-left: 0;
     }
 }
