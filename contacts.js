@@ -150,7 +150,7 @@ function templateContactsActiveContact(activeContact) {
         </div>
       </div>
       <div class="contacts-list-main-edit-S">
-        <h4 class="font-size-27">Contact Information</h4>
+        <h4>Contact Information</h4>
         <div class="contacts-active-contact-edit" onclick="showOverlay('editContactOverlay', 'editContactContainer')">
           <img src="assets/img/pencil-no-bg.svg" alt="">
           <span>Edit Contact</span>
@@ -197,7 +197,7 @@ function templateEditContactActiveContact(c) {
   contactOverlayActiveContact.innerHTML = '';
   contactOverlayActiveContact.innerHTML += `
     <div class="contact-overlay-right-avatar" 
-         style="background-color: #ffc700">${contacts[c].avatar_initials}
+         style="background-color: ${contacts[c].avatar_bg_color}">${contacts[c].avatar_initials}
     </div>
     <div class="contact-overlay-right-input">
 
