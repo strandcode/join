@@ -206,6 +206,65 @@ h4:hover {
     margin-top: 22px;
 }
 
+/* ////////     OVERLAY BOARD WORK TASK //////////// */
+
+.board-task-overlay-D {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate;
+    position: relative;
+    width: 623px;
+    height: 824px;
+    background: #FFFFFF;
+    /* nuevo */
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.work-overlay-headline-D {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    color: #2A3647;
+}
+
+.priority-overlay-D {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.priority-overlay-D img {
+    padding: 4px 18px;
+    width: 131px;
+    background: #FF3D00;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.user-overlay-D {
+    display: flex;
+    flex-direction: column;
+}
+
+.close-work-overlay-D {
+    position: absolute;
+    left: 581.82px;
+    top: 57.11px;
+}
+
+.close-work-overlay-D button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: larger;
+}
+
 @media screen and (max-width: 910px) {
     .board-head-D {
         display: flex;
