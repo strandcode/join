@@ -1,8 +1,3 @@
-.width {
-  width: 350px;
-}
-
-
 .main-content-J {
   margin: 0;
   display: flex;
@@ -37,29 +32,34 @@ input {
 .left-taskfield-J {
   display: flex;
   flex-direction: column;
-  width: 422px;
-  gap: 20px;
+  padding: 50px 30px;
+  flex-wrap: wrap;
+  background-color: rebeccapurple;
+  width: 50%;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 25px;
 }
 
+.left-taskfield-J input,
 .left-taskfield-J textarea {
-  width: 422px;
-  height: 119px;
-  border-radius: 12px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1;
+
 }
 
-.task-button-J {
+.right-taskfield-J {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  padding: 0px;
-  /* gap: 175px; */
-  background: #F5F5F5;
-  position: absolute;
-  width: 548px;
-  height: 640px;
+  padding: 50px 30px;
   left: 570px;
-  padding-top: 95px;
   flex-wrap: wrap;
+  background-color: green;
+  width: 50%;
+  align-content: center;
+  justify-content: flex-start;
 }
 
 .button-urgent-J {
