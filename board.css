@@ -119,6 +119,7 @@ h4:hover {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
     justify-content: space-evenly;
 }
 
