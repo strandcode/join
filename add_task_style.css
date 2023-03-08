@@ -32,9 +32,8 @@ input {
 .left-taskfield-J {
   display: flex;
   flex-direction: column;
-  padding: 50px 30px;
+  padding: 20px 30px;
   flex-wrap: wrap;
-  background-color: rebeccapurple;
   width: 50%;
   align-content: center;
   justify-content: flex-start;
@@ -53,23 +52,36 @@ input {
 .right-taskfield-J {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 50px 30px;
-  left: 570px;
   flex-wrap: wrap;
-  background-color: green;
   width: 50%;
   align-content: center;
-  justify-content: flex-start;
+  gap: 25px;
+  padding-top: 125px;
+
+}
+
+.right-taskfield-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1;
+
 }
 
 .button-urgent-J {
   display: flex;
-  width: 300px;
+  justify-content: center;
+  width: 100%;
+  padding-top: 25px;
+  padding-bottom: 10px;
 
 }
 
 .button-urgent-J button {
-  width: 110px;
+  width: 30%;
   height: 40px;
   cursor: pointer;
 }
@@ -101,13 +113,9 @@ input {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px;
   gap: 25px;
-  width: 338px;
-  height: 61px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  width: 100%;
+
 }
 
 .button-container-J img {
@@ -158,7 +166,8 @@ input {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  /* width: 150px; */
+  margin-bottom: 50px;
 }
 
 .mobile {
@@ -179,28 +188,25 @@ input {
 
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 1050px) {
 
   .mobile {
     display: block;
   }
 
-  .main-content-J {
+  .left-taskfield-J {
     display: none;
   }
 
-  .task-mask-J {
+  .right-taskfield-J {
     display: none;
   }
 
   .mobil-main-J {
     display: block;
-    background: #F5F5F5;
-    margin: 0;
-    height: 100vh;
+    padding: 20px;
     width: 100%;
-    position: absolute;
-    top: 85px;
+    padding: 50px;
   }
 
   .button-container-mobil {
@@ -239,13 +245,12 @@ input {
   .mobil-tasks-main-J {
     display: flex;
     flex-direction: column;
-    margin-left: 290px;
     gap: 10px;
   }
 
   .button-urgent-J {
     display: flex;
-    margin-left: 25px;
+
   }
 
 
@@ -258,9 +263,7 @@ input {
     margin-left: 220px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 220px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 699px) {
@@ -269,9 +272,7 @@ input {
     margin-left: 180px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 180px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 629px) {
@@ -280,9 +281,7 @@ input {
     margin-left: 130px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 130px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 579px) {
@@ -291,9 +290,7 @@ input {
     margin-left: 100px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 100px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 539px) {
@@ -302,9 +299,7 @@ input {
     margin-left: 30px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 30px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 405px) {
@@ -313,9 +308,7 @@ input {
     margin-left: 15px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 15px;
-  }
+  .mobil-tasks-main-J {}
 }
 
 @media screen and (max-width: 375px) {
@@ -324,7 +317,5 @@ input {
     margin-left: 5px;
   }
 
-  .mobil-tasks-main-J {
-    margin-left: 5px;
-  }
+  .mobil-tasks-main-J {}
 }
