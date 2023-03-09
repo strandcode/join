@@ -1,11 +1,3 @@
-// TODO Im Backend speichern
-
-let users = [
-  { 'firstName': 'John', 'lastname': 'Doe', 'email': 'test@test.de', 'password': 'test123' }
-];
-
-
-
 function signupUser() {
   let firstName = document.getElementById('signUpFirstName');
   let lastName = document.getElementById('signUpLastName');

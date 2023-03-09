@@ -1,3 +1,34 @@
+let users;
+// LINK https://github.com/JunusErgin/smallest_backend_ever
+// NOTE Setting of backend
+// TODO Import mini_backend.js
+
+setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+
+async function init() {
+  await downloadFromServer();
+  users = JSON.parse(backend.getItem('users')) || [];
+}
+
+// function addUser() {
+//   users.push('John');
+//   backend.setItem('users', JSON.stringify(users));
+// }
+
+// async function deleteUser(name) {
+//   await backend.deleteItem('users');
+// }
+
+// NOTE Zentrales Spiegelbild vom Backend
+// TODO Im Backend speichern
+// TODO Chrome Extension Allow cors access control installiert?
+
+
+// let users = [
+//   { 'firstName': 'John', 'lastname': 'Doe', 'email': 'test@test.de', 'password': 'test123' }
+// ];
+
+
 // NOTE Mit activeLogin könen wir die src für das Profilbild ändern
 function templateDesktopHeader(activeLogin) {
   let desktopHeader = document.getElementById('desktopHeader');
@@ -83,3 +114,4 @@ function init() {
   templateMobileHeader();
   templateMobileNavbar();
 }
+
