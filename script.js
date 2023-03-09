@@ -64,7 +64,7 @@ function templateMobileNavbar() {
   let mobileNavbar = document.getElementById('mobileNavbar');
   mobileNavbar.innerHTML = '';
   mobileNavbar.innerHTML += /*html*/ `
-    <a class="mobile-navbar-link" href="index.html">
+    <a class="mobile-navbar-link" href="summary.html">
       <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
     </a>
     <a class="mobile-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"

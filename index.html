@@ -20,39 +20,29 @@
     <div class="main-login-J">
       <h1>Log in</h1>
       <div class="blue-line"></div>
-      <div class="input-login-J">
-        <input class="login-form-input-email" placeholder="Email" type="email" name="">
-        <input class="login-form-input-password" placeholder="Password" type="password" name="">
-      </div>
-      <div class="content-remeber-J">
-        <div><input placeholder="Remember me" type="checkbox" name="" id=""><span>Remember me</span></div>
-        <a href="">Forgot my Password</a>
-      </div>
-      <div class="buttoncontainer-login-J">
-        <button class="button-login-J">Log in</button>
-        <a href="summary.html">
-          <button class="button-guest-J">Guest Log in</button>
-        </a>
-      </div>
+      <form onsubmit="loginUser(); return false;">
+        <div class="input-login-J">
+          <input id="loginEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
+          <input id="loginPassword" class="login-form-input-password" placeholder="Password" type="password" name="">
+        </div>
+
+        <div class="content-remeber-J">
+          <div><input placeholder="Remember me" type="checkbox" name="" id=""><span>Remember me</span></div>
+          <a href="">Forgot my Password</a>
+        </div>
+        <div class="buttoncontainer-login-J">
+          <button class="button-login-J" onclick="loginUser()">Log in</button>
+          <a href="summary.html">
+            <button class="button-guest-J">Guest Log in</button>
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 
-  <div id="signUpForm" class="login-form-container d-none">
-    <div class="main-login-J">
-      <h1>Sign up</h1>
-      <div class="blue-line"></div>
-      <div class="input-login-J">
-        <input class="login-form-input-name" placeholder="Email" type="email" name="">
-        <input class="login-form-input-email" placeholder="Email" type="email" name="">
-        <input class="login-form-input-password" placeholder="Password" type="password" name="">
-      </div>
-      <div class="buttoncontainer-login-J">
-        <button class="button-login-J">Sign up</button>
-      </div>
-    </div>
-  </div>
 
-  <div id="forgotPasswordForm" class="login-form-container d-none">
+
+  <!-- <div id="forgotPasswordForm" class="login-form-container d-none">
     <div class="main-login-J">
       <h1>I forget my password</h1>
       <div class="blue-line"></div>
@@ -64,27 +54,17 @@
         <button class="button-login-J">Send me the email</button>
       </div>
     </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
+  </div> -->
 
   <div class="login-right">
     <div class="signup-button">
       <span>Not a Join user?</span>
-      <button>Sign up</button>
+      <a href="sign-up.html">
+        <button>Sign up</button>
+      </a>
     </div>
 
-
+    <script src="login.js"></script>
 </body>
 
 </html>

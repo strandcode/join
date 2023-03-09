@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <title>JOIN | Kanban Project Management Tool</title>
+</head>
+
+<body id="home">
+  <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
+
+  <div id="signUpForm" class="login-form-container">
+    <div class="main-login-J">
+      <h1>Sign up</h1>
+      <div class="blue-line"></div>
+      <form onsubmit="signupUser(); return false;">
+        <div class="input-login-J">
+
+          <input required id="signUpFirstName" class="login-form-input-name" placeholder="Firstname" type="text"
+            name="">
+          <input required id="signUpLastName" class="login-form-input-name" placeholder="Lastname" type="text" name="">
+          <input required id="signUpEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
+          <input required id="signUpPassword" class="login-form-input-password" placeholder="Password" type="password"
+            name="">
+        </div>
+        <div class="buttoncontainer-login-J">
+          <button class="button-login-J">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="signup-button">
+      <span>Not a Join user?</span>
+      <button>Sign up</button>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
