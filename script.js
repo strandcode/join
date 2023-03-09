@@ -1,6 +1,6 @@
 // NOTE Einbindung smalles_backend_ever
 
-setURL('https://sascha-schroeder.developerakademie.net/smallest_backend_ever');
+setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
 loadUsers();
