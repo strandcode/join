@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="board.css">
   <title>JOIN | Kanban board</title>
   <script src="./mini_backend.js"></script>
+  <script src="drag&drop.js"></script>
 </head>
 
 <body id="home" onload="init()">
@@ -43,7 +44,7 @@
           <h4>To do</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD">
+        <div class="work-task-D" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
@@ -66,7 +67,7 @@
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD">
+        <div class="work-task-D" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
@@ -91,7 +92,7 @@
           <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD">
+        <div class="work-task-D" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
@@ -114,7 +115,7 @@
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD">
+        <div class="work-task-D" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
