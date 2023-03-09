@@ -1,19 +1,19 @@
-let users;
+let localeUserData = [];
 // LINK https://github.com/JunusErgin/smallest_backend_ever
 // NOTE Setting of backend
 // TODO Import mini_backend.js
 
-setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+let users;
 
-async function init() {
-  await downloadFromServer();
-  users = JSON.parse(backend.getItem('users')) || [];
+
+function addUser() {
+  let newUser = { firstName: 'Max', lastName: 'Muster', email: 'peter@lustig.de', password: '1234' };
+  let testuser = localeUserData.users.push(newUser);
+  console.log(testuser);
+  // backend.setItem('users', JSON.stringify(testuser));
 }
 
-// function addUser() {
-//   users.push('John');
-//   backend.setItem('users', JSON.stringify(users));
-// }
+setTimeout(addUser, 2000);
 
 // async function deleteUser(name) {
 //   await backend.deleteItem('users');
@@ -34,13 +34,13 @@ function templateDesktopHeader(activeLogin) {
   let desktopHeader = document.getElementById('desktopHeader');
   desktopHeader.innerHTML = '';
   desktopHeader.innerHTML += /*html*/ `
-    <h2 class="font-weight-400">Kanban Project Management Tool</h2>
-    <div class="desktop-header-right-wrapper">
-      <a href="help.html">
-        <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
-      </a>  
-      <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
-    </div>
+    < h2 class="font-weight-400" > Kanban Project Management Tool</ >
+      <div class="desktop-header-right-wrapper">
+        <a href="help.html">
+          <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
+        </a>
+        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+      </div>
   `;
 }
 
@@ -48,7 +48,7 @@ function templateDesktopNavbar() {
   let desktopNavbar = document.getElementById('desktopNavbar');
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
-    <div class="desktop-navbar-top">
+    < div class="desktop-navbar-top" >
       <a href="summary.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
@@ -64,15 +64,15 @@ function templateDesktopNavbar() {
         <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
         src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
       </div>
-    </div>
+    </ >
 
     <div class="desktop-navbar-wrapper">
       <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-          alt="">Legal
+        alt="">Legal
         notice
       </a>
       <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-          alt="">Privacy
+        alt="">Privacy
         policy
       </a>
     </div>
@@ -84,9 +84,9 @@ function templateMobileHeader() {
   let mobileHeader = document.getElementById('mobileHeader');
   mobileHeader.innerHTML = '';
   mobileHeader.innerHTML += /*html*/ `
-   <a href="index.html">
+    < a href = "index.html" >
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
-    </a>
+    </>
     <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
   `;
 }
