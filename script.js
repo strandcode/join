@@ -1,32 +1,40 @@
-let localeUserData = [];
-// LINK https://github.com/JunusErgin/smallest_backend_ever
-// NOTE Setting of backend
-// TODO Import mini_backend.js
+// NOTE Einbindung smalles_backend_ever
 
-let users;
+setURL('https://sascha-schroeder.developerakademie.net/smallest_backend_ever');
 
+let userData = [];
+loadUsers();
 
-function addUser() {
-  let newUser = { firstName: 'Max', lastName: 'Muster', email: 'peter@lustig.de', password: '1234' };
-  let testuser = localeUserData.users.push(newUser);
-  console.log(testuser);
-  // backend.setItem('users', JSON.stringify(testuser));
+async function loadUsers() {
+  await downloadFromServer();
+  userData = JSON.parse(backend.getItem('users')) || [];
+  console.log(userData);
+  showCurrentUser();
 }
 
-setTimeout(addUser, 2000);
+async function addUser(loginName, loginEmail) {
+  let newUser = { name: loginName, email: loginEmail };
+  userData.push(newUser);
+  await backend.setItem('users', JSON.stringify(userData));
+  loadUsers();
+}
 
-// async function deleteUser(name) {
-//   await backend.deleteItem('users');
-// }
+async function deleteUser(arrayPosition) {
+  userData.splice(arrayPosition, 1);
+  await backend.setItem('users', JSON.stringify(userData));
+  loadUsers();
+}
 
-// NOTE Zentrales Spiegelbild vom Backend
-// TODO Im Backend speichern
-// TODO Chrome Extension Allow cors access control installiert?
+function showCurrentUser() {
+  let currentUserName = userData[0].name;
+  console.log('Current login: ', currentUserName);
+}
 
 
-// let users = [
-//   { 'firstName': 'John', 'lastname': 'Doe', 'email': 'test@test.de', 'password': 'test123' }
-// ];
+
+
+
+
 
 
 // NOTE Mit activeLogin könen wir die src für das Profilbild ändern
