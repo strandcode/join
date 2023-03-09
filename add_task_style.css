@@ -1,24 +1,19 @@
-.main-content-J {
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  height: 1240px;
-  /* background: #F5F5F5; */
-}
-
 input {
   border-radius: 12px;
   height: 40px;
+}
+
+select {
+  background-color: white;
+  border-radius: 10px;
+  height: 40PX;
 }
 
 .task-mask-J {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* padding: 0px; */
   padding-left: 90px;
-
-  /* gap: 14px; */
   background: #F5F5F5;
   position: absolute;
   width: 722px;
@@ -32,12 +27,12 @@ input {
 .left-taskfield-J {
   display: flex;
   flex-direction: column;
-  padding: 20px 30px;
+  padding: 10px 30px;
   flex-wrap: wrap;
   width: 50%;
   align-content: center;
   justify-content: flex-start;
-  gap: 25px;
+  gap: 20px;
 }
 
 .left-taskfield-J input,
@@ -58,31 +53,35 @@ input {
   flex-wrap: wrap;
   width: 50%;
   align-content: center;
-  gap: 25px;
-  padding-top: 125px;
-
+  gap: 20px;
+  padding-top: 115px;
 }
+
 
 .right-taskfield-input {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #D1D1D1;
+}
 
+.substeckinput {
+  background-image: url(assets/img/icon-add-plus-dark.svg);
+  background-repeat: no-repeat;
+  background-position: top 8px right 10px;
 }
 
 .button-urgent-J {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-top: 25px;
   padding-bottom: 10px;
-
 }
 
 .button-urgent-J button {
-  width: 30%;
+  width: 33%;
   height: 40px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -102,11 +101,7 @@ input {
   background-color: rgb(6, 202, 6);
 }
 
-.add-substack-J {
-  background-image: url(assets/img/icon-add-plus-dark.svg);
-  background-repeat: no-repeat;
-  background-position: right;
-}
+
 
 .button-container-J {
   display: flex;
@@ -239,7 +234,6 @@ input {
     font-weight: 700;
     font-size: 47px;
     line-height: 120%;
-    margin-left: 290px;
   }
 
   .mobil-tasks-main-J {
@@ -253,6 +247,10 @@ input {
 
   }
 
+  .mobil-tasks-main-J textarea {
+    border-radius: 10px;
+  }
+
 
 
 }
@@ -260,7 +258,7 @@ input {
 @media screen and (max-width: 820px) {
 
   .mobil-main-J h1 {
-    margin-left: 220px;
+    margin-left: 20px;
   }
 
   .mobil-tasks-main-J {}
@@ -269,7 +267,7 @@ input {
 @media screen and (max-width: 699px) {
 
   .mobil-main-J h1 {
-    margin-left: 180px;
+    margin-left: 20px;
   }
 
   .mobil-tasks-main-J {}
@@ -278,7 +276,7 @@ input {
 @media screen and (max-width: 629px) {
 
   .mobil-main-J h1 {
-    margin-left: 130px;
+    margin-left: 10px;
   }
 
   .mobil-tasks-main-J {}
@@ -287,7 +285,7 @@ input {
 @media screen and (max-width: 579px) {
 
   .mobil-main-J h1 {
-    margin-left: 100px;
+    margin-left: 10px;
   }
 
   .mobil-tasks-main-J {}
@@ -296,7 +294,7 @@ input {
 @media screen and (max-width: 539px) {
 
   .mobil-main-J h1 {
-    margin-left: 30px;
+    margin-left: 10px;
   }
 
   .mobil-tasks-main-J {}
@@ -305,7 +303,7 @@ input {
 @media screen and (max-width: 405px) {
 
   .mobil-main-J h1 {
-    margin-left: 15px;
+    margin-left: 5px;
   }
 
   .mobil-tasks-main-J {}

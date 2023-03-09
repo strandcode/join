@@ -19,10 +19,7 @@
   <header id="mobileHeader" class="mobile-header"></header>
   <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
-
-
-
-  <!-- <div class="main-content-J"> -->
+  <!-- ANCHOR - Left - taskfield -->
 
   <main>
 
@@ -34,6 +31,7 @@
         <option value="Kontakt">To do</option>
         <option value="Kontakt">In progress</option>
         <option value="Kontakt">Await Feedback</option>
+        <option value="Kontakt">Done</option>
       </select>
       <span>Title</span>
       <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="">
@@ -43,7 +41,12 @@
         rows="10"></textarea>
 
       <span>Category</span>
-      <input class="width" type="text" placeholder="Select task category " name="" id="">
+      <select name="Category" placeholder="Category" id="">
+        <option aria-placeholder="" disabled selected hidden>Category</option>
+        <option value="Kontakt">*</option>
+        <option value="Kontakt">*</option>
+        <option value="Kontakt">*</option>
+      </select>
 
       <span>Assigned to</span>
       <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
@@ -54,18 +57,21 @@
       </select>
     </div>
 
-
+    <!-- ANCHOR - Right-taskfield -->
 
     <div class="right-taskfield-J">
       <span>Due date</span>
       <input required class="right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="">
+
+      <span>Prio</span>
       <div class="button-urgent-J">
         <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
         <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
         <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
       </div>
+
       <span>Substack</span>
-      <input class="right-taskfield-input" placeholder="Add new substack" type="text" name="" id="">
+      <input class="right-taskfield-input substeckinput" placeholder="Add new substack" type="text" name="" id="">
       <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
 
       <div class="button-container-J">
@@ -74,11 +80,6 @@
       </div>
     </div>
 
-
-
-
-    <!-- </main> -->
-    <!-- </div> -->
 
     <!-- ANCHOR - Mobil Ansicht  -->
 
@@ -121,7 +122,7 @@
         </select>
 
         <span class="mobile">Substack</span>
-        <input class="width add-substack-J mobile" placeholder="Add new substack" type="text" name="" id="">
+        <input class="mobile substeckinput" placeholder="Add new substack" type="text" name="" id="">
         <div class="ckeckbox-button-J mobile"><input class="mobile" type="checkbox" name="" id=""><span>Substack
             1</span>
         </div>
