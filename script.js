@@ -3,6 +3,10 @@
 setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
+let currentUser = 5;
+
+
+
 loadUsers();
 
 async function loadUsers() {
@@ -117,3 +121,32 @@ function init() {
   templateMobileNavbar();
 }
 
+let userDatas = {
+  "users": [
+    {
+      "firstName": "Peter",
+      "lastName": "Lustig",
+      "email": "peter@lustig.de",
+      "password": "test123"
+    },
+    {
+      "firstName": "Hermann",
+      "lastName": "Paschulke",
+      "email": "paschulke@test.de",
+      "password": "test123"
+    },
+    {
+      "firstName": "Berta",
+      "lastName": "Suttner",
+      "email": "berta@example.com",
+      "password": "test456"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@doe.com",
+      "password": "test123"
+    }
+  ],
+  "currentUser": 2
+}

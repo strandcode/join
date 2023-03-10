@@ -20,8 +20,13 @@ function loginUser() {
   let email = document.getElementById('loginEmail');
   let password = document.getElementById('loginPassword');
   let user = userData.find(u => u.email == email.value && u.password == password.value);
+  console.log(user);
+  let index = userData.indexOf(user);
+  console.log(index);
   if (user) {
     console.log('User gefunden');
+    currentUser = index;
+    console.log(currentUser);
     window.location.href = 'summary.html';
     email.value = '';
     password.value = '';
