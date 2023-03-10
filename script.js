@@ -26,7 +26,7 @@ async function deleteUser(arrayPosition) {
 }
 
 function showCurrentUser() {
-  let currentUserName = userData[0].name;
+  let currentUserName = userData[0].firstName;
   console.log('Current login: ', currentUserName);
 }
 

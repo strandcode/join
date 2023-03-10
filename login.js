@@ -13,7 +13,7 @@ function signupUser() {
   `;
   setTimeout(function () {
     window.location.href = 'index.html';
-  }, 2000);
+  }, 3000);
 }
 
 function loginUser() {
@@ -47,7 +47,7 @@ function sendEmailToUser() {
     // TODO Send Email to user php.script
     setTimeout(function () {
       window.location.href = 'index.html';
-    }, 2000);
+    }, 3000);
   } else {
     console.warn('Email nicht gefunden');
   }
@@ -59,7 +59,7 @@ function resetUserPassword() {
   if (newLoginPassword.value == confirmLoginPassword.value) {
     // TODO Richtigen user mit übermitteln
     console.log('Password stimmt überein');
-    users[0].password = newLoginPassword.value;
+    userdata[0].password = newLoginPassword.value;
     resetPasswordButton.innerHTML = '';
     resetPasswordButton.innerHTML = /*html*/ `
       <span>Your password has been changed.</span>
