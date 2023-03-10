@@ -17,7 +17,7 @@ main {
 }
 
 .board-head-D {
-    height: 15vh;
+
     left: 267px;
     top: 57px;
     display: flex;
@@ -40,6 +40,32 @@ main {
     background: #2A3647;
     border: 1px solid #2A3647;
     border-radius: 10px;
+}
+
+.add-task-mobile-D {
+    color: white;
+    background-color: #2A3647;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    height: 51px;
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: none;
+}
+
+.add-task-mobile-D:hover {
+    background-color: #29ABE2;
+    cursor: pointer;
+}
+
+.add-task-mobile-D {
+    height: 15px;
 }
 
 .add-task-D img {
@@ -271,6 +297,15 @@ h4:hover {
         justify-content: space-between;
         /* gap: inherit; */
         margin-left: 15px;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .button-mobile-container-D {
+        display: flex;
+        align-items: center;
+        gap: 100px;
     }
 
     .work-task-container-D {
@@ -295,6 +330,14 @@ h4:hover {
     .add-task-D {
         width: 40px;
         height: 40px;
+        display: none;
+    }
+
+    .add-task-mobile-D {
+        display: block;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
     }
 
     .find-add-container-D {
@@ -310,9 +353,7 @@ h4:hover {
         margin-left: 0;
     }
 
-    .find-task-D {
-        display: none;
-    }
+    .find-task-D {}
 
     .mobile-searchbar-D {
         display: block;

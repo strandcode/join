@@ -10,7 +10,7 @@ function addUser() {
   let newUser = { firstName: 'Max', lastName: 'Muster', email: 'peter@lustig.de', password: '1234' };
   let testuser = localeUserData.users.push(newUser);
   console.log(testuser);
-  // backend.setItem('users', JSON.stringify(testuser));
+  backend.setItem('users', JSON.stringify(testuser));
 }
 
 setTimeout(addUser, 2000);
