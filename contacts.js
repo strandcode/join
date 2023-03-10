@@ -28,6 +28,20 @@ function renderContactsList() {
 
   let contactsRegister = [];
 
+  // TODO Habe ich noch nicht verstanden, gibt es da was leichteres?
+  userData[4].contacts.sort(function (a, b) {
+    var nameA = a.firstName.toUpperCase(); // Großbuchstaben verwenden, um die Sortierung zu vereinfachen
+    var nameB = b.firstName.toUpperCase(); // dito
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    // Namen sind gleich
+    return 0;
+  });
+
   for (let c = 0; c < userData[4].contacts.length; c++) {
     let firstLetter = userData[4].contacts[c].firstName.charAt(0).toUpperCase();
     if (!contactsRegister.includes(firstLetter)) {
