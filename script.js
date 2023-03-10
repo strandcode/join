@@ -3,8 +3,7 @@
 setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
-let currentUser = 5;
-
+let currentUser;
 
 
 loadUsers();
@@ -17,7 +16,7 @@ async function loadUsers() {
 }
 
 async function addUser(firstName, LastName, email, password) {
-  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password };
+  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [] };
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   loadUsers();
