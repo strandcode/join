@@ -4,7 +4,7 @@ function signupUser() {
   let email = document.getElementById('signUpEmail');
   let password = document.getElementById('signUpPassword');
   let signupButton = document.getElementById('signupButton');
-  users.push({ firstName: firstName.value, lastName: lastName.value, email: email.value, password: password.value });
+  addUser(firstName.value, lastName.value, email.value, password.value);
   console.log('User wurde angelegt');
 
   signupButton.innerHTML = '';
@@ -19,12 +19,16 @@ function signupUser() {
 function loginUser() {
   let email = document.getElementById('loginEmail');
   let password = document.getElementById('loginPassword');
-  let user = users.find(u => u.email == email.value && u.password == password.value);
+  let user = userData.find(u => u.email == email.value && u.password == password.value);
   if (user) {
     console.log('User gefunden');
     window.location.href = 'summary.html';
+    email.value = '';
+    password.value = '';
   } else {
     console.warn('User nicht gefunden');
+    email.value = '';
+    password.value = '';
   }
 }
 

@@ -12,8 +12,8 @@ async function loadUsers() {
   showCurrentUser();
 }
 
-async function addUser(loginName, loginEmail) {
-  let newUser = { name: loginName, email: loginEmail };
+async function addUser(firstName, LastName, email, password) {
+  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password };
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   loadUsers();
