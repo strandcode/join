@@ -15,7 +15,6 @@ function signupUser() {
     window.location.href = 'index.html';
   }, 3000);
 }
-let currentUser;
 
 function loginUser() {
   let email = document.getElementById('loginEmail');

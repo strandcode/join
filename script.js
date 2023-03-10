@@ -13,6 +13,9 @@ async function loadUsers() {
   userData = JSON.parse(backend.getItem('users')) || [];
   console.log(userData);
   showCurrentUser();
+  // TODO Zentrale init() die gestartet wird wenn userData geladen
+  renderContactsList();
+  templateContactsActiveContact(0);
 }
 
 async function addUser(firstName, LastName, email, password) {
