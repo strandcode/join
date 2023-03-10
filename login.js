@@ -36,7 +36,7 @@ function loginUser() {
 function sendEmailToUser() {
   let email = document.getElementById('loginEmail');
   let sendEmailButton = document.getElementById('sendEmailButton');
-  let user = users.find(u => u.email == email.value);
+  let user = userData.find(u => u.email == email.value);
   if (user) {
     console.log('Email gefunden');
     sendEmailButton.innerHTML = '';
