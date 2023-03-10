@@ -3,7 +3,7 @@
 setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
-let currentUser = 5;
+// let currentUser;
 
 
 
