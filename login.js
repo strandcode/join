@@ -4,7 +4,7 @@ function signupUser() {
   let email = document.getElementById('signUpEmail');
   let password = document.getElementById('signUpPassword');
   let signupButton = document.getElementById('signupButton');
-  users.push({ firstName: firstName.value, lastName: lastName.value, email: email.value, password: password.value });
+  addUser(firstName.value, lastName.value, email.value, password.value);
   console.log('User wurde angelegt');
 
   signupButton.innerHTML = '';
@@ -13,18 +13,22 @@ function signupUser() {
   `;
   setTimeout(function () {
     window.location.href = 'index.html';
-  }, 2000);
+  }, 3000);
 }
 
 function loginUser() {
   let email = document.getElementById('loginEmail');
   let password = document.getElementById('loginPassword');
-  let user = users.find(u => u.email == email.value && u.password == password.value);
+  let user = userData.find(u => u.email == email.value && u.password == password.value);
   if (user) {
     console.log('User gefunden');
     window.location.href = 'summary.html';
+    email.value = '';
+    password.value = '';
   } else {
     console.warn('User nicht gefunden');
+    email.value = '';
+    password.value = '';
   }
 }
 
@@ -32,7 +36,7 @@ function loginUser() {
 function sendEmailToUser() {
   let email = document.getElementById('loginEmail');
   let sendEmailButton = document.getElementById('sendEmailButton');
-  let user = users.find(u => u.email == email.value);
+  let user = userData.find(u => u.email == email.value);
   if (user) {
     console.log('Email gefunden');
     sendEmailButton.innerHTML = '';
@@ -43,7 +47,7 @@ function sendEmailToUser() {
     // TODO Send Email to user php.script
     setTimeout(function () {
       window.location.href = 'index.html';
-    }, 2000);
+    }, 3000);
   } else {
     console.warn('Email nicht gefunden');
   }
@@ -55,7 +59,7 @@ function resetUserPassword() {
   if (newLoginPassword.value == confirmLoginPassword.value) {
     // TODO Richtigen user mit übermitteln
     console.log('Password stimmt überein');
-    users[0].password = newLoginPassword.value;
+    userdata[0].password = newLoginPassword.value;
     resetPasswordButton.innerHTML = '';
     resetPasswordButton.innerHTML = /*html*/ `
       <span>Your password has been changed.</span>

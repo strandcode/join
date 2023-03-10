@@ -1,32 +1,42 @@
-let localeUserData = [];
-// LINK https://github.com/JunusErgin/smallest_backend_ever
-// NOTE Setting of backend
-// TODO Import mini_backend.js
+// NOTE Einbindung smalles_backend_ever
 
-let users;
+setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
+let userData = [];
+loadUsers();
 
+<<<<<<< HEAD
 function addUser() {
   let newUser = { firstName: 'Max', lastName: 'Muster', email: 'peter@lustig.de', password: '1234' };
   let testuser = localeUserData.users.push(newUser);
   console.log(testuser);
   backend.setItem('users', JSON.stringify(testuser));
+=======
+async function loadUsers() {
+  await downloadFromServer();
+  userData = JSON.parse(backend.getItem('users')) || [];
+  console.log(userData);
+  showCurrentUser();
+>>>>>>> backend-connect
 }
 
-setTimeout(addUser, 2000);
+async function addUser(firstName, LastName, email, password) {
+  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password };
+  userData.push(newUser);
+  await backend.setItem('users', JSON.stringify(userData));
+  loadUsers();
+}
 
-// async function deleteUser(name) {
-//   await backend.deleteItem('users');
-// }
+async function deleteUser(arrayPosition) {
+  userData.splice(arrayPosition, 1);
+  await backend.setItem('users', JSON.stringify(userData));
+  loadUsers();
+}
 
-// NOTE Zentrales Spiegelbild vom Backend
-// TODO Im Backend speichern
-// TODO Chrome Extension Allow cors access control installiert?
-
-
-// let users = [
-//   { 'firstName': 'John', 'lastname': 'Doe', 'email': 'test@test.de', 'password': 'test123' }
-// ];
+function showCurrentUser() {
+  let currentUserName = userData[0].firstName;
+  console.log('Current login: ', currentUserName);
+}
 
 
 // NOTE Mit activeLogin könen wir die src für das Profilbild ändern
@@ -34,7 +44,7 @@ function templateDesktopHeader(activeLogin) {
   let desktopHeader = document.getElementById('desktopHeader');
   desktopHeader.innerHTML = '';
   desktopHeader.innerHTML += /*html*/ `
-    < h2 class="font-weight-400" > Kanban Project Management Tool</ >
+    <h2 class="font-weight-400">Kanban Project Management Tool</h2>
       <div class="desktop-header-right-wrapper">
         <a href="help.html">
           <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
@@ -48,7 +58,7 @@ function templateDesktopNavbar() {
   let desktopNavbar = document.getElementById('desktopNavbar');
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
-    < div class="desktop-navbar-top" >
+    <div class="desktop-navbar-top">
       <a href="summary.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
@@ -84,9 +94,9 @@ function templateMobileHeader() {
   let mobileHeader = document.getElementById('mobileHeader');
   mobileHeader.innerHTML = '';
   mobileHeader.innerHTML += /*html*/ `
-    < a href = "index.html" >
+    <a href="index.html">
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
-    </>
+    </a>
     <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
   `;
 }
