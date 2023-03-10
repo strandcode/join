@@ -230,6 +230,17 @@ h4 {
     transform: rotate(90deg);
 }
 
+.welcome-container {
+    display: flex;
+}
+
+.user-welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
 @media screen and (max-width: 910px) {
     .head-content-D {
         flex-direction: column;
