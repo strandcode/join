@@ -5,19 +5,11 @@ setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 let userData = [];
 loadUsers();
 
-<<<<<<< HEAD
-function addUser() {
-  let newUser = { firstName: 'Max', lastName: 'Muster', email: 'peter@lustig.de', password: '1234' };
-  let testuser = localeUserData.users.push(newUser);
-  console.log(testuser);
-  backend.setItem('users', JSON.stringify(testuser));
-=======
 async function loadUsers() {
   await downloadFromServer();
   userData = JSON.parse(backend.getItem('users')) || [];
   console.log(userData);
   showCurrentUser();
->>>>>>> backend-connect
 }
 
 async function addUser(firstName, LastName, email, password) {
