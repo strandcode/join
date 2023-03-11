@@ -1,3 +1,25 @@
+function loginUser() {
+  let email = document.getElementById('loginEmail');
+  let password = document.getElementById('loginPassword');
+  let user = userData.find(u => u.email == email.value && u.password == password.value);
+  console.log(user);
+  let index = userData.indexOf(user);
+  console.log(index);
+  if (user) {
+    console.log('User gefunden');
+    setCurrentUser(index);
+    // currentUser = index;
+    console.log(currentUser);
+    window.location.href = 'summary.html';
+    email.value = '';
+    password.value = '';
+  } else {
+    console.warn('User nicht gefunden');
+    email.value = '';
+    password.value = '';
+  }
+}
+
 function signupUser() {
   let firstName = document.getElementById('signUpFirstName');
   let lastName = document.getElementById('signUpLastName');
@@ -14,27 +36,6 @@ function signupUser() {
   setTimeout(function () {
     window.location.href = 'index.html';
   }, 3000);
-}
-
-function loginUser() {
-  let email = document.getElementById('loginEmail');
-  let password = document.getElementById('loginPassword');
-  let user = userData.find(u => u.email == email.value && u.password == password.value);
-  console.log(user);
-  let index = userData.indexOf(user);
-  console.log(index);
-  if (user) {
-    console.log('User gefunden');
-    currentUser = index;
-    console.log(currentUser);
-    window.location.href = 'summary.html';
-    email.value = '';
-    password.value = '';
-  } else {
-    console.warn('User nicht gefunden');
-    email.value = '';
-    password.value = '';
-  }
 }
 
 
@@ -73,4 +74,12 @@ function resetUserPassword() {
       window.location.href = 'index.html';
     }, 2000);
   }
+}
+
+// function setCurrentUser(currentUserIndex) {
+//   let encryptedCurrentUserIndex = (currentUserIndex * 12) + 4;
+//   localStorage.setItem('currentUser', encryptedCurrentUserIndex);
+// }
+function setCurrentUser(currentUserIndex) {
+  localStorage.setItem('currentUser', currentUserIndex);
 }

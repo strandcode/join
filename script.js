@@ -5,41 +5,48 @@ setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 let userData = [];
 let currentUser;
 
+function getCurrentUser() {
+  currentUser = parseInt(localStorage.getItem('currentUser'));
+}
 
-loadUsers();
+// function getCurrentUser() {
+//   let encryptedCurrentUserIndex = parseInt(localStorage.getItem('currentUser'));
+//   currentUser = (encryptedCurrentUserIndex - 4) / 12;
+// }
 
-// TODO Zentrale Funktionen loadFromBackend und saveToBackend
 
-async function loadUsers() {
+async function downloadUserDataFromBackend() {
   await downloadFromServer();
   userData = JSON.parse(backend.getItem('users')) || [];
   console.log(userData);
-  showCurrentUser();
-  // TODO Zentrale init() die gestartet wird wenn userData geladen
-  renderContactsList();
-  templateContactsActiveContact(0);
+  getCurrentUser();
+  showCurrentUser(currentUser);
 }
+
+
+
+downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  downloadUserDataFromBackend();
 }
 
 async function addUser(firstName, LastName, email, password) {
   let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [] };
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  downloadUserDataFromBackend();
 }
 
 async function deleteUser(arrayPosition) {
   userData.splice(arrayPosition, 1);
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  downloadUserDataFromBackend();
 }
 
-function showCurrentUser() {
-  let currentUserName = userData[0].firstName;
+function showCurrentUser(currentUser) {
+  let currentUserName = userData[currentUser].firstName + ' ' + userData[currentUser].LastName;
   console.log('Current login: ', currentUserName);
 }
 
