@@ -8,6 +8,8 @@ let currentUser;
 
 loadUsers();
 
+// TODO Zentrale Funktionen loadFromBackend und saveToBackend
+
 async function loadUsers() {
   await downloadFromServer();
   userData = JSON.parse(backend.getItem('users')) || [];
@@ -16,6 +18,11 @@ async function loadUsers() {
   // TODO Zentrale init() die gestartet wird wenn userData geladen
   renderContactsList();
   templateContactsActiveContact(0);
+}
+
+async function saveToBackend() {
+  await backend.setItem('users', JSON.stringify(userData));
+  loadUsers();
 }
 
 async function addUser(firstName, LastName, email, password) {

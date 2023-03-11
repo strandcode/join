@@ -1,23 +1,44 @@
-async function addContactToUser() {
-
+function addContactToUser() {
   let contactAddFirstName = document.getElementById('contactAddFirstName');
   let contactAddLastName = document.getElementById('contactAddLastName');
   let contactAddEmail = document.getElementById('contactAddEmail');
   let contactAddPhone = document.getElementById('contactAddPhone');
-
-  // TODO Create Initials from firstName & Lastname
-  // TODO Choose random color from color table
   let newContact = {
     firstName: contactAddFirstName.value,
     lastName: contactAddLastName.value,
     email: contactAddEmail.value,
     phone: contactAddPhone.value,
-    avatar_initials: "AM",
-    avatar_bg_color: "#1abc9c"
+    avatar_initials: contactAddFirstName.value.charAt(0).toUpperCase() + contactAddLastName.value.charAt(0).toUpperCase(),
+    avatar_bg_color: addRandomColorToContactAvatar()
   }
   userData[4].contacts.push(newContact);
-  await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  saveToBackend()
+}
+
+function editContactOfUser(c) {
+  let contactEditFirstName = document.getElementById('contactEditFirstName');
+  let contactEditLastName = document.getElementById('contactEditLastName');
+  let contactEditEmail = document.getElementById('contactEditEmail');
+  let contactEditPhone = document.getElementById('contactEditPhone');
+  let editedContact = {
+    firstName: contactEditFirstName.value,
+    lastName: contactEditLastName.value,
+    email: contactEditEmail.value,
+    phone: contactEditPhone.value,
+    avatar_initials: contactEditFirstName.value.charAt(0).toUpperCase() + contactEditLastName.value.charAt(0).toUpperCase(),
+    avatar_bg_color: addRandomColorToContactAvatar()
+  }
+  userData[4].contacts.splice(c, 1, editedContact);
+  saveToBackend()
+}
+
+
+
+function addRandomColorToContactAvatar() {
+  const randomIndex = Math.floor(Math.random() * avatarColors.length);
+  console.log(randomIndex);
+  let avatar_bg_color = avatarColors[randomIndex];
+  return avatar_bg_color;
 }
 
 
@@ -64,7 +85,7 @@ function templateContactsListContact(c) {
   let [email_name, email_domain] = userData[4].contacts[c].email.split('@');
   return /*html*/  `
     <div class="contacts-list-contact-wrapper-S" onclick="templateContactsActiveContact(${c})">
-      <div class="contacts-list-contact-avatar" style="background-color: #1abc9c">${userData[4].contacts[c].avatar_initials}</div>
+      <div class="contacts-list-contact-avatar" style="background-color: ${userData[4].contacts[c].avatar_bg_color}">${userData[4].contacts[c].avatar_initials}</div>
       <div class="contact-data-wrapper-S">
         <div class="contact-name-S">${userData[4].contacts[c].firstName} ${userData[4].contacts[c].lastName}</div>
         <a href="mailto:${userData[4].contacts[c].email}" class="contacts-list-contact-email">
@@ -89,7 +110,7 @@ function templateContactsActiveContact(activeContact) {
           </div>
           <div class="contact-data-wrapper-S">
             <div class="contact-name-S font-size-48">
-              ${userData[4].contacts[activeContact].firstName} ${contacts[activeContact].lastName}
+              ${userData[4].contacts[activeContact].firstName} ${userData[4].contacts[activeContact].lastName}
             </div>
             <a href="#" class="contact-email-S">+ Add Task</a>
           </div>
@@ -110,11 +131,11 @@ function templateContactsActiveContact(activeContact) {
   contactsMainBody.innerHTML = `
     <div class="contact-email-S">
       <span class="font-weight-700">Email</span>
-      <a href="mailto:${userData[4].contacts[activeContact].email}" class="contact-email-S break-all">${contacts[activeContact].email}</a>
+      <a href="mailto:${userData[4].contacts[activeContact].email}" class="contact-email-S break-all">${userData[4].contacts[activeContact].email}</a>
     </div>
     <div class="contact-phone-S">
       <span class="font-weight-700">Phone</span>
-      <a href="tel:${contacts[activeContact].phone}" class="contact-email-S break-all">${contacts[activeContact].phone}</a>
+      <a href="tel:${userData[4].contacts[activeContact].phone}" class="contact-email-S break-all">${userData[4].contacts[activeContact].phone}</a>
     </div>
   `;
   templateEditContactActiveContact(activeContact);
@@ -141,23 +162,25 @@ function closeOverlay(overlayId, overlayContainerId) {
 function templateEditContactActiveContact(c) {
   let contactOverlayActiveContact = document.getElementById('contactFormActiveContact');
   contactOverlayActiveContact.innerHTML = '';
-  contactOverlayActiveContact.innerHTML += `
+  contactOverlayActiveContact.innerHTML += /*html*/ `
     <div class="contact-overlay-right-avatar" 
-         style="background-color: ${contacts[c].avatar_bg_color}">${contacts[c].avatar_initials}
+         style="background-color: ${userData[4].contacts[c].avatar_bg_color}">${userData[4].contacts[c].avatar_initials}
     </div>
     <div class="contact-overlay-right-input">
 
-      <input id="contactEditName" name="contactEditName" type="text" value="${contacts[c].firstName} ${contacts[c].lastName}" 
-      class="contact-overlay-right-input-name" placeholder="Firstname Lastname">
-      
-      <input id="contactEditEmail" name="contactEditEmail" type="email" value="${contacts[c].email}" 
+      <input id="contactEditFirstName" name="contactEditFirstName" type="text" 
+        class="contact-overlay-right-input-name" placeholder="Firstname" value="${userData[4].contacts[c].firstName}" required>
+      <input id="contactEditLastName" name="contactEditLastName" type="text" 
+        class="contact-overlay-right-input-name" placeholder="Lastname" value="${userData[4].contacts[c].lastName}" required>
+
+      <input id="contactEditEmail" name="contactEditEmail" type="email" value="${userData[4].contacts[c].email}" 
       class="contact-overlay-right-input-email" placeholder="Email">
       
-      <input id="contactEditPhone" name="contactEditPhone" type="tel" value="${contacts[c].phone}" 
+      <input id="contactEditPhone" name="contactEditPhone" type="tel" value="${userData[4].contacts[c].phone}" 
       class="contact-overlay-right-input-phone" placeholder="Phone">
      
       <div class="contact-overlay-right-footer">
-        <button class="contact-overlay-button" onclick="closeOverlay('editContactOverlay', 'editContactContainer')">Save</button>
+        <button class="contact-overlay-button" onclick="editContactOfUser(${c}); closeOverlay('editContactOverlay', 'editContactContainer')">Save</button>
       </div>
     </div>
   `;
@@ -186,7 +209,7 @@ function templateAddContactForm() {
         class="contact-overlay-right-input-phone" placeholder="Phone" required>
         
         <div class="contact-overlay-right-footer">
-          <button class="contact-overlay-button" onclick="closeOverlay('addContactOverlay', 'addContactContainer')">Save</button>
+          <button class="contact-overlay-button" onclick="addContactToUser(); closeOverlay('addContactOverlay', 'addContactContainer')">Save</button>
         </div>
       </div>
     </form>
@@ -196,6 +219,19 @@ function templateAddContactForm() {
 templateAddContactForm();
 // renderContactsList();
 // templateContactsActiveContact(0);
+
+
+const avatarColors = [
+  "#FF7A00", // orange
+  "#9327FF", // purple
+  "#29ABE2", // turquoise
+  "#FC71FF", // pink
+  "#02CF2F", // green
+  "#AF1616", // darkred
+  "#462F8A", // darkpurple
+  "#007CEE", // blue
+];
+
 
 
 
