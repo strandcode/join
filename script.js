@@ -1,6 +1,5 @@
 // NOTE Einbindung smalles_backend_ever
 
-setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
 let currentUser;
@@ -10,14 +9,13 @@ function getCurrentUser() {
 }
 
 async function downloadUserDataFromBackend() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users')) || [];
-  console.log(userData);
-  getCurrentUser();
-  showCurrentUser(currentUser);
+  userData = await JSON.parse(backend.getItem('users')) || []; // FIXME Sicherheitskritisch!
 }
 
-// downloadUserDataFromBackend();
+// FIXME Sicherheitskritisch!
+downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
@@ -37,9 +35,11 @@ async function deleteUser(arrayPosition) {
   downloadUserDataFromBackend();
 }
 
-function showCurrentUser(currentUser) {
+function showCurrentUser(currentUser, currentUserData) {
   let currentUserName = userData[currentUser].firstName + ' ' + userData[currentUser].LastName;
-  console.log('Current login: ', currentUserName);
+  console.log('currentLoginName: ' + currentUserName);
+  console.log('currentUserIndex: ' + currentUser);
+  console.log(currentUserData);
 }
 
 

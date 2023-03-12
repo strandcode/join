@@ -1,19 +1,14 @@
-
-async function downloadUserSummaryDataFromBackend() {
-  try {
-    setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-    await downloadFromServer();
-    userData = await JSON.parse(backend.getItem('users')) || [];
-    console.log(userData);
-    getCurrentUser();
-    showCurrentUser(currentUser);
-    greetUserAtSummary();
-  } catch (error) {
-    console.error(`ERROR: ${error}`);
-  }
+async function downloadSpecificUserDataFromBackend() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  await downloadFromServer();
+  userData = await JSON.parse(backend.getItem('users')) || [];
+  getCurrentUser();
+  let currentUserData = userData[currentUser];
+  showCurrentUser(currentUser, currentUserData);
+  greetUserAtSummary();
 }
 
-downloadUserSummaryDataFromBackend();
+downloadSpecificUserDataFromBackend();
 
 function greetUserAtSummary() {
   document.getElementById('userWelcome').innerHTML = `

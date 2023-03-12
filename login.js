@@ -3,16 +3,13 @@ const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
 const loginMessage = document.getElementById('loginMessage');
 
-
-
-function loginUser() {
+async function loginUser() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  await downloadFromServer();
+  userData = await JSON.parse(backend.getItem('users'));
   let user = userData.find(u => u.email == loginEmail.value && u.password == loginPassword.value);
-  if (!user) {
-    showLoginMessage('Server nicht gefunden.');
-  }
-  console.log(user);
   let index = userData.indexOf(user);
-  console.log(index);
+  userData = [];
   if (user) {
     setCurrentUser(index);
     checkIfRememberMeIsActive();
@@ -23,21 +20,6 @@ function loginUser() {
     clearFormInputValues();
   }
 }
-
-async function downloadUserContactDataFromBackend() {
-  try {
-    setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-    await downloadFromServer();
-    userData = await JSON.parse(backend.getItem('users')) || [];
-    console.log(userData);
-    getCurrentUser();
-    showCurrentUser(currentUser);
-    renderContactsList();
-  } catch (error) {
-    console.error(`ERROR: ${error}`);
-  }
-}
-
 
 function showLoginMessage(message) {
   loginMessage.classList.remove('d-none');
@@ -71,7 +53,6 @@ function checkIfRememberMeIsActive() {
 
 function checkForStoredLogin() {
   if (localStorage.rememberMe && localStorage.rememberMe == 'true') {
-    console.log('Remember is true');
     loginEmail.value = localStorage.loginEmail;
     checkboxRememberMe.checked = true;
   }
@@ -133,6 +114,7 @@ function resetUserPassword() {
   }
 }
 
+// FIXME Sicherheitskritisch!
 // function setCurrentUser(currentUserIndex) {
 //   let encryptedCurrentUserIndex = (currentUserIndex * 12) + 4;
 //   localStorage.setItem('currentUser', encryptedCurrentUserIndex);
