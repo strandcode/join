@@ -1,3 +1,8 @@
+function loginGuestUser() {
+  setCurrentUser(0);
+  window.location.href = 'summary.html';
+}
+
 function loginUser() {
   let email = document.getElementById('loginEmail');
   let password = document.getElementById('loginPassword');
@@ -8,7 +13,6 @@ function loginUser() {
   if (user) {
     console.log('User gefunden');
     setCurrentUser(index);
-    // currentUser = index;
     console.log(currentUser);
     window.location.href = 'summary.html';
     email.value = '';

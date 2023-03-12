@@ -9,6 +9,8 @@
 
 html {
   scroll-behavior: smooth;
+  --lightblue: #29ABE2;
+  --darkblue: #2A3647;
 }
 
 body {
@@ -123,6 +125,55 @@ main {
 .mt-100 {
   margin-top: 100px;
 }
+
+
+
+/* ANCHOR Global button style settings */
+
+.button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  transition: all 125ms ease-in-out;
+}
+
+.button:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+  transition: all 125ms ease-in-out;
+}
+
+.button-darkblue {
+  background-color: var(--darkblue);
+  border: 1px solid var(--darkblue);
+  color: white;
+  transition: all 125ms ease-in-out;
+}
+
+.button-darkblue:hover {
+  background-color: var(--lightblue);
+  border: 1px solid var(--lightblue);
+  transition: all 125ms ease-in-out;
+}
+
+.button-white {
+  background-color: white;
+  border: 1px solid var(--darkblue);
+  outline: 1px solid transparent;
+  color: var(--darkblue);
+  transition: all 125ms ease-in-out;
+}
+
+.button-white:hover {
+  border: 1px solid var(--lightblue);
+  outline: 1px solid var(--lightblue);
+  color: var(--lightblue);
+  transition: all 125ms ease-in-out;
+}
+
+
+
+
 
 /* ######################## Desktop header [Frame 41] ######################### */
 .desktop-header {

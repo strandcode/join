@@ -13,7 +13,7 @@
 </head>
 
 <body id="home">
-  <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
+  <img class="login-logo-animate" src="assets/img/join-logo.svg" alt="Join us">
 
 
 
@@ -28,15 +28,16 @@
             name="">
         </div>
 
-        <div class="content-remeber-J">
-          <div><input placeholder="Remember me" type="checkbox" name="" id=""><span>Remember me</span></div>
+        <div class="login-form-settings">
+          <div class="login-form-settings-left">
+            <input id="rememberMe" type="checkbox" name="remember-me">
+            <label for="rememberMe">Remember me</label>
+          </div>
           <a href="forgot-password.html">Forgot my Password</a>
         </div>
-        <div class="buttoncontainer-login-J">
-          <button class="button-login-J" onclick="loginUser()">Log in</button>
-          <a href="summary.html">
-            <button class="button-guest-J">Guest Log in</button>
-          </a>
+        <div class="login-form-submit-buttons">
+          <button class="button button-darkblue" onclick="loginUser()">Log in</button>
+          <button class="button button-white" onclick="loginGuestUser()">Demo login</button>
         </div>
       </form>
     </div>
@@ -44,14 +45,16 @@
 
 
   <div class="login-right">
-    <div class="signup-button">
+    <div class="login-signup-button-wrapper">
       <span>Not a Join user?</span>
       <a href="sign-up.html">
-        <button>Sign up</button>
+        <button class="button button-darkblue">Sign up</button>
       </a>
     </div>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="login.js"></script>
 </body>
 
 </html>
