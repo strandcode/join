@@ -1,3 +1,54 @@
+const checkboxRememberMe = document.getElementById('checkboxRememberMe');
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+const loginMessage = document.getElementById('loginMessage');
+
+
+
+function loginUser() {
+  let user = userData.find(u => u.email == loginEmail.value && u.password == loginPassword.value);
+  if (!user) {
+    showLoginMessage('Server nicht gefunden.');
+  }
+  console.log(user);
+  let index = userData.indexOf(user);
+  console.log(index);
+  if (user) {
+    setCurrentUser(index);
+    checkIfRememberMeIsActive();
+    clearFormInputValues();
+    window.location.href = 'summary.html';
+  } else {
+    showLoginMessage('Login not found. Please try again.');
+    clearFormInputValues();
+  }
+}
+
+async function downloadUserContactDataFromBackend() {
+  try {
+    setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+    await downloadFromServer();
+    userData = await JSON.parse(backend.getItem('users')) || [];
+    console.log(userData);
+    getCurrentUser();
+    showCurrentUser(currentUser);
+    renderContactsList();
+  } catch (error) {
+    console.error(`ERROR: ${error}`);
+  }
+}
+
+
+function showLoginMessage(message) {
+  loginMessage.classList.remove('d-none');
+  loginMessage.innerHTML = message;
+}
+
+
+function clearFormInputValues() {
+  loginEmail.value = '';
+  loginPassword.value = '';
+}
 
 function loginGuestUser() {
   setCurrentUser(0);
@@ -7,32 +58,6 @@ function loginGuestUser() {
 function setCurrentUser(currentUserIndex) {
   localStorage.setItem('currentUser', currentUserIndex);
 }
-
-function loginUser() {
-  const email = document.getElementById('loginEmail');
-  const password = document.getElementById('loginPassword');
-
-  let user = userData.find(u => u.email == email.value && u.password == password.value);
-  console.log(user);
-  let index = userData.indexOf(user);
-  console.log(index);
-  if (user) {
-    console.log('User gefunden');
-    setCurrentUser(index);
-    checkIfRememberMeIsActive();
-    console.log(currentUser);
-    email.value = '';
-    password.value = '';
-    window.location.href = 'summary.html';
-  } else {
-    console.warn('User nicht gefunden');
-    email.value = '';
-    password.value = '';
-  }
-}
-
-const checkboxRememberMe = document.getElementById('checkboxRememberMe');
-const loginEmail = document.getElementById('loginEmail');
 
 function checkIfRememberMeIsActive() {
   if (checkboxRememberMe.checked) {

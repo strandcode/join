@@ -20,9 +20,11 @@
   <div id="loginForm" class="login-form-container">
     <h2>Log in</h2>
     <div class="blue-line"></div>
+    <p id="loginMessage" class="d-none"></p>
     <form onsubmit="loginUser(); return false;">
       <div class="login-form-input-wrapper">
-        <input required id="loginEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
+        <input required id="loginEmail" class="login-form-input-email" placeholder="Email" type="email" name=""
+          autocomplete="">
         <input required id="loginPassword" class="login-form-input-password" placeholder="Password" type="password"
           name="">
       </div>
@@ -42,7 +44,7 @@
         <a href="forgot-password.html">Forgot my Password</a>
       </div>
       <div class="login-form-submit-buttons">
-        <button class="button button-darkblue" onclick="loginUser()">Log in</button>
+        <button class="button button-darkblue" onclick="loginUser()">Login</button>
         <button class="button button-white" onclick="loginGuestUser()">Demo login</button>
       </div>
     </form>

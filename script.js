@@ -17,7 +17,7 @@ async function downloadUserDataFromBackend() {
   showCurrentUser(currentUser);
 }
 
-downloadUserDataFromBackend();
+// downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
