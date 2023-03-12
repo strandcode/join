@@ -1,3 +1,22 @@
+
+// FIXME Wenn ein neuer User noch keine Kontakte hat
+
+async function downloadUserContactDataFromBackend() {
+  try {
+    setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+    await downloadFromServer();
+    userData = await JSON.parse(backend.getItem('users')) || [];
+    console.log(userData);
+    getCurrentUser();
+    showCurrentUser(currentUser);
+    renderContactsList();
+  } catch (error) {
+    console.error(`ERROR: ${error}`);
+  }
+}
+
+downloadUserContactDataFromBackend();
+
 // NOTE Hier wird der zentrale Index c (IndexOf Contact in contacts) generiert
 function renderContactsList() {
   sortUserContactsAlphabetically();
@@ -19,9 +38,7 @@ function renderContactsList() {
   templateContactsActiveContact(0);
 }
 
-// FIXME Wenn ein neuer User noch keine Kontakte hat
 
-setTimeout(renderContactsList, 1500);
 
 // LINK https://www.w3schools.com/jsref/jsref_sort.asp
 function sortUserContactsAlphabetically() {

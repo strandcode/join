@@ -9,23 +9,15 @@ function getCurrentUser() {
   currentUser = parseInt(localStorage.getItem('currentUser'));
 }
 
-// function getCurrentUser() {
-//   let encryptedCurrentUserIndex = parseInt(localStorage.getItem('currentUser'));
-//   currentUser = (encryptedCurrentUserIndex - 4) / 12;
-// }
-
-
 async function downloadUserDataFromBackend() {
   await downloadFromServer();
-  userData = JSON.parse(backend.getItem('users')) || [];
+  userData = await JSON.parse(backend.getItem('users')) || [];
   console.log(userData);
   getCurrentUser();
   showCurrentUser(currentUser);
 }
 
-
-
-downloadUserDataFromBackend();
+// downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
@@ -137,32 +129,32 @@ function init() {
   templateMobileNavbar();
 }
 
-let userDatas = {
-  "users": [
-    {
-      "firstName": "Peter",
-      "lastName": "Lustig",
-      "email": "peter@lustig.de",
-      "password": "test123"
-    },
-    {
-      "firstName": "Hermann",
-      "lastName": "Paschulke",
-      "email": "paschulke@test.de",
-      "password": "test123"
-    },
-    {
-      "firstName": "Berta",
-      "lastName": "Suttner",
-      "email": "berta@example.com",
-      "password": "test456"
-    },
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john@doe.com",
-      "password": "test123"
-    }
-  ],
-  "currentUser": 2
-}
+// let userDatas = {
+//   "users": [
+//     {
+//       "firstName": "Peter",
+//       "lastName": "Lustig",
+//       "email": "peter@lustig.de",
+//       "password": "test123"
+//     },
+//     {
+//       "firstName": "Hermann",
+//       "lastName": "Paschulke",
+//       "email": "paschulke@test.de",
+//       "password": "test123"
+//     },
+//     {
+//       "firstName": "Berta",
+//       "lastName": "Suttner",
+//       "email": "berta@example.com",
+//       "password": "test456"
+//     },
+//     {
+//       "firstName": "John",
+//       "lastName": "Doe",
+//       "email": "john@doe.com",
+//       "password": "test123"
+//     }
+//   ],
+//   "currentUser": 2
+// }
