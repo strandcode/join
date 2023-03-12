@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -10,42 +10,37 @@
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban Project Management Tool</title>
   <script src="./mini_backend.js"></script>
-
 </head>
 
-<body id="home">
-  <a href="index.html">
-    <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
-  </a>
+<body>
+  <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
 
   <div id="signUpForm" class="login-form-container">
-    <div class="main-login-J">
-      <h1>Sign up</h1>
-      <div class="blue-line"></div>
-      <form onsubmit="signupUser(); return false;">
-        <div class="input-login-J">
-
-          <input required id="signUpFirstName" class="login-form-input-name" placeholder="Firstname" type="text"
-            name="">
-          <input required id="signUpLastName" class="login-form-input-name" placeholder="Lastname" type="text" name="">
-          <input required id="signUpEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
-          <input required id="signUpPassword" class="login-form-input-password" placeholder="Password" type="password"
-            name="">
-        </div>
-        <div class="buttoncontainer-login-J">
-          <button id="signupButton" class="button-login-J">Sign up</button>
-        </div>
-      </form>
+    <div class="login-header-wrapper">
+      <a class="close-to-login" href="index.html">
+        <img src="assets/img/arrow-left-line.svg" alt="Arrow back to login">
+      </a>
+      <h2>Sign up</h2>
     </div>
+    <div class="blue-line"></div>
+    <form onsubmit="signupUser(); return false;">
+      <div class="login-form-input-wrapper">
+
+        <input required id="signUpFirstName" class="login-form-input-name" placeholder="Firstname" type="text" name="">
+        <input required id="signUpLastName" class="login-form-input-name" placeholder="Lastname" type="text" name="">
+        <input required id="signUpEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
+        <input required id="signUpPassword" class="login-form-input-password" placeholder="Password" type="password"
+          name="">
+      </div>
+      <div class="login-form-submit-buttons">
+        <button id="signupButton" class="button button-darkblue">Sign up</button>
+      </div>
+    </form>
   </div>
 
-  <div class="login-right">
-    <div class="signup-button">
-      <span>Not a Join user?</span>
-      <button>Sign up</button>
-    </div>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
+
+  <script src="script.js"></script>
+  <script src="login.js"></script>
 </body>
 
 </html>

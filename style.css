@@ -17,6 +17,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   margin: 0;
+  transition: all 125ms ease-in-out;
 }
 
 main {
@@ -153,13 +154,14 @@ main {
 .button-darkblue:hover {
   background-color: var(--lightblue);
   border: 1px solid var(--lightblue);
+  cursor: pointer;
   transition: all 125ms ease-in-out;
 }
 
 .button-white {
   background-color: white;
-  border: 1px solid var(--darkblue);
-  outline: 1px solid transparent;
+  border: 1px solid white;
+  outline: 1px solid var(--darkblue);
   color: var(--darkblue);
   transition: all 125ms ease-in-out;
 }
@@ -168,6 +170,7 @@ main {
   border: 1px solid var(--lightblue);
   outline: 1px solid var(--lightblue);
   color: var(--lightblue);
+  cursor: pointer;
   transition: all 125ms ease-in-out;
 }
 

@@ -4,10 +4,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding-top: 100px;
 }
-
-
 
 .login-logo {
     width: 70px;
@@ -21,16 +18,17 @@ body {
     width: 70px;
     object-fit: contain;
     position: absolute;
-    top: calc(50vh - 111px);
-    left: calc(50vw - 155px);
-    transform: scale(0.8);
+    top: calc(50vh - 211px);
+    left: calc(50vw - 235px);
+    transform: scale(0.55);
     animation-name: slide-join-logo;
     animation-duration: 2000ms;
     animation-timing-function: ease-in-out;
-    animation-delay: 1000ms;
+    animation-delay: 250ms;
     animation-iteration-count: 1;
     animation-direction: normal;
     animation-fill-mode: both;
+    z-index: 2;
 }
 
 /* NOTE Shorthand */
@@ -39,9 +37,9 @@ body {
 
 @keyframes slide-join-logo {
     from {
-        top: calc(50vh - 111px);
-        left: calc(50vw - 155px);
-        transform: scale(0.8);
+        top: calc(50vh - 211px);
+        left: calc(50vw - 235px);
+        transform: scale(0.55);
     }
 
     to {
@@ -52,17 +50,7 @@ body {
 
 }
 
-
-
-
-.login-right {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    display: flex;
-}
-
-.main-login-J {
+.login-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,25 +58,66 @@ body {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    min-width: 500px;
+    margin: 10px;
+    z-index: 1;
+    animation: opacity 250ms ease-in 0ms 1 normal both;
 }
 
-.main-login-J h1 {
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+.login-header-wrapper {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.login-header-wrapper img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.login-header-wrapper h2 {
+    width: 100%;
+    margin-block-start: 0;
+    text-align: center;
+}
+
+.login-form-container p {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 40px 0;
+}
+
+.login-form-container h2 {
     font-size: 60px;
     font-weight: 700;
     margin-block-end: 0;
 }
 
-.main-login-J .blue-line {
+.login-form-container .blue-line {
     height: 3px;
     width: 100px;
     border-radius: 10px;
     background-color: #29abe2;
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin: 10px 0 30px 0;
 }
 
+.login-form-container form {
+    width: 100%;
+}
 
-.input-login-J {
+.login-form-input-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,17 +126,13 @@ body {
     width: 100%;
 }
 
-
-.input-login-J input {
+.login-form-input-wrapper input {
     border-radius: 10px;
     width: 100%;
     padding: 10px;
     border: 1px solid #D1D1D1;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
 }
-
-
-
 
 .login-form-input-email {
     background: url(assets/img/icon-mail-user.svg) no-repeat;
@@ -124,11 +149,10 @@ body {
     background-position: top 8px right 10px;
 }
 
-
 .login-form-settings {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
     width: 100%;
     flex-wrap: wrap;
@@ -148,12 +172,24 @@ body {
     display: flex;
     width: 100%;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     margin-top: 30px;
+}
+
+.login-form-submit-buttons button {
+    min-width: 140px;
 }
 
 .login-signup-button-wrapper {
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+
+.login-signup {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    display: flex;
 }

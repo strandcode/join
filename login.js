@@ -21,6 +21,7 @@ function loginUser() {
     console.warn('User nicht gefunden');
     email.value = '';
     password.value = '';
+    email.focus();
   }
 }
 
