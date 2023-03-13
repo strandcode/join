@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -12,46 +12,58 @@
   <script src="./mini_backend.js"></script>
 </head>
 
-<body id="home">
-  <img class="login-logo" src="assets/img/join-logo.svg" alt="Join us">
+<body onload="checkForStoredLogin()">
+  <img class="login-logo-animate" src="assets/img/join-logo.svg" alt="Join us">
 
 
 
   <div id="loginForm" class="login-form-container">
-    <div class="main-login-J">
-      <h1>Log in</h1>
-      <div class="blue-line"></div>
-      <form onsubmit="loginUser(); return false;">
-        <div class="input-login-J">
-          <input required id="loginEmail" class="login-form-input-email" placeholder="Email" type="email" name="">
-          <input required id="loginPassword" class="login-form-input-password" placeholder="Password" type="password"
-            name="">
-        </div>
+    <h2>Log in</h2>
+    <div class="blue-line"></div>
+    <p id="loginMessage" class="d-none"></p>
+    <form onsubmit="loginUser(); return false;">
+      <div class="login-form-input-wrapper">
+        <input required id="loginEmail" class="login-form-input-email" placeholder="Email" type="email" name=""
+          autocomplete="">
+        <input required id="loginPassword" class="login-form-input-password" placeholder="Password" type="password"
+          name="">
+      </div>
 
-        <div class="content-remeber-J">
-          <div><input placeholder="Remember me" type="checkbox" name="" id=""><span>Remember me</span></div>
-          <a href="forgot-password.html">Forgot my Password</a>
+      <div class="login-form-settings">
+        <div class="login-form-settings-left">
+          <!-- NOTE 
+          Der value-Attribut des input type="checkbox"-Elements ist optional, aber es ist nützlich, wenn das Formular per HTTP POST oder HTTP GET Methode an den Server gesendet wird. Der Wert des value-Attributs wird zusammen mit dem name-Attribut als Schlüssel-Wert-Paar an den Server gesendet.
+          In dem Beispiel, das Sie gepostet haben, wird, wenn der Benutzer das Kontrollkästchen "Coding" auswählt und das Formular an den Server sendet, der Wert "coding" als Teil des Schlüssel-Wert-Paars interest=coding an den Server gesendet. Wenn der Benutzer das Kontrollkästchen "Music" auswählt, wird der Wert "music" als Teil des Schlüssel-Wert-Paars interest=music gesendet.
+          Der Server kann dann diese Schlüssel-Wert-Paare auswerten und entsprechende Aktionen ausführen.
+          -->
+          <input id="checkboxRememberMe" type="checkbox" name="login-join" value="remember me">
+          <label for="rememberMe">Remember me</label>
+
+
         </div>
-        <div class="buttoncontainer-login-J">
-          <button class="button-login-J" onclick="loginUser()">Log in</button>
-          <a href="summary.html">
-            <button class="button-guest-J">Guest Log in</button>
-          </a>
-        </div>
-      </form>
-    </div>
+        <a href="forgot-password.html">Forgot my Password</a>
+      </div>
+      <div class="login-form-submit-buttons">
+        <button class="button button-darkblue" onclick="loginUser()">Login</button>
+        <button class="button button-white" onclick="loginGuestUser()">Demo login</button>
+      </div>
+    </form>
   </div>
 
 
-  <div class="login-right">
-    <div class="signup-button">
-      <span>Not a Join user?</span>
+
+
+  <div class="login-signup">
+    <div class="login-signup-button-wrapper">
+      <span id="notAJoinUser">Not a Join user?</span>
       <a href="sign-up.html">
-        <button>Sign up</button>
+        <button class="button button-darkblue">Sign up</button>
       </a>
     </div>
-    <script src="script.js"></script>
-    <script src="login.js"></script>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="login.js"></script>
 </body>
 
 </html>
