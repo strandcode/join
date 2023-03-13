@@ -12,7 +12,7 @@
   <script src="drag&drop.js"></script>
 </head>
 
-<body id="home" onload="init()">
+<body id="home" onload="init(), generateTasks()">
 
   <header id="desktopHeader" class="desktop-header"></header>
   <nav id="desktopNavbar" class="desktop-navbar"></nav>
@@ -47,21 +47,23 @@
           <h4>To do</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD" draggable="true">
-          <div class="work-category-D" id="workCategoryD">
-            Design
-          </div>
-          <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-          <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-          <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-          <div class="work-user-D" id="workUserD">
-            <span class="work-task-user-D" id="workTaskUserD">U1</span>
-            <span class="work-task-user-D" id="workTaskUserD">U2</span>
-            <span class="work-task-user-D" id="workTaskUserD">U3</span>
-            <div class="urgency-D" id="urgencyD">
-              <img src="assets/img/prio-low.svg" alt="">
+        <div class="card-content-D" id="cardContentD">
+          <div class="work-task-D" id="workTaskD" draggable="true">
+            <div class="work-category-D" id="workCategoryD">
+              Design
             </div>
+            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+            <div class="work-user-D" id="workUserD">
+              <span class="work-task-user-D" id="workTaskUserD">U1</span>
+              <span class="work-task-user-D" id="workTaskUserD">U2</span>
+              <span class="work-task-user-D" id="workTaskUserD">U3</span>
+              <div class="urgency-D" id="urgencyD">
+                <img src="assets/img/prio-low.svg" alt="">
+              </div>
 
+            </div>
           </div>
         </div>
       </div>
@@ -140,9 +142,9 @@
   </main>
 
 
-  <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### 
-  
-  <div class="board-task-overlay-D d-none" id="boardTaskOverlayD">
+  <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
+
+  <div class="pop-up-task-D d-none" id="popUpTaskD">
 
     <div class="work-category-D" id="taskCategoryOverlayD">
       Sales
@@ -170,9 +172,10 @@
       </div>
     </div>
   </div>
-        -->
+
 
   <script src="script.js"></script>
+  <script src="board.js"></script>
 
 </body>
 
