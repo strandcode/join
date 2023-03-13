@@ -1,6 +1,10 @@
 
 // FIXME Wenn ein neuer User noch keine Kontakte hat
 
+/** NOTE
+ * Test documentation in contacts.js
+ */
+
 async function downloadUserContactDataFromBackend() {
   try {
     setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');

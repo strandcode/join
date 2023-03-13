@@ -53,7 +53,7 @@ function templateDesktopHeader(activeLogin) {
         <a href="help.html">
           <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
         </a>
-        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
       </div>
   `;
 }
@@ -101,7 +101,7 @@ function templateMobileHeader() {
     <a href="index.html">
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
     </a>
-    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
   `;
 }
 

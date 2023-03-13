@@ -204,8 +204,8 @@ main {
 .portrait-blue-ring {
   background-color: #2A3647;
   border-radius: 50%;
-  padding: 6px;
-  outline: 2px solid white;
+  padding: 4px;
+  outline: 3px solid white;
   outline-offset: -6px;
 }
 
