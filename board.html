@@ -42,7 +42,7 @@
     </div>
 
     <div class="work-task-container-D" id="workTaskContainerD">
-      <div class="work-steps-D" id="workStepsD">
+      <div class="work-steps-D" id="workSteps1">
         <div class="work-task-category-D">
           <h4>To do</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
@@ -67,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="work-steps-D" id="workStepsD">
+      <div class="work-steps-D" id="workSteps2">
         <div class="work-task-category-D">
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
@@ -92,7 +92,7 @@
       </div>
 
 
-      <div class="work-steps-D" id="workStepsD">
+      <div class="work-steps-D" id="workSteps3">
         <div class="work-task-category-D">
           <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
@@ -111,11 +111,10 @@
             <div class="urgency-D" id="urgencyD">
               <img src="assets/img/prio-low.svg" alt="">
             </div>
-
           </div>
         </div>
       </div>
-      <div class="work-steps-D" id="workStepsD">
+      <div class="work-steps-D" id="workSteps4">
         <div class="work-task-category-D">
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
@@ -139,40 +138,42 @@
         </div>
       </div>
     </div>
-  </main>
 
 
-  <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
 
-  <div class="pop-up-task-D d-none" id="popUpTaskD">
+    <!-- #################### NOTE BOARD WORK TASK OVERLAY #################### -->
+    <div class="pop-up-container-wrapper">
+      <div class="pop-up-task-D d-none" id="popUpTaskD">
 
-    <div class="work-category-D" id="taskCategoryOverlayD">
-      Sales
-    </div>
-    <div class="close-work-overlay-D">
-      <button onclick="closeWorkTaskOverlay()">x</button>
-    </div>
+        <div class="work-category-D" id="taskCategoryOverlayD">
+          Sales
+        </div>
+        <div class="close-work-overlay-D">
+          <button onclick="closeWorkTask()">x</button>
+        </div>
 
-    <div class="work-overlay-headline-D"> Call potential clients</div>
-    <span>Make the product presentation to prospective buyers</span>
+        <div class="work-overlay-headline-D"> Call potential clients</div>
+        <span>Make the product presentation to prospective buyers</span>
 
-    <div class="work-overlay-date-D">
-      <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">05-08-2023</span>
-    </div>
-    <div class="priority-overlay-D">
-      <b>Priority:</b> <img src="assets/img/priority-urgent.svg" alt="">
-    </div>
-    <div class="assigned-overlay-D">
-      <b>Assigned To:</b>
-      <div class="user-overlay-D">
-        <span>User 1</span>
-        <span>User 2</span>
-        <span>User 3</span>
-        <span>User 4</span>
+        <div class="work-overlay-date-D">
+          <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">05-08-2023</span>
+        </div>
+        <div class="priority-overlay-D">
+          <b>Priority:</b> <img src="assets/img/priority-urgent.svg" alt="">
+        </div>
+        <div class="assigned-overlay-D">
+          <b>Assigned To:</b>
+          <div class="user-overlay-D">
+            <span>User 1</span>
+            <span>User 2</span>
+            <span>User 3</span>
+            <span>User 4</span>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
-
+  </main>
 
   <script src="script.js"></script>
   <script src="board.js"></script>

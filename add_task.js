@@ -31,14 +31,14 @@ async function addTaskToUser() {
   loadUsers();
 }
 
-function taskClearButton () {
-   document.getElementById('taskBoardList').value = '';
-   document.getElementById('taskTitle').value = '';
-   document.getElementById('taskDescription');
-   document.getElementById('taskCategory');
-   document.getElementById('taskAssigned');
-   document.getElementById('taskDate');
-   document.getElementById('taskButtonUrgent');
-   document.getElementById('taskButtonMedium');
-   document.getElementById('taskButtonLow');
+function taskClearButton() {
+  document.getElementById('taskBoardList').value = '';
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDescription');
+  document.getElementById('taskCategory');
+  document.getElementById('taskAssigned');
+  document.getElementById('taskDate');
+  document.getElementById('taskButtonUrgent');
+  document.getElementById('taskButtonMedium');
+  document.getElementById('taskButtonLow');
 }

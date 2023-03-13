@@ -166,6 +166,7 @@ h4:hover {
     justify-content: center;
     padding: 18px 19px;
     gap: 10px;
+    cursor: pointer;
 
     /* white */
     background: #FFFFFF;
@@ -245,7 +246,7 @@ h4:hover {
 
 /* ////////     OVERLAY BOARD WORK TASK //////////// */
 
-.board-task-overlay-D {
+.pop-up-task-D {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -256,9 +257,50 @@ h4:hover {
     width: 623px;
     height: 824px;
     background: #FFFFFF;
-    /* nuevo */
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+    backdrop-filter: blur(5px);
+    position: fixed;
+    /* top: 0; */
+    /* right: 0; */
+    bottom: 0;
+    /* left: 0; */
+    z-index: 3;
+}
+
+.pop-up-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate;
+    position: relative;
+    width: 623px;
+    height: 824px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    position: fixed;
+    /* top: 0; */
+    /* right: 0; */
+    bottom: 0;
+    /* left: 0; */
+    z-index: 3;
+    justify-content: flex-start;
+}
+
+.fade-to-gray-overlay {
+    animation: fade-to-gray 1000ms linear;
+}
+
+.desktop-slide-in {
+    animation: slide-in 250ms ease-in-out;
+}
+
+.d-none {
+    display: none;
 }
 
 .work-overlay-headline-D {
@@ -300,6 +342,29 @@ h4:hover {
     background-color: transparent;
     border: none;
     font-size: larger;
+}
+
+.pop-up-change-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 6px;
+    position: absolute;
+    border-radius: 10px;
+    left: 525px;
+    top: 737px;
+    background-color: transparent;
+}
+
+.pop-up-change-button img:hover {
+    cursor: pointer;
+}
+
+.pop-up-change-button button {
+    background: transparent;
+    border: none;
 }
 
 @media screen and (max-width: 910px) {
@@ -363,8 +428,6 @@ h4:hover {
     .headline-board-D {
         margin-left: 0;
     }
-
-    .find-task-D {}
 
     .mobile-searchbar-D {
         display: block;
