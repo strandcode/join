@@ -1,36 +1,45 @@
 // NOTE Einbindung smalles_backend_ever
 
-setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
 
 let userData = [];
 let currentUser;
 
+function getCurrentUser() {
+  currentUser = parseInt(localStorage.getItem('currentUser'));
+}
 
-loadUsers();
-
-async function loadUsers() {
+async function downloadUserDataFromBackend() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
-  userData = JSON.parse(backend.getItem('users')) || [];
-  console.log(userData);
-  showCurrentUser();
+  userData = await JSON.parse(backend.getItem('users')) || []; // FIXME Sicherheitskritisch!
+}
+
+// FIXME Sicherheitskritisch!
+downloadUserDataFromBackend();
+
+async function saveToBackend() {
+  await backend.setItem('users', JSON.stringify(userData));
+  downloadUserDataFromBackend();
 }
 
 async function addUser(firstName, LastName, email, password) {
   let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [] };
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  downloadUserDataFromBackend();
 }
 
 async function deleteUser(arrayPosition) {
   userData.splice(arrayPosition, 1);
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  downloadUserDataFromBackend();
 }
 
-function showCurrentUser() {
-  let currentUserName = userData[0].firstName;
-  console.log('Current login: ', currentUserName);
+function showCurrentUser(currentUser, currentUserData) {
+  let currentUserName = userData[currentUser].firstName + ' ' + userData[currentUser].LastName;
+  console.log('currentLoginName: ' + currentUserName);
+  console.log('currentUserIndex: ' + currentUser);
+  console.log(currentUserData);
 }
 
 
@@ -44,7 +53,7 @@ function templateDesktopHeader(activeLogin) {
         <a href="help.html">
           <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
         </a>
-        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+        <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
       </div>
   `;
 }
@@ -92,7 +101,7 @@ function templateMobileHeader() {
     <a href="index.html">
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
     </a>
-    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-sascha.jpg" alt="">
+    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
   `;
 }
 
@@ -120,32 +129,32 @@ function init() {
   templateMobileNavbar();
 }
 
-let userDatas = {
-  "users": [
-    {
-      "firstName": "Peter",
-      "lastName": "Lustig",
-      "email": "peter@lustig.de",
-      "password": "test123"
-    },
-    {
-      "firstName": "Hermann",
-      "lastName": "Paschulke",
-      "email": "paschulke@test.de",
-      "password": "test123"
-    },
-    {
-      "firstName": "Berta",
-      "lastName": "Suttner",
-      "email": "berta@example.com",
-      "password": "test456"
-    },
-    {
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john@doe.com",
-      "password": "test123"
-    }
-  ],
-  "currentUser": 2
-}
+// let userDatas = {
+//   "users": [
+//     {
+//       "firstName": "Peter",
+//       "lastName": "Lustig",
+//       "email": "peter@lustig.de",
+//       "password": "test123"
+//     },
+//     {
+//       "firstName": "Hermann",
+//       "lastName": "Paschulke",
+//       "email": "paschulke@test.de",
+//       "password": "test123"
+//     },
+//     {
+//       "firstName": "Berta",
+//       "lastName": "Suttner",
+//       "email": "berta@example.com",
+//       "password": "test456"
+//     },
+//     {
+//       "firstName": "John",
+//       "lastName": "Doe",
+//       "email": "john@doe.com",
+//       "password": "test123"
+//     }
+//   ],
+//   "currentUser": 2
+// }

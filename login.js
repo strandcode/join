@@ -1,3 +1,63 @@
+const checkboxRememberMe = document.getElementById('checkboxRememberMe');
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+const loginMessage = document.getElementById('loginMessage');
+
+async function loginUser() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  await downloadFromServer();
+  userData = await JSON.parse(backend.getItem('users'));
+  let user = userData.find(u => u.email == loginEmail.value && u.password == loginPassword.value);
+  let index = userData.indexOf(user);
+  userData = [];
+  if (user) {
+    setCurrentUser(index);
+    checkIfRememberMeIsActive();
+    clearFormInputValues();
+    window.location.href = 'summary.html';
+  } else {
+    showLoginMessage('Login not found. Please try again.');
+    clearFormInputValues();
+  }
+}
+
+function showLoginMessage(message) {
+  loginMessage.classList.remove('d-none');
+  loginMessage.innerHTML = message;
+}
+
+
+function clearFormInputValues() {
+  loginEmail.value = '';
+  loginPassword.value = '';
+}
+
+function loginGuestUser() {
+  setCurrentUser(0);
+  window.location.href = 'summary.html';
+}
+
+function setCurrentUser(currentUserIndex) {
+  localStorage.setItem('currentUser', currentUserIndex);
+}
+
+function checkIfRememberMeIsActive() {
+  if (checkboxRememberMe.checked) {
+    localStorage.rememberMe = true;
+    localStorage.loginEmail = loginEmail.value;
+  } else {
+    localStorage.rememberMe = false;
+    localStorage.loginEmail = '';
+  }
+}
+
+function checkForStoredLogin() {
+  if (localStorage.rememberMe && localStorage.rememberMe == 'true') {
+    loginEmail.value = localStorage.loginEmail;
+    checkboxRememberMe.checked = true;
+  }
+}
+
 function signupUser() {
   let firstName = document.getElementById('signUpFirstName');
   let lastName = document.getElementById('signUpLastName');
@@ -14,28 +74,6 @@ function signupUser() {
   setTimeout(function () {
     window.location.href = 'index.html';
   }, 3000);
-}
-let currentUser;
-
-function loginUser() {
-  let email = document.getElementById('loginEmail');
-  let password = document.getElementById('loginPassword');
-  let user = userData.find(u => u.email == email.value && u.password == password.value);
-  console.log(user);
-  let index = userData.indexOf(user);
-  console.log(index);
-  if (user) {
-    console.log('User gefunden');
-    currentUser = index;
-    console.log(currentUser);
-    window.location.href = 'summary.html';
-    email.value = '';
-    password.value = '';
-  } else {
-    console.warn('User nicht gefunden');
-    email.value = '';
-    password.value = '';
-  }
 }
 
 
@@ -75,3 +113,9 @@ function resetUserPassword() {
     }, 2000);
   }
 }
+
+// FIXME Sicherheitskritisch!
+// function setCurrentUser(currentUserIndex) {
+//   let encryptedCurrentUserIndex = (currentUserIndex * 12) + 4;
+//   localStorage.setItem('currentUser', encryptedCurrentUserIndex);
+// }
