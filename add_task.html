@@ -27,7 +27,7 @@
     <div class="left-taskfield-J">
       <h1>Add Task</h1>
       <span>Board List</span>
-      <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
+      <select class="width" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskBoardList">
         <option aria-placeholder="" disabled selected hidden>Select board list card</option>
         <option value="Kontakt">To do</option>
         <option value="Kontakt">In progress</option>
@@ -38,11 +38,11 @@
       <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
 
       <span>Description</span>
-      <textarea required class="width" placeholder="Enter a Description" name="Description" id="" cols="30"
-        rows="10"></textarea>
+      <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescription"
+        cols="30" rows="10"></textarea>
 
       <span>Category</span>
-      <select name="Category" placeholder="Category" id="">
+      <select name="Category" placeholder="Category" id="taskCategory">
         <option aria-placeholder="" disabled selected hidden>Category</option>
         <option value="Kontakt">*</option>
         <option value="Kontakt">*</option>
@@ -55,7 +55,7 @@
 
     <div class="right-taskfield-J">
       <span>Assigned to</span>
-      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="">
+      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned">
         <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option>
         <option value="Kontakt">Kontakt</option>
         <option value="Kontakt">Kontakt</option>
@@ -63,13 +63,13 @@
       </select>
 
       <span>Due date</span>
-      <input required class="right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="">
+      <input required class="right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
 
       <span>Prio</span>
       <div class="button-urgent-J">
-        <button class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
-        <button class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
-        <button class="low-J">Low<img src="assets/img/prio-low.svg"></button>
+        <button id="taskButtonUrgent" class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
+        <button id="taskButtonMedium" class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
+        <button id="taskButtonLow" class="low-J">Low<img src="assets/img/prio-low.svg"></button>
       </div>
 
       <span>Substack</span>
@@ -77,8 +77,8 @@
       <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
 
       <div class="button-container-J">
-        <button class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
-        <button class="create">Create Task<img src="assets/img/icon-white-create.svg"></button>
+        <button onclick="taskClearButton()" class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
+        <button onclick="" class="create">Create Task<img src="assets/img/icon-white-create.svg"></button>
       </div>
     </div>
 
