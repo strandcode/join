@@ -59,6 +59,15 @@ main {
     display: none;
 }
 
+.card-content-D {
+
+    background-color: #f6f7f8;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 50px;
+}
+
 .add-task-mobile-D:hover {
     background-color: #29ABE2;
     cursor: pointer;
@@ -230,6 +239,8 @@ h4:hover {
     border-radius: 8px;
     color: #FFFFFF;
     margin-top: 22px;
+    justify-content: center;
+    display: flex;
 }
 
 /* ////////     OVERLAY BOARD WORK TASK //////////// */
