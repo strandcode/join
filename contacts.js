@@ -1,10 +1,3 @@
-
-// FIXME Wenn ein neuer User noch keine Kontakte hat
-
-/** NOTE
- * Test documentation in contacts.js
- */
-
 async function initContacts() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
@@ -12,15 +5,44 @@ async function initContacts() {
   getCurrentUser();
   let currentUserData = userData[currentUser];
   showCurrentUser(currentUser, currentUserData);
-  renderContactsList();
+  if (userData[currentUser].contacts.length > 0) {
+    renderContactsList();
+  } else {
+    console.warn('No contacts found');
+    templatefirstContact();
+  }
 }
 
+const contactsListS = document.getElementById('contactsList');
+const contactsMainWrapperS = document.getElementById('contactsMainWrapperS');
+const contactFooterWrapper = document.getElementById('contactFooterWrapper');
+
+
+function templatefirstContact() {
+  contactFooterWrapper.innerHTML = '';
+  contactsMainWrapperS.innerHTML = '';
+  contactsListS.classList.add('d-none');
+  contactsListS.innerHTML = '';
+  contactsMainWrapperS.innerHTML += /*html*/ `
+    <div class="first-contact">
+      <button class="button button-darkblue"
+        onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+        New contact
+        <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
+      </button>
+      <div class="arrow-line-animation">
+      <img src="assets/img/arrow-left-line.svg" alt="">
+      <div class="blue-line"></div>
+      </div>
+    </div>  
+  `;
+}
 
 // NOTE Hier wird der zentrale Index c (IndexOf Contact in contacts) generiert
 function renderContactsList() {
+  contactsListS.classList.remove('d-none');
   sortUserContactsAlphabetically();
   let contactsRegister = [];
-  let contactsList = document.getElementById('contactsListS');
   contactsList.innerHTML = '';
   for (let c = 0; c < userData[currentUser].contacts.length; c++) {
     let firstLetter = userData[currentUser].contacts[c].firstName.charAt(0).toUpperCase();
@@ -63,7 +85,7 @@ function templateContactsListContact(c) {
     <div class="contacts-list-contact-wrapper-S" onclick="templateContactsActiveContact(${c})">
       <div class="contacts-list-contact-avatar" style="background-color: ${userData[currentUser].contacts[c].avatar_bg_color}">${userData[currentUser].contacts[c].avatar_initials}</div>
       <div class="contact-data-wrapper-S">
-        <div class="contact-name-S">${userData[currentUser].contacts[c].firstName} ${userData[currentUser].contacts[c].lastName} ${c}</div>
+        <div class="contact-name-S">${userData[currentUser].contacts[c].firstName} ${userData[currentUser].contacts[c].lastName}</div>
         <a href="mailto:${userData[currentUser].contacts[c].email}" class="contacts-list-contact-email">
           <span>${email_name}</span>
           <span>@${email_domain}</span>
@@ -86,7 +108,7 @@ function templateContactsActiveContact(activeContact) {
           </div>
           <div class="contact-data-wrapper-S">
             <div class="contact-name-S font-size-48">
-              ${userData[currentUser].contacts[activeContact].firstName} ${userData[currentUser].contacts[activeContact].lastName} ${activeContact}
+              ${userData[currentUser].contacts[activeContact].firstName} ${userData[currentUser].contacts[activeContact].lastName}
             </div>
             <a href="#" class="contact-email-S">+ Add Task</a>
           </div>
@@ -104,10 +126,7 @@ function templateContactsActiveContact(activeContact) {
         </div> -->
 
 
-        <div class="button button-white" onclick="deleteContactOfUser(${activeContact})">
-          <!-- <img src="assets/img/pencil-no-bg.svg" alt=""> -->
-          <span>Delete Contact</span>
-        </div>
+      
 
 
 
@@ -128,7 +147,24 @@ function templateContactsActiveContact(activeContact) {
     </div>
   `;
   templateEditContactActiveContact(activeContact);
+  templateContactFooterWrapper(activeContact);
 }
+
+function templateContactFooterWrapper(activeContact) {
+  const contactsFooterWrapper = document.getElementById('contactFooterWrapper');
+  contactsFooterWrapper.innerHTML = '';
+  contactsFooterWrapper.innerHTML += /*html*/ `
+    <button class="button button-darkblue"
+      onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+      New contact
+      <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
+    </button>
+    <button class="button button-white" onclick="deleteContactOfUser(${activeContact})">
+      Delete Contact
+    </button>
+  `;
+}
+
 
 
 function showOverlay(overlayId, overlayContainerId) {
