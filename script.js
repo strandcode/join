@@ -23,7 +23,34 @@ async function saveToBackend() {
 }
 
 async function addUser(firstName, LastName, email, password) {
-  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [], board: [] };
+  let newUser = {
+    firstName: firstName,
+    LastName: LastName,
+    email: email,
+    password: password,
+    contacts: [],
+    board: [
+      { boardlistTitle: 'To do', boardlistTasks: [] },
+      { boardlistTitle: 'In progress', boardlistTasks: [] },
+      { boardlistTitle: 'Awaiting Feedback', boardlistTasks: [] },
+      {
+        boardlistTitle: 'Done', boardlistTasks: [
+          {
+            boardList: 0,
+            title: 'Aufgabe 1',
+            description: 'Blumen gießen',
+            category: 'Design',
+            assigned_to_initials: userData[0].contacts[0].avatar_initials,
+            date: '2023/03/14',
+          }
+
+        ]
+      },
+    ]
+  };
+
+
+
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   downloadUserDataFromBackend();
