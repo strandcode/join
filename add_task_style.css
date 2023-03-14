@@ -93,6 +93,10 @@ select {
   margin-left: 8px;
 }
 
+.urgentButtonRed {
+  background-color: rgb(163, 0, 0);
+}
+
 .urgent-J:hover {
   background-color: rgb(163, 0, 0);
 }
