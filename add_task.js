@@ -5,49 +5,91 @@ async function addTaskToUser() {
   let taskCategory = document.getElementById('taskCategory');
   let taskAssigned = document.getElementById('taskAssigned');
   let taskDate = document.getElementById('taskDate');
-  let taskButtonUrgent = document.getElementById('taskButtonUrgent');
-  let ttaskButtonMedium = document.getElementById('taskButtonMedium');
+  let taskButtonUrgent = document.getElementById('taskButtonUrgent').textContent;
+  let taskButtonMedium = document.getElementById('taskButtonMedium');
   let taskButtonLow = document.getElementById('taskButtonLow');
-  let subtaskTitle = document.getElementById('subtaskTitle');
+
+  let selectedBoardList = taskBoardList.value;
+  let selectedTaskCategory = taskCategory.value;
 
   let newTask = {
-    boardList: taskBoardList.value,
+    boardList: selectedBoardList,
     title: taskTitle.value,
     description: taskDescription.value,
-    category: taskCategory.value,
+    category: selectedTaskCategory,
     assigned_to: taskAssigned.value,
     date: taskDate.value,
+    prio: '',    
+  };
+
+  
 
 
-    subtasks: [
-      {
-        subtaskTitle: subtaskTitle.value,
-        subtaskChecked: false,
-      }
-    ]
-  }
+  
+
   userData[0].tasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
   loadUsers();
 }
 
-// function renderBoradList() {
-//   let taskBoardList
-//   for
-//   taskBoardList.innerHTML = `
-//   <option value="">${userData[4].board[i].boardlistTitle}</option>
-//   `;
-// }
 
 
-function taskClearButton() {
-  document.getElementById('taskBoardList').value = '';
-  document.getElementById('taskTitle').value = '';
-  document.getElementById('taskDescription');
-  document.getElementById('taskCategory');
-  document.getElementById('taskAssigned');
-  document.getElementById('taskDate');
-  document.getElementById('taskButtonUrgent');
-  document.getElementById('taskButtonMedium');
-  document.getElementById('taskButtonLow');
+function taskClearButton () {
+   taskBoardList.value = '';
+   taskTitle.value = '';
+   taskDescription.value = '';
+   taskCategory.value = '';
+   taskAssigned.value = '';
+   taskDate.value = '';
+   taskButtonUrgent.value = '';
+   taskButtonMedium.value = '';
+   taskButtonLow.value = '';
 }
+
+function setPriority () {
+ 
+  let taskButtonUrgent = document.getElementById('taskButtonUrgent');
+  taskButtonUrgent.style.backgroundColor = "red";
+  taskButtonUrgent.classList.add("active");
+
+  let taskButtonMedium = document.getElementById('taskButtonMedium');
+  taskButtonMedium.style.backgroundColor = "orange";
+  taskButtonMedium.classList.add("active");
+
+  let taskButtonLow = document.getElementById('taskButtonLow');
+  taskButtonLow.style.backgroundColor = "green";
+  taskButtonLow.classList.add("active");
+}
+
+
+
+function generateContactDropdown(userData) {
+  const dropdownContacts = document.getElementById("taskAssigned");
+  dropdownContacts.innerHTML = '';
+
+  for (let i = 0; i < userData.contacts.length; i++) {
+    const contactList = 
+  }
+}
+
+
+
+
+
+
+
+// taskButtonUrgent.addEventListener('click', () => {
+//   taskButtonUrgent.classList.toggle('active');
+// });
+
+// taskButtonMedium.addEventListener('click', () => {
+//   taskButtonMedium.classList.toggle('active');
+// });
+
+// taskButtonLow.addEventListener('click', () => {
+//   taskButtonLow.classList.toggle('active');
+// });
+
+
+
+
