@@ -1,53 +1,47 @@
-async function addTaskToUser() {
-  let taskBoardList = document.getElementById('taskBoardList');
-  let taskTitle = document.getElementById('taskTitle');
-  let taskDescription = document.getElementById('taskDescription');
-  let taskCategory = document.getElementById('taskCategory');
-  let taskAssigned = document.getElementById('taskAssigned');
-  let taskDate = document.getElementById('taskDate');
-  let taskButtonUrgent = document.getElementById('taskButtonUrgent').textContent;
-  let taskButtonMedium = document.getElementById('taskButtonMedium');
-  let taskButtonLow = document.getElementById('taskButtonLow');
+const taskBoardList = document.getElementById('taskBoardList');
+const taskTitle = document.getElementById('taskTitle');
+const taskDescription = document.getElementById('taskDescription');
+const taskCategory = document.getElementById('taskCategory');
+const taskAssigned = document.getElementById('taskAssigned');
+const taskDate = document.getElementById('taskDate');
+const taskButtonUrgent = document.getElementById('taskButtonUrgent');
+const taskButtonMedium = document.getElementById('taskButtonMedium');
+const taskButtonLow = document.getElementById('taskButtonLow');
 
-  let selectedBoardList = taskBoardList.value;
-  let selectedTaskCategory = taskCategory.value;
+// TODO  Übergabe des Button Text
+//Zahl übergeben 
+async function addTaskToUser() {
 
   let newTask = {
-    boardList: selectedBoardList,
+    boardList: taskBoardList.value,
     title: taskTitle.value,
     description: taskDescription.value,
-    category: selectedTaskCategory,
+    category: taskCategory.value,
     assigned_to: taskAssigned.value,
     date: taskDate.value,
-    prio: '',    
+    prio: '',
   };
 
-  
-
-
-  
-
-  userData[0].tasks.push(newTask);
+  userData[0].board[0].boardlistTasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
   loadUsers();
 }
 
 
-
-function taskClearButton () {
-   taskBoardList.value = '';
-   taskTitle.value = '';
-   taskDescription.value = '';
-   taskCategory.value = '';
-   taskAssigned.value = '';
-   taskDate.value = '';
-   taskButtonUrgent.value = '';
-   taskButtonMedium.value = '';
-   taskButtonLow.value = '';
+function taskClearButton() {
+  taskBoardList.value = '';
+  taskTitle.value = '';
+  taskDescription.value = '';
+  taskCategory.value = '';
+  taskAssigned.value = '';
+  taskDate.value = '';
+  taskButtonUrgent.value = '';
+  taskButtonMedium.value = '';
+  taskButtonLow.value = '';
 }
 
-function setPriority () {
- 
+function setPriority() {
+
   let taskButtonUrgent = document.getElementById('taskButtonUrgent');
   taskButtonUrgent.style.backgroundColor = "red";
   taskButtonUrgent.classList.add("active");
@@ -63,16 +57,16 @@ function setPriority () {
 
 
 
-function generateContactDropdown(userData) {
-  const dropdownContacts = document.getElementById("taskAssigned");
-  dropdownContacts.innerHTML = '';
+// function generateContactDropdown(userData) {
+//   const dropdownContacts = document.getElementById("taskAssigned");
+//   dropdownContacts.innerHTML = '';
 
-  for (let i = 0; i < userData.contacts.length; i++) {
-    const contactList = 
-  }
-}
+//   for (let i = 0; i < userData[0].contacts[0].avatar_initials.length; i++) {
+//     const contactList =
+//   }
+// }
 
-
+// userData[0].contacts[0].avatar_initials
 
 
 
