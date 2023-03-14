@@ -19,11 +19,11 @@ downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
-  downloadUserDataFromBackend();
+  // downloadUserDataFromBackend();
 }
 
 async function addUser(firstName, LastName, email, password) {
-  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [] };
+  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [], board: [] };
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   downloadUserDataFromBackend();
@@ -40,6 +40,9 @@ function showCurrentUser(currentUser, currentUserData) {
   console.log('currentLoginName: ' + currentUserName);
   console.log('currentUserIndex: ' + currentUser);
   console.log(currentUserData);
+  const currentUserLogin = document.getElementById('currentUserLogin');
+  currentUserLogin.innerHTML = '';
+  currentUserLogin.innerHTML = userData[currentUser].firstName + ' ' + userData[currentUser].LastName;
 }
 
 
@@ -50,7 +53,8 @@ function templateDesktopHeader(activeLogin) {
   desktopHeader.innerHTML += /*html*/ `
     <h2 class="font-weight-400">Kanban Project Management Tool</h2>
       <div class="desktop-header-right-wrapper">
-        <a href="help.html">
+      <span id="currentUserLogin"></span>
+      <a href="help.html">
           <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
         </a>
         <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
