@@ -11,9 +11,9 @@
 
 .contacts-list-S {
   background-color: white;
-  /* width: 30%; */
+  width: 30%;
   min-width: 300px;
-  max-width: 450px;
+  /* max-width: 450px; */
   height: calc(100vh - 89px);
   padding: 10px 32px;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
