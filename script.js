@@ -41,7 +41,7 @@ async function addUser(firstName, LastName, email, password) {
             title: 'Aufgabe 1',
             description: 'Blumen gießen',
             category: 'Design',
-            assigned_to_initials: userData[0].contacts[0].avatar_initials,
+            // assigned_to_initials: userData[0].contacts[0].avatar_initials,
             date: '2023/03/14',
           }
 
