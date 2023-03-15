@@ -19,33 +19,38 @@ async function generateBoard() {
     for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
       card.innerHTML = '';
       const task = boardList[i].boardlistTasks[j];
-      card.innerHTML += `    
-      <div class="work-task-category-D" id="workTaskCategoryD">
-          <h4>${boardList[i].boardlistTitle}</h4> 
-          <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
-          src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button></div>
-
-          <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
-        <div class="work-category-D ${task['category']}">${task['category']}</div>
-        <div class="work-task-headline-D">${task['title']}</div>
-        <div class="work-task-content-D">${task['description']}</div>
-        <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
-        <div class="work-user-D">
-          <div class="work-task-user-D ${task['taskAssigned']}"> 
-            <div class="task-contact-1">U1</div>
-            <div class="task-contact-2"></div>
-            <div class="task-contact-3"></div>
-          </div>
-          <div class="urgency-D" id="urgencyD">
-            <img src="assets/img/prio-low.svg" alt="">
-          </div>
-        </div>
-      </div>
-      </div>
-    `;
+      card.innerHTML += generateBoardTemplate(i, j, task)
     }
   }
+}
+
+function generateBoardTemplate(i, j, task) {
+  const boardList = userData[currentUser].board;
+  return `    
+  <div class="work-task-category-D" id="workTaskCategoryD">
+      <h4>${boardList[i].boardlistTitle}</h4> 
+      <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+      src="assets/img/icon-add-plus-dark.svg" alt="">
+      </button></div>
+      <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
+    <div class="work-category-D ${task['category']}">${task['category']}</div>
+    <div class="work-task-headline-D">${task['title']}</div>
+    <div class="work-task-content-D">${task['description']}</div>
+    <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
+    <div class="work-user-D">
+    <div class="work-task-user-D ${task['taskAssigned']}"> 
+      <div class="task-contact-1">${userData[currentUser].contacts[j].avatar_initials}</div>
+      <div class="task-contact-2"></div>
+      <div class="task-contact-3"></div>
+    </div>
+    <div class="urgency-D" id="urgencyD">
+        <img src="assets/img/prio-low.svg" alt="">
+    </div>
+    </div>
+  </div>
+  </div>
+`;
+
 }
 
 function openTask(i, j) {
@@ -53,7 +58,6 @@ function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
-
   popupContainer.innerHTML = `
     <div class="work-category-D" id="taskCategoryOverlayD">
       ${task['category']}
@@ -72,10 +76,10 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span>${task['assigned_to']}</span>
+        <span>${userData[currentUser].contacts[j].firstName}</span></div>
       </div>
       <div class="pop-up-change-button">
-        <button onclick="changeTask()">
+        <button onclick="changeTask(${i}, ${j})">
           <img src="assets/img/summary-pencil.svg" alt="">
         </button>
       </div>
@@ -89,12 +93,34 @@ function closeWorkTask() {
   document.getElementById('workTaskContainerD').classList.remove('d-none');
 }
 
+
+//TODO
 /* function changeTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
 } */
 
+//Suchfunktion
+function filterTasks() {
+  let search = document.getElementById('findTaskD').value.toLowerCase();
+  let workTaskContainer = document.getElementById('workTaskContainerD');
+  workTaskContainer.innerHTML = '';
+  for (let i = 0; i < userData[currentUser].board.length; i++) {
+    let board = userData[currentUser].board[i];
+    for (let j = 0; j < board.boardlistTasks.length; j++) {
+      let task = board.boardlistTasks[j];
+      if (task.title.toString().toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
+        // toString().toLowerCase() nochmal nachlesen
+        workTaskContainer.innerHTML += generateBoardTemplate(i, j, task);
+      }
+    }
+  }
+}
 
-// DRAG N DROP IN THE MAKING
+
+
+
+
+// TODO DRAG N DROP 
 const workTasks = document.querySelectorAll('.work-task-D');
 let dragStartIndex;
 let dragOverIndex;

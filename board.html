@@ -33,7 +33,7 @@
       </div>
 
       <div class="find-add-container-D">
-        <input class="find-task-D" id="findTaskD" type="text" placeholder="Find Task">
+        <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
         <button class="add-task-D" onclick="addTask()">
           <span class="button-text-D"> Add Task </span>
           <img src="assets/img/Icon-plus.svg" alt="">
@@ -72,7 +72,7 @@
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD" draggable="true">
+        <div class="work-task-D" ondragover="drop(event)" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
