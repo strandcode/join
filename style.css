@@ -220,37 +220,68 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 70px 35px;
+  padding: 70px 0;
   gap: 100px;
   position: absolute;
   width: 232px;
   height: 100vh;
   left: 0px;
   top: 0px;
-  background: #2A3647;
+  background: var(--darkblue);
+  background-color: rgba(42, 54, 71, 1);
+  ;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   color: white;
 }
 
-.desktop-navbar a {
-  text-decoration: none;
-  color: white;
-}
 
-.desktop-navbar-top {
-  display: flex;
-  gap: 100px;
-  flex-direction: column;
-  width: 100%;
+.desktop-navbar>a>img {
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 50px;
 }
 
 .desktop-navbar-wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 40px;
+  height: calc(100vw - 250px);
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.desktop-navbar-wrapper a {
+  text-decoration: none;
+  color: white;
+  padding: 13px 30px;
+  display: flex;
+  gap: 20px;
+  transition: all 125ms ease-in-out;
+}
+
+.desktop-navbar-wrapper a:hover {
+  background-color: #091931;
+  transition: all 125ms ease-in-out;
+}
+
+.desktop-navbar-logo-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-navbar-top {
+  display: flex;
+  /* gap: 10px; */
+  flex-direction: column;
+  width: 100%;
+}
+
+.desktop-navbar-bottom {
+  display: flex;
+  /* gap: 25px; */
+  flex-direction: column;
+  width: 100%;
 }
 
 .desktop-navbar-link {
@@ -258,6 +289,9 @@ main {
   align-items: center;
   gap: 20px;
 }
+
+
+
 
 .mobile-header {
   display: none;

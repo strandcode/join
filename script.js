@@ -22,6 +22,7 @@ async function saveToBackend() {
   // downloadUserDataFromBackend();
 }
 
+// TODO Task rausnehmen
 async function addUser(firstName, LastName, email, password) {
   let newUser = {
     firstName: firstName,
@@ -93,14 +94,14 @@ function templateDesktopNavbar() {
   let desktopNavbar = document.getElementById('desktopNavbar');
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
-    <div class="desktop-navbar-top">
+    <div class="desktop-navbar-wrapper">
       <a href="summary.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
-
-      <div class="desktop-navbar-wrapper">
+      
+      <div class="desktop-navbar-top">
         <a class="desktop-navbar-link" href="summary.html">
-          <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
+        <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
         </a>
         <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
         alt="">Board</a>
@@ -109,18 +110,18 @@ function templateDesktopNavbar() {
         <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
         src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
       </div>
-    </ >
-
-    <div class="desktop-navbar-wrapper">
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+      
+      <div class="desktop-navbar-bottom">
+        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
         alt="">Legal
         notice
       </a>
       <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-        alt="">Privacy
-        policy
-      </a>
-    </div>
+      alt="">Privacy
+      policy
+    </a>
+  </div>
+</div>
   `;
 }
 
