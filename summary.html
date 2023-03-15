@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -12,7 +12,7 @@
   <script src="./mini_backend.js"></script>
 </head>
 
-<body id="home" onload="init()">
+<body id="home" onload="init(); initSummary()">
 
   <header id="desktopHeader" class="desktop-header"></header>
   <nav id="desktopNavbar" class="desktop-navbar"></nav>
@@ -28,48 +28,73 @@
       <img src="assets/img/icon-blue-line.svg" alt="">
       <h4>Everything in a nutshell!</h4>
     </div>
+
     <div class="welcome-container">
+
+
       <div class="container-wrapper-D">
+
+        <!-- NOTE Summary header part -->
         <div class="tasks-D">
-          <div class="task-in-board-D"><b class="tasks-quantity-D">5</b> Tasks In Board</div>
-          <div class="task-in-progress-D"><b class="tasks-quantity-D">2</b> Tasks In Progress</div>
-          <div class="task-in-feedback-D"><b class="tasks-quantity-D">2</b> Awaiting Feedback</div>
+          <div class="task-in-board-D">
+            <b id="summaryTasksInBoard" class="done-number-D">5</b>
+            <span>Tasks In Board</span>
+          </div>
+          <div class="task-in-progress-D">
+            <b id="summaryTasksInProgress" class="done-number-D">2</b>
+            <span>Tasks In Progress</span>
+          </div>
+          <div class="task-in-feedback-D">
+            <b id="summaryTasksInFeedback" class="done-number-D">2</b>
+            <span>Awaiting Feedback</span>
+          </div>
         </div>
 
-        <div class="deadline-container-D" id="deadlineContainerD">
-          <div class="urgency-tasks-D" id="urgencyTasksD">
+
+        <!-- NOTE Summary middle part -->
+        <div class="deadline-container-D">
+          <div class="urgency-tasks-D">
             <img src="assets/img/urgent-color.svg" alt="">
             <div class="urgency-number-prio-D">
-              <span class="urgency-number-D">1</span>
+              <span id="summaryTasksQuantityUrgent" class="urgency-number-D">1</span>
               <span class="how-urgent-D">Urgent</span>
             </div>
           </div>
 
           <div class="urgency-date-D" id="urgencyTasksD">
-            <span class="date-D" id="dateD">October 16,2022</span>
+            <span class="date-D" id="summaryTasksNextDeadline">October 16 2022</span>
             <span class="date-deadline-D" id="dateDeadlineD">Upcoming Deadline</span>
           </div>
         </div>
-        <div class="to-do-and-done-D" id="toDoAndDoneD">
-          <div class="to-do-D" id="toDoD">
+
+
+        <!-- NOTE Summary footer part -->
+        <div class="to-do-and-done-D">
+
+          <div class="to-do-D">
             <img src="assets/img/summary-pencil.svg" alt="">
             <div class="to-dos-D">
-              <span class="to-do-number-D">1</span>
+              <span id="summaryTasksToDo" class="to-do-number-D">1</span>
               <span>To-do</span>
             </div>
 
           </div>
 
-          <div class="done-tasks-D" id="doneTasksD">
+          <div class="done-tasks-D">
             <img src="assets/img/summary-done.svg" alt="">
             <div class="done-D">
-              <span class="done-number-D">1</span>
+              <span id="summaryTasksDone" class="done-number-D">1</span>
               <span>Done</span>
             </div>
 
           </div>
+
         </div>
+
+
       </div>
+
+      <!-- NOTE Greeting currentUser part -->
       <div id="userWelcome" class="user-welcome"></div>
     </div>
   </main>
