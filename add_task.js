@@ -104,7 +104,7 @@ function setPriorityUrgent() {
     taskButtonUrgent.style.backgroundColor = "red";
     taskButtonUrgent.classList.add("active");
 
-    taskButtonUrgent = taskButtonUrgent.textContent;
+    taskButtonPrio = taskButtonUrgent.textContent;
     console.log(taskButtonUrgent);
   } else {
     taskButtonUrgent.style.backgroundColor = "";
