@@ -23,71 +23,79 @@
   <main>
     <div class="summary-wrapper">
 
+      <div class="summary-mobile-headline">Kanban Project Management Tool</div>
       <div class="summary-heading-wrapper">
-        <span class="kanban-headline-D d-none">Kanban Project Management Tool</span>
         <h3>Summary</h3>
-        <img src="assets/img/icon-blue-line.svg" alt="">
+        <div class="blue-line"></div>
         <h4>Everything in a nutshell!</h4>
       </div>
+
+      <!-- NOTE DASHBOARD -->
 
       <div class="summary-main-wrapper">
         <div class="summary-dahsboard-wrapper">
 
-
-
-          <!-- NOTE Summary header part -->
-          <div class="tasks-D">
-            <div class="task-in-board-D">
-              <b id="summaryTasksInBoard" class="done-number-D">5</b>
+          <!-- NOTE Reihe 1 -->
+          <div class="summary-dahsboard-row">
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInBoard" class="number">5</b>
               <span>Tasks In Board</span>
             </div>
-            <div class="task-in-progress-D">
-              <b id="summaryTasksInProgress" class="done-number-D">2</b>
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInProgress" class="number">2</b>
               <span>Tasks In Progress</span>
             </div>
-            <div class="task-in-feedback-D">
-              <b id="summaryTasksInFeedback" class="done-number-D">2</b>
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInFeedback" class="number">2</b>
               <span>Awaiting Feedback</span>
             </div>
           </div>
 
+          <!-- NOTE Reihe 2 -->
 
-          <!-- NOTE Summary middle part -->
-          <div class="deadline-container-D">
-            <div class="urgency-tasks-D">
-              <img src="assets/img/urgent-color.svg" alt="">
-              <div class="urgency-number-prio-D">
-                <span id="summaryTasksQuantityUrgent" class="urgency-number-D">1</span>
-                <span class="how-urgent-D">Urgent</span>
+          <div class="summary-dahsboard-row">
+
+            <div class="summary-dahsboard-middle-item">
+
+              <div class="fbox-row">
+                <img src="assets/img/urgent-color.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksQuantityUrgent" class="number">1</span>
+                  <span>Urgent</span>
+                </div>
               </div>
+
+              <div class="gray-line"></div>
+
+              <div class="fbox-column">
+                <span class="deadline-date" id="summaryTasksNextDeadline">October 16 2022</span>
+                <span class="deadline-phrase" id="dateDeadlineD">Upcoming Deadline</span>
+              </div>
+
             </div>
 
-            <div class="urgency-date-D" id="urgencyTasksD">
-              <span class="date-D" id="summaryTasksNextDeadline">October 16 2022</span>
-              <span class="date-deadline-D" id="dateDeadlineD">Upcoming Deadline</span>
-            </div>
           </div>
 
-
-          <!-- NOTE Summary footer part -->
-          <div class="to-do-and-done-D">
-
-            <div class="to-do-D">
-              <img src="assets/img/summary-pencil.svg" alt="">
-              <div class="to-dos-D">
-                <span id="summaryTasksToDo" class="to-do-number-D">1</span>
-                <span>To-do</span>
+          <!-- NOTE Reihe 3 -->
+          <div class="summary-dahsboard-row">
+            <div class="summary-dahsboard-bottom-item">
+              <div class="fbox-row">
+                <img src="assets/img/summary-pencil.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksToDo" class="number">1</span>
+                  <span>To-do</span>
+                </div>
               </div>
-
             </div>
 
-            <div class="done-tasks-D">
-              <img src="assets/img/summary-done.svg" alt="">
-              <div class="done-D">
-                <span id="summaryTasksDone" class="done-number-D">1</span>
-                <span>Done</span>
+            <div class="summary-dahsboard-bottom-item">
+              <div class="fbox-row">
+                <img src="assets/img/summary-done.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksDone" class="number">1</span>
+                  <span>Done</span>
+                </div>
               </div>
-
             </div>
 
           </div>
