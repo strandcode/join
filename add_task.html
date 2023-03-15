@@ -27,7 +27,8 @@
     <div class="left-taskfield-J">
       <h1>Add Task</h1>
       <span>Board List</span>
-      <select class="width" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
+      <select required class="width" name="Select Contacts to assign" placeholder="Select Board List"
+        id="taskBoardList">
         <!-- <option disabled selected hidden>Select board list</option>
         <option value="To do">To do</option>
         <option value="In progress">In progress</option>
@@ -56,7 +57,7 @@
     <div class="right-taskfield-J">
       <span>Assigned to</span>
       <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
-        <!-- <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option> -->
+
 
       </select>
 
@@ -78,8 +79,9 @@
         <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
 
         <div class="button-container-J">
-          <button onclick="taskClearButton()" class="clear">Clear<img src="assets/img/icon-black-clear.svg"></button>
-          <button onclick="addTaskToUser()" class="create">Create Task<img
+          <button onclick="taskClearButton()" class="button button-white">Clear<img
+              src="assets/img/icon-black-clear.svg"></button>
+          <button onclick="addTaskToUser()" class="button button-darkblue">Create Task<img
               src="assets/img/icon-white-create.svg"></button>
         </div>
     </div>
