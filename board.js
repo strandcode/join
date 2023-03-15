@@ -102,15 +102,14 @@ function closeWorkTask() {
 //Suchfunktion
 function filterTasks() {
   let search = document.getElementById('findTaskD').value.toLowerCase();
-
   let workTaskContainer = document.getElementById('workTaskContainerD');
   workTaskContainer.innerHTML = '';
-
   for (let i = 0; i < userData[currentUser].board.length; i++) {
     let board = userData[currentUser].board[i];
     for (let j = 0; j < board.boardlistTasks.length; j++) {
       let task = board.boardlistTasks[j];
-      if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
+      if (task.title.toString().toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
+        // toString().toLowerCase() nochmal nachlesen
         workTaskContainer.innerHTML += generateBoardTemplate(i, j, task);
       }
     }
