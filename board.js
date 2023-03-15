@@ -20,9 +20,28 @@ async function generateBoard() {
       card.innerHTML = '';
       const task = boardList[i].boardlistTasks[j];
       card.innerHTML += generateBoardTemplate(i, j, task)
+      const box = document.getElementById(`work-task-D-${i}`);
+      box.addEventListener('dragstart', dragStart);
+      box.addEventListener('dragover', dragOver);
+      box.addEventListener('drop', drop);
     }
   }
 }
+
+function dragStart(event) {
+  event.dataTransfer.setData("text/plain", event.target.id);
+  console.log('dragging')
+}
+
+function dragOver(event) {
+  event.preventDefault();
+}
+
+function drop(event) {
+  event.preventDefault();
+
+}
+
 
 function generateBoardTemplate(i, j, task) {
   const boardList = userData[currentUser].board;
@@ -40,7 +59,7 @@ function generateBoardTemplate(i, j, task) {
     <div class="work-user-D">
     <div class="work-task-user-D ${task['taskAssigned']}"> 
       <div class="task-contact-1">${userData[currentUser].contacts[j].avatar_initials}</div>
-      <div class="task-contact-2"></div>
+      <div class="task-contact-2">${userData[currentUser].contacts[j].avatar_initials}</div>
       <div class="task-contact-3"></div>
     </div>
     <div class="urgency-D" id="urgencyD">
@@ -50,7 +69,6 @@ function generateBoardTemplate(i, j, task) {
   </div>
   </div>
 `;
-
 }
 
 function openTask(i, j) {
@@ -76,7 +94,10 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span>${userData[currentUser].contacts[j].firstName}</span></div>
+        <span>${userData[currentUser].contacts[j].firstName}
+              ${userData[currentUser].contacts[j].lastName}
+        </span>
+        </div>
       </div>
       <div class="pop-up-change-button">
         <button onclick="changeTask(${i}, ${j})">
@@ -86,6 +107,7 @@ function openTask(i, j) {
     </div>
   `;
 }
+
 
 
 function closeWorkTask() {
@@ -109,7 +131,7 @@ function filterTasks() {
     for (let j = 0; j < board.boardlistTasks.length; j++) {
       let task = board.boardlistTasks[j];
       if (task.title.toString().toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
-        // toString().toLowerCase() nochmal nachlesen
+        // TODO toString().toLowerCase() nochmal nachlesen
         workTaskContainer.innerHTML += generateBoardTemplate(i, j, task);
       }
     }
@@ -121,7 +143,7 @@ function filterTasks() {
 
 
 // TODO DRAG N DROP 
-const workTasks = document.querySelectorAll('.work-task-D');
+/* const workTasks = document.querySelectorAll('.work-task-D');
 let dragStartIndex;
 let dragOverIndex;
 
@@ -162,4 +184,4 @@ function drop() {
   dragOverIndex = parseInt(this.id.split('-')[3]);
   this.classList.remove('drag-enter');
 }
-
+ */

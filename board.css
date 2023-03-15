@@ -109,11 +109,17 @@ main {
     margin-right: 37px;
 }
 
+.drag-area {
+    background-color: blue;
+    min-height: 500px;
+}
+
 .work-steps-D {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     gap: 20px;
+
 }
 
 h4 {
