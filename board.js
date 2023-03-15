@@ -38,14 +38,14 @@ function generateBoardTemplate(i, j, task) {
     <div class="work-task-content-D">${task['description']}</div>
     <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
     <div class="work-user-D">
-      <div class="work-task-user-D ${task['taskAssigned']}"> 
-        <div class="task-contact-1">U1</div>
-        <div class="task-contact-2"></div>
-        <div class="task-contact-3"></div>
-      </div>
-      <div class="urgency-D" id="urgencyD">
+    <div class="work-task-user-D ${task['taskAssigned']}"> 
+      <div class="task-contact-1">${userData[currentUser].contacts[j].avatar_initials}</div>
+      <div class="task-contact-2"></div>
+      <div class="task-contact-3"></div>
+    </div>
+    <div class="urgency-D" id="urgencyD">
         <img src="assets/img/prio-low.svg" alt="">
-      </div>
+    </div>
     </div>
   </div>
   </div>
@@ -76,7 +76,7 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span>${task['assigned_to']}</span>
+        <span>${userData[currentUser].contacts[j].firstName}</span></div>
       </div>
       <div class="pop-up-change-button">
         <button onclick="changeTask(${i}, ${j})">
