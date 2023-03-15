@@ -50,17 +50,13 @@ function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
-  <option id="contactsOptions"></option>
-  <option value="${userData[currentUser].contacts[0].firstName} 
-  ${userData[currentUser].contacts[0].lastName}">
-  ${userData[currentUser].contacts[0].firstName} 
-  ${userData[currentUser].contacts[0].lastName}</option> `;
+ `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
-    const contactsOptions = document.getElementById('contactsOptions');
+    const contactsOptions = document.getElementById('taskAssigned');
     // contactsOptions.innerHTML = ``;
     contactsOptions.innerHTML += `
-    <option disabled selected hidden value="${userData[currentUser].contacts[i].firstName} 
+    <option value="${userData[currentUser].contacts[i].firstName} 
   ${userData[currentUser].contacts[i].lastName}">
   ${userData[currentUser].contacts[i].firstName} 
   ${userData[currentUser].contacts[i].lastName}</option>
@@ -69,12 +65,12 @@ function generateContactDropdown() {
 }
 
 
-// TODO  Übergabe des Button Text
+// TODO  Übergabe des Button Text           
 
 async function addTaskToUser() {
 
   let newTask = {
-    boardList: taskBoardList.value, //Zahl übergeben DONE!
+    boardList: taskBoardList.value,
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
@@ -101,19 +97,51 @@ function taskClearButton() {
   taskButtonLow.value = '';
 }
 
-function setPriority() {
+function setPriorityUrgent() {
 
   let taskButtonUrgent = document.getElementById('taskButtonUrgent');
-  taskButtonUrgent.style.backgroundColor = "red";
-  taskButtonUrgent.classList.add("active");
+  if (!taskButtonUrgent.classList.contains('active')) {
+    taskButtonUrgent.style.backgroundColor = "red";
+    taskButtonUrgent.classList.add("active");
+
+    taskButtonUrgent = taskButtonUrgent.textContent;
+    console.log(taskButtonUrgent);
+  } else {
+    taskButtonUrgent.style.backgroundColor = "";
+    taskButtonUrgent.classList.remove("active");
+  }
+}
+
+
+function setPriorityMedium() {
 
   let taskButtonMedium = document.getElementById('taskButtonMedium');
-  taskButtonMedium.style.backgroundColor = "orange";
-  taskButtonMedium.classList.add("active");
+  if (!taskButtonMedium.classList.contains('active')) {
+    taskButtonMedium.style.backgroundColor = "orange";
+    taskButtonMedium.classList.add("active");
+
+    taskButtonMedium = taskButtonMedium.textContent;
+    console.log(taskButtonMedium);
+  } else {
+    taskButtonMedium.style.backgroundColor = "";
+    taskButtonMedium.classList.remove("active");
+  }
+}
+
+function setPriorityLow() {
 
   let taskButtonLow = document.getElementById('taskButtonLow');
-  taskButtonLow.style.backgroundColor = "green";
-  taskButtonLow.classList.add("active");
+  if (!taskButtonLow.classList.contains('active')) {
+    taskButtonLow.style.backgroundColor = "green";
+    taskButtonLow.classList.add("active");
+
+    taskButtonLow = taskButtonLow.textContent;
+    console.log(taskButtonLow);
+  } else {
+    taskButtonLow.style.backgroundColor = "";
+    taskButtonLow.classList.remove("active");
+
+  }
 }
 
 
@@ -125,17 +153,8 @@ function setPriority() {
 
 
 
-// taskButtonUrgent.addEventListener('click', () => {
-//   taskButtonUrgent.classList.toggle('active');
-// });
 
-// taskButtonMedium.addEventListener('click', () => {
-//   taskButtonMedium.classList.toggle('active');
-// });
 
-// taskButtonLow.addEventListener('click', () => {
-//   taskButtonLow.classList.toggle('active');
-// });
 
 
 
