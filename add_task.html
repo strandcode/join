@@ -12,7 +12,7 @@
   <script src="./mini_backend.js"></script>
 </head>
 
-<body id="home" onload="init()">
+<body id="home" onload="init(); initTasks()">
 
   <header id="desktopHeader" class="desktop-header"></header>
   <nav id="desktopNavbar" class="desktop-navbar"></nav>
@@ -28,11 +28,11 @@
       <h1>Add Task</h1>
       <span>Board List</span>
       <select class="width" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
-        <option disabled selected hidden>Select board list card</option>
-        <option value=" To do">To do</option>
+        <!-- <option disabled selected hidden>Select board list</option>
+        <option value="To do">To do</option>
         <option value="In progress">In progress</option>
         <option value="Await Feedback">Await Feedback</option>
-        <option value="Done">Done</option>
+        <option value="Done">Done</option> -->
       </select>
       <span>Title</span>
       <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
@@ -56,7 +56,7 @@
     <div class="right-taskfield-J">
       <span>Assigned to</span>
       <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
-        <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option>
+        <!-- <option aria-placeholder="" disabled selected hidden>Select Contacts to assign</option> -->
 
       </select>
 
