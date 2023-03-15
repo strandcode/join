@@ -22,7 +22,6 @@ const summaryTasksToDo = document.getElementById('summaryTasksToDo');
 const summaryTasksDone = document.getElementById('summaryTasksDone');
 
 
-
 function getQuantityOfBoardTasks() {
   summaryTasksInBoard.innerHTML = sumAllTasksInBoard();
   summaryTasksToDo.innerHTML = userData[currentUser].board[0].boardlistTasks.length
@@ -57,10 +56,12 @@ function setWelcomePhraseByDaytime() {
   let currentTime = new Date();
   currentTime = currentTime.getHours();
   console.log(currentTime);
-  if (currentTime >= 5 && currentTime < 12) { welcomePhrase = 'Good morning' };
-  if (currentTime >= 12 && currentTime < 18) { welcomePhrase = 'Good afternoon' };
+  if (currentTime >= 5 && currentTime < 11) { welcomePhrase = 'Good morning' };
+  if (currentTime >= 11 && currentTime < 18) { welcomePhrase = 'Good afternoon' };
   if (currentTime >= 18 && currentTime < 22) { welcomePhrase = 'Good evening' };
-  if (currentTime >= 22 && currentTime < 5) { welcomePhrase = 'Good evening' };
+  if (currentTime >= 22 && currentTime < 5) { welcomePhrase = 'Good night' };
   return welcomePhrase;
 }
 
+// TODO get quantity of urgent tasks
+// TODO get next deadline
