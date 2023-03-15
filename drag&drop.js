@@ -1,26 +1,33 @@
-const workNotice = document.querySelectorAll('.work-Task-D')
-const board = document.querySelectorAll('.work-steps-D')
+/* const fill = document.querySelector('.work-task-D')
+const empties = document.querySelectorAll('.work-steps-D')
+fill.addEventListener('dragstart', dragStart)
+fill.addEventListener('dragend', dragEnd)
 
-workNotice.addEventListener('dragstart', dragStart)
-
-board.forEach(boards => {
-    boards.addEventListener('dragover', dragOver)
-    boards.addEventListener('drop', dragDrop)
-});
-
-let beingDragged
-
-function dragStart(e) {
-    beingDragged = e.target
-    console.log(beingDragged)
+for (const empty of empties) {
+    empty.addEventListener('dragover', dragOver)
+    empty.addEventListener('dragenter', dragEnter)
+    empty.addEventListener('dragleave', dragLeave)
+    empty.addEventListener('drop', dragDrop)
 }
 
+function dragStart() {
+    this.className += ' hold'
+    setTimeout(() => this.className = 'invisible', 0)
+}
+function dragEnd() {
+    this.className = 'work-task-D'
+}
 function dragOver(e) {
     e.preventDefault()
 }
-
-function dragDrop (e) {
-    e.target.append(beingDragged)
-    console.log(e.target)
+function dragEnter(e) {
+    e.preventDefault()
+    this.className += ' hovered'
 }
-
+function dragLeave() {
+    this.className = 'work-steps-D'
+}
+function dragDrop() {
+    this.className = 'work-steps-D'
+    this.append(fill)
+} */

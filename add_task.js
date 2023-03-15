@@ -50,11 +50,11 @@ function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
+  <option>${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
  `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
     const contactsOptions = document.getElementById('taskAssigned');
-    // contactsOptions.innerHTML = ``;
     contactsOptions.innerHTML += `
     <option value="${userData[currentUser].contacts[i].firstName} 
   ${userData[currentUser].contacts[i].lastName}">
@@ -109,6 +109,7 @@ function setPriorityUrgent() {
   } else {
     taskButtonUrgent.style.backgroundColor = "";
     taskButtonUrgent.classList.remove("active");
+    taskButtonPrio = '';
   }
 }
 
@@ -122,6 +123,7 @@ function setPriorityMedium() {
 
     taskButtonMedium = taskButtonMedium.textContent;
     console.log(taskButtonMedium);
+
   } else {
     taskButtonMedium.style.backgroundColor = "";
     taskButtonMedium.classList.remove("active");
