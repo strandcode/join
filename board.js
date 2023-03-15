@@ -11,29 +11,22 @@ async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
   getCurrentUser()
-  //board = userData[currentUser].board[boardIndex];
   const boardList = userData[currentUser].board;
   console.log(boardList.length);
   let card;
-
   for (let i = 0; i < boardList.length; i++) {
     card = document.getElementById(boardCategory[i]);
-    //card.innerHTML += `<div>${boardList[i].boardlistTitle} </div>`;
-
     for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
-
       card.innerHTML = '';
       const task = boardList[i].boardlistTasks[j];
-      card.innerHTML += `
-      
-      
+      card.innerHTML += `    
       <div class="work-task-category-D" id="workTaskCategoryD">
           <h4>${boardList[i].boardlistTitle}</h4> 
           <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
           src="assets/img/icon-add-plus-dark.svg" alt="">
           </button></div>
 
-      <div onclick="openTask(${i})" class="work-task-D" id="work-task-D-${i}">
+          <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
         <div class="work-category-D ${task['category']}">${task['category']}</div>
         <div class="work-task-headline-D">${task['title']}</div>
         <div class="work-task-content-D">${task['description']}</div>
@@ -55,15 +48,15 @@ async function generateBoard() {
   }
 }
 
-/* function openTask(boardIndex, boardListIndex, taskIndex) {
-    document.getElementById('popUpTaskD').classList.remove('d-none');
-    const board = userData[currentUser].board[boardIndex];
-    const boardList = board.boardlistTasks[boardListIndex];
-    let task = boardList[taskIndex];
-    let popupContainer = document.getElementById('popUpTaskD');
-    popupContainer.innerHTML = `
+function openTask(i, j) {
+  const task = userData[currentUser].board[i].boardlistTasks[j];
+  document.getElementById('popUpTaskD').classList.remove('d-none');
+  document.getElementById('workTaskContainerD').classList.add('d-none');
+  let popupContainer = document.getElementById('popUpTaskD');
+
+  popupContainer.innerHTML = `
     <div class="work-category-D" id="taskCategoryOverlayD">
-      ${task['label']}
+      ${task['category']}
     </div>
     <div class="close-work-overlay-D">
       <button onclick="closeWorkTask()">x</button>
@@ -79,22 +72,68 @@ async function generateBoard() {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span>${task['assigned_to']}</span>  
+        <span>${task['assigned_to']}</span>
       </div>
       <div class="pop-up-change-button">
-        <button onclick="changePopUp()">
+        <button onclick="changeTask()">
           <img src="assets/img/summary-pencil.svg" alt="">
         </button>
       </div>
     </div>
   `;
-} */
+}
 
 
 function closeWorkTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
+  document.getElementById('workTaskContainerD').classList.remove('d-none');
 }
 
-function changeTask() {
+/* function changeTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
+} */
+
+
+// DRAG N DROP IN THE MAKING
+const workTasks = document.querySelectorAll('.work-task-D');
+let dragStartIndex;
+let dragOverIndex;
+
+workTasks.forEach(workTask => {
+  workTask.addEventListener('dragstart', dragStart);
+  workTask.addEventListener('dragend', dragEnd);
+  workTask.addEventListener('dragover', dragOver);
+  workTask.addEventListener('dragenter', dragEnter);
+  workTask.addEventListener('dragleave', dragLeave);
+  workTask.addEventListener('drop', drop);
+});
+
+function dragStart() {
+  dragStartIndex = parseInt(this.id.split('-')[3]);
 }
+
+function dragEnd() {
+  // Update the board with the new task order
+  const boardList = userData[currentUser].board.boardlistTasks;
+  const task = boardList.splice(dragStartIndex, 1)[0];
+  boardList.splice(dragOverIndex, 0, task);
+  generateBoard();
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragEnter() {
+  this.classList.add('drag-enter');
+}
+
+function dragLeave() {
+  this.classList.remove('drag-enter');
+}
+
+function drop() {
+  dragOverIndex = parseInt(this.id.split('-')[3]);
+  this.classList.remove('drag-enter');
+}
+
