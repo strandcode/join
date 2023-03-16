@@ -94,8 +94,10 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span>${userData[currentUser].contacts[j].firstName}
-              ${userData[currentUser].contacts[j].lastName}
+        <span class="assigned-contact">
+        ${userData[currentUser].contacts[j].avatar_initials}
+        ${userData[currentUser].contacts[j].firstName}
+        ${userData[currentUser].contacts[j].lastName}
         </span>
         </div>
       </div>
@@ -117,9 +119,9 @@ function closeWorkTask() {
 
 
 //TODO
-/* function changeTask() {
+function changeTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
-} */
+}
 
 //Suchfunktion
 function filterTasks() {
@@ -130,7 +132,7 @@ function filterTasks() {
     let board = userData[currentUser].board[i];
     for (let j = 0; j < board.boardlistTasks.length; j++) {
       let task = board.boardlistTasks[j];
-      if (task.title.toString().toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
+      if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
         // TODO toString().toLowerCase() nochmal nachlesen
         workTaskContainer.innerHTML += generateBoardTemplate(i, j, task);
       }
