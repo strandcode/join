@@ -7,14 +7,12 @@
 
 .summary-mobile-headline {
     display: block;
-    /* background-color: lightseagreen; */
 }
 
 .summary-heading-wrapper {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    /* background-color: green; */
     flex-wrap: nowrap;
     flex-direction: column;
 }
@@ -46,17 +44,16 @@
 
 .summary-main-wrapper {
     display: flex;
-    background-color: coral;
     justify-content: center;
+    margin-top: 30px;
 }
 
 
 .summary-dahsboard-wrapper {
-    /* max-width: 650px; */
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 50px;
     /* background-color: rebeccapurple; */
 }
 
@@ -76,11 +73,12 @@
 
 /* LINK https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
 .summary-dahsboard-top-item {
+    min-height: 110px;
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     background-color: white;
     padding: 15px 10px 10px 10px;
@@ -90,6 +88,7 @@
 }
 
 .summary-dahsboard-middle-item {
+    min-height: 110px;
     display: flex;
     flex: 1;
     background-color: white;
@@ -101,6 +100,7 @@
 }
 
 .summary-dahsboard-bottom-item {
+    min-height: 110px;
     display: flex;
     justify-content: center;
     flex: 1;
@@ -147,53 +147,59 @@
 
 .summary-user-welcome {
     display: none;
-    background-color: cornflowerblue;
     align-items: center;
     justify-content: center;
     padding: 25px;
+}
+
+.summary-user-welcome h3 {
+    font-size: 2.3rem;
 }
 
 .d-none {
     display: none;
 }
 
-@media screen and (max-width: 1250px) {
-    /* .summary-main-wrapper {
-        flex-wrap: wrap-reverse;
+
+
+@media screen and (min-width: 530px) {
+    .summary-heading-wrapper {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
     }
 
-    .summary-user-welcome h3 {
-        font-size: 2rem;
-    } */
+    .summary-heading-wrapper .blue-line {
+        height: 48px;
+        width: 3px;
+        order: 2;
+    }
+
+    .summary-heading-wrapper h4 {
+        order: 3;
+    }
+
+    .summary-wrapper {
+        padding: 30px 30px;
+    }
 
 }
 
+@media screen and (min-width: 910px) {
+    .summary-user-welcome {
+        display: flex;
+    }
 
-@media screen and (max-width: 1024px) {
-
-    /* .summary-wrapper {
-        padding: 30px 50px;
-        width: 100%;
-    } */
-    /* .summary-mobile-headline {
+    .summary-mobile-headline {
         display: none;
-    } */
+    }
 
+    .summary-wrapper {
+        padding: 50px 50px;
+    }
 
-}
-
-
-@media screen and (max-width: 910px) {}
-
-@media screen and (min-width: 768px) {
-    /* .summary-heading-wrapper {
-        flex-direction: column;
-    } */
-
-    /* .summary-heading-wrapper .blue-line {
-        height: 3px;
-        width: 150px;
-        background-color: #29abe2;
-    } */
+    .summary-main-wrapper {
+        justify-content: flex-start;
+    }
 
 }
