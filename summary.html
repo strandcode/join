@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -12,7 +12,7 @@
   <script src="./mini_backend.js"></script>
 </head>
 
-<body id="home" onload="init()">
+<body id="home" onload="init(); initSummary()">
 
   <header id="desktopHeader" class="desktop-header"></header>
   <nav id="desktopNavbar" class="desktop-navbar"></nav>
@@ -21,56 +21,92 @@
   <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
   <main>
-    <!-- Summary Content -->
-    <div class="head-content-D">
-      <span class="kanban-headline-D d-none">Kanban Project Management Tool</span>
-      <h3>Summary</h3>
-      <img src="assets/img/icon-blue-line.svg" alt="">
-      <h4>Everything in a nutshell!</h4>
-    </div>
-    <div class="welcome-container">
-      <div class="container-wrapper-D">
-        <div class="tasks-D">
-          <div class="task-in-board-D"><b class="tasks-quantity-D">5</b> Tasks In Board</div>
-          <div class="task-in-progress-D"><b class="tasks-quantity-D">2</b> Tasks In Progress</div>
-          <div class="task-in-feedback-D"><b class="tasks-quantity-D">2</b> Awaiting Feedback</div>
-        </div>
+    <div class="summary-wrapper">
 
-        <div class="deadline-container-D" id="deadlineContainerD">
-          <div class="urgency-tasks-D" id="urgencyTasksD">
-            <img src="assets/img/urgent-color.svg" alt="">
-            <div class="urgency-number-prio-D">
-              <span class="urgency-number-D">1</span>
-              <span class="how-urgent-D">Urgent</span>
-            </div>
-          </div>
-
-          <div class="urgency-date-D" id="urgencyTasksD">
-            <span class="date-D" id="dateD">October 16,2022</span>
-            <span class="date-deadline-D" id="dateDeadlineD">Upcoming Deadline</span>
-          </div>
-        </div>
-        <div class="to-do-and-done-D" id="toDoAndDoneD">
-          <div class="to-do-D" id="toDoD">
-            <img src="assets/img/summary-pencil.svg" alt="">
-            <div class="to-dos-D">
-              <span class="to-do-number-D">1</span>
-              <span>To-do</span>
-            </div>
-
-          </div>
-
-          <div class="done-tasks-D" id="doneTasksD">
-            <img src="assets/img/summary-done.svg" alt="">
-            <div class="done-D">
-              <span class="done-number-D">1</span>
-              <span>Done</span>
-            </div>
-
-          </div>
-        </div>
+      <div class="summary-mobile-headline">Kanban Project Management Tool</div>
+      <div class="summary-heading-wrapper">
+        <h3>Summary</h3>
+        <div class="blue-line"></div>
+        <h4>Everything in a nutshell!</h4>
       </div>
-      <div id="userWelcome" class="user-welcome"></div>
+
+      <!-- NOTE DASHBOARD -->
+
+      <div class="summary-main-wrapper">
+        <div class="summary-dahsboard-wrapper">
+
+          <!-- NOTE Reihe 1 -->
+          <div class="summary-dahsboard-row">
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInBoard" class="number">5</b>
+              <span>Tasks In Board</span>
+            </div>
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInProgress" class="number">2</b>
+              <span>Tasks In Progress</span>
+            </div>
+            <div class="summary-dahsboard-top-item">
+              <b id="summaryTasksInFeedback" class="number">2</b>
+              <span>Awaiting Feedback</span>
+            </div>
+          </div>
+
+          <!-- NOTE Reihe 2 -->
+
+          <div class="summary-dahsboard-row">
+
+            <div class="summary-dahsboard-middle-item">
+
+              <div class="fbox-row">
+                <img src="assets/img/urgent-color.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksQuantityUrgent" class="number">1</span>
+                  <span>Urgent</span>
+                </div>
+              </div>
+
+              <div class="gray-line"></div>
+
+              <div class="fbox-column">
+                <span class="deadline-date" id="summaryTasksNextDeadline">October 16 2022</span>
+                <span class="deadline-phrase" id="dateDeadlineD">Upcoming Deadline</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- NOTE Reihe 3 -->
+          <div class="summary-dahsboard-row">
+            <div class="summary-dahsboard-bottom-item">
+              <div class="fbox-row">
+                <img src="assets/img/summary-pencil.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksToDo" class="number">1</span>
+                  <span>To-do</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-dahsboard-bottom-item">
+              <div class="fbox-row">
+                <img src="assets/img/summary-done.svg" alt="">
+                <div class="fbox-column">
+                  <span id="summaryTasksDone" class="number">1</span>
+                  <span>Done</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <!-- NOTE Greeting currentUser part -->
+        <div id="userWelcome" class="summary-user-welcome"></div>
+
+      </div>
     </div>
   </main>
   <script src="script.js"></script>

@@ -24,7 +24,8 @@
     <main class="contacts-main-S">
 
       <!-- NOTE Register and contacts will be rendered by renderContactList() -->
-      <div id="contactsListS" class="contacts-list-S">
+      <div id="contactsList" class="contacts-list-S d-none">
+
       </div>
 
 
@@ -39,17 +40,14 @@
           </div>
 
           <!-- NOTE Active contact will be rendered by templateContactsActiveContact(activeContact) -->
-          <div id="contactsMainWrapperS" class="contacts-main-wrapper-S">
-          </div>
+          <div id="contactsMainWrapperS" class="contacts-main-wrapper-S"></div>
 
         </div>
-
-        <div class="contacts-footer-wrapper-S">
-
-
+        <!-- NOTE Die Button in der Kontakt-Detailansicht werden hier gerendert -->
+        <div id="contactFooterWrapper" class="contacts-footer-wrapper-S">
           <button class="button button-darkblue"
-            onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">New
-            contact
+            onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+            New contact
             <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
           </button>
         </div>
