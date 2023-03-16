@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="board.css">
+  <link rel="stylesheet" href="add_task_style.css">
   <title>JOIN | Kanban board</title>
   <script src="./mini_backend.js"></script>
   <script src="drag&drop.js"></script>
@@ -34,7 +35,7 @@
 
       <div class="find-add-container-D">
         <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
-        <button class="add-task-D" onclick="addTask()">
+        <button class="add-task-D" onclick="slideInAddTask()">
           <span class="button-text-D"> Add Task </span>
           <img src="assets/img/Icon-plus.svg" alt="">
         </button>
@@ -44,7 +45,8 @@
     <div class="work-task-container-D" id="workTaskContainerD">
       <div class="work-steps-D" id="workStepsTodo">
         <div class="work-task-category-D" id="workTaskCategoryD">
-          <h4>To do</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+          <h4>To do</h4>
+          <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="card-content-D" id="cardContentD">
@@ -70,7 +72,7 @@
       </div>
       <div class="work-steps-D" id="workStepsProgress">
         <div class="work-task-category-D">
-          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="work-task-D" ondragover="drop(event)" id="workTaskD" draggable="true">
@@ -95,7 +97,7 @@
 
       <div class="work-steps-D" id="workStepsFeedback">
         <div class="work-task-category-D">
-          <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+          <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="work-task-D" id="workTaskD" draggable="true">
@@ -118,7 +120,7 @@
       </div>
       <div class="work-steps-D" id="workStepsDone">
         <div class="work-task-category-D">
-          <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+          <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="work-task-D" id="workTaskD" draggable="true">
@@ -174,6 +176,77 @@
     </div>
   </div>
 
+  <!-- #################### NOTE EDIT SLIDE IN ADD TASK OVERLAY #################### -->
+
+
+  <div class="slide-in-add-task d-none" id="slideInAddTask">
+    <!-- ANCHOR - Left - taskfield -->
+    <div class="left-taskfield-J">
+      <h1>Add Task</h1>
+      <select required class="width" name="Select Contacts to assign" placeholder="Select Board List"
+        id="taskBoardList">
+        <!-- <option disabled selected hidden>Select board list</option>
+        <option value="To do">To do</option>
+        <option value="In progress">In progress</option>
+        <option value="Await Feedback">Await Feedback</option>
+        <option value="Done">Done</option> -->
+      </select>
+      <span>Title</span>
+      <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
+
+      <span>Description</span>
+      <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescription"
+        cols="30" rows="10"></textarea>
+
+      <span>Category</span>
+      <select name="Category" placeholder="Category" id="taskCategory">
+        <option aria-placeholder="" disabled selected hidden>Category</option>
+        <option value="Backoffice">Backoffice</option>
+        <option value="Customer Service">Customer Service</option>
+        <option value="Warhouse">Warehouse</option>
+      </select>
+
+    </div>
+
+    <!-- ANCHOR - Right-taskfield -->
+
+    <div class="right-taskfield-J">
+      <span>Assigned to</span>
+      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
+
+
+      </select>
+
+      <span>Due date</span>
+      <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+
+        <span>Prio</span>
+        <div class="button-urgent-J">
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
+              src="assets/img/prio-urgent.svg"></button>
+          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
+              src="assets/img/prio-medium.svg"></button>
+          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
+              src="assets/img/prio-low.svg"></button>
+        </div>
+        <!--
+        <span>Substack</span>
+        <input class="right-taskfield-input substeckinput" placeholder="Add new substack" type="text" name="" id="">
+        <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div>
+-->
+        <div class="button-container-J">
+          <button onclick="taskClearButton()" class="button button-white mobile-Button-J">Cancel<img
+              src="assets/img/icon-black-clear.svg"></button>
+
+          <button onclick="addTaskToUser()" class="button button-darkblue">Create Task<img
+              src="assets/img/icon-white-create.svg"></button>
+
+        </div>
+
+    </div>
+
+
+  </div>
 
   <script src="script.js"></script>
   <script src="board.js"></script>

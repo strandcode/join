@@ -109,8 +109,11 @@ function openTask(i, j) {
     </div>
   `;
 }
-
-
+/* function slideInAddTask() {
+  let addTaskPopUp = document.getElementById('slideInAddTask');
+  document.getElementById('slideInAddTask').classList.remove('d-none')
+  addTaskPopUp.innerHTML = ``;
+} */
 
 function closeWorkTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
@@ -140,7 +143,7 @@ function filterTasks() {
   }
 }
 
-
+function slideInAddTask() { }
 
 
 
