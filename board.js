@@ -112,7 +112,6 @@ function changeTask() {
   let popUp2 = document.getElementById('popUpTaskD');
   popUp2.innerHTML = "";
   popUp2.innerHTML = `
-  
   <div id="popUp2Wrapper" class="pop-up-2-wrapper">
         <div id="popUp2" class="pop-up-2">
           <div class="pop-up-2-title">
@@ -153,11 +152,10 @@ function changeTask() {
 function slideInAddTask() {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
   document.getElementById('slideInAddTask').classList.remove('d-none')
-  /*  let addTaskPopUp = document.getElementById('slideInAddTask');
-   addTaskPopUp.innerHTML = ``; */
+
 }
 
-function CancelButton() {
+function cancelButton() {
   document.getElementById('slideInAddTaskWrapper').classList.add('d-none')
   document.getElementById('slideInAddTask').classList.add('d-none')
 }
