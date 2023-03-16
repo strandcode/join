@@ -48,7 +48,7 @@ function generateBoardTemplate(i, j, task) {
   return `    
   <div class="work-task-category-D" id="workTaskCategoryD">
       <h4>${boardList[i].boardlistTitle}</h4> 
-      <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
+      <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
       src="assets/img/icon-add-plus-dark.svg" alt="">
       </button></div>
       <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
@@ -57,9 +57,8 @@ function generateBoardTemplate(i, j, task) {
     <div class="work-task-content-D">${task['description']}</div>
     <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
     <div class="work-user-D">
-    <div class="work-task-user-D ${task['taskAssigned']}"> 
-      <div class="task-contact-1">${userData[currentUser].contacts[j].avatar_initials}</div>
-      <div class="task-contact-2">${userData[currentUser].contacts[j].avatar_initials}</div>
+    <div class="work-task-user-D ${task['assigned_to']}"> 
+     
       <div class="task-contact-3"></div>
     </div>
     <div class="urgency-D" id="urgencyD">
@@ -95,9 +94,8 @@ function openTask(i, j) {
       <b>Assigned To:</b>
       <div class="user-overlay-D">
         <span class="assigned-contact">
-        ${userData[currentUser].contacts[j].avatar_initials}
-        ${userData[currentUser].contacts[j].firstName}
-        ${userData[currentUser].contacts[j].lastName}
+       
+        
         </span>
         </div>
       </div>
@@ -109,11 +107,60 @@ function openTask(i, j) {
     </div>
   `;
 }
-/* function slideInAddTask() {
-  let addTaskPopUp = document.getElementById('slideInAddTask');
+
+function changeTask() {
+  let popUp2 = document.getElementById('popUpTaskD');
+  popUp2.innerHTML = "";
+  popUp2.innerHTML = `
+  
+  <div id="popUp2Wrapper" class="pop-up-2-wrapper">
+        <div id="popUp2" class="pop-up-2">
+          <div class="pop-up-2-title">
+            Title
+            <input placeholder="Enter a title">
+          </div>
+          <div class="pop-up-2-description">
+             Description
+             <input placeholder="Enter a Description">
+          </div>
+          <div class="pop-up-2-date">
+            Due date
+            <input type="date">
+          </div>
+          <div class="pop-up-2-prio">
+            Prio
+            <button onclick="urgent()">Urgent <img id="urgent_img" src="assets/img/prio-urgent.svg"></button>
+            <button onclick="medium()">Medium<img id="medium_img" src="assets/img/prio-medium.svg"</button>
+            <button onclick="low()">Low<img id="low_img" src="assets/img/prio-low.svg"></button>
+          </div>
+          <div class="pop-up-2-assigned">
+            Assigned to
+            <select>
+              <option>Select contacts to assign</option>
+              <option>Contact 1</option>
+              <option>Contact 2</option>
+              <option>Contact 3</option>
+            </select>
+          <button class=" button-darkblue" onclick="taskInfoChanged()">
+            Ok<img src="assets/img/icon-check-dark.svg" alt="">
+          </button>
+          <div class="close-work-overlay-D">
+            <button onclick="closeWorkTask()">x</button>
+          </div>
+          </div>
+        `;
+}
+function slideInAddTask() {
+  document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
   document.getElementById('slideInAddTask').classList.remove('d-none')
-  addTaskPopUp.innerHTML = ``;
-} */
+  /*  let addTaskPopUp = document.getElementById('slideInAddTask');
+   addTaskPopUp.innerHTML = ``; */
+}
+
+function CancelButton() {
+  document.getElementById('slideInAddTaskWrapper').classList.add('d-none')
+  document.getElementById('slideInAddTask').classList.add('d-none')
+}
 
 function closeWorkTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
@@ -121,10 +168,11 @@ function closeWorkTask() {
 }
 
 
-//TODO
+/* //TODO
 function changeTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
 }
+ */
 
 //Suchfunktion
 function filterTasks() {
@@ -143,7 +191,7 @@ function filterTasks() {
   }
 }
 
-function slideInAddTask() { }
+
 
 
 

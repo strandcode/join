@@ -269,6 +269,97 @@ h4:hover {
 
 }
 
+.button-darkblue {
+    background-color: var(--darkblue);
+    border: 1px solid var(--darkblue);
+    color: white;
+    transition: all 125ms ease-in-out;
+}
+
+.button-darkblue:hover {
+    background-color: var(--lightblue);
+    border: 1px solid var(--lightblue);
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+}
+
+.button-white {
+    background-color: white;
+    border: 1px solid white;
+    outline: 1px solid var(--darkblue);
+    color: var(--darkblue);
+    transition: all 125ms ease-in-out;
+}
+
+.button-white:hover {
+    border: 1px solid var(--lightblue);
+    outline: 1px solid var(--lightblue);
+    color: var(--lightblue);
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+}
+
+.pop-up-2-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate;
+    position: relative;
+    width: 623px;
+    height: 824px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    position: fixed;
+    right: 50%;
+    left: 40%;
+    bottom: 0;
+}
+
+.pop-up-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-2-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-2-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-2-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-2-prio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop-up-2-assigned {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .pop-up-change-button {
     /* display: flex; */
     flex-direction: row;
@@ -410,6 +501,31 @@ h4:hover {
 
 .fade-to-gray-overlay {
     animation: fade-to-gray 1000ms linear;
+}
+
+.slide-in-add-task {
+    display: flex;
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.slide-in-add-task-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
 }
 
 
