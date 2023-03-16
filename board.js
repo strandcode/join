@@ -148,11 +148,13 @@ function changeTask() {
 `;
 }
 
-async function deleteTask(i, j) {
+//TODO BACKEND WURDE ZERSCHOSSEN
+
+/* async function deleteTask(i, j) {
   userData[currentUser].board[i].boardlistTasks.splice(j, 1);
   await backend.setItem('users', JSON.stringify(userData[currentUser]));
   downloadUserDataFromBackend();
-}
+} */
 
 function slideInAddTask() {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')

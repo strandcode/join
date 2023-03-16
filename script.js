@@ -51,8 +51,6 @@ async function addUser(firstName, LastName, email, password) {
     ]
   };
 
-
-
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   downloadUserDataFromBackend();
