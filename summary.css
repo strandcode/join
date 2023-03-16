@@ -1,299 +1,205 @@
-main {
+.summary-wrapper {
     display: flex;
     flex-direction: column;
+    padding: 30px 10px;
+    width: 100%;
 }
 
-h3 {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 61px !important;
-    line-height: 120%;
-    color: #000000;
+.summary-mobile-headline {
+    display: block;
 }
 
-h4 {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 27px;
-    line-height: 120%;
-    height: 32px;
-    color: #2A3647;
-}
-
-.head-content-D {
+.summary-heading-wrapper {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    margin-left: 123px;
-}
-
-.container-wrapper-D {
-    max-width: 580px;
-    margin-left: 123px;
-}
-
-.task-in-board-D {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 0px;
-    gap: 13px;
-    height: 170px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    text-align: center;
-}
-
-.task-in-progress-D {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 0px;
-    gap: 13px;
-    height: 170px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    text-align: center;
-}
-
-.task-in-feedback-D {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 0px;
-    gap: 13px;
-    height: 170px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    text-align: center;
-}
-
-.tasks-D {
-    display: flex;
-    gap: 35px;
-}
-
-.tasks-quantity-D {
-
-    height: 77px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 64px;
-    line-height: 120%;
-    text-align: center;
-    color: #000000;
-}
-
-.deadline-container-D {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 48px;
-    gap: 61px;
-    height: 150px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    margin-top: 35px;
-}
-
-.urgency-date-D {
-    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
     flex-direction: column;
 }
 
-.date-D {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
+
+.summary-heading-wrapper h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 2.5rem;
+    order: 1;
+}
+
+.summary-heading-wrapper .blue-line {
+    height: 3px;
+    width: 100px;
+    background-color: #29abe2;
+    margin: 20px 0px;
+    order: 3;
+}
+
+.summary-heading-wrapper h4 {
     font-size: 21px;
-    line-height: 120%;
-    /* or 25px */
-    color: #2A3647;
-    padding-bottom: 13px;
-}
-
-.date-deadline-D {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
-    /* or 19px */
-    color: #2A3647;
+    color: var(--darkblue);
+    margin-block-start: 0;
+    margin-block-end: 0;
+    order: 2;
 }
 
-.urgency-tasks-D {
+.summary-main-wrapper {
     display: flex;
-    align-items: center;
-    gap: 19px;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-.urgency-number-D {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 47px;
-    line-height: 120%;
-    text-align: center;
-    color: #000000;
-}
 
-.urgency-number-prio-D {
+.summary-dahsboard-wrapper {
+    max-width: 420px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    /* background-color: rebeccapurple; */
 }
 
-.to-do-and-done-D {
+.summary-dahsboard-wrapper img {
+    height: 40px;
+    object-fit: contain;
+}
+
+.summary-dahsboard-row {
     display: flex;
-    margin-top: 35px;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
 }
 
-.to-do-D {
+
+
+/* LINK https://developer.mozilla.org/en-US/docs/Web/CSS/flex */
+.summary-dahsboard-top-item {
+    min-height: 110px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: white;
+    padding: 15px 10px 10px 10px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-dahsboard-middle-item {
+    min-height: 110px;
+    display: flex;
+    flex: 1;
+    background-color: white;
+    padding: 15px 10px 10px 10px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-around;
+}
+
+.summary-dahsboard-bottom-item {
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color: white;
+    padding: 15px 10px 10px 10px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.summary-dahsboard-row .fbox-row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 38px 19px;
-    gap: 18px;
-    width: 100%;
-    height: 150px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-
+    gap: 10px;
 }
 
-.to-dos-D {
+.summary-dahsboard-row .fbox-column {
     display: flex;
     flex-direction: column;
-    text-align: center;
-}
-
-.to-do-number-D {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 64px;
-    line-height: 120%;
-    text-align: center;
-    color: #000000;
-}
-
-.done-tasks-D {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 38px 19px;
-    gap: 18px;
-    height: 150px;
-    /* white */
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
+    justify-content: center;
+}
+
+.summary-dahsboard-row .number {
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+
+.summary-dahsboard-row .gray-line {
+    width: 2px;
+    height: 68px;
+    background-color: rgba(209, 209, 209, 1);
+    margin: 0 10px;
+}
+
+.deadline-date {
+    text-align: left;
     width: 100%;
-    margin-left: 35px;
-}
-
-.done-D {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.done-number-D {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 600;
-    font-size: 64px;
-    line-height: 120%;
-    text-align: center;
-    color: #000000;
-
+    margin-bottom: 10px;
 }
 
-.head-content-D img {
-    transform: rotate(90deg);
-}
-
-.welcome-container {
-    display: flex;
-}
-
-.user-welcome {
-    display: flex;
-    justify-content: center;
+.summary-user-welcome {
+    display: none;
     align-items: center;
-    padding: 50px;
+    justify-content: center;
+    padding: 25px;
 }
 
-@media screen and (max-width: 910px) {
-    .head-content-D {
-        flex-direction: column;
-        margin-left: 0px;
+.summary-user-welcome h3 {
+    font-size: 2.3rem;
+}
 
+.d-none {
+    display: none;
+}
+
+
+
+@media screen and (min-width: 530px) {
+    .summary-heading-wrapper {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
     }
 
-    .head-content-D img {
-        transform: rotate(180deg);
+    .summary-heading-wrapper .blue-line {
+        height: 48px;
+        width: 3px;
+        order: 2;
     }
 
-    .tasks-D {
-        margin-left: 33px;
-        margin-right: 35px;
+    .summary-heading-wrapper h4 {
+        order: 3;
     }
 
-    .deadline-container-D {
-        margin-left: 33px;
-        margin-right: 35px;
+    .summary-wrapper {
+        padding: 30px 30px;
     }
 
-    .to-do-and-done-D {
-        /* margin-left: 33px; */
-        margin-right: 35px;
-        margin-bottom: 142px;
+}
+
+@media screen and (min-width: 910px) {
+    .summary-user-welcome {
+        display: flex;
     }
 
-    .to-do-D {
-        /* margin-left: 0px; */
-        margin-right: 35px;
+    .summary-mobile-headline {
+        display: none;
     }
 
-    .kanban-headline-D {
-        display: block;
-        margin-top: 35px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 120%;
-        color: #000000;
+    .summary-wrapper {
+        padding: 50px 50px;
     }
 
-    h3 {
-        margin-top: 19px;
-        margin-bottom: 20px;
+    .summary-main-wrapper {
+        justify-content: flex-start;
     }
 
-    .container-wrapper-D {
-        margin-left: 0px;
-    }
-
-    .done-tasks-D {
-        margin-left: 0px;
-    }
 }

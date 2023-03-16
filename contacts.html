@@ -12,7 +12,7 @@
   <script src="./mini_backend.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init(); initContacts()">
   <div id="contactContainer">
 
     <header id="desktopHeader" class="desktop-header"></header>
@@ -24,7 +24,8 @@
     <main class="contacts-main-S">
 
       <!-- NOTE Register and contacts will be rendered by renderContactList() -->
-      <div id="contactsListS" class="contacts-list-S">
+      <div id="contactsList" class="contacts-list-S d-none">
+
       </div>
 
 
@@ -39,15 +40,14 @@
           </div>
 
           <!-- NOTE Active contact will be rendered by templateContactsActiveContact(activeContact) -->
-          <div id="contactsMainWrapperS" class="contacts-main-wrapper-S">
-            <h3>Loading contacts ...</h3>
-            <div class="loading-data"></div>
-          </div>
+          <div id="contactsMainWrapperS" class="contacts-main-wrapper-S"></div>
 
         </div>
-
-        <div class="contacts-footer-wrapper-S">
-          <button onclick="showOverlay('addContactOverlay', 'addContactContainer')">New contact
+        <!-- NOTE Die Button in der Kontakt-Detailansicht werden hier gerendert -->
+        <div id="contactFooterWrapper" class="contacts-footer-wrapper-S">
+          <button class="button button-darkblue"
+            onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+            New contact
             <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
           </button>
         </div>
@@ -74,6 +74,7 @@
           <img src="assets/img/icons-cancel.svg" onclick="closeOverlay('editContactOverlay', 'editContactContainer')"
             alt="Close button">
         </div>
+
         <div id="contactFormActiveContact" class="contact-overlay-right-main">
         </div>
       </div>

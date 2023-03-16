@@ -1,31 +1,48 @@
-
-// FIXME Wenn ein neuer User noch keine Kontakte hat
-
-/** NOTE
- * Test documentation in contacts.js
- */
-
-async function downloadUserContactDataFromBackend() {
-  try {
-    setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-    await downloadFromServer();
-    userData = await JSON.parse(backend.getItem('users')) || [];
-    console.log(userData);
-    getCurrentUser();
-    showCurrentUser(currentUser);
+async function initContacts() {
+  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  await downloadFromServer();
+  userData = await JSON.parse(backend.getItem('users')) || [];
+  getCurrentUser();
+  let currentUserData = userData[currentUser];
+  showCurrentUser(currentUser, currentUserData);
+  if (userData[currentUser].contacts.length > 0) {
     renderContactsList();
-  } catch (error) {
-    console.error(`ERROR: ${error}`);
+  } else {
+    console.warn('No contacts found');
+    templatefirstContact();
   }
 }
 
-downloadUserContactDataFromBackend();
+const contactsListS = document.getElementById('contactsList');
+const contactsMainWrapperS = document.getElementById('contactsMainWrapperS');
+const contactFooterWrapper = document.getElementById('contactFooterWrapper');
+
+
+function templatefirstContact() {
+  contactFooterWrapper.innerHTML = '';
+  contactsMainWrapperS.innerHTML = '';
+  contactsListS.classList.add('d-none');
+  contactsListS.innerHTML = '';
+  contactsMainWrapperS.innerHTML += /*html*/ `
+    <div class="first-contact">
+      <button class="button button-darkblue"
+        onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+        New contact
+        <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
+      </button>
+      <div class="arrow-line-animation">
+      <img src="assets/img/arrow-left-line.svg" alt="">
+      <div class="blue-line"></div>
+      </div>
+    </div>  
+  `;
+}
 
 // NOTE Hier wird der zentrale Index c (IndexOf Contact in contacts) generiert
 function renderContactsList() {
+  contactsListS.classList.remove('d-none');
   sortUserContactsAlphabetically();
   let contactsRegister = [];
-  let contactsList = document.getElementById('contactsListS');
   contactsList.innerHTML = '';
   for (let c = 0; c < userData[currentUser].contacts.length; c++) {
     let firstLetter = userData[currentUser].contacts[c].firstName.charAt(0).toUpperCase();
@@ -68,7 +85,7 @@ function templateContactsListContact(c) {
     <div class="contacts-list-contact-wrapper-S" onclick="templateContactsActiveContact(${c})">
       <div class="contacts-list-contact-avatar" style="background-color: ${userData[currentUser].contacts[c].avatar_bg_color}">${userData[currentUser].contacts[c].avatar_initials}</div>
       <div class="contact-data-wrapper-S">
-        <div class="contact-name-S">${userData[currentUser].contacts[c].firstName} ${userData[currentUser].contacts[c].lastName} ${c}</div>
+        <div class="contact-name-S">${userData[currentUser].contacts[c].firstName} ${userData[currentUser].contacts[c].lastName}</div>
         <a href="mailto:${userData[currentUser].contacts[c].email}" class="contacts-list-contact-email">
           <span>${email_name}</span>
           <span>@${email_domain}</span>
@@ -91,7 +108,7 @@ function templateContactsActiveContact(activeContact) {
           </div>
           <div class="contact-data-wrapper-S">
             <div class="contact-name-S font-size-48">
-              ${userData[currentUser].contacts[activeContact].firstName} ${userData[currentUser].contacts[activeContact].lastName} ${activeContact}
+              ${userData[currentUser].contacts[activeContact].firstName} ${userData[currentUser].contacts[activeContact].lastName}
             </div>
             <a href="#" class="contact-email-S">+ Add Task</a>
           </div>
@@ -99,14 +116,17 @@ function templateContactsActiveContact(activeContact) {
       </div>
       <div class="contacts-list-main-edit-S">
         <h4>Contact Information</h4>
-        <div class="contacts-active-contact-edit" onclick="showOverlay('editContactOverlay', 'editContactContainer')">
+        <button class="button button-darkblue" onclick="showOverlay('editContactOverlay', 'editContactContainer')">
+          Edit Contact
+        </button>
+        <!-- TODO Richtiges design?
+         <div class="contacts-active-contact-edit" onclick="showOverlay('editContactOverlay', 'editContactContainer')">
           <img src="assets/img/pencil-no-bg.svg" alt="">
           <span>Edit Contact</span>
-        </div>
-        <div class="contacts-active-contact-edit" onclick="deleteContactOfUser(${activeContact})">
-          <!-- <img src="assets/img/pencil-no-bg.svg" alt=""> -->
-          <span>Delete Contact</span>
-        </div>
+        </div> -->
+
+
+      
 
 
 
@@ -127,7 +147,24 @@ function templateContactsActiveContact(activeContact) {
     </div>
   `;
   templateEditContactActiveContact(activeContact);
+  templateContactFooterWrapper(activeContact);
 }
+
+function templateContactFooterWrapper(activeContact) {
+  const contactsFooterWrapper = document.getElementById('contactFooterWrapper');
+  contactsFooterWrapper.innerHTML = '';
+  contactsFooterWrapper.innerHTML += /*html*/ `
+    <button class="button button-darkblue"
+      onclick="showOverlay('addContactOverlay', 'addContactContainer'); templateAddContactForm()">
+      New contact
+      <img src="assets/img/icons-add-contact.svg" alt="Logo-add-contact">
+    </button>
+    <button class="button button-white" onclick="deleteContactOfUser(${activeContact})">
+      Delete Contact
+    </button>
+  `;
+}
+
 
 
 function showOverlay(overlayId, overlayContainerId) {
@@ -148,11 +185,11 @@ function closeOverlay(overlayId, overlayContainerId) {
 }
 
 
-function addContactToUser() {
-  let contactAddFirstName = document.getElementById('contactAddFirstName');
-  let contactAddLastName = document.getElementById('contactAddLastName');
-  let contactAddEmail = document.getElementById('contactAddEmail');
-  let contactAddPhone = document.getElementById('contactAddPhone');
+async function addContactToUser() {
+  const contactAddFirstName = document.getElementById('contactAddFirstName');
+  const contactAddLastName = document.getElementById('contactAddLastName');
+  const contactAddEmail = document.getElementById('contactAddEmail');
+  const contactAddPhone = document.getElementById('contactAddPhone');
   let newContact = {
     firstName: contactAddFirstName.value,
     lastName: contactAddLastName.value,
@@ -162,14 +199,15 @@ function addContactToUser() {
     avatar_bg_color: addRandomColorToContactAvatar()
   }
   userData[currentUser].contacts.push(newContact);
-  saveToBackend()
+  await saveToBackend();
+  initContacts();
 }
 
-function editContactOfUser(c) {
-  let contactEditFirstName = document.getElementById('contactEditFirstName');
-  let contactEditLastName = document.getElementById('contactEditLastName');
-  let contactEditEmail = document.getElementById('contactEditEmail');
-  let contactEditPhone = document.getElementById('contactEditPhone');
+async function editContactOfUser(c) {
+  const contactEditFirstName = document.getElementById('contactEditFirstName');
+  const contactEditLastName = document.getElementById('contactEditLastName');
+  const contactEditEmail = document.getElementById('contactEditEmail');
+  const contactEditPhone = document.getElementById('contactEditPhone');
   let editedContact = {
     firstName: contactEditFirstName.value,
     lastName: contactEditLastName.value,
@@ -179,27 +217,26 @@ function editContactOfUser(c) {
     avatar_bg_color: addRandomColorToContactAvatar()
   }
   userData[currentUser].contacts.splice(c, 1, editedContact);
-  saveToBackend()
+  await saveToBackend();
+  initContacts();
 }
 
-function deleteContactOfUser(c) {
+async function deleteContactOfUser(c) {
   userData[currentUser].contacts.splice(c, 1);
-  saveToBackend()
-  setTimeout(renderContactsList, 2000);
+  await saveToBackend();
+  initContacts();
 }
-
 
 
 function addRandomColorToContactAvatar() {
   const randomIndex = Math.floor(Math.random() * avatarColors.length);
-  console.log(randomIndex);
   let avatar_bg_color = avatarColors[randomIndex];
   return avatar_bg_color;
 }
 
 
 function templateEditContactActiveContact(c) {
-  let contactOverlayActiveContact = document.getElementById('contactFormActiveContact');
+  const contactOverlayActiveContact = document.getElementById('contactFormActiveContact');
   contactOverlayActiveContact.innerHTML = '';
   contactOverlayActiveContact.innerHTML += /*html*/ `
     <div class="contact-overlay-right-avatar" 
@@ -219,7 +256,7 @@ function templateEditContactActiveContact(c) {
       class="contact-overlay-right-input-phone" placeholder="Phone">
      
       <div class="contact-overlay-right-footer">
-        <button class="contact-overlay-button" onclick="editContactOfUser(${c}); closeOverlay('editContactOverlay', 'editContactContainer')">Save</button>
+        <button class="button button-darkblue" onclick="editContactOfUser(${c}); closeOverlay('editContactOverlay', 'editContactContainer')">Save</button>
       </div>
     </div>
   `;
@@ -233,7 +270,7 @@ function templateAddContactForm() {
     <div class="contact-overlay-right-avatar" 
          style="background-color: gray">NN
     </div>
-    <form onsubmit="addContactToUser(); return false;">
+    <form onsubmit="addContactToUser(); closeOverlay('addContactOverlay', 'addContactContainer'); return false;">
       <div class="contact-overlay-right-input">
         <input id="contactAddFirstName" name="contactEditName" type="text" 
         class="contact-overlay-right-input-name" placeholder="Firstname" required>
@@ -248,16 +285,12 @@ function templateAddContactForm() {
         class="contact-overlay-right-input-phone" placeholder="Phone" required>
         
         <div class="contact-overlay-right-footer">
-          <button class="contact-overlay-button" onclick="addContactToUser(); closeOverlay('addContactOverlay', 'addContactContainer')">Save</button>
+          <button class="button button-darkblue">Save</button>
         </div>
       </div>
     </form>
   `;
 }
-
-templateAddContactForm();
-// renderContactsList();
-// templateContactsActiveContact(0);
 
 
 const avatarColors = [
@@ -273,25 +306,6 @@ const avatarColors = [
 
 
 
-
-// TODO wenn die Daten gefüllt sind, kann es entfernt werden
-
-function writeContactsToUser() {
-  for (let i = 0; i < contacts.length; i++) {
-    let newContact = {
-      firstName: contacts[i].firstName,
-      lastName: contacts[i].lastName,
-      email: contacts[i].email,
-      phone: contacts[i].phone,
-      avatar_initials: contacts[i].avatar_initials,
-      avatar_bg_color: contacts[i].avatar_bg_color
-    };
-    userData[currentUser].contacts.push(newContact);
-  }
-  backend.setItem('users', JSON.stringify(userData)).then(() => {
-    downloadUserDataFromBackend();
-  });
-}
 
 
 var contacts = [

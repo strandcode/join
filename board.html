@@ -12,7 +12,7 @@
   <script src="drag&drop.js"></script>
 </head>
 
-<body id="home" onload="init(), generateTasks()">
+<body id="home" onload="init();generateBoard()">
 
   <header id="desktopHeader" class="desktop-header"></header>
   <nav id="desktopNavbar" class="desktop-navbar"></nav>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="find-add-container-D">
-        <input class="find-task-D" id="findTaskD" type="text" placeholder="Find Task">
+        <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
         <button class="add-task-D" onclick="addTask()">
           <span class="button-text-D"> Add Task </span>
           <img src="assets/img/Icon-plus.svg" alt="">
@@ -42,37 +42,47 @@
     </div>
 
     <div class="work-task-container-D" id="workTaskContainerD">
+<<<<<<< HEAD
       <div class="work-steps-D" id="workSteps1">
         <div class="work-task-category-D">
+=======
+      <div class="work-steps-D" id="workStepsTodo">
+        <div class="work-task-category-D" id="workTaskCategoryD">
+>>>>>>> master
           <h4>To do</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="card-content-D" id="cardContentD">
-          <div class="work-task-D" id="workTaskD" draggable="true">
-            <div class="work-category-D" id="workCategoryD">
-              Design
-            </div>
-            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-            <div class="work-user-D" id="workUserD">
-              <span class="work-task-user-D" id="workTaskUserD">U1</span>
-              <span class="work-task-user-D" id="workTaskUserD">U2</span>
-              <span class="work-task-user-D" id="workTaskUserD">U3</span>
-              <div class="urgency-D" id="urgencyD">
-                <img src="assets/img/prio-low.svg" alt="">
+          <div class="drag-area" ondragleave="drop(event)">
+            <div class="work-task-D" id="workTaskD" draggable="true">
+              <div class="work-category-D" id="workCategoryD">
+                Design
               </div>
-
+              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+              <div class="work-user-D" id="workUserD">
+                <span class="work-task-user-D" id="workTaskUserD">U1</span>
+                <span class="work-task-user-D" id="workTaskUserD">U2</span>
+                <span class="work-task-user-D" id="workTaskUserD">U3</span>
+                <div class="urgency-D" id="urgencyD">
+                  <img src="assets/img/prio-low.svg" alt="">
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="work-steps-D" id="workSteps2">
+=======
+      <div class="work-steps-D" id="workStepsProgress">
+>>>>>>> master
         <div class="work-task-category-D">
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="work-task-D" id="workTaskD" draggable="true">
+        <div class="work-task-D" ondragover="drop(event)" id="workTaskD" draggable="true">
           <div class="work-category-D" id="workCategoryD">
             Design
           </div>
@@ -92,7 +102,11 @@
       </div>
 
 
+<<<<<<< HEAD
       <div class="work-steps-D" id="workSteps3">
+=======
+      <div class="work-steps-D" id="workStepsFeedback">
+>>>>>>> master
         <div class="work-task-category-D">
           <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
@@ -114,14 +128,18 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="work-steps-D" id="workSteps4">
+=======
+      <div class="work-steps-D" id="workStepsDone">
+>>>>>>> master
         <div class="work-task-category-D">
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="addTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
         <div class="work-task-D" id="workTaskD" draggable="true">
-          <div class="work-category-D" id="workCategoryD">
-            Design
+          <div class="work-category-sales" id="workCategoryD">
+            Sales
           </div>
           <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
           <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>

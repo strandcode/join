@@ -8,12 +8,48 @@
   text-decoration: none;
 }
 
+.first-contact {
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.arrow-line-animation {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+
+.arrow-line-animation .blue-line {
+  background-color: #29abe2;
+  width: 51px;
+  height: 3.5px;
+  border-radius: 10px;
+  position: absolute;
+  left: 10px;
+
+  /* TODO Ist noch ausbaufähig */
+  animation: blue-line-bungee 900ms ease-in-out 500ms 1 normal both;
+}
+
+@keyframes blue-line-bungee {
+  from {
+    width: 500px;
+  }
+
+  to {
+    width: 51px;
+  }
+
+}
 
 .contacts-list-S {
   background-color: white;
-  /* width: 30%; */
+  width: 30%;
   min-width: 300px;
-  max-width: 450px;
+  /* max-width: 450px; */
   height: calc(100vh - 89px);
   padding: 10px 32px;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -50,7 +86,6 @@
 }
 
 .contacts-content-S {
-  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -93,6 +128,7 @@
 .contacts-footer-wrapper-S {
   display: flex;
   justify-content: flex-end;
+  gap: 20px;
 }
 
 .contacts-list-contact-wrapper-S {
@@ -204,13 +240,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   gap: 10px;
-  color: white;
-  background: rgb(42, 54, 71);
-  border-radius: 10px;
-  font-size: 1.5rem;
-  border: none;
 }
 
 .contacts-footer-wrapper-S img {

@@ -109,11 +109,17 @@ main {
     margin-right: 37px;
 }
 
+.drag-area {
+    background-color: blue;
+    min-height: 500px;
+}
+
 .work-steps-D {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     gap: 20px;
+
 }
 
 h4 {
@@ -166,8 +172,11 @@ h4:hover {
     justify-content: center;
     padding: 18px 19px;
     gap: 10px;
+<<<<<<< HEAD
     cursor: pointer;
 
+=======
+>>>>>>> master
     /* white */
     background: #FFFFFF;
     /* shadoe backlog box */
@@ -206,7 +215,7 @@ h4:hover {
 .work-task-user-D {
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
+
     align-items: center;
     padding: 10px 8px;
     gap: 10px;
@@ -243,6 +252,103 @@ h4:hover {
     justify-content: center;
     display: flex;
 }
+
+.pop-up-task-D {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate;
+    position: relative;
+    width: 623px;
+    height: 824px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    position: fixed;
+    right: 50%;
+    left: 40%;
+    bottom: 0;
+    /* top: 0; */
+
+}
+
+.pop-up-change-button {
+    /* display: flex; */
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    /* padding: 0px; */
+    /* gap: 6px; */
+    position: absolute;
+    /* width: 57px; */
+    height: 57px;
+    left: 525px;
+    top: 737px;
+    background: #2A3647;
+    border-radius: 10px;
+    flex: none;
+    order: 10;
+    flex-grow: 0;
+    z-index: 10;
+    /* background-color: transparent; */
+}
+
+.pop-up-change-button button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.work-category-sales {
+    padding: 4px 25px;
+    width: 103px;
+    height: 27px;
+    background: #FC71FF;
+    border-radius: 8px;
+    color: #FFFFFF;
+    margin-top: 22px;
+    justify-content: center;
+    display: flex;
+}
+
+.work-category-backoffice {
+    padding: 4px 25px;
+    width: 103px;
+    height: 27px;
+    background: #1FD7C1;
+    border-radius: 8px;
+    color: #FFFFFF;
+    margin-top: 22px;
+    justify-content: center;
+    display: flex;
+}
+
+.work-category-marketing {
+    padding: 4px 25px;
+    width: 103px;
+    height: 27px;
+    background: #0038FF;
+    border-radius: 8px;
+    color: #FFFFFF;
+    margin-top: 22px;
+    justify-content: center;
+    display: flex;
+}
+
+.work-category-media {
+    padding: 4px 25px;
+    width: 103px;
+    height: 27px;
+    background: #FFC701;
+    border-radius: 8px;
+    color: #FFFFFF;
+    margin-top: 22px;
+    justify-content: center;
+    display: flex;
+}
+
 
 /* ////////     OVERLAY BOARD WORK TASK //////////// */
 
@@ -344,6 +450,7 @@ h4:hover {
     font-size: larger;
 }
 
+<<<<<<< HEAD
 .pop-up-change-button {
     display: flex;
     flex-direction: row;
@@ -366,6 +473,17 @@ h4:hover {
     background: transparent;
     border: none;
 }
+=======
+.desktop-slide-in {
+    animation: slide-in 250ms ease-in-out;
+}
+
+.fade-to-gray-overlay {
+    animation: fade-to-gray 1000ms linear;
+}
+
+
+>>>>>>> master
 
 @media screen and (max-width: 910px) {
     .board-head-D {
@@ -429,6 +547,11 @@ h4:hover {
         margin-left: 0;
     }
 
+<<<<<<< HEAD
+=======
+    /* .find-task-D {} */
+
+>>>>>>> master
     .mobile-searchbar-D {
         display: block;
         box-sizing: border-box;
@@ -453,4 +576,8 @@ h4:hover {
         justify-content: center;
         padding-right: 110px;
     }
+}
+
+.d-none {
+    display: none
 }

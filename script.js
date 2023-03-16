@@ -19,11 +19,39 @@ downloadUserDataFromBackend();
 
 async function saveToBackend() {
   await backend.setItem('users', JSON.stringify(userData));
-  downloadUserDataFromBackend();
+  // downloadUserDataFromBackend();
 }
 
+// TODO Task rausnehmen
 async function addUser(firstName, LastName, email, password) {
-  let newUser = { firstName: firstName, LastName: LastName, email: email, password: password, tasks: [], contacts: [] };
+  let newUser = {
+    firstName: firstName,
+    LastName: LastName,
+    email: email,
+    password: password,
+    contacts: [],
+    board: [
+      { boardlistTitle: 'To do', boardlistTasks: [] },
+      { boardlistTitle: 'In progress', boardlistTasks: [] },
+      { boardlistTitle: 'Awaiting Feedback', boardlistTasks: [] },
+      {
+        boardlistTitle: 'Done', boardlistTasks: [
+          {
+            boardList: 0,
+            title: 'Aufgabe 1',
+            description: 'Blumen gießen',
+            category: 'Design',
+            // assigned_to_initials: userData[0].contacts[0].avatar_initials,
+            date: '2023/03/14',
+          }
+
+        ]
+      },
+    ]
+  };
+
+
+
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   downloadUserDataFromBackend();
@@ -40,6 +68,9 @@ function showCurrentUser(currentUser, currentUserData) {
   console.log('currentLoginName: ' + currentUserName);
   console.log('currentUserIndex: ' + currentUser);
   console.log(currentUserData);
+  const currentUserLogin = document.getElementById('currentUserLogin');
+  currentUserLogin.innerHTML = '';
+  currentUserLogin.innerHTML = userData[currentUser].firstName + ' ' + userData[currentUser].LastName;
 }
 
 
@@ -50,7 +81,8 @@ function templateDesktopHeader(activeLogin) {
   desktopHeader.innerHTML += /*html*/ `
     <h2 class="font-weight-400">Kanban Project Management Tool</h2>
       <div class="desktop-header-right-wrapper">
-        <a href="help.html">
+      <span id="currentUserLogin"></span>
+      <a href="help.html">
           <img class="icon-size-32" src="assets/img/icon-help-head.svg" alt="Help button">
         </a>
         <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
@@ -62,14 +94,14 @@ function templateDesktopNavbar() {
   let desktopNavbar = document.getElementById('desktopNavbar');
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
-    <div class="desktop-navbar-top">
+    <div class="desktop-navbar-wrapper">
       <a href="summary.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
-
-      <div class="desktop-navbar-wrapper">
+      
+      <div class="desktop-navbar-top">
         <a class="desktop-navbar-link" href="summary.html">
-          <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
+        <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
         </a>
         <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
         alt="">Board</a>
@@ -78,18 +110,18 @@ function templateDesktopNavbar() {
         <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
         src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
       </div>
-    </ >
-
-    <div class="desktop-navbar-wrapper">
-      <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+      
+      <div class="desktop-navbar-bottom">
+        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
         alt="">Legal
         notice
       </a>
       <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
-        alt="">Privacy
-        policy
-      </a>
-    </div>
+      alt="">Privacy
+      policy
+    </a>
+  </div>
+</div>
   `;
 }
 
