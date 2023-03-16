@@ -11,36 +11,62 @@ async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
   getCurrentUser()
-  const boardList = userData[currentUser].board;
-  console.log(boardList.length);
-  let card;
-  for (let i = 0; i < boardList.length; i++) {
-    card = document.getElementById(boardCategory[i]);
-    for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
-      card.innerHTML = '';
-      const task = boardList[i].boardlistTasks[j];
-      card.innerHTML += generateBoardTemplate(i, j, task)
-      const box = document.getElementById(`work-task-D-${i}`);
-      box.addEventListener('dragstart', dragStart);
-      box.addEventListener('dragover', dragOver);
-      box.addEventListener('drop', drop);
-    }
-  }
+  // const boardList = userData[currentUser].board;
+  // console.log(boardList.length);
+  // let card;
+  // for (let i = 0; i < boardList.length; i++) {
+  //   card = document.getElementById(boardCategory[i]);
+  //   for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
+  //     card.innerHTML = '';
+  //     const task = boardList[i].boardlistTasks[j];
+  //     card.innerHTML += generateBoardTemplate(i, j, task)
+  //     const box = document.getElementById(`work-task-D-${i}`);
+  // box.addEventListener('dragstart', dragStart);
+  // box.addEventListener('dragover', dragOver);
+  // box.addEventListener('drop', drop);
+  // }
+  //   }
 }
 
-function dragStart(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
-  console.log('dragging')
-}
+// function dragStart(event) {
+//   event.dataTransfer.setData("text/plain", event.target.id);
+//   console.log('dragging')
+// }
 
-function dragOver(event) {
-  event.preventDefault();
-}
+// function dragOver(event) {
+//   event.preventDefault();
+// }
 
-function drop(event) {
-  event.preventDefault();
+// function drop(event) {
+//   event.preventDefault();
 
-}
+// }
+
+
+//DOM Elements
+const boxes = document.querySelectorAll(".dragbox"),
+  image = document.querySelector(".image");
+
+//Loop through each boxes element
+boxes.forEach((box) => {
+  //When a draggable element dragged over a box element
+  box.addEventListener("dragover", (e) => {
+    e.preventDefault(); //Prevent default behaviour
+    box.classList.add("hovered");
+  });
+
+  //When a draggable element leaves box element
+  box.addEventListener("dragleave", () => {
+    box.classList.remove("hovered");
+  });
+
+  //When a draggable element is dropped on a box element
+  box.addEventListener("drop", () => {
+    box.appendChild(image);
+    box.classList.remove("hovered");
+  });
+});
+
 
 
 function generateBoardTemplate(i, j, task) {
@@ -71,49 +97,49 @@ function generateBoardTemplate(i, j, task) {
 `;
 }
 
-function openTask(i, j) {
-  const task = userData[currentUser].board[i].boardlistTasks[j];
-  document.getElementById('popUpTaskD').classList.remove('d-none');
-  document.getElementById('workTaskContainerD').classList.add('d-none');
-  let popupContainer = document.getElementById('popUpTaskD');
-  popupContainer.innerHTML = `
-    <div class="work-category-D" id="taskCategoryOverlayD">
-      ${task['category']}
-    </div>
-    <div class="close-work-overlay-D">
-      <button onclick="closeWorkTask()">x</button>
-    </div>
-    <div class="work-overlay-headline-D">${task['title']}</div>
-    <span>${task['description']}</span>
-    <div class="work-overlay-date-D">
-      <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${task['date']}</span>
-    </div>
-    <div class="priority-overlay-D">
-      <b>Priority</b><img src="assets/img/priority-urgent.svg" alt="">
-    </div>
-    <div class="assigned-overlay-D">
-      <b>Assigned To:</b>
-      <div class="user-overlay-D">
-        <span>${userData[currentUser].contacts[j].firstName}
-              ${userData[currentUser].contacts[j].lastName}
-        </span>
-        </div>
-      </div>
-      <div class="pop-up-change-button">
-        <button onclick="changeTask(${i}, ${j})">
-          <img src="assets/img/summary-pencil.svg" alt="">
-        </button>
-      </div>
-    </div>
-  `;
-}
+// function openTask(i, j) {
+//   const task = userData[currentUser].board[i].boardlistTasks[j];
+//   document.getElementById('popUpTaskD').classList.remove('d-none');
+//   document.getElementById('workTaskContainerD').classList.add('d-none');
+//   let popupContainer = document.getElementById('popUpTaskD');
+//   popupContainer.innerHTML = `
+//     <div class="work-category-D" id="taskCategoryOverlayD">
+//       ${task['category']}
+//     </div>
+//     <div class="close-work-overlay-D">
+//       <button onclick="closeWorkTask()">x</button>
+//     </div>
+//     <div class="work-overlay-headline-D">${task['title']}</div>
+//     <span>${task['description']}</span>
+//     <div class="work-overlay-date-D">
+//       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${task['date']}</span>
+//     </div>
+//     <div class="priority-overlay-D">
+//       <b>Priority</b><img src="assets/img/priority-urgent.svg" alt="">
+//     </div>
+//     <div class="assigned-overlay-D">
+//       <b>Assigned To:</b>
+//       <div class="user-overlay-D">
+//         <span>${userData[currentUser].contacts[j].firstName}
+//               ${userData[currentUser].contacts[j].lastName}
+//         </span>
+//         </div>
+//       </div>
+//       <div class="pop-up-change-button">
+//         <button onclick="changeTask(${i}, ${j})">
+//           <img src="assets/img/summary-pencil.svg" alt="">
+//         </button>
+//       </div>
+//     </div>
+//   `;
+// }
 
 
 
-function closeWorkTask() {
-  document.getElementById('popUpTaskD').classList.add('d-none');
-  document.getElementById('workTaskContainerD').classList.remove('d-none');
-}
+// function closeWorkTask() {
+//   document.getElementById('popUpTaskD').classList.add('d-none');
+//   document.getElementById('workTaskContainerD').classList.remove('d-none');
+// }
 
 
 //TODO
