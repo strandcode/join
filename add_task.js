@@ -21,7 +21,8 @@ async function initTasks() {
 }
 
 
-
+let newTask = [];
+let TaskContactsAll;
 const taskBoardList = document.getElementById('taskBoardList');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
@@ -31,6 +32,7 @@ const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
 const taskButtonLow = document.getElementById('taskButtonLow');
+let taskButtonPriority = '';
 
 
 function renderTaskForm() {
@@ -54,18 +56,17 @@ function generateContactDropdown() {
  `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
+
     const contactsOptions = document.getElementById('taskAssigned');
     contactsOptions.innerHTML += `
-    <option value="${userData[currentUser].contacts[i].firstName} 
-  ${userData[currentUser].contacts[i].lastName}">
+    <option value="${userData[currentUser].contacts[i].firstName}${userData[currentUser].contacts[i].lastName}${userData[currentUser].contacts[i].avatar_initials}${userData[currentUser].contacts[i].avatar_bg_color}">
   ${userData[currentUser].contacts[i].firstName} 
-  ${userData[currentUser].contacts[i].lastName}</option>
+  ${userData[currentUser].contacts[i].lastName}
+  </option>
     `;
   }
+
 }
-
-
-// TODO  Übergabe des Button Text           
 
 async function addTaskToUser() {
 
@@ -76,12 +77,12 @@ async function addTaskToUser() {
     category: taskCategory.value,
     assigned_to: taskAssigned.value,
     date: taskDate.value,
-    prio: '',
+    prio: taskButtonPriority,
   };
 
-  userData[0].board[0].boardlistTasks.push(newTask);
+  userData[currentUser].board[0].boardlistTasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
-  loadUsers();
+  initTasks();
 }
 
 
@@ -99,34 +100,34 @@ function taskClearButton() {
 
 function setPriorityUrgent() {
 
-  let taskButtonUrgent = document.getElementById('taskButtonUrgent');
   if (!taskButtonUrgent.classList.contains('active')) {
     taskButtonUrgent.style.backgroundColor = "red";
     taskButtonUrgent.classList.add("active");
 
-    taskButtonPrio = taskButtonUrgent.textContent;
+    taskButtonPriority = "urgent";
+
     console.log(taskButtonUrgent);
   } else {
     taskButtonUrgent.style.backgroundColor = "";
     taskButtonUrgent.classList.remove("active");
-    taskButtonPrio = '';
+    taskButtonPriority = '';
   }
 }
 
 
 function setPriorityMedium() {
 
-  let taskButtonMedium = document.getElementById('taskButtonMedium');
   if (!taskButtonMedium.classList.contains('active')) {
     taskButtonMedium.style.backgroundColor = "orange";
     taskButtonMedium.classList.add("active");
 
-    taskButtonMedium = taskButtonMedium.textContent;
-    console.log(taskButtonMedium);
+    taskButtonPriority = "medium";
+    console.log(taskButtonPriority);
 
   } else {
     taskButtonMedium.style.backgroundColor = "";
     taskButtonMedium.classList.remove("active");
+    taskButtonPriority = '';
   }
 }
 
@@ -137,12 +138,12 @@ function setPriorityLow() {
     taskButtonLow.style.backgroundColor = "green";
     taskButtonLow.classList.add("active");
 
-    taskButtonLow = taskButtonLow.textContent;
-    console.log(taskButtonLow);
+    taskButtonPriority = "low";
+    console.log(taskButtonPriority);
   } else {
     taskButtonLow.style.backgroundColor = "";
     taskButtonLow.classList.remove("active");
-
+    taskButtonPriority = '';
   }
 }
 
