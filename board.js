@@ -12,53 +12,37 @@ async function generateBoard() {
   await downloadFromServer();
   getCurrentUser()
   const boardList = userData[currentUser].board;
-  console.log(boardList.length);
-  let card;
+  let card = document.getElementById('workStepsTodo');
   for (let i = 0; i < boardList.length; i++) {
     card = document.getElementById(boardCategory[i]);
     for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
-      card.innerHTML = '';
+      //card.innerHTML = '';
       const task = boardList[i].boardlistTasks[j];
       card.innerHTML += generateBoardTemplate(i, j, task)
-      const box = document.getElementById(`work-task-D-${i}`);
-      box.addEventListener('dragstart', dragStart);
-      box.addEventListener('dragover', dragOver);
-      box.addEventListener('drop', drop);
     }
   }
 }
 
-function dragStart(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
-  console.log('dragging')
-}
-
-function dragOver(event) {
-  event.preventDefault();
-}
-
-function drop(event) {
-  event.preventDefault();
-
-}
-
-
 function generateBoardTemplate(i, j, task) {
   const boardList = userData[currentUser].board;
   return `    
-  <div class="work-task-category-D" id="workTaskCategoryD">
+  <div class="work-task-category-D" id="workSteps${i}">
       <h4>${boardList[i].boardlistTitle}</h4> 
       <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
       src="assets/img/icon-add-plus-dark.svg" alt="">
-      </button></div>
+      </button>
+      </div>
       <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
-    <div class="work-category-D ${task['category']}">${task['category']}</div>
+    <div class="delete-task-D" onclick="deleteTask(${j})">
+    <div class="work-category-D ${task['category']}">
+    ${task['category']}</div>
+    <button> X </button></div>
     <div class="work-task-headline-D">${task['title']}</div>
     <div class="work-task-content-D">${task['description']}</div>
     <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
     <div class="work-user-D">
     <div class="work-task-user-D ${task['assigned_to']}"> 
-     
+    <span>${task['avatar_initials']}</span>
       <div class="task-contact-3"></div>
     </div>
     <div class="urgency-D" id="urgencyD">
@@ -77,7 +61,7 @@ function openTask(i, j) {
   let popupContainer = document.getElementById('popUpTaskD');
   popupContainer.innerHTML = `
     <div class="work-category-D" id="taskCategoryOverlayD">
-      ${task['category']}
+      ${task['category']} 
     </div>
     <div class="close-work-overlay-D">
       <button onclick="closeWorkTask()">x</button>
@@ -88,14 +72,15 @@ function openTask(i, j) {
       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${task['date']}</span>
     </div>
     <div class="priority-overlay-D">
-      <b>Priority</b><img src="assets/img/priority-urgent.svg" alt="">
+      <b>Priority:</b><span>${task['prio']}</span><img src="assets/img/priority-urgent.svg" alt="">
     </div>
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
         <span class="assigned-contact">
-       
-        
+        <span>${task['avatar_bg_color']}</span>
+        <span>${task['avatar_initials']}</span>
+        <span>${task['assigned_to']}</span>
         </span>
         </div>
       </div>
@@ -112,43 +97,63 @@ function changeTask() {
   let popUp2 = document.getElementById('popUpTaskD');
   popUp2.innerHTML = "";
   popUp2.innerHTML = `
-  <div id="popUp2Wrapper" class="pop-up-2-wrapper">
-        <div id="popUp2" class="pop-up-2">
-          <div class="pop-up-2-title">
-            Title
-            <input placeholder="Enter a title">
-          </div>
-          <div class="pop-up-2-description">
-             Description
-             <input placeholder="Enter a Description">
-          </div>
-          <div class="pop-up-2-date">
-            Due date
-            <input type="date">
-          </div>
-          <div class="pop-up-2-prio">
-            Prio
-            <button onclick="urgent()">Urgent <img id="urgent_img" src="assets/img/prio-urgent.svg"></button>
-            <button onclick="medium()">Medium<img id="medium_img" src="assets/img/prio-medium.svg"</button>
-            <button onclick="low()">Low<img id="low_img" src="assets/img/prio-low.svg"></button>
-          </div>
-          <div class="pop-up-2-assigned">
-            Assigned to
-            <select>
-              <option>Select contacts to assign</option>
-              <option>Contact 1</option>
-              <option>Contact 2</option>
-              <option>Contact 3</option>
-            </select>
-          <button class=" button-darkblue" onclick="taskInfoChanged()">
-            Ok<img src="assets/img/icon-check-dark.svg" alt="">
-          </button>
-          <div class="close-work-overlay-D">
-            <button onclick="closeWorkTask()">x</button>
-          </div>
-          </div>
-        `;
+    <div class="left-taskfield-J">
+      <h1>Add Task</h1>
+      <select required="" class="width" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
+  <option disabled="" selected="" hidden="">Select board list</option>
+        <option value="0">To do</option>
+        <option value="1">In progress</option>
+        <option value="2">Awaiting Feedback</option>
+        <option value="3">Done</option>
+  </select>
+      <span>Title</span>
+      <input required="" type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
+      <span>Description</span>
+      <textarea required="" class="width" placeholder="Enter a Description" name="Description" id="taskDescription" cols="30" rows="10"></textarea>
+      <span>Category</span>
+      <select name="Category" placeholder="Category" id="taskCategory">
+        <option aria-placeholder="" disabled="" selected="" hidden="">Category</option>
+        <option value="Backoffice">Backoffice</option>
+        <option value="Customer Service">Customer Service</option>
+        <option value="Warhouse">Warehouse</option>
+      </select>
+    </div>
+    <div class="right-taskfield-J">
+      <span>Assigned to</span>
+      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" "="">
+  <option disabled="" selected="" hidden="">Select Contacts to assign</option>
+  <option value="Hulk Hgan">
+  Hulk Hgan</option>
+
+    <option value="Peter Lustig">
+      Peter Lustig
+    </option>
+    <option value="Rosi Rose">
+      Rosi Rose
+    </option>
+  </select>
+      <span>Due date</span>
+      <input required="" class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+        <span>Prio</span>
+        <div class="button-urgent-J">
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img src="assets/img/prio-urgent.svg"></button>
+          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img src="assets/img/prio-medium.svg"></button>
+          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img src="assets/img/prio-low.svg"></button>
+        </div>
+    </div>
+    <div class="button-container-J">
+      <button onclick="taskClearButton()" class="button button-white mobile-Button-J">Clear<img src="assets/img/icon-black-clear.svg"></button>
+      <button onclick="addTaskToUser()" class="button button-darkblue">Create Task<img src="assets/img/icon-white-create.svg"></button>
+    </div>
+`;
 }
+
+async function deleteTask(i, j) {
+  userData[currentUser].board[i].boardlistTasks.splice(j, 1);
+  await backend.setItem('users', JSON.stringify(userData[currentUser]));
+  downloadUserDataFromBackend();
+}
+
 function slideInAddTask() {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
   document.getElementById('slideInAddTask').classList.remove('d-none')
@@ -164,13 +169,6 @@ function closeWorkTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('workTaskContainerD').classList.remove('d-none');
 }
-
-
-/* //TODO
-function changeTask() {
-  document.getElementById('popUpTaskD').classList.add('d-none');
-}
- */
 
 //Suchfunktion
 function filterTasks() {

@@ -22,6 +22,7 @@ async function saveToBackend() {
   // downloadUserDataFromBackend();
 }
 
+
 // TODO Task rausnehmen
 async function addUser(firstName, LastName, email, password) {
   let newUser = {
