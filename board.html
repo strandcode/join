@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="board.css">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban board</title>
   <script src="./mini_backend.js"></script>
   <!-- <script src="drag&drop.js"></script> -->
@@ -20,25 +21,17 @@
   <header id="mobileHeader" class="mobile-header"></header>
   <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
+  <!-- NOTE Beginn des Main-Elementes mit dem Board -->
+  <main>
+    <div class="board-header">
+      <h3>Board</h3>
+      <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
+      <button class="button button-darkblue" onclick="addTask()">
+        <span class="button button-darkblue">Add Task </span>
+        <img src=" assets/img/Icon-plus.svg" alt="">
+      </button>
 
-  <main class="board-main-D">
-    <!-- Board Content -->
-    <div class="board-head-D">
-      <div class="button-mobile-container-D">
-        <h3 class="headline-board-D">Board</h3>
-        <button class="add-task-mobile-D" onclick="addTask()">
-          <span class="button button-darkblue">Add Task </span>
-          <img src=" assets/img/Icon-plus.svg" alt="">
-        </button>
-      </div>
 
-      <div class="find-add-container-D">
-        <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
-        <button class="add-task-D" onclick="">
-          <span class="button-text-D">Add Task </span>
-          <img src="assets/img/Icon-plus.svg" alt="">
-        </button>
-      </div>
     </div>
 
     <!-- NOTE Hier beginnt das Board -->
@@ -57,13 +50,12 @@
         <!-- NOTE Boardliste mit den Aufgaben-->
         <section class="board-boardlist" id="boardBoardlist-0">
 
-          <div class="dragbox">
-          </div>
+          <div class="dragbox"></div>
 
           <div class="dragbox">
 
             <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
+            <div class="image" id="task-0003" draggable="true">
               <div class="work-category-D" id="workCategoryD">
                 Design
               </div>
@@ -175,11 +167,77 @@
 
 
       </div>
+
       <!-- NOTE Beginn boardliste 2 -->
       <div class="boardlist-wrapper" id="">
 
         <div class="boardlist-header" id="">
           <h4>Awaiting feedback</h4>
+          <button id="smallPlusD" class="small-plus-D" onclick="">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+        </div>
+
+        <!-- NOTE Boardliste mit den Aufgaben-->
+        <section class="board-boardlist" id="boardBoardlist-0">
+
+          <div class="dragbox">
+          </div>
+
+          <div class="dragbox">
+
+            <!-- NOTE Hier beginnt die Bordkarte -->
+            <div class="image" id="" draggable="true">
+              <div class="work-category-D" id="workCategoryD">
+                Design
+              </div>
+              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+              <div class="work-user-D" id="workUserD">
+                <span class="work-task-user-D" id="workTaskUserD">U1</span>
+                <span class="work-task-user-D" id="workTaskUserD">U2</span>
+                <span class="work-task-user-D" id="workTaskUserD">U3</span>
+                <div class="urgency-D" id="urgencyD">
+                  <img src="assets/img/prio-low.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dragbox">
+
+            <!-- NOTE Hier beginnt die Bordkarte -->
+            <div class="image" id="" draggable="true">
+              <div class="work-category-D" id="workCategoryD">
+                Chefsache
+              </div>
+              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+              <div class="work-user-D" id="workUserD">
+                <span class="work-task-user-D" id="workTaskUserD">U1</span>
+                <span class="work-task-user-D" id="workTaskUserD">U2</span>
+                <span class="work-task-user-D" id="workTaskUserD">U3</span>
+                <div class="urgency-D" id="urgencyD">
+                  <img src="assets/img/prio-low.svg" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dragbox"></div>
+
+        </section>
+
+
+
+      </div>
+      <!-- NOTE Beginn boardliste 2 -->
+      <div class="boardlist-wrapper" id="">
+
+        <div class="boardlist-header" id="">
+          <h4>Done</h4>
           <button id="smallPlusD" class="small-plus-D" onclick="">
             <img src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
