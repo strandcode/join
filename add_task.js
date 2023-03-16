@@ -28,6 +28,8 @@ const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
 const taskCategory = document.getElementById('taskCategory');
 const taskAssigned = document.getElementById('taskAssigned');
+let taskAssignedColor;
+let taskAssignedInitials;
 const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
@@ -52,23 +54,31 @@ function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
-  <option>${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
+  <option value="${userData[currentUser].firstName} ${userData[currentUser].LastName}">
+  ${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
  `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
 
     const contactsOptions = document.getElementById('taskAssigned');
     contactsOptions.innerHTML += `
-    <option value="${userData[currentUser].contacts[i].firstName}${userData[currentUser].contacts[i].lastName}${userData[currentUser].contacts[i].avatar_initials}${userData[currentUser].contacts[i].avatar_bg_color}">
-  ${userData[currentUser].contacts[i].firstName} 
-  ${userData[currentUser].contacts[i].lastName}
-  </option>
-    `;
+    <option value="${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}">
+     
+      ${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}
+    </option>
+  `;
+    taskAssignedColor = userData[currentUser].contacts[i].avatar_bg_color;
+    taskAssignedInitials = userData[currentUser].contacts[i].avatar_initials;
   }
 
 }
 
+
+
+
 async function addTaskToUser() {
+
+
 
   let newTask = {
     boardList: taskBoardList.value,
@@ -76,6 +86,8 @@ async function addTaskToUser() {
     description: taskDescription.value,
     category: taskCategory.value,
     assigned_to: taskAssigned.value,
+    avatar_initials: taskAssignedInitials,
+    avatar_bg_color: taskAssignedColor,
     date: taskDate.value,
     prio: taskButtonPriority,
   };
