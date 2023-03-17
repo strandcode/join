@@ -23,6 +23,8 @@ async function generateBoard() {
   }
 }
 
+// TODO userData[currentUser].tasks[2] = 'deleted'
+
 function generateBoardTemplate(i, j, task) {
   const boardList = userData[currentUser].board;
   return `    

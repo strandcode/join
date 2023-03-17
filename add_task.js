@@ -5,13 +5,7 @@ async function initTasks() {
   getCurrentUser();
   let currentUserData = userData[currentUser];
   showCurrentUser(currentUser, currentUserData);
-  // TODO Alle Boards abfragen!!
-  if (
-    userData[currentUser].board[0].boardlistTasks.length > 0 ||
-    userData[currentUser].board[1].boardlistTasks.length > 0 ||
-    userData[currentUser].board[2].boardlistTasks.length > 0 ||
-    userData[currentUser].board[3].boardlistTasks.length > 0
-  ) {
+  if (userData[currentUser].board) {
     renderTaskForm();
     generateContactDropdown();
   } else {
@@ -27,15 +21,21 @@ const taskBoardList = document.getElementById('taskBoardList');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
 const taskCategory = document.getElementById('taskCategory');
-const taskAssigned = document.getElementById('taskAssigned');
-let taskAssignedColor;
-let taskAssignedInitials;
+
 const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
 const taskButtonLow = document.getElementById('taskButtonLow');
 let taskButtonPriority = '';
 
+
+// value Hermann Paschule 
+const taskAssigned = document.getElementById('taskAssigned');
+let taskAssignedColor;
+let taskAssignedInitials;
+
+
+// TODO Alle Boards abfragen!!
 
 function renderTaskForm() {
   taskBoardList.innerHTML = ``;
@@ -50,11 +50,12 @@ function renderTaskForm() {
 }
 
 
+// TODO Mehrere Assign-To-Contacs
 function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
-  <option value="${userData[currentUser].firstName} ${userData[currentUser].LastName}">
+  <option value="${userData[currentUser]}">
   ${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
  `;
 
@@ -62,8 +63,7 @@ function generateContactDropdown() {
 
     const contactsOptions = document.getElementById('taskAssigned');
     contactsOptions.innerHTML += `
-    <option value="${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}">
-     
+    <option value="${i}">
       ${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}
     </option>
   `;
@@ -74,29 +74,23 @@ function generateContactDropdown() {
 }
 
 
-
-
 async function addTaskToUser() {
 
-
-
   let newTask = {
-    // TODO Wird über die Position im array userData[currentUser].tasks geschrieben userDat[cU]tasks.length +1 (newTaskId)
-    task_id: 0,
-    boardList: 0,
+    task_id: userData[currentUser].tasks.length,
+    boardList: taskBoardList.value,
     boardlistPosition: 0,
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
-    assigned_to: taskAssigned.value,
-    avatar_initials: taskAssignedInitials,
-    avatar_bg_color: taskAssignedColor,
+    assign_to_contacts: [parseInt(taskAssigned.value)],
     date: taskDate.value,
     prio: taskButtonPriority,
-  };
+  }
+
+    ;
 
   userData[currentUser].tasks.push(newTask);
-  // userData[currentUser].board[0].boardlistTasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
   initTasks();
 }
@@ -114,14 +108,14 @@ function taskClearButton() {
   taskButtonLow.value = '';
 }
 
+
+// TODO remove active
 function setPriorityUrgent() {
 
   if (!taskButtonUrgent.classList.contains('active')) {
     taskButtonUrgent.style.backgroundColor = "red";
     taskButtonUrgent.classList.add("active");
-
     taskButtonPriority = "urgent";
-
     console.log(taskButtonUrgent);
   } else {
     taskButtonUrgent.style.backgroundColor = "";
