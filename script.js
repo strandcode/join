@@ -22,8 +22,6 @@ async function saveToBackend() {
   // downloadUserDataFromBackend();
 }
 
-
-// TODO Task rausnehmen
 async function addUser(firstName, LastName, email, password) {
   let newUser = {
     firstName: firstName,
@@ -31,30 +29,19 @@ async function addUser(firstName, LastName, email, password) {
     email: email,
     password: password,
     contacts: [],
+    tasks: [],
     board: [
-      { boardlistTitle: 'To do', boardlistTasks: [] },
-      { boardlistTitle: 'In progress', boardlistTasks: [] },
-      { boardlistTitle: 'Awaiting Feedback', boardlistTasks: [] },
-      {
-        boardlistTitle: 'Done', boardlistTasks: [
-          {
-            boardList: 0,
-            title: 'Aufgabe 1',
-            description: 'Blumen gießen',
-            category: 'Design',
-            // assigned_to_initials: userData[0].contacts[0].avatar_initials,
-            date: '2023/03/14',
-          }
-
-        ]
-      },
+      { boardlistTitle: 'To do' },
+      { boardlistTitle: 'In progress' },
+      { boardlistTitle: 'Awaiting Feedback' },
+      { boardlistTitle: 'Done' }
     ]
-  };
-
+  }
   userData.push(newUser);
   await backend.setItem('users', JSON.stringify(userData));
   downloadUserDataFromBackend();
-}
+};
+
 
 async function deleteUser(arrayPosition) {
   userData.splice(arrayPosition, 1);

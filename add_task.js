@@ -81,7 +81,10 @@ async function addTaskToUser() {
 
 
   let newTask = {
-    boardList: taskBoardList.value,
+    // TODO Wird über die Position im array userData[currentUser].tasks geschrieben userDat[cU]tasks.length +1 (newTaskId)
+    task_id: 0,
+    boardList: 0,
+    boardlistPosition: 0,
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
@@ -92,7 +95,8 @@ async function addTaskToUser() {
     prio: taskButtonPriority,
   };
 
-  userData[currentUser].board[0].boardlistTasks.push(newTask);
+  userData[currentUser].tasks.push(newTask);
+  // userData[currentUser].board[0].boardlistTasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
   initTasks();
 }
