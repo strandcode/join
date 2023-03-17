@@ -5,54 +5,71 @@
 
 //  userData[currentUser].board[0]boardlistTasks[0{TASK}]
 let boardCategory = ['workStepsTodo', 'workStepsProgress', 'workStepsFeedback', 'workStepsDone'];
+/* const boardListHeader = userData[currentUser].board; */
+
 
 
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
-  getCurrentUser()
-  const boardList = userData[currentUser].board;
-  let card = document.getElementById('workStepsTodo');
-  for (let i = 0; i < boardList.length; i++) {
-    card = document.getElementById(boardCategory[i]);
-    for (let j = 0; j < boardList[i].boardlistTasks.length; j++) {
-      //card.innerHTML = '';
-      const task = boardList[i].boardlistTasks[j];
-      card.innerHTML += generateBoardTemplate(i, j, task)
+  getCurrentUser();
+  for (let i = 0; i < userData[currentUser].board.length; i++) {
+    /* const card = document.getElementById(boardCategory[i]); */
+    for (let j = 0; j < userData[currentUser].tasks.length; j++) {
+      const boardCard = document.getElementById('boardListBody-0') //TODO richtige boardlist auswählen
+      boardCard.innerHTML = ``;
+      boardCard.innerHTML += generateBoardTemplate(i, j);
     }
   }
 }
 
-// TODO userData[currentUser].tasks[2] = 'deleted'
+
 
 function generateBoardTemplate(i, j, task) {
-  const boardList = userData[currentUser].board;
   return `    
-  <div class="work-task-category-D" id="workSteps${i}">
-      <h4>${boardList[i].boardlistTitle}</h4> 
-      <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
-      src="assets/img/icon-add-plus-dark.svg" alt="">
-      </button>
+  <div class="boardlist" id="boardList-0">
+
+  <div class="boardlist-body" id="boardListBody-0">
+
+    <div class="boardlist-card" id="boardListCard${userData[currentUser].tasks[j]['task_id']}" draggable="true">
+
+      <div class="work-category-D" id="workCategoryD">
+      ${userData[currentUser].tasks[j]['category']} 
       </div>
-      <div onclick="openTask(${i}, ${j})" class="work-task-D" draggable="true" id="work-task-D-${i}">
-    <div class="delete-task-D" onclick="deleteTask(${j})">
-    <div class="work-category-D ${task['category']}">
-    ${task['category']}</div>
-    <button> X </button></div>
-    <div class="work-task-headline-D">${task['title']}</div>
-    <div class="work-task-content-D">${task['description']}</div>
-    <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> 
-    <div class="work-user-D">
-    <div class="work-task-user-D ${task['assigned_to']}"> 
-    <span>${task['avatar_initials']}</span>
-      <div class="task-contact-3"></div>
-    </div>
-    <div class="urgency-D" id="urgencyD">
-        <img src="assets/img/prio-low.svg" alt="">
-    </div>
+
+      <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
+
+      <span class="work-task-content-D" id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</span>
+
+      <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+
+      <div class="work-user-D" id="workUserD">
+
+        <span class="work-task-user-D ${userData[currentUser].contacts['avatar_bg_color']}" id="workTaskUserD">
+        
+        ${userData[currentUser].tasks[j]['assign_to_contacts']}
+        </span>
+
+        <span class="work-task-user-D" id="workTaskUserD">
+        ${userData[currentUser].tasks[j]['assign_to_contacts']} 
+        </span>
+
+        <span class="work-task-user-D" id="workTaskUserD">
+        ${userData[currentUser].tasks[j]['assign_to_contacts']} 
+        </span>
+
+        <div class="urgency-D" id="urgencyD">
+
+          <img src="assets/img/prio-low.svg" alt="">
+
+        </div>
+
+      </div>
+
+
     </div>
   </div>
-  </div>
+</div>
 `;
 }
 
@@ -149,6 +166,11 @@ function changeTask() {
     </div>
 `;
 }
+
+
+
+// TODO userData[currentUser].tasks[2] = 'deleted'
+
 
 //TODO BACKEND WURDE ZERSCHOSSEN
 

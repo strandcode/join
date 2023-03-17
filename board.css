@@ -59,7 +59,7 @@ main {
     display: none;
 }
 
-.card-content-D {
+.boardlist-body {
 
     background-color: #f6f7f8;
     display: flex;
@@ -114,7 +114,7 @@ main {
     min-height: 500px;
 }
 
-.work-steps-D {
+.boardlist {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -166,7 +166,7 @@ h4:hover {
     overflow-y: auto;
 }
 
-.work-task-D {
+.boardlist-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,7 +198,7 @@ h4:hover {
     line-height: 120%;
 }
 
-.work-task-category-D {
+.boardlist-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -587,11 +587,11 @@ h4:hover {
 
     }
 
-    .work-steps-D {
+    .boardlist {
         flex-direction: column;
     }
 
-    .work-task-D {
+    .boardlist-card {
         width: 320px;
     }
 
