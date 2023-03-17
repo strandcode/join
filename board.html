@@ -6,11 +6,76 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="board.css">
+  <!-- <link rel="stylesheet" href="board.css"> -->
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban board</title>
   <script src="./mini_backend.js"></script>
   <!-- <script src="drag&drop.js"></script> -->
+  <style>
+    main {
+      flex-direction: column;
+      padding: 50px 30px 0 30px;
+    }
+
+    .board-header {
+      display: flex;
+    }
+
+    .board-header h3 {
+      font-size: 61px;
+      color: var(--darkblue);
+      margin-block-end: 0;
+      margin-block-start: 0;
+    }
+
+    .dragbox {
+      background-color: #f4f4f4;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .image {
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: move;
+    }
+
+    .boardlist-wrapper {
+      width: 300px;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
+
+    .boardlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .small-plus-D {
+      border: none;
+      background: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .work-task-container-D {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .board-boardlist {
+      min-height: 100px;
+    }
+  </style>
 </head>
 
 <body id="home" onload="init();generateBoard()">
@@ -50,16 +115,17 @@
         <!-- NOTE Boardliste mit den Aufgaben-->
         <section class="board-boardlist" id="boardBoardlist-0">
 
-          <div class="dragbox"></div>
-
           <div class="dragbox">
+
+
+            <!-- <div class="dragbox"> -->
 
             <!-- NOTE Hier beginnt die Bordkarte -->
             <div class="image" id="task-0003" draggable="true">
               <div class="work-category-D" id="workCategoryD">
                 Design
               </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Erste Boardcard</h5>
               <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
               <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
               <div class="work-user-D" id="workUserD">
@@ -72,41 +138,17 @@
               </div>
             </div>
           </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Chefsache
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox"></div>
-
         </section>
 
-
-
       </div>
+
+
 
       <!-- NOTE Beginn boardliste 1 -->
       <div class="boardlist-wrapper" id="">
 
         <div class="boardlist-header" id="">
-          <h4>In progress</h4>
+          <h4>To do</h4>
           <button id="smallPlusD" class="small-plus-D" onclick="">
             <img src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
@@ -116,16 +158,16 @@
         <section class="board-boardlist" id="boardBoardlist-0">
 
           <div class="dragbox">
-          </div>
 
-          <div class="dragbox">
+
+            <!-- <div class="dragbox"> -->
 
             <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
+            <div class="image" id="task-0003" draggable="true">
               <div class="work-category-D" id="workCategoryD">
                 Design
               </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Zweite Bordkarte</h5>
               <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
               <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
               <div class="work-user-D" id="workUserD">
@@ -138,169 +180,44 @@
               </div>
             </div>
           </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Chefsache
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox"></div>
-
         </section>
-
-
 
       </div>
 
-      <!-- NOTE Beginn boardliste 2 -->
-      <div class="boardlist-wrapper" id="">
-
-        <div class="boardlist-header" id="">
-          <h4>Awaiting feedback</h4>
-          <button id="smallPlusD" class="small-plus-D" onclick="">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button>
-        </div>
-
-        <!-- NOTE Boardliste mit den Aufgaben-->
-        <section class="board-boardlist" id="boardBoardlist-0">
-
-          <div class="dragbox">
-          </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Design
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Chefsache
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox"></div>
-
-        </section>
-
-
-
-      </div>
-      <!-- NOTE Beginn boardliste 2 -->
-      <div class="boardlist-wrapper" id="">
-
-        <div class="boardlist-header" id="">
-          <h4>Done</h4>
-          <button id="smallPlusD" class="small-plus-D" onclick="">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button>
-        </div>
-
-        <!-- NOTE Boardliste mit den Aufgaben-->
-        <section class="board-boardlist" id="boardBoardlist-0">
-
-          <div class="dragbox">
-          </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Design
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox">
-
-            <!-- NOTE Hier beginnt die Bordkarte -->
-            <div class="image" id="" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Chefsache
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dragbox"></div>
-
-        </section>
-
-
-
-      </div>
     </div>
+
+
   </main>
 
+  <script>
+    function dragstart_handler(ev) {
+      ev.dataTransfer.setData("text/plain", ev.target.id);
+      ev.dropEffect = "move";
+    }
+
+    function dragover_handler(ev) {
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = "move";
+    }
+
+    function drop_handler(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text/plain");
+      ev.target.appendChild(document.getElementById(data));
+    }
+
+    var images = document.querySelectorAll(".image");
+    images.forEach(function (image) {
+      image.addEventListener("dragstart", dragstart_handler);
+    });
+
+    var boardLists = document.querySelectorAll(".board-boardlist");
+    boardLists.forEach(function (boardList) {
+      boardList.addEventListener("dragover", dragover_handler);
+      boardList.addEventListener("drop", drop_handler);
+    });
+
+  </script>
 
   <!-- <div class="work-steps-D" id="workStepsProgress">
       <div class="work-task-category-D">

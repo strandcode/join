@@ -4,7 +4,7 @@
 //  NOTE  STRUKTUR DES ARRAYS   --->  Durch iterieren  ---->    
 
 //  userData[currentUser].board[0]boardlistTasks[0{TASK}]
-let boardCategory = ['workStepsTodo', 'workStepsProgress', 'workStepsFeedback', 'workStepsDone'];
+// let boardCategory = ['workStepsTodo', 'workStepsProgress', 'workStepsFeedback', 'workStepsDone'];
 
 
 async function generateBoard() {
