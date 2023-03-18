@@ -66,10 +66,11 @@
               <span class="work-task-user-D" id="workTaskUserD">U1</span>
               <span class="work-task-user-D" id="workTaskUserD">U2</span>
               <span class="work-task-user-D" id="workTaskUserD">U3</span>
-              <div class="urgency-D" id="urgencyD">
-                <img src="assets/img/prio-low.svg" alt="">
-              </div>
             </div>
+            <div class="urgency-image" id="urgencyImage">
+              <img src="assets/img/prio-low.svg" alt="">
+            </div>
+
 
 
           </div>
@@ -108,7 +109,7 @@
       </div>
       <div class="boardlist" id="boardList-2">
         <div class="boardlist-header" id="boardListHeader-2">
-          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
+          <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
         </div>
@@ -135,7 +136,7 @@
       </div>
       <div class="boardlist" id="boardList-3">
         <div class="boardlist-header" id="boardListHeader-3">
-          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
+          <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
         </div>
@@ -261,9 +262,9 @@
       </div>
     </div>
   </div>
+  <div class="change-task-wrapper d-none" id="changeTaskWrapper"></div>
 
-
-
+  <!-- #################### NOTE CHANGE ADD TASK OVERLAY #################### -->
   <script src="script.js"></script>
   <script src="board.js"></script>
   <script src="add_task.js"></script>
