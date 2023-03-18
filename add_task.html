@@ -25,8 +25,12 @@
   <main class="main-J">
 
     <div class="left-taskfield-J">
-      <h1>Add Task</h1>
-      <span>Board List</span>
+      <div class="span-Boardlist">
+        <h1>Add Task</h1>
+
+        <span>Board List</span>
+      </div>
+
       <select required class="width" name="Select Contacts to assign" placeholder="Select Board List"
         id="taskBoardList">
         <!-- <option disabled selected hidden>Select board list</option>
@@ -52,29 +56,31 @@
 
     </div>
 
+    <div class="black-bar-J"></div>
+
     <!-- ANCHOR - Right-taskfield -->
 
     <div class="right-taskfield-J">
       <span>Assigned to</span>
-      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
- 
+      <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned">
+
 
       </select>
 
       <span>Due date</span>
       <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
 
-        <span>Prio</span>
-        <div class="button-urgent-J">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
-              src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
-              src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
-              src="assets/img/prio-low.svg"></button>
-        </div>
+      <span>Prio</span>
+      <div class="button-urgent-J">
+        <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
+            src="assets/img/prio-urgent.svg"></button>
+        <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
+            src="assets/img/prio-medium.svg"></button>
+        <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
+            src="assets/img/prio-low.svg"></button>
+      </div>
 
-        <!-- <span>Substack</span>
+      <!-- <span>Substack</span>
         <input class="right-taskfield-input substeckinput" placeholder="Add new substack" type="text" name="" id="">
         <div class="ckeckbox-button-J"><input type="checkbox" name="" id=""><span>Substack 1</span></div> -->
 
@@ -85,11 +91,13 @@
       <button onclick="taskClearButton()" class="button button-white mobile-Button-J">Clear<img
           src="assets/img/icon-black-clear.svg"></button>
 
-      <button onclick="addTaskToUser()" class="button button-darkblue">Create Task<img
+      <button onclick="addTaskToUser(); slideInImage()" class="button button-darkblue">Create Task<img
           src="assets/img/icon-white-create.svg"></button>
-
     </div>
 
+    <div id="slideInContainer" class="slide-in-container">
+      <img class="slide-in-image" id="slideInImage" src="assets/img/message-task-added.svg" alt="Slide-in Bild">
+    </div>
 
     <!-- ANCHOR - Mobil Ansicht  -->
 
