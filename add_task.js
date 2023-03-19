@@ -93,6 +93,13 @@ async function addTaskToUser() {
   userData[currentUser].tasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
   initTasks();
+
+  taskButtonUrgent.style.backgroundColor = "";
+  taskButtonUrgent.classList.remove("active");
+  taskButtonMedium.style.backgroundColor = "";
+  taskButtonMedium.classList.remove("active");
+  taskButtonLow.style.backgroundColor = "";
+  taskButtonLow.classList.remove("active");
 }
 
 
@@ -109,7 +116,7 @@ function taskClearButton() {
 }
 
 
-// TODO remove active
+// BUTTON SCRIPT
 function setPriorityUrgent() {
 
   if (!taskButtonUrgent.classList.contains('active')) {
@@ -155,6 +162,15 @@ function setPriorityLow() {
     taskButtonLow.classList.remove("active");
     taskButtonPriority = '';
   }
+}
+
+function slideInImage() {
+  let CreateTaskContainer = document.getElementById("slideInContainer");
+  CreateTaskContainer.classList.add("active");
+
+  setTimeout(function () {
+    window.location.href = "http://127.0.0.1:5500/board.html";
+  }, 500);
 }
 
 

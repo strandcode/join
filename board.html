@@ -43,104 +43,127 @@
     </div>
 
     <div class="work-task-container-D" id="workTaskContainerD">
-      <div class="work-steps-D" id="workStepsTodo">
-        <div class="work-task-category-D" id="workTaskCategoryD">
+      <div class="boardlist" id="boardList-0">
+
+        <div class="boardlist-header" id="boardListHeader-0">
           <h4>To do</h4>
           <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
         </div>
-        <div class="card-content-D" id="cardContentD">
-          <div class="drag-area" ondragleave="drop(event)">
-            <div class="work-task-D" id="workTaskD" draggable="true">
-              <div class="work-category-D" id="workCategoryD">
-                Design
-              </div>
-              <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-              <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-              <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-              <div class="work-user-D" id="workUserD">
-                <span class="work-task-user-D" id="workTaskUserD">U1</span>
-                <span class="work-task-user-D" id="workTaskUserD">U2</span>
-                <span class="work-task-user-D" id="workTaskUserD">U3</span>
-                <div class="urgency-D" id="urgencyD">
-                  <img src="assets/img/prio-low.svg" alt="">
-                </div>
-              </div>
+
+
+        <div class="boardlist-body" id="boardListBody-0">
+
+          <div class="boardlist-card" id="boardListCard-0" draggable="true">
+
+            <div class="work-category-D" id="workCategoryD">
+              Design
             </div>
+            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+            <div class="work-user-D" id="workUserD">
+              <span class="work-task-user-D" id="workTaskUserD">U1</span>
+              <span class="work-task-user-D" id="workTaskUserD">U2</span>
+              <span class="work-task-user-D" id="workTaskUserD">U3</span>
+            </div>
+            <div class="urgency-image" id="urgencyImage">
+              <img src="assets/img/prio-low.svg" alt="">
+            </div>
+
+
+
           </div>
         </div>
       </div>
-      <div class="work-steps-D" id="workStepsProgress">
-        <div class="work-task-category-D">
+
+
+
+
+      <div class="boardlist" id="boardList-1">
+        <div class="boardlist-header" id="boardListHeader-1">
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
-              src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+              src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
-        <div class="work-task-D" ondragover="drop(event)" id="workTaskD" draggable="true">
-          <div class="work-category-D" id="workCategoryD">
-            Design
-          </div>
-          <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-          <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-          <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-          <div class="work-user-D" id="workUserD">
-            <span class="work-task-user-D" id="workTaskUserD">U1</span>
-            <span class="work-task-user-D" id="workTaskUserD">U2</span>
-            <span class="work-task-user-D" id="workTaskUserD">U3</span>
-            <div class="urgency-D" id="urgencyD">
-              <img src="assets/img/prio-low.svg" alt="">
-            </div>
 
+        <div class="boardlist-body" id="boardListBody-1">
+          <div class="boardlist-card" ondragover="drop(event)" id="boardListCard-1" draggable="true">
+            <div class="work-category-D" id="workCategoryD">
+              Design
+            </div>
+            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+            <div class="work-user-D" id="workUserD">
+              <span class="work-task-user-D" id="workTaskUserD">U1</span>
+              <span class="work-task-user-D" id="workTaskUserD">U2</span>
+              <span class="work-task-user-D" id="workTaskUserD">U3</span>
+              <div class="urgency-D" id="urgencyD">
+                <img src="assets/img/prio-low.svg" alt="">
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
-
-
-      <div class="work-steps-D" id="workStepsFeedback">
-        <div class="work-task-category-D">
+      <div class="boardlist" id="boardList-2">
+        <div class="boardlist-header" id="boardListHeader-2">
           <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
-              src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+              src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
-        <div class="work-task-D" id="workTaskD" draggable="true">
-          <div class="work-category-D" id="workCategoryD">
-            Design
-          </div>
-          <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-          <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-          <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-          <div class="work-user-D" id="workUserD">
-            <span class="work-task-user-D" id="workTaskUserD">U1</span>
-            <span class="work-task-user-D" id="workTaskUserD">U2</span>
-            <span class="work-task-user-D" id="workTaskUserD">U3</span>
-            <div class="urgency-D" id="urgencyD">
-              <img src="assets/img/prio-low.svg" alt="">
-            </div>
 
+        <div class="boardlist-body" id="boardListBody-2">
+          <div class="boardlist-card" ondragover="drop(event)" id="boardListCard-2" draggable="true">
+            <div class="work-category-D" id="workCategoryD">
+              Design
+            </div>
+            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+            <div class="work-user-D" id="workUserD">
+              <span class="work-task-user-D" id="workTaskUserD">U1</span>
+              <span class="work-task-user-D" id="workTaskUserD">U2</span>
+              <span class="work-task-user-D" id="workTaskUserD">U3</span>
+              <div class="urgency-D" id="urgencyD">
+                <img src="assets/img/prio-low.svg" alt="">
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
-      <div class="work-steps-D" id="workStepsDone">
-        <div class="work-task-category-D">
+      <div class="boardlist" id="boardList-3">
+        <div class="boardlist-header" id="boardListHeader-3">
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
-              src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+              src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
-        <div class="work-task-D" id="workTaskD" draggable="true">
-          <div class="work-category-sales" id="workCategoryD">
-            Sales
-          </div>
-          <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
-          <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
-          <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-          <div class="work-user-D" id="workUserD">
-            <span class="work-task-user-D" id="workTaskUserD">U1</span>
-            <span class="work-task-user-D" id="workTaskUserD">U2</span>
-            <span class="work-task-user-D" id="workTaskUserD">U3</span>
-            <div class="urgency-D" id="urgencyD">
-              <img src="assets/img/prio-low.svg" alt="">
-            </div>
 
+        <div class="boardlist-body" id="boardListBody-3">
+          <div class="boardlist-card" ondragover="drop(event)" id="boardListCard-3" draggable="true">
+            <div class="work-category-D" id="workCategoryD">
+              Design
+            </div>
+            <h5 id="workTaskHeadlineD" class="work-task-headline-D">Website redesign</h5>
+            <span class="work-task-content-D" id="workTaskContentD"> Modify the contents of the main website...</span>
+            <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+            <div class="work-user-D" id="workUserD">
+              <span class="work-task-user-D" id="workTaskUserD">U1</span>
+              <span class="work-task-user-D" id="workTaskUserD">U2</span>
+              <span class="work-task-user-D" id="workTaskUserD">U3</span>
+              <div class="urgency-D" id="urgencyD">
+                <img src="assets/img/prio-low.svg" alt="">
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
+
+
+
     </div>
   </main>
 
@@ -239,9 +262,9 @@
       </div>
     </div>
   </div>
+  <div class="change-task-wrapper d-none" id="changeTaskWrapper"></div>
 
-
-
+  <!-- #################### NOTE CHANGE ADD TASK OVERLAY #################### -->
   <script src="script.js"></script>
   <script src="board.js"></script>
   <script src="add_task.js"></script>
