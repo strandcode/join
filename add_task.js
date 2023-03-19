@@ -38,15 +38,15 @@ let taskAssignedInitials;
 // TODO Alle Boards abfragen!!
 
 function renderTaskForm() {
+  taskDescription.value = '';
   taskBoardList.innerHTML = ``;
   taskBoardList.innerHTML += `
-  <option disabled selected hidden>Select board list</option>
-        <option value="0">${userData[currentUser].board[0].boardlistTitle}</option>
-        <option value="1">${userData[currentUser].board[1].boardlistTitle}</option>
-        <option value="2">${userData[currentUser].board[2].boardlistTitle}</option>
-        <option value="3">${userData[currentUser].board[3].boardlistTitle}</option>
+    <option disabled selected hidden>Select board list</option>
+    <option value="0">${userData[currentUser].board[0].boardlistTitle}</option>
+    <option value="1">${userData[currentUser].board[1].boardlistTitle}</option>
+    <option value="2">${userData[currentUser].board[2].boardlistTitle}</option>
+    <option value="3">${userData[currentUser].board[3].boardlistTitle}</option>
   `;
-  console.log("Jane is da!!");
 }
 
 
