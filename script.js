@@ -119,7 +119,11 @@ function templateMobileHeader() {
     <a href="index.html">
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
     </a>
-    <img class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
+    <button onclick="addTaskToUser()" class="button button-darkblue">Create
+      <img src="assets/img/icon-white-create.svg">
+    </button>
+
+    <img class="icon-size-49 portrait-blue-ring d-none" src="assets/portraits/profile-jane.webp" alt="">
   `;
 }
 

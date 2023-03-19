@@ -11,6 +11,9 @@ html {
   scroll-behavior: smooth;
   --lightblue: #29ABE2;
   --darkblue: #2A3647;
+  --urgent: #ff3d00;
+  --medium: #ffa800;
+  --low: #7ae229;
 }
 
 body {
