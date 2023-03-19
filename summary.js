@@ -22,23 +22,96 @@ const summaryTasksToDo = document.getElementById('summaryTasksToDo');
 const summaryTasksDone = document.getElementById('summaryTasksDone');
 
 
+// TODO Funktionen noch zusammenfassen
+
 function getQuantityOfBoardTasks() {
   summaryTasksInBoard.innerHTML = sumAllTasksInBoard();
-  summaryTasksToDo.innerHTML = userData[currentUser].board[0].boardlistTasks.length
-  summaryTasksInProgress.innerHTML = userData[currentUser].board[1].boardlistTasks.length;
-  summaryTasksInFeedback.innerHTML = userData[currentUser].board[2].boardlistTasks.length;
-  summaryTasksDone.innerHTML = userData[currentUser].board[3].boardlistTasks.length;
+  summaryTasksToDo.innerHTML = sumAllTasksInToDo();
+  summaryTasksInProgress.innerHTML = sumAllTasksInProgress();
+  summaryTasksInFeedback.innerHTML = sumAllTasksInAwaitingFeedback();
+  summaryTasksDone.innerHTML = sumAllTasksInDone();
+  summaryTasksQuantityUrgent.innerHTML = sumAllUrgentTasks();
+  summaryTasksNextDeadline.innerHTML = 'March 20 2023' // getUpcomingDeadline();
 }
 
+
 function sumAllTasksInBoard() {
-  let quantityOfTasks =
-    (userData[currentUser].board[0].boardlistTasks.length +
-      userData[currentUser].board[1].boardlistTasks.length +
-      userData[currentUser].board[2].boardlistTasks.length +
-      userData[currentUser].board[3].boardlistTasks.length);
-  console.log(quantityOfTasks);
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].task_id) {
+      quantityOfTasks++;
+    }
+  }
   return quantityOfTasks;
 }
+
+function sumAllTasksInToDo() {
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].boardList == '0') {
+      quantityOfTasks++;
+    }
+  }
+  return quantityOfTasks;
+}
+
+function sumAllTasksInProgress() {
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].boardList == '1') {
+      quantityOfTasks++;
+    }
+  }
+  return quantityOfTasks;
+}
+
+function sumAllTasksInAwaitingFeedback() {
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].boardList == '2') {
+      quantityOfTasks++;
+    }
+  }
+  return quantityOfTasks;
+}
+function sumAllTasksInDone() {
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].boardList == '3') {
+      quantityOfTasks++;
+    }
+  }
+  return quantityOfTasks;
+}
+
+function sumAllUrgentTasks() {
+  let quantityOfTasks = 0;
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].prio == 'urgent') {
+      quantityOfTasks++;
+    }
+  }
+  return quantityOfTasks;
+}
+
+
+// TODO 
+function getUpcomingDeadline() {
+  // for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+
+  // }
+
+  let currentDate = new Date();
+  console.log(currentDate);
+  let month = currentDate.getMonth();
+  console.log(month);
+  let deadline = `${month}`;
+  return deadline;
+}
+
+
+
+
 
 function greetUserAtSummary() {
   let welcomePhrase = setWelcomePhraseByDaytime();
