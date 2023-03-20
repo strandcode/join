@@ -199,14 +199,14 @@
     </div>
   </div>
 
-  <!-- #################### NOTE EDIT SLIDE IN ADD TASK OVERLAY #################### -->
+  <!-- #################### NOTE ADD TASK OVERLAY #################### -->
 
-  <div class="slide-in-add-task-wrapper fade-to-gray-overlay d-none" id="slideInAddTaskWrapper">
+  <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
     <div class="slide-in-add-task desktop-slide-in d-none" id="slideInAddTask">
       <!-- ANCHOR - Left - taskfield -->
       <div class="left-taskfield-J">
         <h1>Add Task</h1>
-        <select required class="width" name="Select Contacts to assign" placeholder="Select Board List"
+        <select required class="width board-list-left" name="Select Contacts to assign" placeholder="Select Board List"
           id="taskBoardList">
           <!-- <option disabled selected hidden>Select board list</option>
         <option value="To do">To do</option>
@@ -218,11 +218,11 @@
         <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
 
         <span>Description</span>
-        <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescription"
-          cols="30" rows="10"></textarea>
+        <textarea required class="width descript" placeholder="Enter a Description" name="Description"
+          id="taskDescription" cols="30" rows="10"></textarea>
 
         <span>Category</span>
-        <select name="Category" placeholder="Category" id="taskCategory">
+        <select name="Category" class="category-add" placeholder="Category" id="taskCategory">
           <option aria-placeholder="" disabled selected hidden>Category</option>
           <option value="Backoffice">Backoffice</option>
           <option value="Customer Service">Customer Service</option>
@@ -234,30 +234,31 @@
 
       <div class="right-taskfield-J">
         <span>Assigned to</span>
-        <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
-      </select>
+        <select name="Select Contacts to assign" class="assigned-to-add" placeholder="Select Contacts to assign"
+          id="taskAssigned">
+        </select>
 
-      <span>Due date</span>
-      <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+        <span>Due date</span>
+        <input required class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
 
-          <span>Prio</span>
-          <div class="button-urgent-J">
-            <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
-                src="assets/img/prio-urgent.svg"></button>
-            <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
-                src="assets/img/prio-medium.svg"></button>
-            <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
-                src="assets/img/prio-low.svg"></button>
-          </div>
+        <span>Prio</span>
+        <div class="button-urgent-J">
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
+              src="assets/img/prio-urgent.svg"></button>
+          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
+              src="assets/img/prio-medium.svg"></button>
+          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
+              src="assets/img/prio-low.svg"></button>
+        </div>
 
-          <div class="button-container-J">
-            <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img
-                src="assets/img/icon-black-clear.svg"></button>
+        <div class="button-container-J">
+          <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img
+              src="assets/img/icon-black-clear.svg"></button>
 
-            <button onclick="addTaskToUser()" class="button button-darkblue">Create Task
-              <img src="assets/img/icon-white-create.svg"></button>
+          <button onclick="addTaskToUser()" class="button button-darkblue">Create Task
+            <img src="assets/img/icon-white-create.svg"></button>
 
-          </div>
+        </div>
 
       </div>
     </div>

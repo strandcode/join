@@ -37,10 +37,8 @@ function generateBoardTemplate(i, j) {
       <div class="work-user-D" id="workUserD">
       
 
-        <span class="work-task-user-D ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}" id="workTaskUserD">
-        
-        ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}
-        </span>
+      <span class="avatar-bg-color-task" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
+      ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
 
 
       </div>
@@ -56,16 +54,19 @@ function generateBoardTemplate(i, j) {
 
 function openTask(i, j) {
 
+
+
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
   popupContainer.innerHTML = `
   <div class="work-category-D" id="workCategoryD">
   ${userData[currentUser].tasks[j]['category']} 
+  <div class="close-work-overlay-D">
+  <button onclick="closeWorkTask()">x</button>
   </div>
-    <div class="close-work-overlay-D">
-      <button onclick="closeWorkTask()">x</button>
-    </div>
+  </div>
+   
     <div class="work-overlay-headline-D">${userData[currentUser].tasks[j]['title']}</div>
     <span>${userData[currentUser].tasks[j]['description']}</span>
     <div class="work-overlay-date-D">
@@ -83,21 +84,14 @@ function openTask(i, j) {
         <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
               ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
 
-
-
-
-        <span>${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName}</span>
-        <span>${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
+        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName}${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
         </span>
-      </div>
-      </div>
-
-
-
-      <div class="pop-up-change-button">
+        <div class="pop-up-change-button">
         <button onclick="changeTask(${i}, ${j})">
           <img src="assets/img/summary-pencil.svg" alt="">
         </button>
+      </div>
+    </div>
       </div>
     </div>
   `;
@@ -117,7 +111,7 @@ function changeTask() {
         <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD">
 
         <span>Description</span>
-        <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
+        <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
           cols="30" rows="10"></textarea>
 
         <span>Due date</span>
@@ -134,8 +128,9 @@ function changeTask() {
 
         <div class="right-taskfield-D">
           <span>Assigned to</span>
-          <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD">
-        </select>
+          <select ${userData[currentUser].contacts}class="assigned-change" name="Select Contacts to assign"  placeholder="Select Contacts to assign" id="taskAssignedD">
+          
+        
 
         <div class=" button-container-D">
             <button onclick="confirmChangeTask()" class="button button-darkblue">Ok
@@ -148,21 +143,19 @@ function changeTask() {
 `;
 }
 
-//TODO
+
 function confirmChangeTask(i, j) {
+  document.getElementById('changeTaskWrapper').classList.add('d-none')
+  document.getElementById('workTaskContainerD').classList.remove('d-none');
   let changeTitle = document.getElementById('taskTitleD').value;
   let changeDescription = document.getElementById('taskDescriptionD').value;
   let changeDate = document.getElementById('taskDateD').value;
   let changeAssignedTo = document.getElementById('taskAssignedD').value;
-
-
-
 }
 
 
 // TODO userData[currentUser].tasks[2] = 'deleted'
 //TODO BACKEND WURDE ZERSCHOSSEN
-
 /* async function deleteTask(i, j) {
   userData[currentUser].board[i].boardlistTasks.splice(j, 1);
   await backend.setItem('users', JSON.stringify(userData[currentUser]));
