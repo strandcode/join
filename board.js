@@ -69,12 +69,10 @@ function openTask(i, j) {
       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${userData[currentUser].tasks[j]['date']}</span>
     </div>
     <div class="priority-overlay-D">
-      <b>Priority:</b><span id="prioBoard">${userData[currentUser].tasks[j]['prio']}<img id="prioImg" src=""></span>
+      <b>Priority:</b><span class="prio-color" id="prioBoard">${userData[currentUser].tasks[j]['prio']}<img id="prioImg" src=""></span>
     </div>
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
-
-
       <div class="user-overlay-D">
         <span class="assigned-contact">
         <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
@@ -125,9 +123,6 @@ function changeTask() {
         <div class="right-taskfield-D">
           <span>Assigned to</span>
           <select ${userData[currentUser].contacts}class="assigned-change" name="Select Contacts to assign"  placeholder="Select Contacts to assign" id="taskAssignedD">
-          
-        
-
         <div class=" button-container-D">
             <button onclick="confirmChangeTask()" class="button button-darkblue">Ok
               <img src="assets/img/icon-white-create.svg"></button>
@@ -190,20 +185,22 @@ function filterTasks() {
 
 //ANCHOR - IF Abfrage zur Prio
 
-function priorityBoard() {
-  let priority = document.getElementById('prioBoard').textContent;
+function priorityBoard(j) {
+  let priority = userData[currentUser].tasks[j]['prio'];
 
-
-  if (priority == 'urgent') {
-    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-urgent.svg`);
+  if (userData[currentUser].tasks[j]['prio'] == 'urgent') {
+    document.getElementById('prioImg').src = 'assets/img/prio-urgent.svg';
     document.body.style.backgroundColor = "red";
-  } else if (priority == 'medium') {
-    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-medium.svg`);
+  }
+  if (priority == 'medium') {
+    ddocument.getElementById('prioImg').src = 'assets/img/prio-medium.svg';
     document.body.style.backgroundColor = "yellow";
-  } else if (priority == 'low') {
-    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-low.svg`);
+  }
+  if (priority == 'low') {
+    document.getElementById('prioImg').src = 'assets/img/prio-low.svg';
     document.body.style.backgroundColor = "green";
-  } else {
+  }
+  else {
     document.write('<span>Keine Priorität gesetzt</span>');
   }
 }
