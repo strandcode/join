@@ -8,6 +8,7 @@ async function initSummary() {
   if (currentUserData) {
     greetUserAtSummary();
     getQuantityOfBoardTasks();
+    setNavbarItemActive('.navbar-summary');
   } else {
     console.error('No data found');
   }
@@ -31,7 +32,7 @@ function getQuantityOfBoardTasks() {
   summaryTasksInFeedback.innerHTML = sumAllTasksInAwaitingFeedback();
   summaryTasksDone.innerHTML = sumAllTasksInDone();
   summaryTasksQuantityUrgent.innerHTML = sumAllUrgentTasks();
-  summaryTasksNextDeadline.innerHTML = 'March 20 2023' // getUpcomingDeadline();
+  summaryTasksNextDeadline.innerHTML = getUpcomingDeadline();
 }
 
 
@@ -95,21 +96,22 @@ function sumAllUrgentTasks() {
 }
 
 
-// TODO 
 function getUpcomingDeadline() {
-  // for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-
-  // }
-
   let currentDate = new Date();
-  console.log(currentDate);
-  let month = currentDate.getMonth();
-  console.log(month);
-  let deadline = `${month}`;
-  return deadline;
+  let upcomingDeadline = new Date(userData[currentUser].tasks[0].date); // konvertiert den ersten String-Datumswert in ein tatsächliches Datum
+
+  for (let i = 1; i < userData[currentUser].tasks.length; i++) {
+    let taskDate = new Date(userData[currentUser].tasks[i].date); // konvertiert das Datum von jedem Task in ein tatsächliches Datum
+    if (taskDate < upcomingDeadline) {
+      upcomingDeadline = taskDate;
+    }
+  }
+  if (upcomingDeadline < currentDate) {
+    summaryTasksNextDeadline.style.color = '#ff3d00';
+  }
+  let dateParameter = { year: 'numeric', month: 'long', day: 'numeric' };
+  return upcomingDeadline.toLocaleDateString('en-US', dateParameter); // de-DE Deutschland, en-US für USA
 }
-
-
 
 
 
@@ -136,5 +138,7 @@ function setWelcomePhraseByDaytime() {
   return welcomePhrase;
 }
 
-// TODO get quantity of urgent tasks
-// TODO get next deadline
+
+// referToBoard() {
+//   window.location.href
+// }
