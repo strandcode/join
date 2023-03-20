@@ -5,6 +5,7 @@ async function initContacts() {
   getCurrentUser();
   let currentUserData = userData[currentUser];
   showCurrentUser(currentUser, currentUserData);
+  setNavbarItemActive('.navbar-contacts');
   if (userData[currentUser].contacts.length > 0) {
     renderContactsList();
   } else {

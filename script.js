@@ -76,33 +76,51 @@ function templateDesktopHeader(activeLogin) {
   `;
 }
 
+
+function setNavbarItemActive(classSelector) {
+  let allNavbarItems = document.querySelectorAll('.desktop-navbar-link, .mobile-navbar-link');
+  console.log(allNavbarItems);
+  allNavbarItems.forEach(navbarItem => {
+    navbarItem.classList.remove('navbar-item-active');
+  });
+
+  let navbarItems = document.querySelectorAll(classSelector);
+  console.log(navbarItems);
+  navbarItems.forEach(navbarItem => {
+    navbarItem.classList.add('navbar-item-active');
+  });
+}
+
+
+
+
 function templateDesktopNavbar() {
   let desktopNavbar = document.getElementById('desktopNavbar');
   desktopNavbar.innerHTML = '';
   desktopNavbar.innerHTML += /*html*/ `
     <div class="desktop-navbar-wrapper">
-      <a href="summary.html">
+      <a href="index.html">
         <img class="icon-size-120" src="assets/img/logo-white.svg" alt="Join Logo">
       </a>
       
       <div class="desktop-navbar-top">
-        <a class="desktop-navbar-link" href="summary.html">
+        <a class="desktop-navbar-link navbar-summary" href="summary.html">
         <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
         </a>
-        <a class="desktop-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
+        <a class="desktop-navbar-link navbar-board" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
         alt="">Board</a>
-        <a class="desktop-navbar-link" href="add_task.html"><img class="icon-size-32"
+        <a class="desktop-navbar-link navbar-task" href="add_task.html"><img class="icon-size-32"
         src="assets/img/icon-add-task.svg" alt="">Add task</a>
-        <a class="desktop-navbar-link" href="contacts.html"><img class="icon-size-32"
+        <a class="desktop-navbar-link navbar-contacts" href="contacts.html"><img class="icon-size-32"
         src="assets/img/icon-contacts 13.svg" alt="">Contacts</a>
       </div>
       
       <div class="desktop-navbar-bottom">
-        <a class="desktop-navbar-link" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+        <a class="desktop-navbar-link navbar-legal" href="imprint.html"><img class="icon-size-32" src="assets/img/icon-legal.svg"
         alt="">Legal
         notice
       </a>
-      <a class="desktop-navbar-link" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
+      <a class="desktop-navbar-link navbar-privacy" href="imprint.html#privacy"><img class="icon-size-32" src="assets/img/icon-legal.svg"
       alt="">Privacy
       policy
     </a>
@@ -119,11 +137,10 @@ function templateMobileHeader() {
     <a href="index.html">
       <img class="icon-size-49" src="assets/img/join-logo.svg" alt="Join Logo">
     </a>
-    <button onclick="addTaskToUser()" class="button button-darkblue">Create
+    <button id="mobileHeaderAddTasksToUserButton" onclick="addTaskToUser()" class="button button-darkblue d-none">Create
       <img src="assets/img/icon-white-create.svg">
     </button>
-
-    <img class="icon-size-49 portrait-blue-ring d-none" src="assets/portraits/profile-jane.webp" alt="">
+    <img id="mobileHeaderPortrait" class="icon-size-49 portrait-blue-ring" src="assets/portraits/profile-jane.webp" alt="">
   `;
 }
 
@@ -131,14 +148,17 @@ function templateMobileNavbar() {
   let mobileNavbar = document.getElementById('mobileNavbar');
   mobileNavbar.innerHTML = '';
   mobileNavbar.innerHTML += /*html*/ `
+  <div class="mobile-navbar-link navbar-summary">
+
     <a class="mobile-navbar-link" href="summary.html">
       <img class="icon-size-32" src="assets/img/icon-summary.svg" alt="">Summary
     </a>
-    <a class="mobile-navbar-link" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
+  </div>
+    <a class="mobile-navbar-link navbar-board" href="board.html"><img class="icon-size-32" src="assets/img/Icon-board.svg"
         alt="">Board</a>
-    <a class="mobile-navbar-link" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
+    <a class="mobile-navbar-link navbar-task" href="add_task.html"><img class="icon-size-32" src="assets/img/icon-add-task.svg"
         alt="">Add task</a>
-    <a class="mobile-navbar-link" href="contacts.html"><img class="icon-size-32" src="assets/img/icon-contacts 13.svg"
+    <a class="mobile-navbar-link navbar-contacts" href="contacts.html"><img class="icon-size-32" src="assets/img/icon-contacts 13.svg"
         alt="">Contacts</a>
   `;
 }
@@ -151,32 +171,80 @@ function init() {
   templateMobileNavbar();
 }
 
-// let userDatas = {
-//   "users": [
-//     {
-//       "firstName": "Peter",
-//       "lastName": "Lustig",
-//       "email": "peter@lustig.de",
-//       "password": "test123"
-//     },
-//     {
-//       "firstName": "Hermann",
-//       "lastName": "Paschulke",
-//       "email": "paschulke@test.de",
-//       "password": "test123"
-//     },
-//     {
-//       "firstName": "Berta",
-//       "lastName": "Suttner",
-//       "email": "berta@example.com",
-//       "password": "test456"
-//     },
-//     {
-//       "firstName": "John",
-//       "lastName": "Doe",
-//       "email": "john@doe.com",
-//       "password": "test123"
-//     }
-//   ],
-//   "currentUser": 2
-// }
+
+
+async function addJane() {
+  let newUser = {
+    firstName: 'Jane',
+    LastName: 'Roe',
+    email: 'jane@roe.com',
+    password: 'test123',
+    contacts: [{
+      avatar_bg_color: "#FF7A00",
+      avatar_initials: "JD",
+      email: "john@doe.com",
+      firstName: "John",
+      lastName: "Doe",
+      phone: "+44 457 458 578"
+    }
+    ],
+    tasks: [
+      {
+        task_id: 1,
+        boardList: 0,
+        boardlistPosition: 0,
+        title: "Jane's first task",
+        description: "Check new Join",
+        category: 'Backoffice',
+        assign_to_contacts: [0],
+        date: "2023-03-18",
+        prio: "urgent",
+      },
+      {
+        task_id: 2,
+        boardList: 1,
+        boardlistPosition: 0,
+        title: "Jane's first task",
+        description: "Check new Join",
+        category: 'Backoffice',
+        assign_to_contacts: [0],
+        date: "2023-03-18",
+        prio: "urgent",
+      },
+      {
+        task_id: 3,
+        boardList: 2,
+        boardlistPosition: 0,
+        title: "Jane's first task",
+        description: "Check new Join",
+        category: 'Backoffice',
+        assign_to_contacts: [0],
+        date: "2023-03-18",
+        prio: "low",
+      },
+      {
+        task_id: 4,
+        boardList: 3,
+        boardlistPosition: 0,
+        title: "Jane's first task",
+        description: "Check new Join",
+        category: 'Backoffice',
+        assign_to_contacts: [0],
+        date: "2023-03-18",
+        prio: "urgent",
+      }
+    ],
+    board: [
+      { boardlistTitle: 'To do' },
+      { boardlistTitle: 'In progress' },
+      { boardlistTitle: 'Awaiting Feedback' },
+      { boardlistTitle: 'Done' }
+    ]
+  }
+
+  userData.splice(0, 1, newUser);
+  await backend.setItem('users', JSON.stringify(userData));
+  downloadUserDataFromBackend();
+};
+
+

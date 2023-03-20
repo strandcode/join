@@ -5,6 +5,7 @@ async function initTasks() {
   getCurrentUser();
   let currentUserData = userData[currentUser];
   showCurrentUser(currentUser, currentUserData);
+  setNavbarItemActive('.navbar-task');
   if (userData[currentUser].board) {
     renderTaskForm();
     generateContactDropdown();

@@ -25,6 +25,22 @@ main {
     justify-content: space-between;
 }
 
+.assigned-contact {
+    padding-top: 30px;
+}
+
+.avatar-bg-color {
+    border-radius: 100%;
+    color: white;
+    height: 45px;
+    width: 45px;
+    left: 0px;
+    top: 0px;
+    border-radius: 58px;
+    padding: 10px 8px 10px 8px;
+
+}
+
 .add-task-D {
     color: white;
     background-color: #2A3647;
@@ -32,7 +48,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     padding: 18px 10px;
     gap: 10px;
     width: 137px;

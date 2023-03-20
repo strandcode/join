@@ -8,22 +8,20 @@ async function generateBoard() {
   await downloadFromServer();
   getCurrentUser();
   for (let i = 0; i < userData[currentUser].board.length; i++) {
-    /* const card = document.getElementById(boardCategory[i]); */
     for (let j = 0; j < userData[currentUser].tasks.length; j++) {
       const boardCard = document.getElementById(`boardListBody-${i}`);
-      boardCard.innerHTML += generateBoardTemplate(i, j);
+      let a = i.toString();
+      if (userData[currentUser].tasks[j].boardList == a) {
+        boardCard.innerHTML += generateBoardTemplate(i, j);
+      }
     }
   }
 }
 
-
+/* userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color */
 
 function generateBoardTemplate(i, j) {
   return `    
-  
-
-  
-
     <div class="boardlist-card" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
 
       <div class="work-category-D" id="workCategoryD">
@@ -37,19 +35,14 @@ function generateBoardTemplate(i, j) {
       <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
       <div class="task-user-wrapper" id="taskUserWrapper">
       <div class="work-user-D" id="workUserD">
+      
 
-        <span class="work-task-user-D ${userData[currentUser].contacts['avatar_bg_color']}" id="workTaskUserD">
+        <span class="work-task-user-D ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}" id="workTaskUserD">
         
-        ${userData[currentUser].tasks[j]['assign_to_contacts']}
+        ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}
         </span>
 
-        <span class="work-task-user-D" id="workTaskUserD">
-        ${userData[currentUser].tasks[j]['assign_to_contacts']} 
-        </span>
 
-        <span class="work-task-user-D" id="workTaskUserD">
-        ${userData[currentUser].tasks[j]['assign_to']} 
-        </span>
       </div>
       <div class="urgency-image" id="urgencyImage">
       <img src="assets/img/prio-low.svg" alt="">
@@ -79,7 +72,7 @@ function openTask(i, j) {
       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${userData[currentUser].tasks[j]['date']}</span>
     </div>
     <div class="priority-overlay-D">
-      <b>Priority:</b><span>${userData[currentUser].tasks[j]['prio']}</span><img src="assets/img/priority-urgent.svg" alt="">
+      <b>Priority:</b><span>${userData[currentUser].tasks[j]['prio']}</span>
     </div>
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
@@ -87,14 +80,14 @@ function openTask(i, j) {
 
       <div class="user-overlay-D">
         <span class="assigned-contact">
-        <span>${userData[currentUser].tasks[j]['assign_to']['avatar_bg_color']}
-              ${userData[currentUser].tasks[j]['assign_to']['avatar_initials']}</span>
+        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
+              ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
 
 
 
 
-        <span>${userData[currentUser].tasks[j]['assign_to']['firstName']}</span>
-        <span>${userData[currentUser].tasks[j]['assign_to']['lastName']}</span>
+        <span>${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName}</span>
+        <span>${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
         </span>
       </div>
       </div>
@@ -114,34 +107,34 @@ function changeTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('changeTaskWrapper').classList.remove('d-none');
   let popUp2 = document.getElementById('changeTaskWrapper');
-  popUp2.innerHTML += `
+  popUp2.innerHTML = `
     
       <div class="left-taskfield-D">
       <div class="close-work-overlay-D">
       <button onclick="closeWorkTask()">x</button>
        </div>
         <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
+        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD">
 
         <span>Description</span>
-        <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescription"
+        <textarea required class="width" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
           cols="30" rows="10"></textarea>
 
         <span>Due date</span>
-        <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+        <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD">
         <span>Prio</span>
         <div class=" button-urgent-J">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgentD" class="urgent-J">Urgent<img
               src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
+          <button onclick="setPriorityMedium()" id="taskButtonMediumD" class="medium-J">Medium<img
               src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
+          <button onclick="setPriorityLow()" id="taskButtonLowD" class="low-J">Low<img
               src="assets/img/prio-low.svg"></button>
         </div>
 
         <div class="right-taskfield-D">
           <span>Assigned to</span>
-          <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" ">
+          <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD">
         </select>
 
         <div class=" button-container-D">
@@ -153,6 +146,17 @@ function changeTask() {
   </div>
   </div>
 `;
+}
+
+//TODO
+function confirmChangeTask(i, j) {
+  let changeTitle = document.getElementById('taskTitleD').value;
+  let changeDescription = document.getElementById('taskDescriptionD').value;
+  let changeDate = document.getElementById('taskDateD').value;
+  let changeAssignedTo = document.getElementById('taskAssignedD').value;
+
+
+
 }
 
 
@@ -180,19 +184,17 @@ function closeWorkTask() {
   document.getElementById('changeTaskWrapper').classList.add('d-none');
 }
 
-//TODO suchfunktion ab ändern
-/* function filterTasks() {
+
+function filterTasks() {
   let search = document.getElementById('findTaskD').value.toLowerCase();
   let workTaskContainer = document.getElementById('workTaskContainerD');
   workTaskContainer.innerHTML = '';
   for (let i = 0; i < userData[currentUser].board.length; i++) {
-    let board = userData[currentUser].board[i];
-    for (let j = 0; j < board.boardlistTasks.length; j++) {
-      let task = board.boardlistTasks[j];
+    for (let j = 0; j < userData[currentUser].tasks.length; j++) {
+      let task = userData[currentUser].tasks[j];
       if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
-        // TODO toString().toLowerCase() nochmal nachlesen
-        workTaskContainer.innerHTML += generateBoardTemplate(i, j, task);
+        workTaskContainer.innerHTML += generateBoardTemplate(i, j);
       }
     }
   }
-} */
+} 
