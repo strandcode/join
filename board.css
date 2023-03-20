@@ -29,6 +29,15 @@ main {
     padding-top: 30px;
 }
 
+.priority-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 0.25em 0.5em;
+    font-weight: bold;
+}
+
 .avatar-bg-color {
     border-radius: 100%;
     color: white;
@@ -38,7 +47,109 @@ main {
     top: 0px;
     border-radius: 58px;
     padding: 10px 8px 10px 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+}
 
+.button-container-J {
+    display: flex;
+    gap: 12px;
+    padding-top: 50px;
+}
+
+.button-urgent-J {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.board-list-left {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.right-taskfield-input {
+    border: none;
+}
+
+.urgent-J {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: all 125ms ease-in-out;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 10px;
+    font-family: "Inter";
+}
+
+.low-J {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: all 125ms ease-in-out;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 10px;
+    font-family: "Inter";
+}
+
+.medium-J {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    transition: all 125ms ease-in-out;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 10px;
+    font-family: "Inter";
+}
+
+.urgent-J .avatar-bg-color-task {
+    border-radius: 100%;
+    color: white;
+    left: 0px;
+    top: 0px;
+    border-radius: 58px;
+    padding: 10px 8px 10px 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+
+}
+
+.avatar-bg-color-task {
+    border-radius: 100%;
+    color: white;
+    height: 30px;
+    align-items: item;
+    align-items: center;
+    display: flex;
+    width: 30px;
+    justify-content: center;
 }
 
 .add-task-D {
@@ -221,13 +332,14 @@ h4:hover {
 
 .work-user-D {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .work-task-user-D {
     box-sizing: border-box;
     display: flex;
-
     align-items: center;
     padding: 10px 8px;
     gap: 10px;
@@ -362,6 +474,82 @@ h4:hover {
     color: #000000;
 }
 
+.input-title-J {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.assigned-to-add {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+
+}
+
+.right-taskfield-input-date {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+
+}
+
+.assigned-change {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    width: 100%;
+
+}
+
+.descript {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 18px 21px;
+    gap: 10px;
+    isolation: isolate;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+.category-add {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
 .pop-up-2-input-title {
     box-sizing: border-box;
     /* Auto layout */
@@ -461,6 +649,39 @@ h4:hover {
     justify-content: center;
     display: flex;
 }
+
+.first-name {
+    width: 161px;
+    height: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+    text-align: center;
+}
+
+.left-taskfield-J {
+    /* max-width: 500px; */
+    display: flex;
+    flex-direction: column;
+    /* max-width: 500px; */
+    width: 800px;
+    gap: 12px;
+    padding: 30px;
+}
+
+.right-taskfield-J {
+    /* max-width: 500px; */
+    display: flex;
+    flex-direction: column;
+    /* max-width: 500px; */
+    width: 800px;
+    gap: 12px;
+    padding: 30px;
+}
+
+
 
 .left-taskfield-D2 {
     display: flex;
@@ -629,6 +850,7 @@ h4:hover {
     border-radius: 30px;
     justify-content: center;
     align-items: center;
+    width: 800px;
 
 
 }
@@ -753,7 +975,6 @@ h4:hover {
     .pop-up-task-D {
         display: flex;
         flex-direction: column;
-        /* Änderung: Elemente zentrieren */
         padding: 50px;
         gap: 25px;
         position: absolute;
@@ -763,6 +984,24 @@ h4:hover {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .pop-up-change-button {
+        background: #2A3647;
+        border-radius: 10px;
+        z-index: 10;
+        /* background-color: transparent; */
+    }
+
+    .assigned-contact {
+        display: flex;
+        align-items: center;
+    }
+
+    .first-name {
+        display: flex;
+        width: 123px;
+
     }
 
 }
