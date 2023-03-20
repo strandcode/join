@@ -44,7 +44,7 @@
           <div class="add-task-form-item">
             <span>Prio</span>
             <div class="prio-button-wrapper">
-              <button nclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent
+              <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent
                 <img src="assets/img/prio-urgent.svg">
               </button>
               <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium
@@ -87,14 +87,17 @@
           </div>
 
           <div class="add-task-form-item-buttons">
-            <button onclick="taskClearButton()" class="button button-white">Clear
+            <button onclick="taskClearButton() " class="button button-white">Clear
               <img src="assets/img/icon-black-clear.svg">
             </button>
 
-            <button onclick="addTaskToUser()" class="button button-darkblue">Create Task
+            <button onclick="addTaskToUser(); slideInImage();" class="button button-darkblue">Create Task
               <img src="assets/img/icon-white-create.svg">
             </button>
 
+          </div>
+          <div class="slide-in-container" id="slideInContainer">
+            <img class="slide-in-image" id="slideInImage" src="assets/img/message-task-added.svg" alt="Slide-in Bild">
           </div>
         </div>
       </form>

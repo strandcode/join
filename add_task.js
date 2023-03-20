@@ -169,8 +169,8 @@ function slideInImage() {
   CreateTaskContainer.classList.add("active");
 
   setTimeout(function () {
-    window.location.href = "http://127.0.0.1:5500/board.html";
-  }, 500);
+    window.location.href = "board.html";
+  }, 1500);
 }
 
 
