@@ -195,13 +195,13 @@ function priorityBoard() {
 
 
   if (priority == 'urgent') {
-    document.getElementById("prioImg").src = "assets/img/prio-urgent.svg";
+    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-urgent.svg`);
     document.body.style.backgroundColor = "red";
   } else if (priority == 'medium') {
-    document.getElementById("prioImg").src = "assets/img/prio-medium.svg";
+    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-medium.svg`);
     document.body.style.backgroundColor = "yellow";
   } else if (priority == 'low') {
-    document.getElementById("prioImg").src = "assets/img/prio-low.svg";
+    document.getElementById("prioImg").setAttribute('src', `assets/img/prio-low.svg`);
     document.body.style.backgroundColor = "green";
   } else {
     document.write('<span>Keine Priorität gesetzt</span>');
