@@ -139,6 +139,6 @@ function setWelcomePhraseByDaytime() {
 }
 
 
-// referToBoard() {
-//   window.location.href
-// }
+function referToBoard() {
+  window.location.href = "board.html";
+}
