@@ -731,12 +731,12 @@ h4:hover {
 
 .button-container-D {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: baseline;
     gap: 25px;
     width: 100%;
-    padding-top: 60px;
+    padding-top: 30px;
+
 }
 
 .work-category-backoffice {

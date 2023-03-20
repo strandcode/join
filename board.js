@@ -49,9 +49,6 @@ function generateBoardTemplate(i, j) {
 }
 
 function openTask(i, j) {
-
-
-
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
@@ -62,7 +59,6 @@ function openTask(i, j) {
   <button onclick="closeWorkTask()">x</button>
   </div>
   </div>
-   
     <div class="work-overlay-headline-D">${userData[currentUser].tasks[j]['title']}</div>
     <span>${userData[currentUser].tasks[j]['description']}</span>
     <div class="work-overlay-date-D">
@@ -91,7 +87,7 @@ function openTask(i, j) {
   `;
 }
 
-function changeTask() {
+function changeTask(i, j) {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('changeTaskWrapper').classList.remove('d-none');
   let popUp2 = document.getElementById('changeTaskWrapper');
@@ -102,7 +98,7 @@ function changeTask() {
       <button onclick="closeWorkTask()">x</button>
        </div>
         <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD">
+        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${i}">
 
         <span>Description</span>
         <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
@@ -119,29 +115,35 @@ function changeTask() {
           <button onclick="setPriorityLow()" id="taskButtonLowD" class="low-J">Low<img
               src="assets/img/prio-low.svg"></button>
         </div>
-
+     
         <div class="right-taskfield-D">
           <span>Assigned to</span>
-          <select ${userData[currentUser].contacts}class="assigned-change" name="Select Contacts to assign"  placeholder="Select Contacts to assign" id="taskAssignedD">
-        <div class=" button-container-D">
-            <button onclick="confirmChangeTask()" class="button button-darkblue">Ok
-              <img src="assets/img/icon-white-create.svg"></button>
-        </div>
+          <select class="assigned-change" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD"> 
+          </select>
+          <div class="button-container-D">
+          <button onclick="confirmChangeTask()" class="button button-darkblue">Ok
+            <img src="assets/img/icon-white-create.svg"></button>
       </div>
+      </div>
+    
+      
     </div>
+    
   </div>
   </div>
 `;
 }
 
-
+//TODO - 
 function confirmChangeTask(i, j) {
   document.getElementById('changeTaskWrapper').classList.add('d-none')
   document.getElementById('workTaskContainerD').classList.remove('d-none');
-  let changeTitle = document.getElementById('taskTitleD').value;
+  let changeTitle = document.getElementById(`taskTitleD${j}`).value;
   let changeDescription = document.getElementById('taskDescriptionD').value;
   let changeDate = document.getElementById('taskDateD').value;
   let changeAssignedTo = document.getElementById('taskAssignedD').value;
+
+  changeTitle.value = `${userData[currentUser].tasks[j]['title']}`;
 }
 
 
@@ -176,12 +178,18 @@ function filterTasks() {
   for (let i = 0; i < userData[currentUser].board.length; i++) {
     for (let j = 0; j < userData[currentUser].tasks.length; j++) {
       let task = userData[currentUser].tasks[j];
-      if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
-        workTaskContainer.innerHTML += generateBoardTemplate(i, j);
+      let a = i.toString();
+      if (task.boardList == a) {
+        if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
+          workTaskContainer.innerHTML += generateBoardTemplate(i, j);
+
+        }
+
       }
     }
   }
 }
+
 
 //ANCHOR - IF Abfrage zur Prio
 
