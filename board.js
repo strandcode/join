@@ -73,7 +73,7 @@ function openTask(i, j) {
       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${userData[currentUser].tasks[j]['date']}</span>
     </div>
     <div class="priority-overlay-D">
-      <b>Priority:</b><span>${userData[currentUser].tasks[j]['prio']}</span>
+      <b>Priority:</b><span id="prioBoard">${userData[currentUser].tasks[j]['prio']}<img id="prioImg" src=""></span>
     </div>
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
@@ -190,4 +190,24 @@ function filterTasks() {
       }
     }
   }
-} 
+}
+
+//ANCHOR - IF Abfrage zur Prio
+
+function priorityBoard() {
+  let priority = document.getElementById('prioBoard').textContent;
+
+
+  if (priority == 'urgent') {
+    document.getElementById("prioImg").src = "assets/img/prio-urgent.svg";
+    document.body.style.backgroundColor = "red";
+  } else if (priority == 'medium') {
+    document.getElementById("prioImg").src = "assets/img/prio-medium.svg";
+    document.body.style.backgroundColor = "yellow";
+  } else if (priority == 'low') {
+    document.getElementById("prioImg").src = "assets/img/prio-low.svg";
+    document.body.style.backgroundColor = "green";
+  } else {
+    document.write('<span>Keine Priorität gesetzt</span>');
+  }
+}
