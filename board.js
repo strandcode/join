@@ -1,7 +1,3 @@
-let boardCategory = ['workStepsTodo', 'workStepsProgress', 'workStepsFeedback', 'workStepsDone'];
-
-
-
 
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');

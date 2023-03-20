@@ -145,7 +145,11 @@ main {
     border-radius: 100%;
     color: white;
     height: 30px;
+    align-items: item;
+    align-items: center;
+    display: flex;
     width: 30px;
+    justify-content: center;
 }
 
 .add-task-D {
