@@ -331,6 +331,7 @@ h4:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
 }
 
 .work-user-D {
@@ -539,6 +540,7 @@ h4:hover {
     background: #FFFFFF;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
+    resize: none;
 }
 
 .category-add {
@@ -996,7 +998,15 @@ h4:hover {
         border-radius: 30px;
         top: 50%;
         left: 50%;
+        width: 100%;
         transform: translate(-50%, -50%);
+        height: 80%;
+        /* font-family: Inter; */
+        /* font-size: 36px; */
+        /* font-weight: 700; */
+        /* line-height: 43px; */
+        /* letter-spacing: 0em; */
+        /* text-align: left; */
     }
 
     .pop-up-change-button {
@@ -1014,6 +1024,29 @@ h4:hover {
     .first-name {
         display: flex;
         width: 123px;
+
+    }
+
+    .change-task-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        gap: 25px;
+        position: absolute;
+        background: #FFFFFF;
+        box-shadow: unset;
+        border-radius: 30px;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        height: 80%;
+        /* font-family: Inter; */
+        /* font-size: 36px; */
+        /* font-weight: 700; */
+        /* line-height: 43px; */
+        /* letter-spacing: 0em; */
+        /* text-align: left; */
 
     }
 

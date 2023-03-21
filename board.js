@@ -55,12 +55,14 @@ function openTask(i, j) {
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
   popupContainer.innerHTML = `
+  
   <div class="work-category-D" id="workCategoryD">
   ${userData[currentUser].tasks[j]['category']} 
   <div class="close-work-overlay-D">
   <button onclick="closeWorkTask()">x</button>
   </div>
   </div>
+
     <div class="work-overlay-headline-D">${userData[currentUser].tasks[j]['title']}</div>
     <span>${userData[currentUser].tasks[j]['description']}</span>
     <div class="work-overlay-date-D">
@@ -115,12 +117,12 @@ function changeTask(i, j) {
         <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
         value="${userData[currentUser].tasks[j].date}">
         <span>Prio</span>
-        <div class=" button-urgent-J">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgentD" class="urgent-J">Urgent<img
+        <div class="prio-button-wrapper">
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgentD" class="prio-button-urgent">Urgent<img
               src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMediumD" class="medium-J">Medium<img
+          <button onclick="setPriorityMedium()" id="taskButtonMediumD" class="prio-button-medium">Medium<img
               src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLowD" class="low-J">Low<img
+          <button onclick="setPriorityLow()" id="taskButtonLowD" class="prio-button-low">Low<img
               src="assets/img/prio-low.svg"></button>
         </div>
 
