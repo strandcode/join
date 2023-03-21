@@ -158,6 +158,8 @@ main {
   height: auto;
 }
 
+
+
 @media screen and (min-width: 910px) {
   main {
     padding: 50px;
@@ -177,4 +179,5 @@ main {
   .add-task-form-item-buttons {
     display: flex;
   }
+
 }

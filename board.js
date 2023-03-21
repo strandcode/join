@@ -41,7 +41,7 @@ function generateBoardTemplate(i, j) {
 
       </div>
       <div class="urgency-image" id="urgencyImage">
-      <img src="assets/img/prio-low.svg" alt="">
+      <img id="prioImg2" src="" alt="">
     </div>
       </div>
     </div>
@@ -210,11 +210,14 @@ function priorityBoard(j) {
 
   if (priority == 'urgent') {
     document.getElementById('prioImg').src = 'assets/img/priority-urgent.svg';
+    document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
   }
   if (priority == 'medium') {
     ddocument.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
+    document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
   }
   if (priority == 'low') {
     document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
+    document.getElementById('prioImg2').src = 'assets/img/prio-low.svg';
   }
 }
