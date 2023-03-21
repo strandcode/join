@@ -7,10 +7,10 @@ async function generateBoard() {
     const boardCard = document.getElementById(`boardListBody-${i}`);
     boardCard.innerHTML = ``;
     for (let j = 0; j < userData[currentUser].tasks.length; j++) {
-
       let a = i.toString();
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
+
       }
     }
   }
@@ -19,11 +19,12 @@ async function generateBoard() {
 /* userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color */
 
 function generateBoardTemplate(i, j) {
+
   return `    
     <div class="boardlist-card" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
 
       <div class="work-category-D" id="workCategoryD">
-      ${userData[currentUser].tasks[j]['category']} 
+     ${userData[currentUser].tasks[j]['category']} 
       </div>
 
       <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
@@ -35,9 +36,8 @@ function generateBoardTemplate(i, j) {
       <div class="work-user-D" id="workUserD">
       
 
-      <span class="avatar-bg-color-task" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
-      ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
-
+       <span class="avatar-bg-color-task" style="background-color:${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
+      ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span> 
 
       </div>
       <div class="urgency-image" id="urgencyImage">
@@ -108,8 +108,8 @@ function changeTask(i, j) {
         value="${userData[currentUser].tasks[j].title}">
 
         <span>Description</span>
-        <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD${j}"
-        value="${userData[currentUser].tasks[j].description}"  cols="30" rows="10"></textarea>
+        <textarea required class="width descript" name="Description" id="taskDescriptionD${j}"
+        value="${userData[currentUser].tasks[j].description}"cols="30" rows="10"></textarea>
 
         <span>Due date</span>
         <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
@@ -126,7 +126,13 @@ function changeTask(i, j) {
 
         <div class="right-taskfield-D">
           <span>Assigned to</span>
-          <select class="assigned-change" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
+          <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
+          <option value="" disabled selected>Select Contacts to assign</option>
+            <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
+
+
+            <option value="${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}">${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}</option>
+          
           </select>
           <div class="button-container-D">
           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
@@ -146,9 +152,9 @@ function confirmChangeTask(i, j) {
   document.getElementById('workTaskContainerD').classList.remove('d-none');
   // FIXME change to j
   let changeTitle = document.getElementById(`taskTitleD${j}`);
-  let changeDescription = document.getElementById(`taskDescriptionD${j}`).value;
-  let changeDate = document.getElementById(`taskDateD${j}`).value;
-  let changeAssignedTo = document.getElementById(`taskAssignedD${j}`).value;
+  let changeDescription = document.getElementById(`taskDescriptionD${j}`);
+  let changeDate = document.getElementById(`taskDateD${j}`);
+  let changeAssignedTo = document.getElementById(`taskAssignedD${j}`);
 
 
   userData[currentUser].tasks[j].title = changeTitle.value;
@@ -172,6 +178,8 @@ function slideInAddTask() {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
   document.getElementById('slideInAddTask').classList.remove('d-none')
 }
+
+
 function cancelButton() {
   document.getElementById('slideInAddTaskWrapper').classList.add('d-none')
   document.getElementById('slideInAddTask').classList.add('d-none')
@@ -181,6 +189,9 @@ function closeWorkTask() {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('workTaskContainerD').classList.remove('d-none');
   document.getElementById('changeTaskWrapper').classList.add('d-none');
+}
+function addTaskToUser() {
+  document.getElementById('slideInAddTaskWrapper').classList.add('d-none');
 }
 
 
@@ -200,8 +211,6 @@ function filterTasks() {
     }
   }
 }
-
-
 //ANCHOR - IF Abfrage zur Prio
 
 function priorityBoard(j) {
@@ -219,5 +228,20 @@ function priorityBoard(j) {
   if (priority == 'low') {
     document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
     document.getElementById('prioImg2').src = 'assets/img/prio-low.svg';
+  }
+}
+
+//TODO - 
+function categoryColor(j) {
+  let labelColor = document.getElementById('workCategoryD');
+
+  if (labelColor == 'Backoffice') {
+    document.getElementById('workCategoryD').classList.add('backoffice')
+  }
+  if (labelColor == 'Customer Service') {
+    document.getElementById('workCategoryD').classList.add('customer-service ')
+  }
+  if (labelColor == 'Warehouse') {
+    document.getElementById('workCategoryD').classList.add('warehouse')
   }
 }
