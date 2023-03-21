@@ -213,7 +213,7 @@ function priorityBoard(j) {
     document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
   }
   if (priority == 'medium') {
-    ddocument.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
+    document.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
     document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
   }
   if (priority == 'low') {
