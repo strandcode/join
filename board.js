@@ -4,8 +4,10 @@ async function generateBoard() {
   await downloadFromServer();
   getCurrentUser();
   for (let i = 0; i < userData[currentUser].board.length; i++) {
+    const boardCard = document.getElementById(`boardListBody-${i}`);
+    boardCard.innerHTML = ``;
     for (let j = 0; j < userData[currentUser].tasks.length; j++) {
-      const boardCard = document.getElementById(`boardListBody-${i}`);
+
       let a = i.toString();
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
@@ -65,7 +67,7 @@ function openTask(i, j) {
       <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">${userData[currentUser].tasks[j]['date']}</span>
     </div>
     <div class="priority-overlay-D">
-      <b>Priority:</b><span class="prio-color" id="prioBoard">${userData[currentUser].tasks[j]['prio']}<img id="prioImg" src=""></span>
+      <b>Priority:</b><span class="prio-color" id="prioBoard"><img id="prioImg" src=""></span>
     </div>
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
@@ -74,7 +76,7 @@ function openTask(i, j) {
         <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
               ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
 
-        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName}${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
+        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName} ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
         </span>
         <div class="pop-up-change-button">
         <button onclick="changeTask(${i}, ${j})">
@@ -85,6 +87,7 @@ function openTask(i, j) {
       </div>
     </div>
   `;
+  priorityBoard(j);
 }
 
 
@@ -101,15 +104,16 @@ function changeTask(i, j) {
       <button onclick="closeWorkTask()">x</button>
        </div>
         <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD2" 
+        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${j}" 
         value="${userData[currentUser].tasks[j].title}">
 
         <span>Description</span>
-        <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
-          cols="30" rows="10"></textarea>
+        <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD${j}"
+        value="${userData[currentUser].tasks[j].description}"  cols="30" rows="10"></textarea>
 
         <span>Due date</span>
-        <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD">
+        <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
+        value="${userData[currentUser].tasks[j].date}">
         <span>Prio</span>
         <div class=" button-urgent-J">
           <button onclick="setPriorityUrgent()" id="taskButtonUrgentD" class="urgent-J">Urgent<img
@@ -119,20 +123,18 @@ function changeTask(i, j) {
           <button onclick="setPriorityLow()" id="taskButtonLowD" class="low-J">Low<img
               src="assets/img/prio-low.svg"></button>
         </div>
-     
+
         <div class="right-taskfield-D">
           <span>Assigned to</span>
-          <select class="assigned-change" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD"> 
+          <select class="assigned-change" name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
           </select>
           <div class="button-container-D">
-          <button onclick="confirmChangeTask()" class="button button-darkblue">Ok
+          <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
             <img src="assets/img/icon-white-create.svg"></button>
       </div>
+
       </div>
-    
-      
     </div>
-    
   </div>
   </div>
 `;
@@ -143,16 +145,18 @@ function confirmChangeTask(i, j) {
   document.getElementById('changeTaskWrapper').classList.add('d-none')
   document.getElementById('workTaskContainerD').classList.remove('d-none');
   // FIXME change to j
-  let changeTitle = document.getElementById(`taskTitleD2`);
-  let changeDescription = document.getElementById('taskDescriptionD').value;
-  let changeDate = document.getElementById('taskDateD').value;
-  let changeAssignedTo = document.getElementById('taskAssignedD').value;
-  console.log(changeTitle);
-  console.log(changeTitle.value);
-  // FIXME change to j
-  userData[currentUser].tasks[2].title = changeTitle.value;
+  let changeTitle = document.getElementById(`taskTitleD${j}`);
+  let changeDescription = document.getElementById(`taskDescriptionD${j}`).value;
+  let changeDate = document.getElementById(`taskDateD${j}`).value;
+  let changeAssignedTo = document.getElementById(`taskAssignedD${j}`).value;
+
+
+  userData[currentUser].tasks[j].title = changeTitle.value;
+  userData[currentUser].tasks[j].description = changeDescription.value;
+  userData[currentUser].tasks[j].date = changeDate.value;
+  userData[currentUser].tasks[j].assign_to_contacts = changeAssignedTo.value;
   saveToBackend();
-  setTimeout(generateBoard, 1000);
+  setTimeout(generateBoard, 500);
 }
 
 
@@ -191,9 +195,7 @@ function filterTasks() {
       if (task.boardList == a) {
         if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
           workTaskContainer.innerHTML += generateBoardTemplate(i, j);
-
         }
-
       }
     }
   }
@@ -205,19 +207,14 @@ function filterTasks() {
 function priorityBoard(j) {
   let priority = userData[currentUser].tasks[j]['prio'];
 
-  if (userData[currentUser].tasks[j]['prio'] == 'urgent') {
-    document.getElementById('prioImg').src = 'assets/img/prio-urgent.svg';
-    document.body.style.backgroundColor = "red";
+
+  if (priority == 'urgent') {
+    document.getElementById('prioImg').src = 'assets/img/priority-urgent.svg';
   }
   if (priority == 'medium') {
-    ddocument.getElementById('prioImg').src = 'assets/img/prio-medium.svg';
-    document.body.style.backgroundColor = "yellow";
+    ddocument.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
   }
   if (priority == 'low') {
-    document.getElementById('prioImg').src = 'assets/img/prio-low.svg';
-    document.body.style.backgroundColor = "green";
-  }
-  else {
-    document.write('<span>Keine Priorität gesetzt</span>');
+    document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
   }
 }
