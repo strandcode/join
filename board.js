@@ -87,18 +87,22 @@ function openTask(i, j) {
   `;
 }
 
+
+
+
 function changeTask(i, j) {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('changeTaskWrapper').classList.remove('d-none');
   let popUp2 = document.getElementById('changeTaskWrapper');
-  popUp2.innerHTML = `
+  popUp2.innerHTML = /*html*/ `
     
       <div class="left-taskfield-D">
       <div class="close-work-overlay-D">
       <button onclick="closeWorkTask()">x</button>
        </div>
         <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${i}">
+        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD2" 
+        value="${userData[currentUser].tasks[j].title}">
 
         <span>Description</span>
         <textarea required class="width descript" placeholder="Enter a Description" name="Description" id="taskDescriptionD"
@@ -138,12 +142,17 @@ function changeTask(i, j) {
 function confirmChangeTask(i, j) {
   document.getElementById('changeTaskWrapper').classList.add('d-none')
   document.getElementById('workTaskContainerD').classList.remove('d-none');
-  let changeTitle = document.getElementById(`taskTitleD${j}`).value;
+  // FIXME change to j
+  let changeTitle = document.getElementById(`taskTitleD2`);
   let changeDescription = document.getElementById('taskDescriptionD').value;
   let changeDate = document.getElementById('taskDateD').value;
   let changeAssignedTo = document.getElementById('taskAssignedD').value;
-
-  changeTitle.value = `${userData[currentUser].tasks[j]['title']}`;
+  console.log(changeTitle);
+  console.log(changeTitle.value);
+  // FIXME change to j
+  userData[currentUser].tasks[2].title = changeTitle.value;
+  saveToBackend();
+  setTimeout(generateBoard, 1000);
 }
 
 
