@@ -31,9 +31,9 @@ let taskButtonPriority = '';
 
 
 // value Hermann Paschule 
-const taskAssigned = 0; //TODO - 
-let taskAssignedColor;
-let taskAssignedInitials;
+const taskAssigned = document.getElementById('taskAssigned').value;
+//TODO - 
+
 
 
 // TODO Alle Boards abfragen!!
@@ -64,18 +64,19 @@ function generateContactDropdown() {
 
     const contactsOptions = document.getElementById('taskAssigned');
     contactsOptions.innerHTML += `
-    <option value="${i}">
+    <option data-contact-index="${i}">
       ${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}
     </option>
   `;
-    taskAssignedColor = userData[currentUser].contacts[i].avatar_bg_color;
-    taskAssignedInitials = userData[currentUser].contacts[i].avatar_initials;
   }
 
 }
 
 
 async function addTaskToUser() {
+
+  const assignedToContactsDropdown = document.getElementById('taskAssigned');
+  const assignedToIndex = assignedToContactsDropdown.selectedIndex;
 
   let newTask = {
     task_id: userData[currentUser].tasks.length,
@@ -84,8 +85,7 @@ async function addTaskToUser() {
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
-    assign_to_contacts: [taskAssigned],
-    //TODO assign_to_contacts: [parseInt(taskAssigned.value)],
+    assign_to_contacts: assignedToIndex,
     date: taskDate.value,
     prio: taskButtonPriority,
   }
