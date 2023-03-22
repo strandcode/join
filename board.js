@@ -1,3 +1,4 @@
+let currentDraggedTask;
 
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
@@ -10,18 +11,15 @@ async function generateBoard() {
       let a = i.toString();
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
-
       }
     }
   }
 }
 
-/* userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color */
-
 function generateBoardTemplate(i, j) {
 
   return `    
-    <div class="boardlist-card" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
+    <div class="boardlist-card" ondragstart="startDragging(${i},${j})" draggable="true" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
 
       <div class="work-category-D" id="workCategoryD">
      ${userData[currentUser].tasks[j]['category']} 
@@ -31,7 +29,7 @@ function generateBoardTemplate(i, j) {
 
       <span class="work-task-content-D" id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</span>
 
-      <span><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+      <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
       <div class="task-user-wrapper" id="taskUserWrapper">
       <div class="work-user-D" id="workUserD">
       
@@ -45,10 +43,19 @@ function generateBoardTemplate(i, j) {
     </div>
       </div>
     </div>
-  </div>
-</div>
-`;
-  priorityBoard(j);
+    </div>
+    </div>
+    `;
+
+}
+function startDragging(id) {
+  currentDraggedTask = id;
+}
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function moveTo() {
+
 }
 
 function openTask(i, j) {
