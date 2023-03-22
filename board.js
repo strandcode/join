@@ -148,11 +148,10 @@ function changeTask(i, j) {
 `;
 }
 
-//TODO - 
+
 function confirmChangeTask(i, j) {
   document.getElementById('changeTaskWrapper').classList.add('d-none')
   document.getElementById('workTaskContainerD').classList.remove('d-none');
-  // FIXME change to j
   let changeTitle = document.getElementById(`taskTitleD${j}`);
   let changeDescription = document.getElementById(`taskDescriptionD${j}`);
   let changeDate = document.getElementById(`taskDateD${j}`);
@@ -176,9 +175,60 @@ function confirmChangeTask(i, j) {
   downloadUserDataFromBackend();
 } */
 
-function slideInAddTask() {
+
+//TODO - 
+function slideInAddTask(i, j) {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
-  document.getElementById('slideInAddTask').classList.remove('d-none')
+  /* document.getElementById('slideInAddTask').classList.remove('d-none') */
+  document.getElementById('slideInAddTaskWrapper').innerHTML = `
+
+  <div class="slide-in-add-task desktop-slide-in" id="slideInAddTask">
+  <div class="left-taskfield-J">
+    <h1>Add Task</h1>
+    <select required="" class="width board-list-left" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
+      <option disabled selected hidden>Select board list</option>
+      <option value="0">${userData[currentUser].board[0].boardlistTitle}</option>
+      <option value="1">${userData[currentUser].board[1].boardlistTitle}</option>
+      <option value="2">${userData[currentUser].board[2].boardlistTitle}</option>
+      <option value="3">${userData[currentUser].board[3].boardlistTitle}</option> 
+    </select>
+    <span>Title</span>
+    <input required="" type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
+
+    <span>Description</span>
+    <textarea required="" class="width descript" placeholder="Enter a Description" name="Description" id="taskDescription" cols="30" rows="10"></textarea>
+    <span>Category</span>
+    <select name="Category" class="category-add" placeholder="Category" id="taskCategory">
+      <option aria-placeholder="" disabled="" selected="" hidden="">Category</option>
+      <option value="Backoffice">Backoffice</option>
+      <option value="Customer Service">Customer Service</option>
+      <option value="Warhouse">Warehouse</option>
+    </select>
+  </div>
+  <div class="right-taskfield-J">
+  <span>Assigned to</span>
+  <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD"> 
+  <option value="" disabled selected>Select Contacts to assign</option>
+    <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
+    <option value="${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}">${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}</option>
+  </select>
+    <span>Due date</span>
+    <input required="" class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+    <span>Prio</span>
+    <div class="prio-button-wrapper">
+      <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent active">Urgent<img src="assets/img/prio-urgent.svg"></button>
+      <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium active">
+      Medium<img src="assets/img/prio-medium.svg"></button>
+      <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img src="assets/img/prio-low.svg"></button>
+    </div>
+    <div class="button-container-J">
+      <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img src="assets/img/icon-black-clear.svg"></button>
+      <button onclick="addTaskToUser();createTask()" class="button button-darkblue">Create Task
+        <img src="assets/img/icon-white-create.svg"></button>
+    </div>
+  </div>
+</div>`;
+
 }
 
 
@@ -192,8 +242,9 @@ function closeWorkTask() {
   document.getElementById('workTaskContainerD').classList.remove('d-none');
   document.getElementById('changeTaskWrapper').classList.add('d-none');
 }
-function addTaskToUser() {
-  document.getElementById('slideInAddTaskWrapper').classList.add('d-none');
+function createTask() {
+  document.getElementById('slideInAddTaskWrapper').classList.add('d-none')
+  document.getElementById('slideInAddTask').classList.add('d-none')
 }
 
 
@@ -233,7 +284,7 @@ function priorityBoard(j) {
   }
 }
 
-//TODO - 
+//TODO - If abfrage zur generierung der Farben in der Kategorie
 function categoryColor(j) {
   let labelColor = document.getElementById('workCategoryD');
 
