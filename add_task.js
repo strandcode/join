@@ -31,7 +31,7 @@ let taskButtonPriority = '';
 
 
 // value Hermann Paschule 
-const taskAssigned = document.getElementById('taskAssigned');
+const taskAssigned = 0; //TODO - 
 let taskAssignedColor;
 let taskAssignedInitials;
 
@@ -84,7 +84,8 @@ async function addTaskToUser() {
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
-    assign_to_contacts: [parseInt(taskAssigned.value)],
+    assign_to_contacts: [taskAssigned],
+    //TODO assign_to_contacts: [parseInt(taskAssigned.value)],
     date: taskDate.value,
     prio: taskButtonPriority,
   }
