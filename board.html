@@ -27,7 +27,7 @@
     <div class="board-head-D">
       <div class="button-mobile-container-D">
         <h3 class="headline-board-D">Board</h3>
-        <button class="add-task-mobile-D" id="addTaskMobile" onclick="slideInAddTask()">
+        <button class="add-task-mobile-D" id="addTaskMobile" onclick="window.location.href='add_task.html';">
           <span class="button-text-D"> Add Task </span>
           <img src="assets/img/Icon-plus.svg" alt="">
         </button>
@@ -49,6 +49,9 @@
           <h4>To do</h4>
           <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
 
 
@@ -67,6 +70,9 @@
           <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
 
         <div class="boardlist-body" ondrop="moveTo('boardListBody-1')" ondragover="allowDrop(event)"
@@ -79,6 +85,9 @@
           <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
         </div>
 
         <div class="boardlist-body" ondrop="moveTo('boardListBody-2')" ondragover="allowDrop(event)"
@@ -90,6 +99,9 @@
         <div class="boardlist-header" id="boardListHeader-3">
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D" onclick="slideInAddTask()"><img
               src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
         </div>
 

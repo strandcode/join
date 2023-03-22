@@ -69,6 +69,9 @@ function openTask(i, j) {
   <div class="close-work-overlay-D">
   <button onclick="closeWorkTask()">x</button>
   </div>
+  <div class="close-work-overlay-mobile">
+  <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
+  </div>
   </div>
 
     <div class="work-overlay-headline-D">${userData[currentUser].tasks[j]['title']}</div>
@@ -83,36 +86,35 @@ function openTask(i, j) {
       <b>Assigned To:</b>
       <div class="user-overlay-D">
         <span class="assigned-contact">
-        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
-              ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span>
-
-        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].firstName} ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].lastName}</span>
+        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].avatar_bg_color}">
+              ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[j]].avatar_initials}</span>
+        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].firstName}  ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].lastName}</span>
         </span>
-        <div class="pop-up-change-button">
-        <button onclick="changeTask(${i}, ${j})">
-          <img src="assets/img/summary-pencil.svg" alt="">
-        </button>
-      </div>
     </div>
       </div>
+      <div class="change-task-button">
+      <button onclick="changeTask(${i}, ${j})">
+      <img src="assets/img/summary-pencil.svg" alt="">
+    </button>
+    </div>
     </div>
   `;
   priorityBoard2(j)
 }
 
-
-
-
 function changeTask(i, j) {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('changeTaskWrapper').classList.remove('d-none');
   let popUp2 = document.getElementById('changeTaskWrapper');
-  popUp2.innerHTML = /*html*/ `
+  popUp2.innerHTML = `
     
       <div class="left-taskfield-D">
       <div class="close-work-overlay-D">
       <button onclick="closeWorkTask()">x</button>
        </div>
+       <div class="close-work-overlay-mobile">
+         <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
+      </div>
         <span>Title</span>
         <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${j}" 
         value="${userData[currentUser].tasks[j].title}">
@@ -139,16 +141,12 @@ function changeTask(i, j) {
           <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
           <option value="" disabled selected>Select Contacts to assign</option>
             <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-
-
             <option value="${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}">${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}</option>
-          
           </select>
           <div class="button-container-D">
           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
             <img src="assets/img/icon-white-create.svg"></button>
       </div>
-
       </div>
     </div>
   </div>
@@ -195,10 +193,10 @@ function slideInAddTask(i, j) {
     <h1>Add Task</h1>
     <select required="" class="width board-list-left" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
       <option disabled selected hidden>Select board list</option>
-      <option value="0">${userData[currentUser].board[0].boardlistTitle}</option>
-      <option value="1">${userData[currentUser].board[1].boardlistTitle}</option>
-      <option value="2">${userData[currentUser].board[2].boardlistTitle}</option>
-      <option value="3">${userData[currentUser].board[3].boardlistTitle}</option> 
+      <option value="0">To do</option>
+      <option value="1">In Progress</option>
+      <option value="2">Awaiting Feedback</option>
+      <option value="3">Done</option> 
     </select>
     <span>Title</span>
     <input required="" type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
@@ -218,7 +216,6 @@ function slideInAddTask(i, j) {
   <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD"> 
   <option value="" disabled selected>Select Contacts to assign</option>
     <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-    <option value="${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}">${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}</option>
   </select>
     <span>Due date</span>
     <input required="" class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
@@ -236,7 +233,6 @@ function slideInAddTask(i, j) {
     </div>
   </div>
 </div>`;
-
 }
 
 
@@ -280,15 +276,12 @@ function priorityBoard(j) {
 
   if (priority == 'urgent') {
     document.getElementById('prioImg').src = 'assets/img/priority-urgent.svg';
-
   }
   if (priority == 'medium') {
     document.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
-
   }
   if (priority == 'low') {
     document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
-
   }
 }
 
