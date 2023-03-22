@@ -41,13 +41,14 @@ function generateBoardTemplate(i, j) {
 
       </div>
       <div class="urgency-image" id="urgencyImage">
-      <img id="prioImg2" src="" alt="">
+      <img id="prioImg2" src="" alt=""> ${userData[currentUser].tasks[j]['prio']}
     </div>
       </div>
     </div>
   </div>
 </div>
 `;
+  priorityBoard(j);
 }
 
 function openTask(i, j) {
@@ -89,7 +90,7 @@ function openTask(i, j) {
       </div>
     </div>
   `;
-  priorityBoard(j);
+  priorityBoard2(j)
 }
 
 
@@ -272,14 +273,30 @@ function priorityBoard(j) {
 
   if (priority == 'urgent') {
     document.getElementById('prioImg').src = 'assets/img/priority-urgent.svg';
-    document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
+
   }
   if (priority == 'medium') {
     document.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
-    document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
+
   }
   if (priority == 'low') {
     document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
+
+  }
+}
+
+function priorityBoard2(j) {
+  let priority2 = userData[currentUser].tasks[j]['prio'];
+
+  if (priority2 == 'urgent') {
+    document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
+  }
+
+  if (priority2 == 'medium') {
+    document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
+  }
+
+  if (priority2 == 'low') {
     document.getElementById('prioImg2').src = 'assets/img/prio-low.svg';
   }
 }
