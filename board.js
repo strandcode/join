@@ -11,6 +11,7 @@ async function generateBoard() {
       let a = i.toString();
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
+        priorityBoard2(j);
       }
     }
   }
@@ -39,7 +40,7 @@ function generateBoardTemplate(i, j) {
 
       </div>
       <div class="urgency-image" id="urgencyImage">
-      <img id="prioImg2" src="" alt=""> ${userData[currentUser].tasks[j]['prio']}
+      <img id="prioImg2" src="" alt=""> 
     </div>
       </div>
     </div>
@@ -48,6 +49,8 @@ function generateBoardTemplate(i, j) {
     `;
 
 }
+
+
 function startDragging(id) {
   currentDraggedTask = id;
 }
@@ -99,7 +102,7 @@ function openTask(i, j) {
     </div>
     </div>
   `;
-  priorityBoard2(j)
+  priorityBoard(j)
 }
 
 function changeTask(i, j) {
@@ -290,13 +293,9 @@ function priorityBoard2(j) {
 
   if (priority2 == 'urgent') {
     document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
-  }
-
-  if (priority2 == 'medium') {
+  } if (priority2 == 'medium') {
     document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
-  }
-
-  if (priority2 == 'low') {
+  } if (priority2 == 'low') {
     document.getElementById('prioImg2').src = 'assets/img/prio-low.svg';
   }
 }
