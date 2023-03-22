@@ -31,7 +31,7 @@ let taskButtonPriority = '';
 
 
 // value Hermann Paschule 
-const taskAssigned = document.getElementById('taskAssigned').value;
+
 //TODO - 
 
 

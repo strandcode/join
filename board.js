@@ -34,8 +34,8 @@ function generateBoardTemplate(i, j) {
       <div class="work-user-D" id="workUserD">
       
 
-       <span class="avatar-bg-color-task" style="background-color:${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_bg_color}">
-      ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[0]].avatar_initials}</span> 
+       <span class="avatar-bg-color-task" style="background-color:${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[2]].avatar_bg_color}">
+      ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[2]].avatar_initials}</span> 
 
       </div>
       <div class="urgency-image" id="urgencyImage">
