@@ -131,6 +131,11 @@ main {
 }
 
 
+/*textarea nicht verstellbar*/
+
+.resize-none {
+  resize: none;
+}
 
 /* ANCHOR Global button style settings */
 

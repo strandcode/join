@@ -98,107 +98,110 @@
 
 
     </div>
-  </main>
 
 
-  <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
 
-  <div class="pop-up-task-D d-none" id="popUpTaskD">
+    <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
 
-    <div class="work-category-D" id="taskCategoryOverlayD">
-      Sales
-    </div>
-    <div class="close-work-overlay-D">
-      <button onclick="closeWorkTaskOverlay()">x</button>
-    </div>
+    <div class="pop-up-task-D d-none" id="popUpTaskD">
 
-    <div class="work-overlay-headline-D"> Call potential clients</div>
-    <span>Make the product presentation to prospective buyers</span>
+      <div class="work-category-D" id="taskCategoryOverlayD">
+        Sales
+      </div>
+      <div class="close-work-overlay-D">
+        <button onclick="closeWorkTaskOverlay()">x</button>
+      </div>
 
-    <div class="work-overlay-date-D">
-      <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">05-08-2023</span>
-    </div>
-    <div class="priority-overlay-D">
-      <b>Priority:</b> <img src="assets/img/priority-urgent.svg" alt="">
-    </div>
-    <div class="assigned-overlay-D">
-      <b>Assigned To:</b>
-      <div class="user-overlay-D">
-        <span>User 1</span>
-        <span>User 2</span>
-        <span>User 3</span>
-        <span>User 4</span>
+      <div class="work-overlay-headline-D"> Call potential clients</div>
+      <span>Make the product presentation to prospective buyers</span>
+
+      <div class="work-overlay-date-D">
+        <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">05-08-2023</span>
+      </div>
+      <div class="priority-overlay-D">
+        <b>Priority:</b> <img src="assets/img/priority-urgent.svg" alt="">
+      </div>
+      <div class="assigned-overlay-D">
+        <b>Assigned To:</b>
+        <div class="user-overlay-D">
+          <span>User 1</span>
+          <span>User 2</span>
+          <span>User 3</span>
+          <span>User 4</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- #################### NOTE ADD TASK OVERLAY #################### -->
+    <!-- #################### NOTE ADD TASK OVERLAY #################### -->
 
-  <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
-    <div class="slide-in-add-task desktop-slide-in d-none" id="slideInAddTask">
-      <!-- ANCHOR - Left - taskfield -->
-      <div class="left-taskfield-J">
-        <h1>Add Task</h1>
-        <select required class="width board-list-left" name="Select Contacts to assign" placeholder="Select Board List"
-          id="taskBoardList">
-          <!-- <option disabled selected hidden>Select board list</option>
+    <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
+      <div class="slide-in-add-task desktop-slide-in d-none" id="slideInAddTask">
+        <!-- ANCHOR - Left - taskfield -->
+        <div class="left-taskfield-J">
+          <h1>Add Task</h1>
+          <select required class="width board-list-left" name="Select Contacts to assign"
+            placeholder="Select Board List" id="taskBoardList">
+            <!-- <option disabled selected hidden>Select board list</option>
         <option value="To do">To do</option>
         <option value="In progress">In progress</option>
         <option value="Await Feedback">Await Feedback</option>
         <option value="Done">Done</option> -->
-        </select>
-        <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
+          </select>
+          <span>Title</span>
+          <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title"
+            id="taskTitle">
 
-        <span>Description</span>
-        <textarea required class="width descript" placeholder="Enter a Description" name="Description"
-          id="taskDescription" cols="30" rows="10"></textarea>
+          <span>Description</span>
+          <textarea required class="width descript" placeholder="Enter a Description" name="Description"
+            id="taskDescription" cols="30" rows="10"></textarea>
 
-        <span>Category</span>
-        <select name="Category" class="category-add" placeholder="Category" id="taskCategory">
-          <option aria-placeholder="" disabled selected hidden>Category</option>
-          <option value="Backoffice">Backoffice</option>
-          <option value="Customer Service">Customer Service</option>
-          <option value="Warhouse">Warehouse</option>
-        </select>
-      </div>
-
-      <!-- ANCHOR - Right-taskfield -->
-
-      <div class="right-taskfield-J">
-        <span>Assigned to</span>
-        <select name="Select Contacts to assign" class="assigned-to-add" placeholder="Select Contacts to assign"
-          id="taskAssigned">
-        </select>
-
-        <span>Due date</span>
-        <input required class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
-
-        <span>Prio</span>
-        <div class="button-urgent-J">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="urgent-J">Urgent<img
-              src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="medium-J">Medium<img
-              src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLow" class="low-J">Low<img
-              src="assets/img/prio-low.svg"></button>
+          <span>Category</span>
+          <select name="Category" class="category-add" placeholder="Category" id="taskCategory">
+            <option aria-placeholder="" disabled selected hidden>Category</option>
+            <option value="Backoffice">Backoffice</option>
+            <option value="Customer Service">Customer Service</option>
+            <option value="Warhouse">Warehouse</option>
+          </select>
         </div>
 
-        <div class="button-container-J">
-          <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img
-              src="assets/img/icon-black-clear.svg"></button>
+        <!-- ANCHOR - Right-taskfield -->
 
-          <button onclick="addTaskToUser()" class="button button-darkblue">Create Task
-            <img src="assets/img/icon-white-create.svg"></button>
+        <div class="right-taskfield-J">
+          <span>Assigned to</span>
+          <select name="Select Contacts to assign" class="assigned-to-add" placeholder="Select Contacts to assign"
+            id="taskAssigned">
+          </select>
+
+          <span>Due date</span>
+          <input required class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name=""
+            id="taskDate">
+
+          <span>Prio</span>
+          <div class="prio-button-wrapper">
+            <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent<img
+                src="assets/img/prio-urgent.svg"></button>
+            <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium<img
+                src="assets/img/prio-medium.svg"></button>
+            <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img
+                src="assets/img/prio-low.svg"></button>
+          </div>
+
+          <div class="button-container-J">
+            <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img
+                src="assets/img/icon-black-clear.svg"></button>
+
+            <button onclick="addTaskToUser()" class="button button-darkblue">Create Task
+              <img src="assets/img/icon-white-create.svg"></button>
+
+          </div>
 
         </div>
-
       </div>
     </div>
-  </div>
-  <div class="change-task-wrapper d-none" id="changeTaskWrapper">
+    <div class="change-task-wrapper d-none" id="changeTaskWrapper">
 
-  </div>
+    </div>
+  </main>
   <script src="script.js"></script>
   <script src="board.js"></script>
   <script src="add_task.js"></script>
