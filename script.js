@@ -29,7 +29,12 @@ async function addUser(firstName, LastName, email, password) {
     email: email,
     password: password,
     contacts: [],
-    tasks: [],
+    tasks: [
+      { task_id: 1, boardList: 0, boardlistPosition: 0, title: "Jane's first task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
+      { task_id: 2, boardList: 1, boardlistPosition: 0, title: "Jane's second task", description: 'Check new Join', category: 'Backoffice', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
+      { task_id: 3, boardList: 2, boardlistPosition: 0, title: "Jane's third task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
+      { task_id: 4, boardList: 3, boardlistPosition: 0, title: "Jane's fourth task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' }
+    ],
     board: [
       { boardlistTitle: 'To do' },
       { boardlistTitle: 'In progress' },

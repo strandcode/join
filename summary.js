@@ -98,19 +98,23 @@ function sumAllUrgentTasks() {
 
 function getUpcomingDeadline() {
   let currentDate = new Date();
-  let upcomingDeadline = new Date(userData[currentUser].tasks[0].date); // konvertiert den ersten String-Datumswert in ein tatsächliches Datum
+  if (userData[currentUser].tasks.length > 0) {
+    let upcomingDeadline = new Date(userData[currentUser].tasks[0].date); // konvertiert den ersten String-Datumswert in ein tatsächliches Datum
 
-  for (let i = 1; i < userData[currentUser].tasks.length; i++) {
-    let taskDate = new Date(userData[currentUser].tasks[i].date); // konvertiert das Datum von jedem Task in ein tatsächliches Datum
-    if (taskDate < upcomingDeadline) {
-      upcomingDeadline = taskDate;
+    for (let i = 1; i < userData[currentUser].tasks.length; i++) {
+      let taskDate = new Date(userData[currentUser].tasks[i].date); // konvertiert das Datum von jedem Task in ein tatsächliches Datum
+      if (taskDate < upcomingDeadline) {
+        upcomingDeadline = taskDate;
+      }
     }
+    if (upcomingDeadline < currentDate) {
+      summaryTasksNextDeadline.style.color = '#ff3d00';
+    }
+    let dateParameter = { year: 'numeric', month: 'long', day: 'numeric' };
+    return upcomingDeadline.toLocaleDateString('en-US', dateParameter); // de-DE Deutschland, en-US für USA
+  } else {
+    return 'No deadlines';
   }
-  if (upcomingDeadline < currentDate) {
-    summaryTasksNextDeadline.style.color = '#ff3d00';
-  }
-  let dateParameter = { year: 'numeric', month: 'long', day: 'numeric' };
-  return upcomingDeadline.toLocaleDateString('en-US', dateParameter); // de-DE Deutschland, en-US für USA
 }
 
 
