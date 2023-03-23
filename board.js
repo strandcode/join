@@ -23,13 +23,13 @@ function generateBoardTemplate(i, j) {
     let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
     let contact = userData[currentUser].contacts[contactIndex];
     if (userData[currentUser].contacts.length > 0) {
-
       assign += `
       <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
       ${contact.avatar_initials}
       </span>
       `;
-    } else {
+    }
+    else {
       assign += ``;
       console.warn('Keine Kontakte vorhanden');
     }
@@ -47,39 +47,34 @@ function generateBoardTemplate(i, j) {
       ${assign}
         </div>
         <div class="urgency-image" id="urgencyImage">
-        <img id="prioImg2" src="" alt=""> 
+        <img id="prioImg2${j}" src="" alt=""> 
         </div>
         </div>
         </div>
-        `;
+ `;
 }
 
-
-
-function startDragging(id) {
-  currentDraggedTask = id;
-}
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-function moveTo() {
-
-}
 
 function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
-  let assignedContacts = '';
-  for (let k = 0; k < userData[currentUser].tasks[j].assign_to_contacts.length; k++) {
-    assignedContacts += `
-      <span class="assigned-contact">
-        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].avatar_bg_color}">
-          ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].avatar_initials}
-        </span>
-        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].firstName} ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].lastName}</span>
+  let assign = '';
+  for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
+    let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
+    let contact = userData[currentUser].contacts[contactIndex];
+    if (userData[currentUser].contacts.length > 0) {
+      assign += `
+      <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
+      ${contact.avatar_initials} 
       </span>
-    `;
+      <span class="first-last-name">${contact.firstName} ${contact.lastName}</span>
+      `;
+    }
+    else {
+      assign += ``;
+      console.warn('Keine Kontakte vorhanden');
+    }
   }
   popupContainer.innerHTML = `
     <div class="work-category-D" id="workCategoryD">
@@ -103,7 +98,7 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        ${assignedContacts}
+        ${assign} 
       </div>
     </div>
     <div class="change-task-button">
@@ -301,11 +296,11 @@ function priorityBoard2(j) {
   let priority2 = userData[currentUser].tasks[j]['prio'];
 
   if (priority2 == 'urgent') {
-    document.getElementById('prioImg2').src = 'assets/img/prio-urgent.svg';
+    document.getElementById('prioImg2' + j).src = 'assets/img/prio-urgent.svg';
   } if (priority2 == 'medium') {
-    document.getElementById('prioImg2').src = 'assets/img/prio-medium.svg';
+    document.getElementById('prioImg2' + j).src = 'assets/img/prio-medium.svg';
   } if (priority2 == 'low') {
-    document.getElementById('prioImg2').src = 'assets/img/prio-low.svg';
+    document.getElementById('prioImg2' + j).src = 'assets/img/prio-low.svg';
   }
 }
 
