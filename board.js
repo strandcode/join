@@ -1,4 +1,4 @@
-
+let currentDraggedTask;
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
@@ -34,8 +34,9 @@ function generateBoardTemplate(i, j) {
     }
   }
   return `    
-    <div class="boardlist-card" ondragstart="startDragging(${i},${j})" draggable="true" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
-    <div class="work-category-D" id="workCategoryD">
+    <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
+    id="${j}">
+    <div class="work-category-D" id="workCategoryD${j}">
         ${userData[currentUser].tasks[j]['category']} 
       </div>
       <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
@@ -179,34 +180,26 @@ function confirmChangeTask(i, j) {
 }
 
 //TODO - DRAG AND DROP /////////////////////////
-/* let currentDraggedTask; */
-function startDragging(ev) {
-  ev.dataTransfer.setData("text/plain", ev.target.id);
-  ev.dropEffect = "move";
+
+function startDragging(task_id) {
+  currentDraggedTask = task_id;
   // Weiß der handler welche ID er bewegt? Ja.
 }
 
 function dragover_handler(ev) {
   ev.preventDefault();
-  let target = ev.target;
-  while (target != null) {
-    if (target.classList && target.classList.contains("boardlist-card")) {
-      ev.dataTransfer.dropEffect = "none";
-      return;
-    }
-    target = target.parentNode;
-  }
-  ev.dataTransfer.dropEffect = "move";
+
 }
 
-function drop_handler(ev) {
-  ev.preventDefault();
-  let data = ev.dataTransfer.getData("text/plain");
-  ev.target.appendChild(document.getElementById(data));
+function drop_handler(category) {
+  let dragged = userData[currentUser].tasks.find(index => index.task_id == currentDraggedTask);
+  console.log(dragged);
+  dragged.boardList = category;
   // Wir müssen wissen in welchem board wir fallen lassen und an welcher stelle
   // Dann schreibe boardlist: currentBoardlist , boardlistPosition: currentBoardlistPostion
-
+  generateBoard();
 }
+
 
 let boardlistCard = document.querySelectorAll(".boardlist-card");
 boardlistCard.forEach(function (boardlistCard) {
@@ -219,15 +212,6 @@ boardLists.forEach(function (boardList) {
   boardList.addEventListener("drop", drop_handler);
 });
 
-
-
-// TODO userData[currentUser].tasks[2] = 'deleted'
-//TODO BACKEND WURDE ZERSCHOSSEN
-/* async function deleteTask(i, j) {
-  userData[currentUser].board[i].boardlistTasks.splice(j, 1);
-  await backend.setItem('users', JSON.stringify(userData[currentUser]));
-  downloadUserDataFromBackend();
-} */
 
 
 //TODO - 
@@ -347,15 +331,15 @@ function priorityBoard2(j) {
 
 //TODO - If abfrage zur generierung der Farben in der Kategorie
 function categoryColor(j) {
-  let labelColor = document.getElementById('workCategoryD');
+  let labelColor = userData[currentUser].tasks[j]['category'];
 
   if (labelColor == 'Backoffice') {
-    document.getElementById('workCategoryD').classList.add('backoffice')
+    document.getElementById('workCategoryD' + j).classList.add('backoffice')
   }
   if (labelColor == 'Customer Service') {
-    document.getElementById('workCategoryD').classList.add('customer-service ')
+    document.getElementById('workCategoryD' + j).classList.add('customer-service ')
   }
-  if (labelColor == 'Warehouse') {
-    document.getElementById('workCategoryD').classList.add('warehouse')
+  if (labelColor == 'Warhouse') {
+    document.getElementById('workCategoryD' + j).classList.add('warhouse')
   }
 }
