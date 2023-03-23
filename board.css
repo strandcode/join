@@ -45,13 +45,13 @@ main {
     width: 45px;
     left: 0px;
     top: 0px;
-    border-radius: 58px;
     padding: 10px 8px 10px 8px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
+    text-align: center;
 }
 
 .button-container-J {

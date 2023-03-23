@@ -120,7 +120,7 @@ function taskClearButton() {
 
 // BUTTON SCRIPT
 function setPriorityUrgent() {
-
+  let taskButtonUrgent = document.getElementById('taskButtonUrgent');
   if (!taskButtonUrgent.classList.contains('active')) {
     taskButtonUrgent.style.backgroundColor = "red";
     taskButtonUrgent.classList.add("active");
@@ -135,14 +135,11 @@ function setPriorityUrgent() {
 
 
 function setPriorityMedium() {
-
+  let taskButtonMedium = document.getElementById('taskButtonMedium');
   if (!taskButtonMedium.classList.contains('active')) {
     taskButtonMedium.style.backgroundColor = "orange";
     taskButtonMedium.classList.add("active");
-
     taskButtonPriority = "medium";
-    console.log(taskButtonPriority);
-
   } else {
     taskButtonMedium.style.backgroundColor = "";
     taskButtonMedium.classList.remove("active");
@@ -156,9 +153,7 @@ function setPriorityLow() {
   if (!taskButtonLow.classList.contains('active')) {
     taskButtonLow.style.backgroundColor = "green";
     taskButtonLow.classList.add("active");
-
     taskButtonPriority = "low";
-    console.log(taskButtonPriority);
   } else {
     taskButtonLow.style.backgroundColor = "";
     taskButtonLow.classList.remove("active");

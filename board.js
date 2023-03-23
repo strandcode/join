@@ -18,37 +18,36 @@ async function generateBoard() {
 }
 
 function generateBoardTemplate(i, j) {
-
+  let assign = '';
+  for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
+    let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
+    let contact = userData[currentUser].contacts[contactIndex];
+    assign += `
+      <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
+        ${contact.avatar_initials}
+      </span>
+    `;
+  }
   return `    
     <div class="boardlist-card" ondragstart="startDragging(${i},${j})" draggable="true" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
-
       <div class="work-category-D" id="workCategoryD">
-     ${userData[currentUser].tasks[j]['category']} 
+        ${userData[currentUser].tasks[j]['category']} 
       </div>
-
       <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
-
       <span class="work-task-content-D" id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</span>
-
       <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
       <div class="task-user-wrapper" id="taskUserWrapper">
-      <div class="work-user-D" id="workUserD">
-      
-
-       <span class="avatar-bg-color-task" style="background-color:${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[2]].avatar_bg_color}">
-      ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[2]].avatar_initials}</span> 
-
-      </div>
-      <div class="urgency-image" id="urgencyImage">
-      <img id="prioImg2" src="" alt=""> 
-    </div>
+        <div class="work-user-D" id="workUserD">
+          ${assign}
+        </div>
+        <div class="urgency-image" id="urgencyImage">
+          <img id="prioImg2" src="" alt=""> 
+        </div>
       </div>
     </div>
-    </div>
-    </div>
-    `;
-
+  `;
 }
+
 
 
 function startDragging(id) {
@@ -65,17 +64,27 @@ function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
+  let assignedContacts = '';
+  for (let k = 0; k < userData[currentUser].tasks[j].assign_to_contacts.length; k++) {
+    assignedContacts += `
+      <span class="assigned-contact">
+        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].avatar_bg_color}">
+          ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].avatar_initials}
+        </span>
+        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].firstName} ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[k]].lastName}</span>
+      </span>
+    `;
+  }
   popupContainer.innerHTML = `
-  
-  <div class="work-category-D" id="workCategoryD">
-  ${userData[currentUser].tasks[j]['category']} 
-  <div class="close-work-overlay-D">
-  <button onclick="closeWorkTask()">x</button>
-  </div>
-  <div class="close-work-overlay-mobile">
-  <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
-  </div>
-  </div>
+    <div class="work-category-D" id="workCategoryD">
+      ${userData[currentUser].tasks[j]['category']} 
+      <div class="close-work-overlay-D">
+        <button onclick="closeWorkTask()">x</button>
+      </div>
+      <div class="close-work-overlay-mobile">
+        <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
+      </div>
+    </div>
 
     <div class="work-overlay-headline-D">${userData[currentUser].tasks[j]['title']}</div>
     <span>${userData[currentUser].tasks[j]['description']}</span>
@@ -88,22 +97,18 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        <span class="assigned-contact">
-        <span class="avatar-bg-color" style="background-color: ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].avatar_bg_color}">
-              ${userData[currentUser].contacts[userData[currentUser].tasks[0].assign_to_contacts[j]].avatar_initials}</span>
-        <span class="first-name">${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].firstName}  ${userData[currentUser].contacts[userData[currentUser].tasks[j].assign_to_contacts[j]].lastName}</span>
-        </span>
-    </div>
+        ${assignedContacts}
       </div>
-      <div class="change-task-button">
-      <button onclick="changeTask(${i}, ${j})">
-      <img src="assets/img/summary-pencil.svg" alt="">
-    </button>
     </div>
+    <div class="change-task-button">
+      <button onclick="changeTask(${i}, ${j})">
+        <img src="assets/img/summary-pencil.svg" alt="">
+      </button>
     </div>
   `;
   priorityBoard(j)
 }
+
 
 function changeTask(i, j) {
   document.getElementById('popUpTaskD').classList.add('d-none');
@@ -143,9 +148,7 @@ function changeTask(i, j) {
           <span>Assigned to</span>
           <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
           <option value="" disabled selected>Select Contacts to assign</option>
-            <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-            <option value="${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}">${userData[currentUser].contacts[1].firstName} ${userData[currentUser].contacts[1].lastName}</option>
-          </select>
+       
           <div class="button-container-D">
           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
             <img src="assets/img/icon-white-create.svg"></button>
