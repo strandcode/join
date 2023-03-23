@@ -22,30 +22,36 @@ function generateBoardTemplate(i, j) {
   for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
     let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
     let contact = userData[currentUser].contacts[contactIndex];
-    assign += `
+    if (userData[currentUser].contacts.length > 0) {
+
+      assign += `
       <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
-        ${contact.avatar_initials}
+      ${contact.avatar_initials}
       </span>
-    `;
+      `;
+    } else {
+      assign += ``;
+      console.warn('Keine Kontakte vorhanden');
+    }
   }
   return `    
     <div class="boardlist-card" ondragstart="startDragging(${i},${j})" draggable="true" onclick="openTask(${i},${j})" id="boardListCard${userData[currentUser].tasks[j]['task_id']}">
-      <div class="work-category-D" id="workCategoryD">
+    <div class="work-category-D" id="workCategoryD">
         ${userData[currentUser].tasks[j]['category']} 
       </div>
       <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
       <span class="work-task-content-D" id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</span>
       <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
       <div class="task-user-wrapper" id="taskUserWrapper">
-        <div class="work-user-D" id="workUserD">
-          ${assign}
+      <div class="work-user-D" id="workUserD">
+      ${assign}
         </div>
         <div class="urgency-image" id="urgencyImage">
-          <img id="prioImg2" src="" alt=""> 
+        <img id="prioImg2" src="" alt=""> 
         </div>
-      </div>
-    </div>
-  `;
+        </div>
+        </div>
+        `;
 }
 
 
