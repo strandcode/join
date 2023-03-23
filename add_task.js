@@ -115,6 +115,12 @@ function taskClearButton() {
   taskButtonUrgent.value = '';
   taskButtonMedium.value = '';
   taskButtonLow.value = '';
+  taskButtonUrgent.style.backgroundColor = "";
+  taskButtonUrgent.classList.remove("active");
+  taskButtonMedium.style.backgroundColor = "";
+  taskButtonMedium.classList.remove("active");
+  taskButtonLow.style.backgroundColor = "";
+  taskButtonLow.classList.remove("active");
 }
 
 
