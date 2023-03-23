@@ -1,4 +1,3 @@
-let currentDraggedTask;
 
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
@@ -178,6 +177,48 @@ function confirmChangeTask(i, j) {
   saveToBackend();
   setTimeout(generateBoard, 500);
 }
+
+//TODO - DRAG AND DROP /////////////////////////
+/* let currentDraggedTask; */
+function startDragging(ev) {
+  ev.dataTransfer.setData("text/plain", ev.target.id);
+  ev.dropEffect = "move";
+  // Weiß der handler welche ID er bewegt? Ja.
+}
+
+function dragover_handler(ev) {
+  ev.preventDefault();
+  let target = ev.target;
+  while (target != null) {
+    if (target.classList && target.classList.contains("boardlist-card")) {
+      ev.dataTransfer.dropEffect = "none";
+      return;
+    }
+    target = target.parentNode;
+  }
+  ev.dataTransfer.dropEffect = "move";
+}
+
+function drop_handler(ev) {
+  ev.preventDefault();
+  let data = ev.dataTransfer.getData("text/plain");
+  ev.target.appendChild(document.getElementById(data));
+  // Wir müssen wissen in welchem board wir fallen lassen und an welcher stelle
+  // Dann schreibe boardlist: currentBoardlist , boardlistPosition: currentBoardlistPostion
+
+}
+
+let boardlistCard = document.querySelectorAll(".boardlist-card");
+boardlistCard.forEach(function (boardlistCard) {
+  boardlistCard.addEventListener("dragstart", startDragging);
+});
+
+let boardLists = document.querySelectorAll(".boardlist-body");
+boardLists.forEach(function (boardList) {
+  boardList.addEventListener("dragover", dragover_handler);
+  boardList.addEventListener("drop", drop_handler);
+});
+
 
 
 // TODO userData[currentUser].tasks[2] = 'deleted'
