@@ -93,18 +93,20 @@
             <button onclick="taskClearButton() " class="button button-white">Clear
               <img src="assets/img/icon-black-clear.svg">
             </button>
-            <!-- TODO slideImage(); -->
-            <button onclick="addTaskToUser();" class="button button-darkblue">Create Task
+
+            <button onclick="addTaskToUser(); taskCreateImageUp();" class="button button-darkblue">Create Task
               <img src="assets/img/icon-white-create.svg">
             </button>
 
+
           </div>
-          <div class="slide-in-container" id="slideInContainer">
-            <img class="slide-in-image" id="slideInImage" src="assets/img/message-task-added.svg" alt="Slide-in Bild">
-          </div>
+          <img id="taskCreate" class="task-create-img" src="assets/img/message-task-added.svg">
         </div>
       </form>
     </div>
+
+
+
   </main>
   <script src="script.js"></script>
   <script src="add_task.js"></script>

@@ -161,13 +161,25 @@ function setPriorityLow() {
   }
 }
 
-function slideInImage() {
-  let CreateTaskContainer = document.getElementById("slideInContainer");
-  CreateTaskContainer.classList.add("active");
-
-  setTimeout(function () {
-    window.location.href = "board.html";
-  }, 1500);
+function taskCreateImageUp() {
+  const taskCreateImg = document.getElementById("taskCreate");
+  taskCreateImg.style.opacity = "1";
+  let pos = 0;
+  const id = setInterval(frame, 3);
+  function frame() {
+    if (pos == 20) {
+      clearInterval(id);
+      setTimeout(function () {
+        taskCreateImg.style.opacity = "0";
+      }, 2000);
+    } else {
+      pos++;
+      taskCreateImg.style.bottom = pos + "%";
+      if (pos >= 1) {
+        taskCreateImg.style.transition = "bottom 0.5s ease-in-out";
+      }
+    }
+  }
 }
 
 
