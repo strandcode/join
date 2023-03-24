@@ -79,8 +79,8 @@ async function addTaskToUser() {
   const assignedToIndex = assignedToContactsDropdown.selectedIndex;
 
   let newTask = {
-    task_id: userData[currentUser].tasks.length,
-    boardList: taskBoardList.value,
+    task_id: new Date().getTime(),
+    boardList: parseInt(taskBoardList.value),
     boardlistPosition: 0,
     title: taskTitle.value,
     description: taskDescription.value,

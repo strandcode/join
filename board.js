@@ -4,13 +4,14 @@ async function generateBoard() {
   await downloadFromServer();
   getCurrentUser();
   for (let i = 0; i < userData[currentUser].board.length; i++) {
-    const boardCard = document.getElementById(`boardListBody-${i}`);
+    const boardCard = document.getElementById(`${i}`);
     boardCard.innerHTML = ``;
     for (let j = 0; j < userData[currentUser].tasks.length; j++) {
       let a = i.toString();
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
         priorityBoard2(j);
+        await saveToBackend();
       }
     }
   }
@@ -35,7 +36,7 @@ function generateBoardTemplate(i, j) {
   }
   return `    
     <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
-    id="${j}">
+    id="${userData[currentUser].tasks[j]['task_id']}">
     <div class="work-category-D" id="workCategoryD${j}">
         ${userData[currentUser].tasks[j]['category']} 
       </div>
@@ -195,23 +196,115 @@ function drop_handler(category) {
   let dragged = userData[currentUser].tasks.find(index => index.task_id == currentDraggedTask);
   console.log(dragged);
   dragged.boardList = category;
-  // Wir müssen wissen in welchem board wir fallen lassen und an welcher stelle
-  // Dann schreibe boardlist: currentBoardlist , boardlistPosition: currentBoardlistPostion
-  generateBoard();
+  filterInProgress();
+  filterToDO();
+  filterFeedback();
+  filterDone();
+  saveToBackend();
+
 }
 
+function filterInProgress(i) {
+  let inProgressTasks = userData[currentUser].tasks.filter(element => element.boardList == 1)
 
-let boardlistCard = document.querySelectorAll(".boardlist-card");
-boardlistCard.forEach(function (boardlistCard) {
-  boardlistCard.addEventListener("dragstart", startDragging);
-});
-
-let boardLists = document.querySelectorAll(".boardlist-body");
-boardLists.forEach(function (boardList) {
-  boardList.addEventListener("dragover", dragover_handler);
-  boardList.addEventListener("drop", drop_handler);
-});
-
+  let inProgress = document.getElementById(1);
+  inProgress.innerHTML = '';
+  for (let index = 0; index < inProgressTasks.length; index++) {
+    let j = index;
+    inProgress.innerHTML += `
+    <div class="boardlist-card" ondragstart="startDragging(${inProgressTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
+    id="${inProgressTasks[j]['task_id']}">
+  <div class="work-category-D">
+      ${inProgressTasks[j]['category']} 
+    </div>
+    <h5 id="workTaskHeadlineD" class="work-task-headline-D">${inProgressTasks[j]['title']}</h5>
+    <span class="work-task-content-D" id="workTaskContentD">${inProgressTasks[j]['description']}</span>
+    <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+    <div class="task-user-wrapper" id="taskUserWrapper">
+    <div class="work-user-D" id="workUserD">
+      </div>
+      <div class="urgency-image" id="urgencyImage">
+      <img id="prioImg2${j}" src="" alt=""> 
+      </div>
+      </div>
+      </div>`
+  }
+}
+function filterToDO(i) {
+  let toDoTasks = userData[currentUser].tasks.filter(element => element.boardList == 0)
+  let toDO = document.getElementById(0);
+  toDO.innerHTML = '';
+  for (let index = 0; index < toDoTasks.length; index++) {
+    let j = index;
+    toDO.innerHTML += `
+    <div class="boardlist-card" ondragstart="startDragging(${toDoTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
+    id="${toDoTasks[j]['task_id']}">
+  <div class="work-category-D">
+      ${toDoTasks[j]['category']} 
+    </div>
+    <h5 id="workTaskHeadlineD" class="work-task-headline-D">${toDoTasks[j]['title']}</h5>
+    <span class="work-task-content-D" id="workTaskContentD">${toDoTasks[j]['description']}</span>
+    <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+    <div class="task-user-wrapper" id="taskUserWrapper">
+    <div class="work-user-D" id="workUserD">
+      </div>
+      <div class="urgency-image" id="urgencyImage">
+      <img id="prioImg2${j}" src="" alt=""> 
+      </div>
+      </div>
+      </div>`
+  }
+}
+function filterFeedback(i) {
+  let feedbackTasks = userData[currentUser].tasks.filter(element => element.boardList == 2)
+  let feedback = document.getElementById(2);
+  feedback.innerHTML = '';
+  for (let index = 0; index < feedbackTasks.length; index++) {
+    let j = index;
+    feedback.innerHTML += `
+    <div class="boardlist-card" ondragstart="startDragging(${feedbackTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
+    id="${feedbackTasks[j]['task_id']}">
+  <div class="work-category-D">
+      ${feedbackTasks[j]['category']} 
+    </div>
+    <h5 id="workTaskHeadlineD" class="work-task-headline-D">${feedbackTasks[j]['title']}</h5>
+    <span class="work-task-content-D" id="workTaskContentD">${feedbackTasks[j]['description']}</span>
+    <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+    <div class="task-user-wrapper" id="taskUserWrapper">
+    <div class="work-user-D" id="workUserD">
+      </div>
+      <div class="urgency-image" id="urgencyImage">
+      <img id="prioImg2${j}" src="" alt=""> 
+      </div>
+      </div>
+      </div>`
+  }
+}
+function filterDone(i) {
+  let doneTasks = userData[currentUser].tasks.filter(element => element.boardList == 3)
+  let done = document.getElementById(3);
+  done.innerHTML = '';
+  for (let index = 0; index < doneTasks.length; index++) {
+    let j = index;
+    done.innerHTML += `
+    <div class="boardlist-card" ondragstart="startDragging(${doneTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
+    id="${doneTasks[j]['task_id']}}">
+  <div class="work-category-D">
+      ${doneTasks[j]['category']} 
+    </div>
+    <h5 id="workTaskHeadlineD" class="work-task-headline-D">${doneTasks[j]['title']}</h5>
+    <span class="work-task-content-D" id="workTaskContentD">${doneTasks[j]['description']}</span>
+    <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
+    <div class="task-user-wrapper" id="taskUserWrapper">
+    <div class="work-user-D" id="workUserD">
+      </div>
+      <div class="urgency-image" id="urgencyImage">
+      <img id="prioImg2${j}" src="" alt=""> 
+      </div>
+      </div>
+      </div>`
+  }
+}
 
 
 //TODO - 
@@ -319,7 +412,6 @@ function priorityBoard(j) {
 
 function priorityBoard2(j) {
   let priority2 = userData[currentUser].tasks[j]['prio'];
-
   if (priority2 == 'urgent') {
     document.getElementById('prioImg2' + j).src = 'assets/img/prio-urgent.svg';
   } if (priority2 == 'medium') {
