@@ -1,4 +1,5 @@
 let currentDraggedTask;
+
 async function generateBoard() {
   setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
@@ -11,6 +12,7 @@ async function generateBoard() {
       if (userData[currentUser].tasks[j].boardList == a) {
         boardCard.innerHTML += generateBoardTemplate(i, j);
         priorityBoard2(j);
+        categoryColor(j);
         await saveToBackend();
       }
     }
@@ -54,8 +56,6 @@ function generateBoardTemplate(i, j) {
         </div>
  `;
 }
-
-
 function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
@@ -108,7 +108,9 @@ function openTask(i, j) {
       </button>
     </div>
   `;
-  priorityBoard(j)
+  priorityBoard(j);
+
+
 }
 
 
@@ -116,6 +118,7 @@ function changeTask(i, j) {
   document.getElementById('popUpTaskD').classList.add('d-none');
   document.getElementById('changeTaskWrapper').classList.remove('d-none');
   let popUp2 = document.getElementById('changeTaskWrapper');
+
   popUp2.innerHTML = `
     
       <div class="left-taskfield-D">
@@ -150,7 +153,9 @@ function changeTask(i, j) {
           <span>Assigned to</span>
           <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
           <option value="" disabled selected>Select Contacts to assign</option>
-       
+          <option value="">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
+          </select></option>
+       </select>
           <div class="button-container-D">
           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
             <img src="assets/img/icon-white-create.svg"></button>
@@ -201,7 +206,6 @@ function drop_handler(category) {
   filterFeedback();
   filterDone();
   saveToBackend();
-
 }
 
 function filterInProgress(i) {
