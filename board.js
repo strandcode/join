@@ -109,8 +109,6 @@ function openTask(i, j) {
     </div>
   `;
   priorityBoard(j);
-
-
 }
 
 
@@ -206,6 +204,7 @@ function drop_handler(category) {
   filterFeedback();
   filterDone();
   saveToBackend();
+  generateBoard();
 }
 
 function filterInProgress(i) {
@@ -226,14 +225,18 @@ function filterInProgress(i) {
     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
     <div class="task-user-wrapper" id="taskUserWrapper">
     <div class="work-user-D" id="workUserD">
+
+    
+  
       </div>
       <div class="urgency-image" id="urgencyImage">
       <img id="prioImg2${j}" src="" alt=""> 
       </div>
       </div>
-      </div>`
+    </div>`
   }
 }
+
 function filterToDO(i) {
   let toDoTasks = userData[currentUser].tasks.filter(element => element.boardList == 0)
   let toDO = document.getElementById(0);
@@ -256,7 +259,7 @@ function filterToDO(i) {
       <img id="prioImg2${j}" src="" alt=""> 
       </div>
       </div>
-      </div>`
+    </div>`
   }
 }
 function filterFeedback(i) {
@@ -306,17 +309,16 @@ function filterDone(i) {
       <img id="prioImg2${j}" src="" alt=""> 
       </div>
       </div>
-      </div>`
+    </div>`
   }
 }
 
 
 //TODO - 
-function slideInAddTask(i, j) {
+/* function slideInAddTask(i, j) {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
-  /* document.getElementById('slideInAddTask').classList.remove('d-none') */
+  
   document.getElementById('slideInAddTaskWrapper').innerHTML = `
-
   <div class="slide-in-add-task desktop-slide-in" id="slideInAddTask">
   <div class="left-taskfield-J">
     <h1>Add Task</h1>
@@ -362,7 +364,7 @@ function slideInAddTask(i, j) {
     </div>
   </div>
 </div>`;
-}
+} */
 
 
 function cancelButton() {
@@ -433,7 +435,7 @@ function categoryColor(j) {
     document.getElementById('workCategoryD' + j).classList.add('backoffice')
   }
   if (labelColor == 'Customer Service') {
-    document.getElementById('workCategoryD' + j).classList.add('customer-service ')
+    document.getElementById('workCategoryD' + j).classList.add('customer-service')
   }
   if (labelColor == 'Warhouse') {
     document.getElementById('workCategoryD' + j).classList.add('warhouse')

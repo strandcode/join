@@ -379,7 +379,6 @@ h4:hover {
     padding: 4px 25px;
     width: 103px;
     height: 27px;
-    background: #FF7A00;
     border-radius: 8px;
     color: #FFFFFF;
     margin-top: 22px;
@@ -848,7 +847,7 @@ h4:hover {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding: 20px 10px;
-    background-color: transparent;
+    background-color: #2A3647;
 }
 
 .close-work-overlay-D {
