@@ -210,7 +210,7 @@ function drop_handler(category) {
   filterFeedback();
   filterDone();
   saveToBackend();
-  generateBoard();
+  setTimeout(generateBoard, 200);
 }
 
 function filterInProgress(i) {
