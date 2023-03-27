@@ -68,8 +68,14 @@
   flex-wrap: wrap;
 }
 
-.contacts-list-contact-email span {
+.contacts-list-contact-email span,
+.contacts-list-contact-phone span {
   word-break: break-all;
+}
+
+.contacts-list-contact-phone {
+  display: none;
+  flex-wrap: wrap;
 }
 
 .contacts-list-contact-avatar {
@@ -169,6 +175,7 @@
   padding: 32px;
   color: white;
 }
+
 
 
 
@@ -554,7 +561,20 @@
     outline: 3px solid white;
   }
 
+  .contacts-content-S {
+    display: none;
+  }
 
+  .contacts-list-S {
+    width: 100%;
+    height: calc(100vh - 89px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .contacts-list-contact-phone {
+    display: flex;
+  }
 
 }
 

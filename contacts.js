@@ -91,6 +91,9 @@ function templateContactsListContact(c) {
           <span>${email_name}</span>
           <span>@${email_domain}</span>
         </a>
+        <a href="mailto:${userData[currentUser].contacts[c].phone}" class="contacts-list-contact-phone">
+          <span>${userData[currentUser].contacts[c].phone}</span>
+        </a>
       </div>
     </div>
   `;
