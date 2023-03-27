@@ -210,6 +210,7 @@ function drop_handler(category) {
   filterFeedback();
   filterDone();
   saveToBackend();
+  setTimeout(generateBoard, 200);
   generateBoard();
 }
 
