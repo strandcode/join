@@ -48,8 +48,6 @@ function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
-  <option value="${userData[currentUser]}">
-  ${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
  `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
