@@ -948,6 +948,10 @@ h4:hover {
         display: none;
     }
 
+    .prio-button-wrapper {
+        min-width: 320px;
+    }
+
     .add-task-D {
         width: 40px;
         height: 40px;
@@ -1066,7 +1070,7 @@ h4:hover {
     }
 
     .change-task-wrapper {
-        width: 80%;
+        width: 100%;
     }
 
     .left-taskfield-D {

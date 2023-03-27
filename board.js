@@ -20,22 +20,22 @@ async function generateBoard() {
 }
 
 function generateBoardTemplate(i, j) {
-  let assign = '';
-  for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
-    let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
-    let contact = userData[currentUser].contacts[contactIndex];
-    if (userData[currentUser].contacts.length > 0) {
-      assign += `
-      <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
-      ${contact.avatar_initials}
-      </span>
-      `;
-    }
-    else {
-      assign += ``;
-      console.warn('Keine Kontakte vorhanden');
-    }
-  }
+  /*  let assign = '';
+   for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
+     let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
+     let contact = userData[currentUser].contacts[contactIndex];
+     if (userData[currentUser].contacts.length > 0) {
+       assign += `
+       <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
+       ${contact.avatar_initials}
+       </span>
+       `;
+     }
+     else {
+       assign += ``;
+       console.warn('Keine Kontakte vorhanden');
+     }
+   } */
   return `    
     <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
     id="${userData[currentUser].tasks[j]['task_id']}">
@@ -47,7 +47,10 @@ function generateBoardTemplate(i, j) {
       <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
       <div class="task-user-wrapper" id="taskUserWrapper">
       <div class="work-user-D" id="workUserD">
-      ${assign}
+      <span class="avatar-bg-color-task" style="background-color: ${userData[currentUser].tasks[j]['assign_to_contacts'].bg_color}">
+      ${userData[currentUser].tasks[j]['assign_to_contacts'].initials}
+      </span>
+     
         </div>
         <div class="urgency-image" id="urgencyImage">
         <img id="prioImg2${j}" src="" alt=""> 
@@ -60,23 +63,23 @@ function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
   let popupContainer = document.getElementById('popUpTaskD');
-  let assign = '';
-  for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
-    let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
-    let contact = userData[currentUser].contacts[contactIndex];
-    if (userData[currentUser].contacts.length > 0) {
-      assign += `
-      <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
-      ${contact.avatar_initials} 
-      </span>
-      <span class="first-last-name">${contact.firstName} ${contact.lastName}</span>
-      `;
-    }
-    else {
-      assign += ``;
-      console.warn('Keine Kontakte vorhanden');
-    }
-  }
+  /*  let assign = '';
+   for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
+     let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
+     let contact = userData[currentUser].contacts[contactIndex];
+     if (userData[currentUser].contacts.length > 0) {
+       assign += `
+       <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
+       ${contact.avatar_initials} 
+       </span>
+       <span class="first-last-name">${contact.firstName} ${contact.lastName}</span>
+       `;
+     } */
+  /*    else {
+       assign += ``;
+       console.warn('Keine Kontakte vorhanden');
+     } */
+
   popupContainer.innerHTML = `
     <div class="work-category-D" id="workCategoryD">
       ${userData[currentUser].tasks[j]['category']} 
@@ -99,7 +102,10 @@ function openTask(i, j) {
     <div class="assigned-overlay-D">
       <b>Assigned To:</b>
       <div class="user-overlay-D">
-        ${assign} 
+      <span class="avatar-bg-color-task" style="background-color: ${userData[currentUser].tasks[j]['assign_to_contacts'].bg_color}">${userData[currentUser].tasks[j]['assign_to_contacts'].initials}
+      
+      </span>
+      ${userData[currentUser].tasks[j]['assign_to_contacts'].firstname} ${userData[currentUser].tasks[j]['assign_to_contacts'].lastname}
       </div>
     </div>
     <div class="change-task-button">
@@ -225,9 +231,6 @@ function filterInProgress(i) {
     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
     <div class="task-user-wrapper" id="taskUserWrapper">
     <div class="work-user-D" id="workUserD">
-
-    
-  
       </div>
       <div class="urgency-image" id="urgencyImage">
       <img id="prioImg2${j}" src="" alt=""> 
