@@ -197,3 +197,18 @@ body {
     right: 50px;
     display: flex;
 }
+
+@media screen and (max-width: 580px) {
+
+    .login-form-container {
+        min-width: 300px;
+    }
+
+    .login-form-submit-buttons button {
+        min-width: 120px;
+    }
+
+    #notAJoinUser {
+        display: none;
+    }
+}
