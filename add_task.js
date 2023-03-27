@@ -22,7 +22,6 @@ const taskBoardList = document.getElementById('taskBoardList');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
 const taskCategory = document.getElementById('taskCategory');
-
 const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
@@ -30,13 +29,6 @@ const taskButtonLow = document.getElementById('taskButtonLow');
 let taskButtonPriority = '';
 
 
-// value Hermann Paschule 
-
-//TODO - 
-
-
-
-// TODO Alle Boards abfragen!!
 
 function renderTaskForm() {
   taskDescription.value = '';
@@ -64,7 +56,7 @@ function generateContactDropdown() {
 
     const contactsOptions = document.getElementById('taskAssigned');
     contactsOptions.innerHTML += `
-    <option data-contact-index="${i}">
+    <option value="${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName} ${userData[currentUser].contacts[i].avatar_initials} ${userData[currentUser].contacts[i].avatar_bg_color}">
       ${userData[currentUser].contacts[i].firstName} ${userData[currentUser].contacts[i].lastName}
     </option>
   `;
@@ -75,8 +67,8 @@ function generateContactDropdown() {
 
 async function addTaskToUser() {
 
-  const assignedToContactsDropdown = document.getElementById('taskAssigned');
-  const assignedToIndex = assignedToContactsDropdown.selectedIndex;
+  const taskAssigned = document.getElementById('taskAssigned')
+  const assignTo = taskAssigned.value.split(' ');
 
   let newTask = {
     task_id: new Date().getTime(),
@@ -85,7 +77,12 @@ async function addTaskToUser() {
     title: taskTitle.value,
     description: taskDescription.value,
     category: taskCategory.value,
-    assign_to_contacts: assignedToIndex,
+    assign_to_contacts: {
+      firstname: assignTo[0],
+      lastname: assignTo[1],
+      initials: assignTo[2],
+      bg_color: assignTo[3]
+    },
     date: taskDate.value,
     prio: taskButtonPriority,
   }
