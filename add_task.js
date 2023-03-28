@@ -69,6 +69,9 @@ async function addTaskToUser() {
 
   const taskAssigned = document.getElementById('taskAssigned')
   const assignTo = taskAssigned.value.split(' ');
+  if (taskBoardList.value == 'Select board list') {
+    taskBoardList.value = 0;
+  }
 
   let newTask = {
     task_id: new Date().getTime(),

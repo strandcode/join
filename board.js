@@ -145,11 +145,11 @@ function changeTask(i, j) {
         value="${userData[currentUser].tasks[j].date}">
         <span>Prio</span>
         <div class="prio-button-wrapper">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgentD" class="prio-button-urgent">Urgent<img
+          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent<img
               src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMediumD" class="prio-button-medium">Medium<img
+          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium<img
               src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLowD" class="prio-button-low">Low<img
+          <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img
               src="assets/img/prio-low.svg"></button>
         </div>
 
