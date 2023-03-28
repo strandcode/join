@@ -48,8 +48,6 @@ function generateContactDropdown() {
   taskAssigned.innerHTML = ``;
   taskAssigned.innerHTML += `
   <option disabled selected hidden>Select Contacts to assign</option>
-  <option value="${userData[currentUser]}">
-  ${userData[currentUser].firstName} ${userData[currentUser].LastName}</option>
  `;
 
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
@@ -69,6 +67,9 @@ async function addTaskToUser() {
 
   const taskAssigned = document.getElementById('taskAssigned')
   const assignTo = taskAssigned.value.split(' ');
+  if (taskBoardList.value == 'Select board list') {
+    taskBoardList.value = 0;
+  }
 
   let newTask = {
     task_id: new Date().getTime(),

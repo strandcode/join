@@ -22,19 +22,24 @@ async function saveToBackend() {
   // downloadUserDataFromBackend();
 }
 
-async function addUser(firstName, LastName, email, password) {
+async function addUser(firstName, lastName, email, password) {
   let newUser = {
     firstName: firstName,
-    LastName: LastName,
+    LastName: lastName,
     email: email,
     password: password,
-    contacts: [],
-    tasks: [
-      { task_id: 1, boardList: 0, boardlistPosition: 0, title: "Jane's first task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
-      { task_id: 2, boardList: 1, boardlistPosition: 0, title: "Jane's second task", description: 'Check new Join', category: 'Backoffice', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
-      { task_id: 3, boardList: 2, boardlistPosition: 0, title: "Jane's third task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' },
-      { task_id: 4, boardList: 3, boardlistPosition: 0, title: "Jane's fourth task", description: 'Check new Join', category: 'Sales', assign_to_contacts: [0], date: '2023-03-25', prio: 'urgent' }
+    contacts: [
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: '',
+        avatar_initials: firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase(),
+        avatar_bg_color: 'rebeccapurple' // addRandomColorToContactAvatar()
+      }
+
     ],
+    tasks: [],
     board: [
       { boardlistTitle: 'To do' },
       { boardlistTitle: 'In progress' },
