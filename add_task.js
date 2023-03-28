@@ -29,7 +29,7 @@ const taskButtonLow = document.getElementById('taskButtonLow');
 let taskButtonPriority = '';
 
 
-
+//ANCHOR - SET TO BOARDLIST "TO DO", "IN PROGRESS", "AWAIT FEEDBACK", "DONE"
 function renderTaskForm() {
   taskDescription.value = '';
   taskBoardList.innerHTML = ``;
@@ -42,6 +42,7 @@ function renderTaskForm() {
   `;
 }
 
+//ANCHOR - GET USERDATA
 
 // TODO Mehrere Assign-To-Contacs
 function generateContactDropdown() {
@@ -62,6 +63,7 @@ function generateContactDropdown() {
 
 }
 
+//ANCHOR - ADD TO TASKLIST
 
 async function addTaskToUser() {
 
@@ -83,9 +85,7 @@ async function addTaskToUser() {
     },
     date: taskDate.value,
     prio: taskButtonPriority,
-  }
-
-    ;
+  };
 
   userData[currentUser].tasks.push(newTask);
   await backend.setItem('users', JSON.stringify(userData));
@@ -119,8 +119,18 @@ function taskClearButton() {
 }
 
 
-// BUTTON SCRIPT
+//ANCHOR - BUTTON PRIO + TASK ADD TO BOARD CARD
+function resetPriorityButtons() {
+  let taskButtonPriorityElements = document.querySelectorAll('.prio-button-low, .prio-button-medium, .prio-button-urgent');
+  taskButtonPriorityElements.forEach(element => {
+    element.style.backgroundColor = "";
+    element.classList.remove("active");
+  });
+  taskButtonPriority = '';
+}
+
 function setPriorityUrgent() {
+  resetPriorityButtons()
   let taskButtonUrgent = document.getElementById('taskButtonUrgent');
   if (!taskButtonUrgent.classList.contains('active')) {
     taskButtonUrgent.style.backgroundColor = "red";
@@ -136,6 +146,7 @@ function setPriorityUrgent() {
 
 
 function setPriorityMedium() {
+  resetPriorityButtons()
   let taskButtonMedium = document.getElementById('taskButtonMedium');
   if (!taskButtonMedium.classList.contains('active')) {
     taskButtonMedium.style.backgroundColor = "orange";
@@ -149,7 +160,7 @@ function setPriorityMedium() {
 }
 
 function setPriorityLow() {
-
+  resetPriorityButtons()
   let taskButtonLow = document.getElementById('taskButtonLow');
   if (!taskButtonLow.classList.contains('active')) {
     taskButtonLow.style.backgroundColor = "green";
@@ -162,6 +173,7 @@ function setPriorityLow() {
   }
 }
 
+//ANCHOR - USER INFORMATION "ADD TASK TO BOARD"
 function taskCreateImageUp() {
   const taskCreateImg = document.getElementById("taskCreate");
   taskCreateImg.style.opacity = "1";
