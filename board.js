@@ -1,19 +1,25 @@
+// TODO das Board komplett überarbeiten
+
+
 let currentDraggedTask;
 
 async function generateBoard() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  // setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
   getCurrentUser();
-  for (let i = 0; i < userData[currentUser].board.length; i++) {
-    const boardCard = document.getElementById(`${i}`);
-    boardCard.innerHTML = ``;
-    for (let j = 0; j < userData[currentUser].tasks.length; j++) {
-      let a = i.toString();
-      if (userData[currentUser].tasks[j].boardList == a) {
-        boardCard.innerHTML += generateBoardTemplate(i, j);
-        priorityBoard2(j);
-        categoryColor(j);
-        await saveToBackend();
+  if (userData[currentUser].board.length > 0) {
+
+    for (let i = 0; i < userData[currentUser].board.length; i++) {
+      const boardCard = document.getElementById(`${i}`);
+      boardCard.innerHTML = ``;
+      for (let j = 0; j < userData[currentUser].tasks.length; j++) {
+        let a = i.toString();
+        if (userData[currentUser].tasks[j].boardList == a) {
+          boardCard.innerHTML += generateBoardTemplate(i, j);
+          priorityBoard2(j);
+          categoryColor(j);
+          await saveToBackend();
+        }
       }
     }
   }

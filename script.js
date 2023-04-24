@@ -9,7 +9,8 @@ function getCurrentUser() {
 }
 
 async function downloadUserDataFromBackend() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
+  // TODO auf strandco.de umziehen
+  setURL('https://sascha-schroeder.developerakademie.net/smallest_backend_ever');
   await downloadFromServer();
   userData = await JSON.parse(backend.getItem('users')) || []; // FIXME Sicherheitskritisch!
 }
