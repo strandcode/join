@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="login.css">
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban Project Management Tool</title>
-  <script src="./mini_backend.js"></script>
 </head>
 
 <body onload="checkForStoredLogin()">
@@ -31,11 +30,6 @@
 
       <div class="login-form-settings">
         <div class="login-form-settings-left">
-          <!-- NOTE 
-          Der value-Attribut des input type="checkbox"-Elements ist optional, aber es ist nützlich, wenn das Formular per HTTP POST oder HTTP GET Methode an den Server gesendet wird. Der Wert des value-Attributs wird zusammen mit dem name-Attribut als Schlüssel-Wert-Paar an den Server gesendet.
-          In dem Beispiel, das Sie gepostet haben, wird, wenn der Benutzer das Kontrollkästchen "Coding" auswählt und das Formular an den Server sendet, der Wert "coding" als Teil des Schlüssel-Wert-Paars interest=coding an den Server gesendet. Wenn der Benutzer das Kontrollkästchen "Music" auswählt, wird der Wert "music" als Teil des Schlüssel-Wert-Paars interest=music gesendet.
-          Der Server kann dann diese Schlüssel-Wert-Paare auswerten und entsprechende Aktionen ausführen.
-          -->
           <input id="checkboxRememberMe" type="checkbox" name="login-join" value="remember me">
           <label for="rememberMe">Remember me</label>
 
@@ -45,7 +39,7 @@
       </div>
       <div class="login-form-submit-buttons">
         <button class="button button-darkblue" onclick="loginUser()">Login</button>
-        <button class="button button-white" onclick="loginGuestUser()">Demo login</button>
+        <button class="button button-white" onclick="loginDemoUser()">Demo login</button>
       </div>
     </form>
   </div>
@@ -64,8 +58,8 @@
 
   <script src="js/storage.js"></script>
   <script src="js/register.js"></script>
-  <script src="script.js"></script>
-  <script src="login.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/login.js"></script>
 </body>
 
 </html>

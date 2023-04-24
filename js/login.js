@@ -3,10 +3,27 @@ const loginEmail = document.getElementById('loginEmail');
 const loginPassword = document.getElementById('loginPassword');
 const loginMessage = document.getElementById('loginMessage');
 
+
+
+
+// NOTE Erstmal nur demoUser
+function loginDemoUser() {
+  setItem('currentUser', '0');
+  window.location.href = 'summary.html';
+}
+
+
+
+
 async function loginUser() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users'));
+
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error: ', e);
+  }
+
+  console.log(userData);
   let user = userData.find(u => u.email == loginEmail.value && u.password == loginPassword.value);
   let index = userData.indexOf(user);
   userData = [];
@@ -32,10 +49,7 @@ function clearFormInputValues() {
   loginPassword.value = '';
 }
 
-function loginGuestUser() {
-  setCurrentUser(0);
-  window.location.href = 'summary.html';
-}
+
 
 function setCurrentUser(currentUserIndex) {
   localStorage.setItem('currentUser', currentUserIndex);
@@ -114,8 +128,4 @@ function resetUserPassword() {
   }
 }
 
-// FIXME Sicherheitskritisch!
-// function setCurrentUser(currentUserIndex) {
-//   let encryptedCurrentUserIndex = (currentUserIndex * 12) + 4;
-//   localStorage.setItem('currentUser', encryptedCurrentUserIndex);
-// }
+

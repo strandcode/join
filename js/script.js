@@ -1,27 +1,61 @@
-// NOTE Einbindung smalles_backend_ever
 
-
-let userData = [];
 let currentUser;
 
-function getCurrentUser() {
-  currentUser = parseInt(localStorage.getItem('currentUser'));
+async function getCurrentUser() {
+  currentUser = parseInt(await getItem('currentUser'));
+  console.log(currentUser);
+  console.log(typeof currentUser);
 }
 
-async function downloadUserDataFromBackend() {
-  // TODO auf strandco.de umziehen
-  setURL('https://sascha-schroeder.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users')) || []; // FIXME Sicherheitskritisch!
+let userData = [];
+
+function resetDemoUser() {
+  if (userData.length > 0) {
+    userData.splice(0, 1, demoUser);
+  } else {
+    userData.push(demoUser);
+  }
+  setItem('userData', userData);
 }
 
-// FIXME Sicherheitskritisch!
-downloadUserDataFromBackend();
-
-async function saveToBackend() {
-  await backend.setItem('users', JSON.stringify(userData));
-  // downloadUserDataFromBackend();
+async function loadUserData() {
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error: ', e);
+  }
+  console.log(userData);
 }
+
+// TODO more content
+const demoUser = {
+  firstName: 'Jane',
+  LastName: 'Roe',
+  email: 'jane@roe.com',
+  password: '1234',
+  contacts: [
+    {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@doe.com',
+      phone: '+44 123 654 879',
+      avatar_initials: 'JD',
+      avatar_bg_color: '#29ABE2'
+    }
+
+  ],
+  tasks: [],
+  board: [
+    { boardlistTitle: 'To do' },
+    { boardlistTitle: 'In progress' },
+    { boardlistTitle: 'Awaiting Feedback' },
+    { boardlistTitle: 'Done' }
+  ]
+}
+
+
+
+
 
 async function addUser(firstName, lastName, email, password) {
   let newUser = {
@@ -176,86 +210,21 @@ function templateMobileNavbar() {
 
 
 function init() {
+  resetDemoUser();
+  getCurrentUser();
+  loadUserData();
   templateDesktopHeader();
   templateDesktopNavbar();
   templateMobileHeader();
   templateMobileNavbar();
+  setTimeout(() => {
+    initSummary();
+
+  }, 500);
 }
 
 
 
-async function addJane() {
-  let newUser = {
-    firstName: 'Jane',
-    LastName: 'Roe',
-    email: 'jane@roe.com',
-    password: 'test123',
-    contacts: [{
-      avatar_bg_color: "#FF7A00",
-      avatar_initials: "JD",
-      email: "john@doe.com",
-      firstName: "John",
-      lastName: "Doe",
-      phone: "+44 457 458 578"
-    }
-    ],
-    tasks: [
-      {
-        task_id: 1,
-        boardList: 0,
-        boardlistPosition: 0,
-        title: "Jane's first task",
-        description: "Check new Join",
-        category: 'Backoffice',
-        assign_to_contacts: [0],
-        date: "2023-03-18",
-        prio: "urgent",
-      },
-      {
-        task_id: 2,
-        boardList: 1,
-        boardlistPosition: 0,
-        title: "Jane's first task",
-        description: "Check new Join",
-        category: 'Backoffice',
-        assign_to_contacts: [0],
-        date: "2023-03-18",
-        prio: "urgent",
-      },
-      {
-        task_id: 3,
-        boardList: 2,
-        boardlistPosition: 0,
-        title: "Jane's first task",
-        description: "Check new Join",
-        category: 'Backoffice',
-        assign_to_contacts: [0],
-        date: "2023-03-18",
-        prio: "low",
-      },
-      {
-        task_id: 4,
-        boardList: 3,
-        boardlistPosition: 0,
-        title: "Jane's first task",
-        description: "Check new Join",
-        category: 'Backoffice',
-        assign_to_contacts: [0],
-        date: "2023-03-18",
-        prio: "urgent",
-      }
-    ],
-    board: [
-      { boardlistTitle: 'To do' },
-      { boardlistTitle: 'In progress' },
-      { boardlistTitle: 'Awaiting Feedback' },
-      { boardlistTitle: 'Done' }
-    ]
-  }
 
-  userData.splice(0, 1, newUser);
-  await backend.setItem('users', JSON.stringify(userData));
-  downloadUserDataFromBackend();
-};
 
 

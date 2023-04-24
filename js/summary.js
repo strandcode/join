@@ -1,17 +1,8 @@
-async function initSummary() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users')) || [];
-  getCurrentUser();
-  let currentUserData = userData[currentUser];
-  showCurrentUser(currentUser, currentUserData);
-  if (currentUserData) {
-    greetUserAtSummary();
-    getQuantityOfBoardTasks();
-    setNavbarItemActive('.navbar-summary');
-  } else {
-    console.error('No data found');
-  }
+
+function initSummary() {
+  greetUserAtSummary();
+  getQuantityOfBoardTasks();
+  setNavbarItemActive('.navbar-summary');
 }
 
 const summaryTasksInBoard = document.getElementById('summaryTasksInBoard');
