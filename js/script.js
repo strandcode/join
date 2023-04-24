@@ -44,7 +44,7 @@ async function saveToStorage() {
 
 // TODO more content
 const demoUser = {
-  'firstName': 'XJane',
+  'firstName': 'Jane',
   LastName: 'Roe',
   email: 'jane@roe.com',
   password: '1234',
@@ -186,8 +186,7 @@ async function addUser(firstName, lastName, email, password) {
     ]
   }
   userData.push(newUser);
-  await backend.setItem('users', JSON.stringify(userData));
-  downloadUserDataFromBackend();
+  saveToStorage();
 };
 
 

@@ -84,7 +84,7 @@ function signupUser() {
 
   signupButton.innerHTML = '';
   signupButton.innerHTML = /*html*/ `
-    <span>Registration successful.</span>
+    <span>Registration successful</span>
   `;
   setTimeout(function () {
     window.location.href = 'index.html';

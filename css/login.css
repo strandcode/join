@@ -139,17 +139,17 @@ body {
 }
 
 .login-form-input-email {
-    background: url(assets/img/icon-mail-user.svg) no-repeat;
+    background: url(../assets/img/icon-mail-user.svg) no-repeat;
     background-position: top 8px right 10px;
 }
 
 .login-form-input-password {
-    background: url(assets/img/icon-lock-user.svg) no-repeat;
+    background: url(../assets/img/icon-lock-user.svg) no-repeat;
     background-position: top 8px right 10px;
 }
 
 .login-form-input-name {
-    background: url(assets/img/icon-name-singup.svg) no-repeat;
+    background: url(../assets/img/icon-name-singup.svg) no-repeat;
     background-position: top 8px right 10px;
 }
 
@@ -189,6 +189,11 @@ body {
     align-items: center;
     gap: 20px;
 }
+
+.login-signup-button-wrapper a {
+    text-decoration: none;
+}
+
 
 
 .login-signup {
