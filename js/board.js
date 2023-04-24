@@ -33,7 +33,7 @@ async function generateBoard() {
           boardCard.innerHTML += generateBoardTemplate(i, j);
           priorityBoard2(j);
           categoryColor(j);
-          await saveToBackend();
+          await saveToStorage();
         }
       }
     }

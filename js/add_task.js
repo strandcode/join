@@ -21,8 +21,6 @@ function initTasksData() {
 }
 
 
-let newTask = [];
-let TaskContactsAll;
 const taskBoardList = document.getElementById('taskBoardList');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
@@ -31,7 +29,10 @@ const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
 const taskButtonLow = document.getElementById('taskButtonLow');
+
 let taskButtonPriority = '';
+let newTask = [];
+// let TaskContactsAll;
 
 
 //ANCHOR - SET TO BOARDLIST "TO DO", "IN PROGRESS", "AWAIT FEEDBACK", "DONE"
@@ -94,9 +95,8 @@ async function addTaskToUser() {
     date: taskDate.value,
     prio: taskButtonPriority,
   };
-
   userData[currentUser].tasks.push(newTask);
-  await backend.setItem('users', JSON.stringify(userData));
+  saveToStorage();
   initTasks();
 
   taskButtonUrgent.style.backgroundColor = "";

@@ -147,7 +147,21 @@ const demoUser = {
     }
 
   ],
-  tasks: [],
+  tasks: [
+    {
+      task_id: 1682355331263,
+      boardList: 0,
+      boardlistPosition: 0,
+      title: "Explore Kanban Project Management Tool",
+      description: "Explore Kanban Project Management Tool",
+      category: "Learn new technology",
+      assign_to_contacts:
+        { firstname: 'Alex', lastname: 'Müller', initials: 'AM', bg_color: '#1abc9c' },
+      date: "2023-04-30",
+      prio: "urgent",
+    }
+
+  ],
   board: [
     { boardlistTitle: 'To do' },
     { boardlistTitle: 'In progress' },
