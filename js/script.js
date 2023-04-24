@@ -7,13 +7,14 @@ async function getCurrentUser() {
 
 let userData = [];
 
+
 async function resetDemoUser() {
   if (userData.length > 0) {
     userData.splice(0, 1, demoUser);
   } else {
     userData.push(demoUser);
   }
-  await setItem('userData', userData);
+  await saveToStorage();
 }
 
 
@@ -43,7 +44,7 @@ async function saveToStorage() {
 
 // TODO more content
 const demoUser = {
-  'firstName': 'Jane',
+  'firstName': 'XJane',
   LastName: 'Roe',
   email: 'jane@roe.com',
   password: '1234',
@@ -55,6 +56,94 @@ const demoUser = {
       phone: '+44 123 654 879',
       avatar_initials: 'JD',
       avatar_bg_color: '#29ABE2'
+    },
+    {
+      "firstName": "Alex",
+      "lastName": "Müller",
+      "email": "alex.mueller@example.com",
+      "phone": "+49 123 56789",
+      "avatar_initials": "AM",
+      "avatar_bg_color": "#1abc9c"
+    },
+    {
+      "firstName": "Herta-Emilia-Victoria",
+      "lastName": "Schmidt",
+      "email": "herta.schmidt@example.com",
+      "phone": "+49 123 45678",
+      "avatar_initials": "BS",
+      "avatar_bg_color": "#2ecc71"
+    },
+    {
+      "firstName": "Christian",
+      "lastName": "Fischer",
+      "email": "christian.fischer@example.com",
+      "phone": "+49 123 23456",
+      "avatar_initials": "CF",
+      "avatar_bg_color": "#3498db"
+    },
+    {
+      "firstName": "David",
+      "lastName": "Weber",
+      "email": "david.weber@example.com",
+      "phone": "+49 123 78901",
+      "avatar_initials": "DW",
+      "avatar_bg_color": "#9b59b6"
+    },
+    {
+      "firstName": "Emma",
+      "lastName": "Wagner",
+      "email": "emma.wagner@example.com",
+      "phone": "+49 123 12345",
+      "avatar_initials": "EW",
+      "avatar_bg_color": "#34495e"
+    },
+    {
+      "firstName": "Felix",
+      "lastName": "Bauer",
+      "email": "felix.bauer@example.com",
+      "phone": "+49 123 89012",
+      "avatar_initials": "FB",
+      "avatar_bg_color": "#f1c40f"
+    },
+    {
+      "firstName": "Greta",
+      "lastName": "Hoffmann",
+      "email": "greta.hoffmann@example.com",
+      "phone": "+49 123 45670",
+      "avatar_initials": "GH",
+      "avatar_bg_color": "#e67e22"
+    },
+    {
+      "firstName": "Hans",
+      "lastName": "Koch",
+      "email": "hans.koch@example.com",
+      "phone": "+49 123 12340",
+      "avatar_initials": "HK",
+      "avatar_bg_color": "#e74c3c"
+    },
+    {
+      "firstName": "Isabella",
+      "lastName": "Lehmann",
+      "email": "isabella.lehmann@example.com",
+      "phone": "+49 123 56780",
+      "avatar_initials": "IL",
+      "avatar_bg_color": "#95a5a6"
+    },
+    {
+      "firstName": "Julia",
+      "lastName": "Maier",
+      "email": "julia.maier@example.com",
+      "phone": "+49 123 23450",
+      "avatar_initials": "JM",
+      "avatar_bg_color": "#d35400"
+    },
+    {
+      "firstName": "Karl",
+      "lastName": "Neumann",
+      "email": "karl.neumann@example.com",
+      "phone": "+49 123 78900",
+      "avatar_initials": "KN",
+      "avatar_bg_color": "#7f8c8d"
     }
 
   ],

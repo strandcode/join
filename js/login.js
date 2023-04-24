@@ -9,6 +9,7 @@ const loginMessage = document.getElementById('loginMessage');
 // NOTE Erstmal nur demoUser
 function loginDemoUser() {
   setItem('currentUser', '0');
+  // TODO resetDemoUser();
   window.location.href = 'summary.html';
 }
 

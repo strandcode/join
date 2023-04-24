@@ -1,12 +1,27 @@
+async function initBoard() {
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error:', e);
+  }
+  initHeader();
+  initNavbar();
+  initBoardData();
+}
+
+
+function initBoardData() {
+  generateBoard();
+}
+
+
+
 // TODO das Board komplett überarbeiten
 
 
 let currentDraggedTask;
 
 async function generateBoard() {
-  // setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  getCurrentUser();
   if (userData[currentUser].board.length > 0) {
 
     for (let i = 0; i < userData[currentUser].board.length; i++) {

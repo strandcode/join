@@ -1,23 +1,27 @@
 async function initContacts() {
-  await init();
-  // userData.push(demoUser);
-  // currentUser = 0;
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error:', e);
+  }
+  initHeader();
+  initNavbar();
+  initBoardData();
+}
 
-  // setTimeout(() => {
 
-  //   console.log(currentUser);
-  //   console.log(userData);
-  // }, 800);
-
+function initBoardData() {
   setNavbarItemActive('.navbar-contacts');
-
-  if (userData[0].contacts.length > 0) {
+  if (userData[currentUser].contacts.length > 0) {
     renderContactsList();
   } else {
     console.warn('No contacts found');
     templatefirstContact();
   }
+
 }
+
+
 
 const contactsListS = document.getElementById('contactsList');
 const contactsMainWrapperS = document.getElementById('contactsMainWrapperS');

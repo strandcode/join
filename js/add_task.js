@@ -1,17 +1,22 @@
 async function initTasks() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users')) || [];
-  getCurrentUser();
-  let currentUserData = userData[currentUser];
-  showCurrentUser(currentUser, currentUserData);
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error:', e);
+  }
+  initHeader();
+  initNavbar();
+  initTasksData();
+}
+
+
+function initTasksData() {
   setNavbarItemActive('.navbar-task');
   if (userData[currentUser].board) {
     renderTaskForm();
     generateContactDropdown();
   } else {
     console.warn('No tasks found');
-    // templatefirstContact();
   }
 }
 
