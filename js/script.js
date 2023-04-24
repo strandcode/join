@@ -1,35 +1,49 @@
 
-let currentUser;
+let currentUser = 0; // TODO currentUser aus Storage übernemhen
 
 async function getCurrentUser() {
-  currentUser = parseInt(await getItem('currentUser'));
-  console.log(currentUser);
-  console.log(typeof currentUser);
+  return parseInt(await getItem('currentUser'));
 }
 
 let userData = [];
 
-function resetDemoUser() {
+async function resetDemoUser() {
   if (userData.length > 0) {
     userData.splice(0, 1, demoUser);
   } else {
     userData.push(demoUser);
   }
-  setItem('userData', userData);
+  await setItem('userData', userData);
 }
 
-async function loadUserData() {
+
+// ################## LOAD ########################
+
+async function loadFromStorage() {
   try {
     userData = JSON.parse(await getItem('userData'));
+    console.log(userData);
   } catch (e) {
     console.error('Loading error: ', e);
   }
-  console.log(userData);
 }
+
+
+// ################## SAVE ########################
+async function saveToStorage() {
+  try {
+    await setItem('userData', JSON.stringify(userData));
+  } catch (e) {
+    console.error('Saving error: ', e);
+  }
+}
+
+
+
 
 // TODO more content
 const demoUser = {
-  firstName: 'Jane',
+  'firstName': 'Jane',
   LastName: 'Roe',
   email: 'jane@roe.com',
   password: '1234',
@@ -124,13 +138,11 @@ function templateDesktopHeader(activeLogin) {
 
 function setNavbarItemActive(classSelector) {
   let allNavbarItems = document.querySelectorAll('.desktop-navbar-link, .mobile-navbar-link');
-  console.log(allNavbarItems);
   allNavbarItems.forEach(navbarItem => {
     navbarItem.classList.remove('navbar-item-active');
   });
 
   let navbarItems = document.querySelectorAll(classSelector);
-  console.log(navbarItems);
   navbarItems.forEach(navbarItem => {
     navbarItem.classList.add('navbar-item-active');
   });
@@ -209,18 +221,14 @@ function templateMobileNavbar() {
 }
 
 
-function init() {
-  resetDemoUser();
-  getCurrentUser();
-  loadUserData();
+function initHeader() {
   templateDesktopHeader();
-  templateDesktopNavbar();
   templateMobileHeader();
-  templateMobileNavbar();
-  setTimeout(() => {
-    initSummary();
+}
 
-  }, 500);
+function initNavbar() {
+  templateDesktopNavbar();
+  templateMobileNavbar();
 }
 
 

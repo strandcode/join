@@ -1,12 +1,17 @@
 async function initContacts() {
-  setURL('https://gruppe-05i.developerakademie.net/smallest_backend_ever');
-  await downloadFromServer();
-  userData = await JSON.parse(backend.getItem('users')) || [];
-  getCurrentUser();
-  let currentUserData = userData[currentUser];
-  showCurrentUser(currentUser, currentUserData);
+  await init();
+  // userData.push(demoUser);
+  // currentUser = 0;
+
+  // setTimeout(() => {
+
+  //   console.log(currentUser);
+  //   console.log(userData);
+  // }, 800);
+
   setNavbarItemActive('.navbar-contacts');
-  if (userData[currentUser].contacts.length > 0) {
+
+  if (userData[0].contacts.length > 0) {
     renderContactsList();
   } else {
     console.warn('No contacts found');
@@ -203,7 +208,7 @@ async function addContactToUser() {
     avatar_bg_color: addRandomColorToContactAvatar()
   }
   userData[currentUser].contacts.push(newContact);
-  await saveToBackend();
+  await saveToStorage();
   initContacts();
 }
 
@@ -221,13 +226,13 @@ async function editContactOfUser(c) {
     avatar_bg_color: addRandomColorToContactAvatar()
   }
   userData[currentUser].contacts.splice(c, 1, editedContact);
-  await saveToBackend();
+  await saveToStorage();
   initContacts();
 }
 
 async function deleteContactOfUser(c) {
   userData[currentUser].contacts.splice(c, 1);
-  await saveToBackend();
+  await saveToStorage();
   initContacts();
 }
 

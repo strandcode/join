@@ -1,5 +1,16 @@
+async function initSummary() {
+  try {
+    userData = JSON.parse(await getItem('userData'));
+  } catch (e) {
+    console.error('Loading error:', e);
+  }
+  initHeader();
+  initNavbar();
+  initSummaryData();
+}
 
-function initSummary() {
+
+function initSummaryData() {
   greetUserAtSummary();
   getQuantityOfBoardTasks();
   setNavbarItemActive('.navbar-summary');
@@ -125,11 +136,9 @@ function setWelcomePhraseByDaytime() {
   let welcomePhrase;
   let currentTime = new Date();
   currentTime = currentTime.getHours();
-  console.log(currentTime);
-  if (currentTime >= 5 && currentTime < 12) { welcomePhrase = 'Good morning' };
+  if (currentTime >= 3 && currentTime < 12) { welcomePhrase = 'Good morning' };
   if (currentTime >= 12 && currentTime < 18) { welcomePhrase = 'Good afternoon' };
-  if (currentTime >= 18 && currentTime < 22) { welcomePhrase = 'Good evening' };
-  if (currentTime >= 22 && currentTime < 5) { welcomePhrase = 'Go to sleep' };
+  if (currentTime >= 18 && currentTime < 3) { welcomePhrase = 'Good evening' };
   return welcomePhrase;
 }
 
