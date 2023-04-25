@@ -3,27 +3,116 @@ main {
     flex-direction: column;
 }
 
-.headline-board-D {
-    width: 176px;
-    height: 73px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 61px;
-    line-height: 120%;
-    color: #000000;
-    margin-left: 35px;
-
-}
-
-.board-head-D {
-
-    left: 267px;
-    top: 57px;
+.board-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
 }
+
+.board-header h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 2.5rem;
+}
+
+.searchfield {
+    padding: 10px 10px 8px 10px;
+    background: #FFFFFF;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
+    background-image: url(../assets/img/icon-magnifying-glass.svg);
+    background-repeat: no-repeat;
+    background-position: right 10px top 7px;
+    font-size: 1rem;
+}
+
+.searchfield::placeholder {
+    font-size: 1rem;
+}
+
+.board-body {
+    background-color: coral;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+    justify-content: space-evenly;
+    overflow-y: auto;
+}
+
+.boardlist-body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.boardlist-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+    width: 320px;
+    cursor: pointer;
+}
+
+.boardlist-card h3 {
+    font-size: 1.3rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 5px 10px;
+    color: white;
+    background-color: rebeccapurple;
+}
+
+.boardlist-card p {
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+
+.card-epic {
+    background-color: coral;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.responsible-wrapper {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.responsible-wrapper .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+
+.responsible-wrapper img {
+    height: 25px;
+    width: 25px;
+    object-fit: contain;
+}
+
+
+
+
+
+/* TODO REST #################################################### */
+
 
 .assigned-contact {
     padding-top: 30px;
@@ -190,13 +279,7 @@ main {
     display: none;
 }
 
-.boardlist-body {
-    background-color: #f6f7f8;
-    display: flex;
-    flex-wrap: coluumn;
-    flex-direction: column;
-    gap: 50px;
-}
+
 
 .add-task-mobile-D:hover {
     background-color: #29ABE2;
@@ -216,22 +299,7 @@ main {
     cursor: pointer;
 }
 
-.find-task-D {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 13px 21px;
-    gap: 10px;
-    width: 251px;
-    height: 51px;
-    background: #FFFFFF;
-    border: 1px solid #A8A8A8;
-    border-radius: 10px;
-    background-image: url(../assets/img/icon-magnifying-glass.svg);
-    background-repeat: no-repeat;
-    background-position: right 10px top 14px;
-}
+
 
 .find-add-container-D {
     display: flex;
@@ -287,29 +355,9 @@ h4:hover {
 
 }
 
-.work-task-container-D {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 12px;
-    justify-content: space-evenly;
-    overflow-y: auto;
-}
 
-.boardlist-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 18px 19px;
-    gap: 10px;
-    /* white */
-    background: #FFFFFF;
-    /* shadoe backlog box */
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-    border-radius: 30px;
-    width: 320px;
-    cursor: pointer;
-}
+
+
 
 .work-task-headline-D {
     font-family: 'Inter';
@@ -370,21 +418,9 @@ h4:hover {
     border-radius: 10px;
 }
 
-.task-user-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
 
-.work-category-D {
-    padding: 4px 25px;
-    width: 103px;
-    height: 27px;
-    border-radius: 8px;
-    color: #FFFFFF;
-    margin-top: 22px;
-    justify-content: center;
-    display: flex;
-}
+
+
 
 .pop-up-task-D {
     display: flex;

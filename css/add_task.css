@@ -183,6 +183,8 @@ main {
   overflow-y: auto;
 }
 
+/* TODO z-index */
+
 .dropdown-body .option {
   padding: 5px;
   cursor: pointer;

@@ -11,75 +11,75 @@ async function initBoard() {
 
 
 function initBoardData() {
-  generateBoard();
+  generateBoardListBody();
 }
 
 
 
-// TODO das Board komplett überarbeiten
-
+// TODO das Board komplett überarbeiten 'Backlog',
+categoryOptions = ['To-Do', 'In Progress', 'Reviews', 'Done'];
 
 let currentDraggedTask;
 
-async function generateBoard() {
+function generateBoardListBody() {
   if (userData[currentUser].board.length > 0) {
 
-    for (let i = 0; i < userData[currentUser].board.length; i++) {
-      const boardCard = document.getElementById(`${i}`);
-      boardCard.innerHTML = ``;
+    for (let i = 0; i < userData[currentUser].board.length; i++) { // Es gibt vier Boards
+
+      const boardListBody = document.getElementById(`boardListBody-${i}`);
+      boardListBody.innerHTML = '';
       for (let j = 0; j < userData[currentUser].tasks.length; j++) {
-        let a = i.toString();
-        if (userData[currentUser].tasks[j].boardList == a) {
-          boardCard.innerHTML += generateBoardTemplate(i, j);
-          priorityBoard2(j);
-          categoryColor(j);
-          await saveToStorage();
+
+        if (userData[currentUser].tasks[j].boardList == categoryOptions[i]) {
+          boardListBody.innerHTML += generateBoardCard(i, j);
+          setCardPriority(j);
         }
       }
     }
   }
 }
 
-function generateBoardTemplate(i, j) {
-  /*  let assign = '';
-   for (let k = 0; k < userData[currentUser].tasks[j]['assign_to_contacts'].length; k++) {
-     let contactIndex = userData[currentUser].tasks[j]['assign_to_contacts'][k];
-     let contact = userData[currentUser].contacts[contactIndex];
-     if (userData[currentUser].contacts.length > 0) {
-       assign += `
-       <span class="avatar-bg-color-task" style="background-color: ${contact.avatar_bg_color}">
-       ${contact.avatar_initials}
-       </span>
-       `;
-     }
-     else {
-       assign += ``;
-       console.warn('Keine Kontakte vorhanden');
-     }
-   } */
-  return `    
-    <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})" 
-    id="${userData[currentUser].tasks[j]['task_id']}">
-    <div class="work-category-D" id="workCategoryD${j}">
-        ${userData[currentUser].tasks[j]['category']} 
+function generateBoardCard(i, j) {
+  return /*html*/ `    
+    <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true"
+      onclick="openTask(${i},${j})" id="${userData[currentUser].tasks[j]['task_id']}">
+      <div class="card-epic" id="workCategoryD${j}">
+        ${userData[currentUser].tasks[0].category}
       </div>
-      <h5 id="workTaskHeadlineD" class="work-task-headline-D">${userData[currentUser].tasks[j]['title']}</h5>
-      <span class="work-task-content-D" id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</span>
-      <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-      <div class="task-user-wrapper" id="taskUserWrapper">
-      <div class="work-user-D" id="workUserD">
-      <span class="avatar-bg-color-task" style="background-color: ${userData[currentUser].tasks[j]['assign_to_contacts'].bg_color}">
-      ${userData[currentUser].tasks[j]['assign_to_contacts'].initials}
-      </span>
-     
+
+      <h3 id="workTaskHeadlineD">${userData[currentUser].tasks[j]['title']}</h3>
+
+      <p id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</p>
+
+      <!-- TODO Subtasks <span class=""><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> -->
+
+      <div class="responsible-wrapper" id="taskUserWrapper">
+
+        <div class="avatar" style="background-color: ${userData[currentUser].contacts[i].avatar_bg_color}">
+        ${userData[currentUser].contacts[i].avatar_initials}
         </div>
-        <div class="urgency-image" id="urgencyImage">
-        <img id="prioImg2${j}" src="" alt=""> 
-        </div>
-        </div>
-        </div>
- `;
+      
+          <img id="cardPriority-${j}" src="assets/img/cardurgent.svg" alt="">
+
+      </div>
+    </div>
+  `;
+
 }
+
+function setCardPriority(j) {
+  let priority = userData[currentUser].tasks[j].prio;
+  if (priority == 'urgent') {
+    document.getElementById('cardPriority-' + j).src = 'assets/img/prio-urgent.svg';
+  } if (priority == 'medium') {
+    document.getElementById('cardPriority-' + j).src = 'assets/img/prio-medium.svg';
+  } if (priority == 'low') {
+    document.getElementById('cardPriority-' + j).src = 'assets/img/prio-low.svg';
+  }
+}
+
+
+
 function openTask(i, j) {
   document.getElementById('popUpTaskD').classList.remove('d-none');
   document.getElementById('workTaskContainerD').classList.add('d-none');
@@ -214,25 +214,40 @@ function confirmChangeTask(i, j) {
 
 function startDragging(task_id) {
   currentDraggedTask = task_id;
-  // Weiß der handler welche ID er bewegt? Ja.
 }
 
 function dragover_handler(ev) {
   ev.preventDefault();
-
 }
 
+
+
 function drop_handler(category) {
+  console.log('Category', category);
   let dragged = userData[currentUser].tasks.find(index => index.task_id == currentDraggedTask);
   console.log(dragged);
   dragged.boardList = category;
-  filterInProgress();
-  filterToDO();
-  filterFeedback();
-  filterDone();
-  saveToBackend();
-  setTimeout(generateBoard, 200);
+  console.log(dragged.boardList);
+  console.log(typeof dragged.boardList);
+  console.log(dragged.task_id);
+
+  for (let i = 0; i < userData[currentUser].tasks.length; i++) {
+    if (userData[currentUser].tasks[i].task_id == dragged.task_id) {
+      userData[currentUser].tasks[i].boardList = dragged.boardList;
+      console.log(userData[currentUser].tasks[i]);
+      saveToStorage();
+      // let c = assignedToContacts.indexOf(contactID);
+      // assignedToContacts.splice(c, 1);
+    }
+  }
+  // initBoard();
+  setTimeout(initBoard, 250);
 }
+// filterInProgress();
+// filterToDO();
+// filterFeedback();
+// filterDone();
+// saveToBackend();
 
 function filterInProgress(i) {
   let inProgressTasks = userData[currentUser].tasks.filter(element => element.boardList == 1)
@@ -355,7 +370,7 @@ function filterDone(i) {
     </select>
     <span>Title</span>
     <input required="" type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
-
+ 
     <span>Description</span>
     <textarea required="" class="width descript" placeholder="Enter a Description" name="Description" id="taskDescription" cols="30" rows="10"></textarea>
     <span>Category</span>
@@ -417,7 +432,7 @@ function filterTasks() {
       let a = i.toString();
       if (task.boardList == a) {
         if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
-          workTaskContainer.innerHTML += generateBoardTemplate(i, j);
+          workTaskContainer.innerHTML += generateBoardCard(i, j);
         }
       }
     }

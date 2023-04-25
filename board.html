@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/board.css">
-  <link rel="stylesheet" href="./css/add_task_style.css">
+  <link rel="stylesheet" href="./css/add_task.css">
   <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
   <title>JOIN | Kanban board</title>
 </head>
@@ -21,31 +21,34 @@
   <nav id="mobileNavbar" class="mobile-navbar"></nav>
 
 
-  <main class="board-main-D">
-    <!-- Board Content -->
-    <div class="board-head-D">
-      <div class="button-mobile-container-D">
-        <h3 class="headline-board-D">Board</h3>
-        <button class="button button-darkblue" id="addTaskMobile" onclick="window.location.href='add_task.html';">
-          <span class="button-text-D"> Add Task </span>
-          <img src="assets/img/Icon-plus.svg" alt="">
-        </button>
+  <main>
+    <!-- REVIEW Board Content -->
+
+    <div class="board-header">
+      <h3>Board</h3>
+
+      <div class="search-task">
+        <input class="searchfield" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
       </div>
 
-      <div class="find-add-container-D">
-        <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
-        <button class="add-task-D" onclick="window.location.href='add_task.html';">
-          <span class="button-text-D"> Add Task </span>
-          <img src="assets/img/Icon-plus.svg" alt="">
-        </button>
-      </div>
+      <button class="button button-darkblue" id="addTaskMobile" onclick="window.location.href='add_task.html';">
+        <span> Add Task </span>
+        <img src="assets/img/Icon-plus.svg" alt="">
+      </button>
+
     </div>
 
-    <div class="work-task-container-D" id="workTaskContainerD">
+    <!-- NOTE Beginn Board -->
+
+    <div class="board-body" id="workTaskContainerD">
+
+
+      <!-- NOTE Boardlist 0 -->
+
       <div class="boardlist" id="boardList-0">
 
         <div class="boardlist-header" id="boardListHeader-0">
-          <h4>To do</h4>
+          <h4>To-Do</h4>
           <button id="smallPlusD" class="small-plus-D" onclick="window.location.href='add_task.html';"><img
               src="assets/img/icon-add-plus-dark.svg" alt=""></button>
           <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
@@ -53,19 +56,21 @@
           </button>
         </div>
 
+        <!-- NOTE BoardListBody 0 -->
 
-        <div class="boardlist-body dragbox" ondrop="drop_handler(0)" ondragover="dragover_handler(event)" id="0">
+        <div id="boardListBody-0" class="boardlist-body dragbox" ondrop="drop_handler('To-Do')"
+          ondragover="dragover_handler(event)">
 
 
         </div>
       </div>
 
 
-
+      <!-- NOTE Boardlist 1 -->
 
       <div class="boardlist " id="boardList-1">
         <div class="boardlist-header" id="boardListHeader-1">
-          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D"
+          <h4>In Progress</h4> <button id="smallPlusD" class="small-plus-D"
             onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
           <button id="smallPlusMobile" class="button button-darkblue" onclick="window.location.href='add_task.html';">
@@ -73,13 +78,16 @@
           </button>
         </div>
 
-        <div class="boardlist-body dragbox" ondrop="drop_handler(1)" ondragover="dragover_handler(event)" id="1">
+        <div id="boardListBody-1" class="boardlist-body dragbox" ondrop="drop_handler('In Progress')"
+          ondragover="dragover_handler(event)">
 
         </div>
       </div>
+
+      <!-- NOTE Boardlist 2 -->
       <div class="boardlist" id="boardList-2">
         <div class="boardlist-header" id="boardListHeader-2">
-          <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D"
+          <h4>Reviews</h4> <button id="smallPlusD" class="small-plus-D"
             onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
           </button>
           <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
@@ -87,10 +95,13 @@
           </button>
         </div>
 
-        <div class="boardlist-body dragbox" ondrop="drop_handler(2)" ondragover="dragover_handler(event)" id="2">
+        <div id="boardListBody-2" class="boardlist-body dragbox" ondrop="drop_handler('Reviews')"
+          ondragover="dragover_handler(event)">
 
         </div>
       </div>
+
+      <!-- NOTE Boardlist 3 -->
       <div class="boardlist" id="boardList-3">
         <div class="boardlist-header" id="boardListHeader-3">
           <h4>Done</h4> <button id="smallPlusD" class="small-plus-D"
@@ -101,7 +112,8 @@
           </button>
         </div>
 
-        <div class="boardlist-body dragbox" ondrop="drop_handler(3)" ondragover="dragover_handler(event)" id="3">
+        <div id="boardListBody-3" class="boardlist-body dragbox" ondrop="drop_handler('Done')"
+          ondragover="dragover_handler(event)">
 
         </div>
       </div>

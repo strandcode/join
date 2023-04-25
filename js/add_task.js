@@ -286,7 +286,7 @@ function showSelectedContacts() {
 const menuCategory = document.getElementById('menuCategory');
 const menuCategoryHeader = document.getElementById('menuCategoryHeader');
 
-let categoryOptions = ['Backlog', 'To-Do', 'In Progress', 'Reviews', 'Done'];
+let categoryOptions = ['To-Do', 'In Progress', 'Reviews', 'Done'];
 
 function renderMenuCategoryOptions() {
   menuCategory.innerHTML = '';
