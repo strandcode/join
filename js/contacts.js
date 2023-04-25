@@ -204,6 +204,7 @@ async function addContactToUser() {
   const contactAddEmail = document.getElementById('contactAddEmail');
   const contactAddPhone = document.getElementById('contactAddPhone');
   let newContact = {
+    contactID: new Date().getTime(),
     firstName: contactAddFirstName.value,
     lastName: contactAddLastName.value,
     email: contactAddEmail.value,
