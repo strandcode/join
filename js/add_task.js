@@ -13,7 +13,6 @@ async function initTasks() {
 function initTasksData() {
   setNavbarItemActive('.navbar-task');
   if (userData[currentUser].board) {
-    generateBoardListDropdown();
     clearFormValues();
     resetPriorityButtons();
   } else {
@@ -22,30 +21,22 @@ function initTasksData() {
 }
 
 // NOTE New task form input fields
-const taskBoardList = document.getElementById('taskBoardList');
 const taskTitle = document.getElementById('taskTitle');
 const taskDescription = document.getElementById('taskDescription');
 const taskDate = document.getElementById('taskDate');
+
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
 const taskButtonLow = document.getElementById('taskButtonLow');
-
 let taskButtonPriority = '';
-let taskCategory = '';
+
+
+let taskEpic = '';
+let assignedToContacts = [];
+let taskCategory = ''; // Das war früher die Boardlist, das wird jetzt als Category bezeichnet
+
 let newTask = [];
 // let TaskContactsAll;
-
-
-function generateBoardListDropdown() {
-  taskBoardList.innerHTML = ``;
-  taskBoardList.innerHTML += `
-    <option disabled selected hidden>Select board list</option>
-    <option value="0">${userData[currentUser].board[0].boardlistTitle}</option>
-    <option value="1">${userData[currentUser].board[1].boardlistTitle}</option>
-    <option value="2">${userData[currentUser].board[2].boardlistTitle}</option>
-    <option value="3">${userData[currentUser].board[3].boardlistTitle}</option>
-  `;
-}
 
 
 //ANCHOR - ADD TO TASKLIST
@@ -53,24 +44,23 @@ function generateBoardListDropdown() {
 async function addTaskToUser() {
   // const taskAssigned = document.getElementById('taskAssigned');
   // const assignTo = taskAssigned.value.split(' ');
-  if (taskBoardList.value == 'Select board list') {
-    taskBoardList.value = 0;
-  }
-  confirmTaskCreated();
+
+  confirmTaskCreated(); // TODO Erst wenn formular durchgelaufen
 
   let newTask = {
     task_id: new Date().getTime(),
-    boardList: parseInt(taskBoardList.value),
+    boardList: taskCategory,
     boardlistPosition: 0,
     title: taskTitle.value,
     description: taskDescription.value,
-    category: taskCategory,
-    assign_to_contacts: {
-      firstname: assignTo[0],
-      lastname: assignTo[1],
-      initials: assignTo[2],
-      bg_color: assignTo[3]
-    },
+    category: taskEpic,
+    assign_to_contacts: assignedToContacts,
+    // assign_to_contacts: {
+    //   firstname: assignTo[0],
+    //   lastname: assignTo[1],
+    //   initials: assignTo[2],
+    //   bg_color: assignTo[3]
+    // },
     date: taskDate.value,
     prio: taskButtonPriority,
   };
@@ -160,7 +150,6 @@ function resetPriorityButtons() {
 }
 
 function clearFormValues() {
-  taskBoardList.value = '';
   taskTitle.value = '';
   taskDescription.value = '';
   taskDate.value = '';
@@ -189,16 +178,16 @@ function clearFormValues() {
 // }
 
 
-const menuCategory = document.getElementById('menuCategory');
-const menuCategoryHeader = document.getElementById('menuCategoryHeader');
+const menuEpic = document.getElementById('menuEpic');
+const menuEpicHeader = document.getElementById('menuEpicHeader');
 
-let categoryOptions = ['Backend', 'Login', 'Summary', 'Contacts', 'Board'];
+let epicOptions = ['Backend', 'Login', 'Summary', 'Contacts', 'Kanban-Board'];
 
-function renderMenuCategoryOptions() {
-  menuCategory.innerHTML = '';
-  for (let i = 0; i < categoryOptions.length; i++) {
-    menuCategory.innerHTML += /*html*/ `
-      <div id="categoryOption-${i}" class="option" onclick="selectCategory('${categoryOptions[i]}')">${categoryOptions[i]}</div>
+function renderMenuEpicOptions() {
+  menuEpic.innerHTML = '';
+  for (let i = 0; i < epicOptions.length; i++) {
+    menuEpic.innerHTML += /*html*/ `
+      <div id="epicOption-${i}" class="option" onclick="selectEpic('${epicOptions[i]}')">${epicOptions[i]}</div>
     `;
   }
   // TODO menuCategory.innerHTML += /*html*/ `
@@ -206,15 +195,15 @@ function renderMenuCategoryOptions() {
   // `;
 }
 
-function toggleMenuCategory() {
-  renderMenuCategoryOptions();
-  menuCategory.classList.toggle('d-none');
+function toggleMenuEpic() {
+  renderMenuEpicOptions();
+  menuEpic.classList.toggle('d-none');
 }
 
-function selectCategory(categoryName) {
-  toggleMenuCategory();
-  menuCategoryHeader.innerHTML = categoryName;
-  taskCategory = categoryName;
+function selectEpic(categoryName) {
+  toggleMenuEpic();
+  menuEpicHeader.innerHTML = categoryName;
+  taskEpic = categoryName;
 }
 
 
@@ -222,7 +211,7 @@ function selectCategory(categoryName) {
 
 const menuAssignedTo = document.getElementById('menuAssignedTo');
 const menuAsignedToHeader = document.getElementById('menuAsignedToHeader');
-let assignedToContacts = [];
+
 
 function renderMenuAssignedToOptions() {
   menuAssignedTo.innerHTML = '';
@@ -237,12 +226,7 @@ function renderMenuAssignedToOptions() {
         </span>
       </div>
     `;
-
-
   }
-  // TODO menuCategory.innerHTML += /*html*/ `
-  //   <div class="option">Add category</div>
-  // `;
 }
 
 function toggleMenuAssignedTo() {
@@ -251,16 +235,77 @@ function toggleMenuAssignedTo() {
 }
 
 function selectAssignedTo(index, contactID) {
-  assignedToContacts.push(contactID);
-  // toggleMenuAssignedTo();
+
+  if (assignedToContacts.includes(contactID)) {
+    let c = assignedToContacts.indexOf(contactID);
+    assignedToContacts.splice(c, 1);
+  } else {
+    assignedToContacts.push(contactID);
+  }
 
   let markOption = document.getElementById('markContactID-' + index);
-  console.log(markOption);
   markOption.classList.toggle('d-none');
 
+  showSelectedContacts();
 
-  menuAssignedToHeader.innerHTML = 'Assigned to ';
   // TODO taskCategory = categoryName;
+}
+
+function showSelectedContacts() {
+
+  // TODO zurücksetzten bei mouseleave
+  let firstNames = [];
+  // Schleife durchlaufen, um contactID zu finden
+  for (let i = 0; i < userData[currentUser].contacts.length; i++) {
+    let contactID = userData[currentUser].contacts[i].contactID.toString();
+    if (assignedToContacts.includes(contactID)) {
+      let firstName = userData[currentUser].contacts[i].firstName;
+      firstNames.push(firstName);
+    }
+  }
+  console.log('Ausgewählte Kontakte: ' + firstNames);
+
+  menuAssignedToHeader.innerHTML = '';
+  if (firstNames.length == 0) {
+    menuAssignedToHeader.innerHTML += `Select contact`;
+  }
+  if (firstNames.length == 1) {
+    menuAssignedToHeader.innerHTML += `${firstNames[0]}`;
+  }
+  if (firstNames.length >= 2) {
+    for (let i = 0; i < firstNames.length - 1; i++) {
+      menuAssignedToHeader.innerHTML += `${firstNames[i]}, `;
+    }
+    menuAssignedToHeader.innerHTML += `${firstNames[firstNames.length - 1]}`;
+  }
+}
+
+
+// NOTE ######################  Menu Category boardlist #############################
+
+const menuCategory = document.getElementById('menuCategory');
+const menuCategoryHeader = document.getElementById('menuCategoryHeader');
+
+let categoryOptions = ['Backlog', 'To-Do', 'In Progress', 'Reviews', 'Done'];
+
+function renderMenuCategoryOptions() {
+  menuCategory.innerHTML = '';
+  for (let i = 0; i < categoryOptions.length; i++) {
+    menuCategory.innerHTML += /*html*/ `
+      <div id="categoryOption-${i}" class="option" onclick="selectCategory('${categoryOptions[i]}')">${categoryOptions[i]}</div>
+    `;
+  }
+}
+
+function toggleMenuCategory() {
+  renderMenuCategoryOptions();
+  menuCategory.classList.toggle('d-none');
+}
+
+function selectCategory(categoryName) {
+  toggleMenuCategory();
+  menuCategoryHeader.innerHTML = categoryName;
+  taskCategory = categoryName;
 }
 
 
