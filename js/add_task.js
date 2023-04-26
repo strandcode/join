@@ -55,14 +55,9 @@ async function addTaskToUser() {
     description: taskDescription.value,
     category: taskEpic,
     assign_to_contacts: assignedToContacts,
-    // assign_to_contacts: {
-    //   firstname: assignTo[0],
-    //   lastname: assignTo[1],
-    //   initials: assignTo[2],
-    //   bg_color: assignTo[3]
-    // },
     date: taskDate.value,
     prio: taskButtonPriority,
+    isFound: false
   };
   userData[currentUser].tasks.push(newTask);
   saveToStorage();

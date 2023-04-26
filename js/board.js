@@ -286,20 +286,26 @@ function createTask() {
 
 
 function filterTasks() {
-  let search = document.getElementById('findTaskD').value.toLowerCase();
-  let workTaskContainer = document.getElementById('workTaskContainerD');
-  workTaskContainer.innerHTML = '';
-  for (let i = 0; i < userData[currentUser].board.length; i++) {
-    for (let j = 0; j < userData[currentUser].tasks.length; j++) {
-      let task = userData[currentUser].tasks[j];
-      let a = i.toString();
-      if (task.boardList == a) {
-        if (task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search)) {
-          workTaskContainer.innerHTML += generateBoardCard(i, j);
-        }
-      }
-    }
+  let searchText = document.getElementById('searchText').value;
+  if (searchText.trim() === '') {
+    initBoard();
   }
+
+  searchText = searchText.toLowerCase();
+  console.log(searchText);
+
+
+  let boardBody = document.getElementById('boardBody');
+  boardBody.innerHTML = 'Suchergebnis';
+
+
+  // for (let j = 0; j < userData[currentUser].tasks.length; j++) {
+  //   let task = userData[currentUser].tasks[j];
+  //   if (task.title.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText)) {
+  //     console.log('Aufgabe Index: ', j);
+  //     boardBody.innerHTML += generateBoardCard(0, j);
+  //   }
+  // }
 }
 
 
