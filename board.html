@@ -47,12 +47,10 @@
 
       <div class="boardlist" id="boardList-0">
 
-        <div class="boardlist-header" id="boardListHeader-0">
+        <div class="boardlist-header">
           <h4>To-Do</h4>
-          <button id="smallPlusD" class="small-plus-D" onclick="window.location.href='add_task.html';"><img
-              src="assets/img/icon-add-plus-dark.svg" alt=""></button>
-          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          <button class="button button-darkblue" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/Icon-plus.svg" alt="">
           </button>
         </div>
 
@@ -61,7 +59,6 @@
         <div id="boardListBody-0" class="boardlist-body dragbox" ondrop="drop_handler('To-Do')"
           ondragover="dragover_handler(event)">
 
-
         </div>
       </div>
 
@@ -69,12 +66,11 @@
       <!-- NOTE Boardlist 1 -->
 
       <div class="boardlist " id="boardList-1">
-        <div class="boardlist-header" id="boardListHeader-1">
-          <h4>In Progress</h4> <button id="smallPlusD" class="small-plus-D"
-            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button>
-          <button id="smallPlusMobile" class="button button-darkblue" onclick="window.location.href='add_task.html';">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+
+        <div class="boardlist-header">
+          <h4>In Progress</h4>
+          <button class="button button-darkblue" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/Icon-plus.svg" alt="">
           </button>
         </div>
 
@@ -86,12 +82,11 @@
 
       <!-- NOTE Boardlist 2 -->
       <div class="boardlist" id="boardList-2">
-        <div class="boardlist-header" id="boardListHeader-2">
-          <h4>Reviews</h4> <button id="smallPlusD" class="small-plus-D"
-            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button>
-          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+
+        <div class="boardlist-header">
+          <h4>Reviews</h4>
+          <button class="button button-darkblue" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/Icon-plus.svg" alt="">
           </button>
         </div>
 
@@ -103,13 +98,13 @@
 
       <!-- NOTE Boardlist 3 -->
       <div class="boardlist" id="boardList-3">
-        <div class="boardlist-header" id="boardListHeader-3">
-          <h4>Done</h4> <button id="smallPlusD" class="small-plus-D"
-            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
+
+        <div class="boardlist-header">
+          <h4>Done</h4>
+          <button class="button button-darkblue" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/Icon-plus.svg" alt="">
           </button>
-          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
-            <img src="assets/img/icon-add-plus-dark.svg" alt="">
-          </button>
+
         </div>
 
         <div id="boardListBody-3" class="boardlist-body dragbox" ondrop="drop_handler('Done')"
@@ -117,13 +112,117 @@
 
         </div>
       </div>
+
     </div>
 
 
 
-    <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
+    <!-- #################### NOTE EDIT TASK OVERLAY #################### -->
 
-    <div class="pop-up-task-D d-none" id="popUpTaskD">
+    <div id="editTaskOverlay" class="desktop-overlay d-none">
+      <div id="editTaskContainer" class="desktop-overlay-container">
+
+        <div class="contact-overlay-left-S">
+          <img src="assets/img/logo-white.svg" alt="Join us">
+          <h2>Edit task</h2>
+          <!-- <p>Tasks are better with a team!</p> -->
+          <div class="blue-line"></div>
+        </div>
+
+        <div class="contact-overlay-right-S">
+          <div class="contact-overlay-right-header">
+            <img src="assets/img/icons-cancel.svg" onclick="closeOverlay('editTaskOverlay', 'editTaskContainer')"
+              alt="Close button">
+          </div>
+
+          <div id="contactFormActiveContact" class="contact-overlay-right-main">
+            <div class="add-task-form-separator-left">
+
+              <div class="add-task-form-item">
+                <label for="editTaskTitle">Title</label>
+                <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title"
+                  id="editTaskTitle">
+              </div>
+              <div class="add-task-form-item">
+                <label for="editTaskDescription">Description</label>
+                <textarea required placeholder="Enter a Description" name="Description" class="resize-none"
+                  id="editTaskDescription" rows="10">
+                </textarea>
+              </div>
+
+              <div class="add-task-form-item">
+                <span>Priority</span>
+                <div class="prio-button-wrapper">
+                  <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent
+                    <img src="assets/img/prio-urgent.svg">
+                  </button>
+                  <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium
+                    <img src="assets/img/prio-medium.svg">
+                  </button>
+                  <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low
+                    <img src="assets/img/prio-low.svg"></button>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="add-task-form-separator-right">
+
+              <div class="add-task-form-item">
+                <label for="taskDate">Deadline</label>
+                <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name=""
+                  id="taskDate">
+              </div>
+
+              <div class="add-task-form-item">
+                <label>Epic</label>
+                <div class="dropdown-menu">
+                  <div class="dropdown-header" onclick="toggleMenuEpic()">
+                    <span id="menuEpicHeader">Select epic</span>
+                    <img src="../assets/img/icon-arrow-down.svg" alt="">
+                  </div>
+                  <div id="menuEpic" class="dropdown-body d-none">
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-task-form-item">
+                <label for="assignedTo">Assigned to</label>
+                <div class="dropdown-menu">
+                  <div class="dropdown-header" onclick="toggleMenuAssignedTo()">
+                    <span id="menuAssignedToHeader">Select contact</span>
+                    <img src="../assets/img/icon-arrow-down.svg" alt="">
+                  </div>
+                  <div id="menuAssignedTo" class="dropdown-body d-none" onmouseleave="toggleMenuAssignedTo()">
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-task-form-item">
+                <label for="chooseCategory">Category</label>
+                <div class="dropdown-menu">
+                  <div class="dropdown-header" onclick="toggleMenuCategory()">
+                    <span id="menuCategoryHeader"> Select category</span>
+                    <img src="../assets/img/icon-arrow-down.svg" alt="">
+                  </div>
+                  <div id="menuCategory" class="dropdown-body d-none">
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div class="pop-up-task-D d-none" id="popUpTaskD">
 
       <div class="work-category-D" id="taskCategoryOverlayD">
         Sales
@@ -150,16 +249,16 @@
           <span>User 4</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- #################### NOTE ADD TASK OVERLAY #################### -->
+      <!-- #################### NOTE ADD TASK OVERLAY #################### -->
 
-    <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
+      <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
 
-    </div>
-    <div class="change-task-wrapper d-none" id="changeTaskWrapper">
+      </div>
+      <div class="change-task-wrapper d-none" id="changeTaskWrapper">
 
-    </div>
+      </div>
   </main>
   <script src="js/storage.js"></script>
   <script src="js/script.js"></script>
