@@ -1,11 +1,11 @@
 async function initSummary() {
+  initHeader();
+  initNavbar();
   try {
     userData = JSON.parse(await getItem('userData'));
   } catch (e) {
     console.error('Loading error:', e);
   }
-  initHeader();
-  initNavbar();
   initSummaryData();
 }
 
@@ -51,7 +51,7 @@ function sumAllTasksInBoard() {
 function sumAllTasksInToDo() {
   let quantityOfTasks = 0;
   for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-    if (userData[currentUser].tasks[i].boardList == '0') {
+    if (userData[currentUser].tasks[i].boardList == 'To-Do') {
       quantityOfTasks++;
     }
   }
@@ -61,7 +61,7 @@ function sumAllTasksInToDo() {
 function sumAllTasksInProgress() {
   let quantityOfTasks = 0;
   for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-    if (userData[currentUser].tasks[i].boardList == '1') {
+    if (userData[currentUser].tasks[i].boardList == 'In Progress') {
       quantityOfTasks++;
     }
   }
@@ -71,7 +71,7 @@ function sumAllTasksInProgress() {
 function sumAllTasksInAwaitingFeedback() {
   let quantityOfTasks = 0;
   for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-    if (userData[currentUser].tasks[i].boardList == '2') {
+    if (userData[currentUser].tasks[i].boardList == 'Reviews') {
       quantityOfTasks++;
     }
   }
@@ -80,7 +80,7 @@ function sumAllTasksInAwaitingFeedback() {
 function sumAllTasksInDone() {
   let quantityOfTasks = 0;
   for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-    if (userData[currentUser].tasks[i].boardList == '3') {
+    if (userData[currentUser].tasks[i].boardList == 'Done') {
       quantityOfTasks++;
     }
   }
@@ -90,7 +90,7 @@ function sumAllTasksInDone() {
 function sumAllUrgentTasks() {
   let quantityOfTasks = 0;
   for (let i = 0; i < userData[currentUser].tasks.length; i++) {
-    if (userData[currentUser].tasks[i].prio == 'urgent') {
+    if (userData[currentUser].tasks[i].priority == 'urgent') {
       quantityOfTasks++;
     }
   }

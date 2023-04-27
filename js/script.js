@@ -44,12 +44,13 @@ async function saveToStorage() {
 
 // TODO more content
 const demoUser = {
-  'firstName': 'Jane',
-  LastName: 'Roe',
+  firstName: 'Jane',
+  lastName: 'Roe',
   email: 'jane@roe.com',
-  password: '1234',
+  password: 'test123',
   contacts: [
     {
+      contactID: 1682598272232,
       firstName: 'John',
       lastName: 'Doe',
       email: 'john@doe.com',
@@ -58,115 +59,78 @@ const demoUser = {
       avatar_bg_color: '#29ABE2'
     },
     {
+      contactID: 1682598272233,
       "firstName": "Alex",
       "lastName": "Müller",
       "email": "alex.mueller@example.com",
       "phone": "+49 123 56789",
       "avatar_initials": "AM",
-      "avatar_bg_color": "#1abc9c"
+      "avatar_bg_color": "#AF1616"
     },
     {
-      "firstName": "Herta-Emilia-Victoria",
-      "lastName": "Schmidt",
-      "email": "herta.schmidt@example.com",
-      "phone": "+49 123 45678",
-      "avatar_initials": "BS",
-      "avatar_bg_color": "#2ecc71"
-    },
-    {
-      "firstName": "Christian",
-      "lastName": "Fischer",
-      "email": "christian.fischer@example.com",
-      "phone": "+49 123 23456",
-      "avatar_initials": "CF",
-      "avatar_bg_color": "#3498db"
-    },
-    {
+      contactID: 1682598272234,
       "firstName": "David",
       "lastName": "Weber",
       "email": "david.weber@example.com",
       "phone": "+49 123 78901",
       "avatar_initials": "DW",
-      "avatar_bg_color": "#9b59b6"
+      "avatar_bg_color": "#02CF2F"
     },
-    {
-      "firstName": "Emma",
-      "lastName": "Wagner",
-      "email": "emma.wagner@example.com",
-      "phone": "+49 123 12345",
-      "avatar_initials": "EW",
-      "avatar_bg_color": "#34495e"
-    },
-    {
-      "firstName": "Felix",
-      "lastName": "Bauer",
-      "email": "felix.bauer@example.com",
-      "phone": "+49 123 89012",
-      "avatar_initials": "FB",
-      "avatar_bg_color": "#f1c40f"
-    },
-    {
-      "firstName": "Greta",
-      "lastName": "Hoffmann",
-      "email": "greta.hoffmann@example.com",
-      "phone": "+49 123 45670",
-      "avatar_initials": "GH",
-      "avatar_bg_color": "#e67e22"
-    },
-    {
-      "firstName": "Hans",
-      "lastName": "Koch",
-      "email": "hans.koch@example.com",
-      "phone": "+49 123 12340",
-      "avatar_initials": "HK",
-      "avatar_bg_color": "#e74c3c"
-    },
-    {
-      "firstName": "Isabella",
-      "lastName": "Lehmann",
-      "email": "isabella.lehmann@example.com",
-      "phone": "+49 123 56780",
-      "avatar_initials": "IL",
-      "avatar_bg_color": "#95a5a6"
-    },
-    {
-      "firstName": "Julia",
-      "lastName": "Maier",
-      "email": "julia.maier@example.com",
-      "phone": "+49 123 23450",
-      "avatar_initials": "JM",
-      "avatar_bg_color": "#d35400"
-    },
-    {
-      "firstName": "Karl",
-      "lastName": "Neumann",
-      "email": "karl.neumann@example.com",
-      "phone": "+49 123 78900",
-      "avatar_initials": "KN",
-      "avatar_bg_color": "#7f8c8d"
-    }
+
 
   ],
   tasks: [
     {
-      task_id: 1682355331263,
-      boardList: 0,
+      task_id: "1682355331263",
+      boardList: "To-Do",
+      boardlistPosition: 0,
+      title: "Visit developer's portfolio website",
+      description: "Surf to: www.strandco.de",
+      epic: "Contact new people",
+      assign_to_contacts: ['1682598272232', '1682598272234'],
+      date: "2023-05-30",
+      priority: "urgent",
+    },
+    {
+      task_id: "1682355331264",
+      boardList: "In Progress",
       boardlistPosition: 0,
       title: "Explore Kanban Project Management Tool",
       description: "Explore Kanban Project Management Tool",
-      category: "Learn new technology",
-      assign_to_contacts:
-        { firstname: 'Alex', lastname: 'Müller', initials: 'AM', bg_color: '#1abc9c' },
-      date: "2023-04-30",
-      prio: "urgent",
+      epic: "Learn new technology",
+      assign_to_contacts: ['1682598272233', '1682598272232', '1682598272234'],
+      date: "2023-05-30",
+      priority: "urgent",
+    },
+    {
+      task_id: "1682355331265",
+      boardList: "Reviews",
+      boardlistPosition: 0,
+      title: "Explore Kanban Project Management Tool",
+      description: "Explore Kanban Project Management Tool",
+      epic: "Learn new technology",
+      assign_to_contacts: ['1682598272233', '1682598272232'],
+      date: "2023-05-18",
+      priority: "medium",
+    },
+    {
+      task_id: "1682355331266",
+      boardList: "Done",
+      boardlistPosition: 0,
+      title: "Explore Kanban Project Management Tool",
+      description: "Explore Kanban Project Management Tool",
+      epic: "Learn new technology",
+      assign_to_contacts: ['1682598272232', '1682598272234', '1682598272233'],
+      date: "2023-05-20",
+      priority: "low",
     }
 
   ],
   board: [
-    { boardlistTitle: 'To do' },
-    { boardlistTitle: 'In progress' },
-    { boardlistTitle: 'Awaiting Feedback' },
-    { boardlistTitle: 'Done' }
+    { boardlistTitle: '' },
+    { boardlistTitle: '' },
+    { boardlistTitle: '' },
+    { boardlistTitle: '' }
   ]
 }
 
@@ -175,13 +139,15 @@ const demoUser = {
 
 
 async function addUser(firstName, lastName, email, password) {
+  await loadFromStorage();
   let newUser = {
     firstName: firstName,
-    LastName: lastName,
+    lastName: lastName,
     email: email,
     password: password,
     contacts: [
       {
+        contactID: new Date().getTime(),
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -193,14 +159,14 @@ async function addUser(firstName, lastName, email, password) {
     ],
     tasks: [],
     board: [
-      { boardlistTitle: 'To do' },
-      { boardlistTitle: 'In progress' },
-      { boardlistTitle: 'Awaiting Feedback' },
-      { boardlistTitle: 'Done' }
+      { boardlistTitle: '' },
+      { boardlistTitle: '' },
+      { boardlistTitle: '' },
+      { boardlistTitle: '' }
     ]
   }
   userData.push(newUser);
-  saveToStorage();
+  await saveToStorage();
 };
 
 

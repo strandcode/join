@@ -223,6 +223,7 @@ async function editContactOfUser(c) {
   const contactEditEmail = document.getElementById('contactEditEmail');
   const contactEditPhone = document.getElementById('contactEditPhone');
   let editedContact = {
+    contactID: userData[currentUser].contacts[c].contactID,
     firstName: contactEditFirstName.value,
     lastName: contactEditLastName.value,
     email: contactEditEmail.value,
