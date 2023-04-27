@@ -132,6 +132,11 @@ main {
     align-items: center;
 }
 
+.responsible-wrapper .responsibles {
+    display: flex;
+    gap: 3px;
+}
+
 .responsible-wrapper .avatar {
     display: flex;
     justify-content: center;

@@ -31,6 +31,8 @@ function generateBoardListBody() {
         if (userData[currentUser].tasks[j].boardList == categoryOptions[i]) {
           boardListBody.innerHTML += generateBoardCard(i, j);
           setCardPriority(j);
+          setAssignedContacts(j);
+          console.log('Set Assigned function');
         }
       }
     }
@@ -42,44 +44,66 @@ function generateBoardListBody() {
 function generateBoardCard(i, j) {
   return /*html*/ `    
     <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true"
-       id="${userData[currentUser].tasks[j]['task_id']}">
-      
-       <div class="card-top-wrapper">
+    id="${userData[currentUser].tasks[j]['task_id']}">
+    
+    <div class="card-top-wrapper">
 
-        <div class="card-epic" id="workCategoryD${j}">
-          ${userData[currentUser].tasks[0].category}
-        </div>
-        <img src="assets/img/icons-cancel.svg" onclick="deleteTask(${userData[currentUser].tasks[j]['task_id']})"
-              alt="Close button" title="Delete task on click">
+      <div class="card-epic" id="workCategoryD${j}">
+        ${userData[currentUser].tasks[j].epic}
       </div>
-
+      <img src="assets/img/icons-cancel.svg" 
+      onclick="deleteTask(${userData[currentUser].tasks[j].task_id})"
+      alt="Close button" title="Delete task on click">
+      </div>
+      
       <h3 id="workTaskHeadlineD">${userData[currentUser].tasks[j]['title']}</h3>
 
       <p id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</p>
-
-      <!-- TODO Subtasks <span class=""><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> -->
-
-      <div class="responsible-wrapper" id="taskUserWrapper">
-
-<!-- TODO Richtigen contact übergeben -->
-
-        <div class="avatar" style="background-color: ${userData[currentUser].contacts[0].avatar_bg_color}">
-        
-        <div class="avatar-initials">
-          ${userData[currentUser].contacts[0].avatar_initials}
-        </div>
-        </div>
       
-          <img id="cardPriority-${j}" src="" alt="">
+      <!-- TODO Subtasks <span class=""><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> -->
+      
+      <div class="responsible-wrapper">
 
+        <div id="taskResponsibles-${j}" class="responsibles">  
+          </div>
+          
+          <img id="cardPriority-${j}" src="" alt="">
+          
+        </div>
       </div>
-    </div>
-  `;
+      `;
 
 }
 
+function setAssignedContacts(j) {
+  let taskResponsibles = document.getElementById('taskResponsibles-' + j);
+  taskResponsibles.innerHTML = '';
+  let assignedIDs = userData[currentUser].tasks[j].assign_to_contacts;
+
+  for (let a = 0; a < assignedIDs.length; a++) {
+
+    for (let i = 0; i < userData[currentUser].contacts.length; i++) {
+      let contactID = userData[currentUser].contacts[i].contactID.toString();
+      if (contactID === assignedIDs[a]) {
+        taskResponsibles.innerHTML += renderTaskResponsible(i);
+      }
+    }
+  }
+}
+
+function renderTaskResponsible(i) {
+  return /*html*/ `
+    <div class="avatar" style="background-color: ${userData[currentUser].contacts[i].avatar_bg_color}">
+      <div class="avatar-initials">
+            ${userData[currentUser].contacts[i].avatar_initials}
+      </div>
+    </div>
+  `;
+}
+
+
 function setCardPriority(j) {
-  let priority = userData[currentUser].tasks[j].prio;
+  let priority = userData[currentUser].tasks[j].priority;
   if (priority == 'urgent') {
     document.getElementById('cardPriority-' + j).src = 'assets/img/prio-urgent.svg';
   } if (priority == 'medium') {

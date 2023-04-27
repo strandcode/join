@@ -43,7 +43,7 @@ let newTask = [];
 async function addTaskToUser() {
 
   let newTask = {
-    task_id: new Date().getTime(),
+    task_id: new Date().getTime().toString(),
     boardList: taskCategory,
     boardlistPosition: 0,
     title: taskTitle.value,
