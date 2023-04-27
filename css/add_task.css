@@ -258,4 +258,8 @@ main {
     display: flex;
   }
 
+  #mobileHeaderAddTasksToUserButton {
+    display: flex !important;
+  }
+
 }

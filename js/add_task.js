@@ -1,23 +1,30 @@
 async function initTasks() {
+  initHeader();
+  initNavbar();
   try {
     userData = JSON.parse(await getItem('userData'));
   } catch (e) {
     console.error('Loading error:', e);
   }
-  initHeader();
-  initNavbar();
   initTasksData();
 }
 
 
 function initTasksData() {
   setNavbarItemActive('.navbar-task');
+  showCreateButton();
+
   if (userData[currentUser].board) {
     clearFormValues();
     resetPriorityButtons();
   } else {
     console.warn('No tasks found');
   }
+}
+
+function showCreateButton() {
+  let btn = document.getElementById('mobileHeaderAddTasksToUserButton');
+  btn.classList.remove('d-none');
 }
 
 // NOTE New task form input fields
