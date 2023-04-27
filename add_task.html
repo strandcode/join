@@ -66,26 +66,26 @@
             <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
           </div>
 
-          <div class="add-task-form-item">
+          <div class="add-task-form-item z-5">
             <label>Epic</label>
-            <div class="dropdown-menu">
-              <div class="dropdown-header" onclick="toggleMenuEpic()">
+            <div class="dropdown-menu z-5">
+              <div class="dropdown-header z-5" onclick="toggleMenuEpic()">
                 <span id="menuEpicHeader">Select epic</span>
                 <img src="../assets/img/icon-arrow-down.svg" alt="">
               </div>
-              <div id="menuEpic" class="dropdown-body d-none">
+              <div id="menuEpic" class="dropdown-body z-5 d-none">
               </div>
             </div>
           </div>
 
           <div class="add-task-form-item">
             <label for="assignedTo">Assigned to</label>
-            <div class="dropdown-menu">
-              <div class="dropdown-header" onclick="toggleMenuAssignedTo()">
+            <div class="dropdown-menu z-4">
+              <div class="dropdown-header z-4" onclick="toggleMenuAssignedTo()">
                 <span id="menuAssignedToHeader">Select contact</span>
                 <img src="../assets/img/icon-arrow-down.svg" alt="">
               </div>
-              <div id="menuAssignedTo" class="dropdown-body d-none" onmouseleave="toggleMenuAssignedTo()">
+              <div id="menuAssignedTo" class="dropdown-body z-4 d-none" onmouseleave="toggleMenuAssignedTo()">
               </div>
             </div>
           </div>
