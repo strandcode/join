@@ -101,7 +101,7 @@ function sumAllUrgentTasks() {
 function getUpcomingDeadline() {
   let currentDate = new Date();
   if (userData[currentUser].tasks.length > 0) {
-    let upcomingDeadline = new Date(userData[currentUser].tasks[0].date); // konvertiert den ersten String-Datumswert in ein tatsächliches Datum
+    let upcomingDeadline = new Date(userData[currentUser].tasks[0].date); // konvertiert den ersten String-Datumswert als Vetrgleichswert in ein tatsächliches Datum
 
     for (let i = 1; i < userData[currentUser].tasks.length; i++) {
       let taskDate = new Date(userData[currentUser].tasks[i].date); // konvertiert das Datum von jedem Task in ein tatsächliches Datum

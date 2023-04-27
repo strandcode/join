@@ -1,23 +1,18 @@
 async function initBoard() {
+  initHeader();
+  initNavbar();
+  setNavbarItemActive('.navbar-board');
   try {
     userData = JSON.parse(await getItem('userData'));
   } catch (e) {
     console.error('Loading error:', e);
   }
-  initHeader();
-  initNavbar();
   initBoardData();
 }
-
 
 function initBoardData() {
   generateBoardListBody();
 }
-
-// TODO Zentral einbauen
-categoryOptions = ['To-Do', 'In Progress', 'Reviews', 'Done'];
-
-
 
 function generateBoardListBody() {
   if (userData[currentUser].board.length > 0) {
@@ -32,13 +27,13 @@ function generateBoardListBody() {
           boardListBody.innerHTML += generateBoardCard(i, j);
           setCardPriority(j);
           setAssignedContacts(j);
-          console.log('Set Assigned function');
         }
       }
     }
   }
 }
 
+// TODO editTask einbauen
 // TODO onclick="openTask('${userData[currentUser].tasks[j]['task_id']}')"
 
 function generateBoardCard(i, j) {
@@ -47,7 +42,6 @@ function generateBoardCard(i, j) {
     id="${userData[currentUser].tasks[j]['task_id']}">
     
     <div class="card-top-wrapper">
-
       <div class="card-epic" id="workCategoryD${j}">
         ${userData[currentUser].tasks[j].epic}
       </div>
@@ -63,16 +57,11 @@ function generateBoardCard(i, j) {
       <!-- TODO Subtasks <span class=""><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> -->
       
       <div class="responsible-wrapper">
-
-        <div id="taskResponsibles-${j}" class="responsibles">  
-          </div>
-          
-          <img id="cardPriority-${j}" src="" alt="">
-          
-        </div>
+        <div id="taskResponsibles-${j}" class="responsibles"></div>
+        <img id="cardPriority-${j}" src="" alt="">
       </div>
-      `;
-
+    </div>
+  `;
 }
 
 function setAssignedContacts(j) {
@@ -151,7 +140,7 @@ function closeOverlay(overlayId, overlayContainerId) {
   }, 240);
 }
 
-
+// TODO Edit Task /////////////////////////
 
 function openTask(task_id) {
   showOverlay('editTaskOverlay', 'editTaskContainer');
@@ -185,58 +174,7 @@ function openTask(task_id) {
 }
 
 
-function changeTask(i, j) {
-  document.getElementById('popUpTaskD').classList.add('d-none');
-  document.getElementById('changeTaskWrapper').classList.remove('d-none');
-  let popUp2 = document.getElementById('changeTaskWrapper');
 
-  popUp2.innerHTML = `
-    
-      <div class="left-taskfield-D">
-      <div class="close-work-overlay-D">
-      <button onclick="closeWorkTask()">x</button>
-       </div>
-       <div class="close-work-overlay-mobile">
-         <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
-      </div>
-        <span>Title</span>
-        <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${j}" 
-        value="${userData[currentUser].tasks[j].title}">
-
-        <span>Description</span>
-        <textarea required class="width descript" name="Description" id="taskDescriptionD${j}"
-        value="${userData[currentUser].tasks[j].description}"cols="30" rows="10"></textarea>
-
-        <span>Due date</span>
-        <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
-        value="${userData[currentUser].tasks[j].date}">
-        <span>Prio</span>
-        <div class="prio-button-wrapper">
-          <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent<img
-              src="assets/img/prio-urgent.svg"></button>
-          <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium<img
-              src="assets/img/prio-medium.svg"></button>
-          <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img
-              src="assets/img/prio-low.svg"></button>
-        </div>
-
-        <div class="right-taskfield-D">
-          <span>Assigned to</span>
-          <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
-          <option value="" disabled selected>Select Contacts to assign</option>
-          <option value="">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-          </select></option>
-       </select>
-          <div class="button-container-D">
-          <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
-            <img src="assets/img/icon-white-create.svg"></button>
-      </div>
-      </div>
-    </div>
-  </div>
-  </div>
-`;
-}
 
 
 function confirmChangeTask(i, j) {
@@ -309,6 +247,8 @@ function createTask() {
 }
 
 
+// TODO Search function
+
 function filterTasks() {
   let searchText = document.getElementById('searchText').value;
   if (searchText.trim() === '') {
@@ -332,6 +272,59 @@ function filterTasks() {
   // }
 }
 
+
+// function changeTask(i, j) {
+//   document.getElementById('popUpTaskD').classList.add('d-none');
+//   document.getElementById('changeTaskWrapper').classList.remove('d-none');
+//   let popUp2 = document.getElementById('changeTaskWrapper');
+
+//   popUp2.innerHTML = `
+    
+//       <div class="left-taskfield-D">
+//       <div class="close-work-overlay-D">
+//       <button onclick="closeWorkTask()">x</button>
+//        </div>
+//        <div class="close-work-overlay-mobile">
+//          <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
+//       </div>
+//         <span>Title</span>
+//         <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${j}" 
+//         value="${userData[currentUser].tasks[j].title}">
+
+//         <span>Description</span>
+//         <textarea required class="width descript" name="Description" id="taskDescriptionD${j}"
+//         value="${userData[currentUser].tasks[j].description}"cols="30" rows="10"></textarea>
+
+//         <span>Due date</span>
+//         <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
+//         value="${userData[currentUser].tasks[j].date}">
+//         <span>Prio</span>
+//         <div class="prio-button-wrapper">
+//           <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent<img
+//               src="assets/img/prio-urgent.svg"></button>
+//           <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium<img
+//               src="assets/img/prio-medium.svg"></button>
+//           <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img
+//               src="assets/img/prio-low.svg"></button>
+//         </div>
+
+//         <div class="right-taskfield-D">
+//           <span>Assigned to</span>
+//           <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
+//           <option value="" disabled selected>Select Contacts to assign</option>
+//           <option value="">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
+//           </select></option>
+//        </select>
+//           <div class="button-container-D">
+//           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
+//             <img src="assets/img/icon-white-create.svg"></button>
+//       </div>
+//       </div>
+//     </div>
+//   </div>
+//   </div>
+// `;
+// }
 
 // filterInProgress();
 // filterToDO();
@@ -443,7 +436,7 @@ function filterTasks() {
 // }
 
 
-//TODO -
+
 /* function slideInAddTask(i, j) {
   document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
 
@@ -499,7 +492,7 @@ function filterTasks() {
 
 
 
-// //ANCHOR - IF Abfrage zur Prio
+
 
 // function priorityBoard(j) {
 //   let priority = userData[currentUser].tasks[j]['prio'];
@@ -527,7 +520,7 @@ function filterTasks() {
 //   }
 // }
 
-// //TODO - If abfrage zur generierung der Farben in der Kategorie
+// /- If abfrage zur generierung der Farben in der Kategorie
 // function categoryColor(j) {
 //   let labelColor = userData[currentUser].tasks[j]['category'];
 
