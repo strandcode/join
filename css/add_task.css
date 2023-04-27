@@ -158,11 +158,29 @@ main {
   position: relative;
 }
 
+
 .dropdown-header {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   padding-bottom: 5px;
+}
+
+.dropdown-header input {
+  border: none;
+  box-shadow: none;
+}
+
+.dropdown-header input {
+  border: none;
+  box-shadow: none;
+  font-size: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dropdown-header input:focus-visible {
+  outline: none;
 }
 
 .dropdown-body {
@@ -183,8 +201,6 @@ main {
   max-height: 300px;
   overflow-y: auto;
 }
-
-/* TODO z-index */
 
 .dropdown-body .option {
   padding: 5px;
@@ -220,13 +236,6 @@ main {
 .d-none {
   display: none;
 }
-
-.d-hidden {
-  display:
-}
-
-
-
 
 
 @media screen and (min-width: 910px) {

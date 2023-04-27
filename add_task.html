@@ -70,10 +70,10 @@
             <label>Epic</label>
             <div class="dropdown-menu z-5">
               <div class="dropdown-header z-5" onclick="toggleMenuEpic()">
-                <span id="menuEpicHeader">Select epic</span>
+                <input id="menuEpicHeader" value="Select epic" readonly>
                 <img src="../assets/img/icon-arrow-down.svg" alt="">
               </div>
-              <div id="menuEpic" class="dropdown-body z-5 d-none">
+              <div id="menuEpic" class="dropdown-body z-5 d-none" onmouseleave="toggleMenuEpic()">
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
             <label for="assignedTo">Assigned to</label>
             <div class="dropdown-menu z-4">
               <div class="dropdown-header z-4" onclick="toggleMenuAssignedTo()">
-                <span id="menuAssignedToHeader">Select contact</span>
+                <input id="menuAssignedToHeader" value="Select contact" readonly>
                 <img src="../assets/img/icon-arrow-down.svg" alt="">
               </div>
               <div id="menuAssignedTo" class="dropdown-body z-4 d-none" onmouseleave="toggleMenuAssignedTo()">
@@ -94,10 +94,10 @@
             <label for="chooseCategory">Category</label>
             <div class="dropdown-menu">
               <div class="dropdown-header" onclick="toggleMenuCategory()">
-                <span id="menuCategoryHeader"> Select category</span>
+                <input id="menuCategoryHeader" value="Select category" readonly>
                 <img src="../assets/img/icon-arrow-down.svg" alt="">
               </div>
-              <div id="menuCategory" class="dropdown-body d-none">
+              <div id="menuCategory" class="dropdown-body z-3 d-none" onmouseleave="toggleMenuCategory()">
               </div>
             </div>
           </div>

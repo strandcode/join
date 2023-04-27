@@ -28,12 +28,11 @@ const taskDate = document.getElementById('taskDate');
 const taskButtonUrgent = document.getElementById('taskButtonUrgent');
 const taskButtonMedium = document.getElementById('taskButtonMedium');
 const taskButtonLow = document.getElementById('taskButtonLow');
-let taskButtonPriority = '';
 
-
-let taskEpic = '';
-let assignedToContacts = [];
-let taskCategory = ''; // Das war früher die Boardlist, das wird jetzt als Category bezeichnet
+let taskPriority = 'medium';
+let taskEpic = 'General';
+let assignedToContacts = []; // Wenn keine Kontakte zugewiesen, dann soll er auch keine anzeigen
+let taskCategory = 'To-Do'; // Das war früher die Boardlist, das wird jetzt als Category bezeichnet
 
 let newTask = [];
 // let TaskContactsAll;
@@ -42,10 +41,6 @@ let newTask = [];
 //ANCHOR - ADD TO TASKLIST
 
 async function addTaskToUser() {
-  // const taskAssigned = document.getElementById('taskAssigned');
-  // const assignTo = taskAssigned.value.split(' ');
-
-  confirmTaskCreated(); // TODO Erst wenn formular durchgelaufen
 
   let newTask = {
     task_id: new Date().getTime(),
@@ -53,14 +48,16 @@ async function addTaskToUser() {
     boardlistPosition: 0,
     title: taskTitle.value,
     description: taskDescription.value,
-    category: taskEpic,
+    epic: taskEpic,
     assign_to_contacts: assignedToContacts,
     date: taskDate.value,
-    prio: taskButtonPriority,
-    isFound: false
+    priority: taskPriority,
+    isFound: false // Für die Suchfunktion im Board?
   };
+
   userData[currentUser].tasks.push(newTask);
-  saveToStorage();
+  confirmTaskCreated(); // TODO Erst wenn formular durchgelaufen
+  await saveToStorage();
   initTasks();
 }
 
@@ -93,7 +90,7 @@ function setPriorityUrgent() {
   if (!taskButtonUrgent.classList.contains('active')) {
     taskButtonUrgent.style.backgroundColor = "red";
     taskButtonUrgent.classList.add("active");
-    taskButtonPriority = "urgent";
+    taskPriority = "urgent";
     console.log(taskButtonUrgent);
   } else {
     taskButtonUrgent.style.backgroundColor = "";
@@ -109,7 +106,7 @@ function setPriorityMedium() {
   if (!taskButtonMedium.classList.contains('active')) {
     taskButtonMedium.style.backgroundColor = "orange";
     taskButtonMedium.classList.add("active");
-    taskButtonPriority = "medium";
+    taskPriority = "medium";
   } else {
     taskButtonMedium.style.backgroundColor = "";
     taskButtonMedium.classList.remove("active");
@@ -123,7 +120,7 @@ function setPriorityLow() {
   if (!taskButtonLow.classList.contains('active')) {
     taskButtonLow.style.backgroundColor = "green";
     taskButtonLow.classList.add("active");
-    taskButtonPriority = "low";
+    taskPriority = "low";
   } else {
     taskButtonLow.style.backgroundColor = "";
     taskButtonLow.classList.remove("active");
@@ -150,29 +147,6 @@ function clearFormValues() {
   taskDate.value = '';
 }
 
-//ANCHOR - USER INFORMATION "ADD TASK TO BOARD"
-// function taskCreateImageUp() {
-//   const taskCreateImg = document.getElementById("taskCreate");
-//   taskCreateImg.style.opacity = "1";
-//   let pos = 0;
-//   const id = setInterval(frame, 3);
-//   function frame() {
-//     if (pos == 20) {
-//       clearInterval(id);
-//       setTimeout(function () {
-//         taskCreateImg.style.opacity = "0";
-//       }, 2000);
-//     } else {
-//       pos++;
-//       taskCreateImg.style.bottom = pos + "%";
-//       if (pos >= 1) {
-//         taskCreateImg.style.transition = "bottom 0.5s ease-in-out";
-//       }
-//     }
-//   }
-// }
-
-
 const menuEpic = document.getElementById('menuEpic');
 const menuEpicHeader = document.getElementById('menuEpicHeader');
 
@@ -197,7 +171,7 @@ function toggleMenuEpic() {
 
 function selectEpic(categoryName) {
   toggleMenuEpic();
-  menuEpicHeader.innerHTML = categoryName;
+  menuEpicHeader.value = categoryName;
   taskEpic = categoryName;
 }
 
@@ -221,7 +195,20 @@ function renderMenuAssignedToOptions() {
         </span>
       </div>
     `;
+
+    markAssignedTo(i, userData[currentUser].contacts[i].contactID);
   }
+}
+
+function markAssignedTo(index, contactID) {
+  let markOption = document.getElementById('markContactID-' + index);
+  contactID = contactID.toString();
+  if (assignedToContacts.includes(contactID)) {
+    markOption.classList.remove('d-none');
+  } else {
+    markOption.classList.add('d-none');
+  }
+
 }
 
 function toggleMenuAssignedTo() {
@@ -230,25 +217,23 @@ function toggleMenuAssignedTo() {
 }
 
 function selectAssignedTo(index, contactID) {
+  let markOption = document.getElementById('markContactID-' + index);
 
   if (assignedToContacts.includes(contactID)) {
     let c = assignedToContacts.indexOf(contactID);
     assignedToContacts.splice(c, 1);
+    markOption.classList.add('d-none');
   } else {
     assignedToContacts.push(contactID);
+    markOption.classList.remove('d-none');
   }
 
-  let markOption = document.getElementById('markContactID-' + index);
-  markOption.classList.toggle('d-none');
 
   showSelectedContacts();
-
-  // TODO taskCategory = categoryName;
 }
 
 function showSelectedContacts() {
 
-  // TODO zurücksetzten bei mouseleave
   let firstNames = [];
   // Schleife durchlaufen, um contactID zu finden
   for (let i = 0; i < userData[currentUser].contacts.length; i++) {
@@ -260,18 +245,18 @@ function showSelectedContacts() {
   }
   console.log('Ausgewählte Kontakte: ' + firstNames);
 
-  menuAssignedToHeader.innerHTML = '';
+  menuAssignedToHeader.value = '';
   if (firstNames.length == 0) {
-    menuAssignedToHeader.innerHTML += `Select contact`;
+    menuAssignedToHeader.value += `Select contact`;
   }
   if (firstNames.length == 1) {
-    menuAssignedToHeader.innerHTML += `${firstNames[0]}`;
+    menuAssignedToHeader.value += `${firstNames[0]}`;
   }
   if (firstNames.length >= 2) {
     for (let i = 0; i < firstNames.length - 1; i++) {
-      menuAssignedToHeader.innerHTML += `${firstNames[i]}, `;
+      menuAssignedToHeader.value += `${firstNames[i]}, `;
     }
-    menuAssignedToHeader.innerHTML += `${firstNames[firstNames.length - 1]}`;
+    menuAssignedToHeader.value += `${firstNames[firstNames.length - 1]}`;
   }
 }
 
@@ -299,7 +284,7 @@ function toggleMenuCategory() {
 
 function selectCategory(categoryName) {
   toggleMenuCategory();
-  menuCategoryHeader.innerHTML = categoryName;
+  menuCategoryHeader.value = categoryName;
   taskCategory = categoryName;
 }
 
