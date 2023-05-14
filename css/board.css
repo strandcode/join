@@ -390,6 +390,51 @@ main.board {
     border-radius: 10px;
 }
 
+.edit-task input,
+.edit-task textarea {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 10px;
+    font-family: "Inter";
+    font-size: 1rem;
+}
+
+.edit-task textarea {
+    height: 134px;
+}
+
+.edit-task textarea::placeholder {
+    font-family: "Inter";
+}
+
+.active {
+    color: white;
+    border: unset !important;
+}
+
+.active img {
+    filter: brightness(0%) saturate(0%) invert(100%);
+    transition: all 125ms ease-in-out;
+}
+
+.bg-urgent {
+    background-color: var(--urgent) !important;
+}
+
+.bg-medium {
+    background-color: var(--medium) !important;
+}
+
+.bg-low {
+    background-color: var(--low) !important;
+}
+
+
+
+
 
 .d-none {
     display: none

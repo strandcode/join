@@ -48,9 +48,9 @@ function generateBoardCard(i, j) {
       <div class="card-epic" id="workCategoryD${j}">
         ${userData[currentUser].tasks[j].epic}
       </div>
-      <img src="assets/img/icons-cancel.svg" 
+      <!-- <img src="assets/img/icons-cancel.svg" 
       onclick="deleteTask(${userData[currentUser].tasks[j].task_id})"
-      alt="Close button" title="Delete task on click">
+      alt="Close button" title="Delete task on click"> -->
       </div>
       
       <h3 id="workTaskHeadlineD">${userData[currentUser].tasks[j]['title']}</h3>
@@ -164,14 +164,61 @@ function openTask(task_id) {
   }
 
 
-  // Task values in felder schreiben
+  // NOTE Task values in Felder schreiben
 
   const editTaskTitle = document.getElementById('editTaskTitle');
   editTaskTitle.value = userData[currentUser].tasks[index].title;
+  
   const editTaskDescription = document.getElementById('editTaskDescription');
   editTaskDescription.value = userData[currentUser].tasks[index].title;
 
+  const taskDate = document.getElementById('editTaskDate');
+  taskDate.value = userData[currentUser].tasks[index].date;
 
+
+  const editEpicHeader = document.getElementById('menuEpicHeader');
+  editEpicHeader.value = userData[currentUser].tasks[index].epic;
+
+  
+  const editCategoryHeader = document.getElementById('menuCategoryHeader');
+  editCategoryHeader.value = userData[currentUser].tasks[index].boardList;
+
+  const editTaskButtons = document.getElementById('editTaskButtons');
+  editTaskButtons.innerHTML = '';
+  editTaskButtons.innerHTML = /*html*/ `
+    <button id="btnSaveTask" onclick="deleteTask(${task_id}); closeOverlay('editTaskOverlay', 'editTaskContainer');" class="button button-darkblue">Delete Task
+    </button>
+    <button id="btnSaveTask" onclick="saveEditedTask()" class="button button-darkblue">Save Task
+    </button>
+  `;
+
+renderTaskPriority(index);
+}
+
+function renderTaskPriority(index) {
+  const taskPriority = userData[currentUser].tasks[index].priority;
+  console.log(taskPriority);
+ 
+  if(taskPriority == 'urgent') {
+  const btn = document.getElementById('editTaskButtonUrgent');
+  editTaskButtonUrgent.classList.add('active');
+  editTaskButtonUrgent.classList.add('bg-urgent');
+  }
+  if(taskPriority == 'medium') {
+  const btn = document.getElementById('editTaskButtonMedium');
+  btn.classList.add('active');
+  btn.classList.add('bg-medium');
+  }
+  if(taskPriority == 'low') {
+  const btn = document.getElementById('editTaskButtonLow');
+  btn.classList.add('active');
+  btn.classList.add('bg-low');
+  }
+
+}
+
+function saveEditedTask() {
+console.log('Gespeichert');
 
 
 }
