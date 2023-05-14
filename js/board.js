@@ -29,17 +29,20 @@ function generateBoardListBody() {
           setAssignedContacts(j);
         }
       }
+      boardListBody.innerHTML += /*html*/ `
+      <div class="drop-here">Drop here</div>
+      `;
     }
   }
 }
 
 // TODO editTask einbauen
-// TODO onclick="openTask('${userData[currentUser].tasks[j]['task_id']}')"
+// TODO 
 
 function generateBoardCard(i, j) {
   return /*html*/ `    
     <div class="boardlist-card" ondragstart="startDragging(${userData[currentUser].tasks[j]['task_id']})" draggable="true"
-    id="${userData[currentUser].tasks[j]['task_id']}">
+    id="${userData[currentUser].tasks[j]['task_id']}" onclick="openTask('${userData[currentUser].tasks[j]['task_id']}')">
     
     <div class="card-top-wrapper">
       <div class="card-epic" id="workCategoryD${j}">
