@@ -148,7 +148,6 @@ function closeOverlay(overlayId, overlayContainerId) {
 function openTask(task_id) {
   showOverlay('editTaskOverlay', 'editTaskContainer');
   console.log(task_id);
-  console.log(typeof task_id);
 
 
   // Task finden
@@ -170,14 +169,21 @@ function openTask(task_id) {
   editTaskTitle.value = userData[currentUser].tasks[index].title;
   
   const editTaskDescription = document.getElementById('editTaskDescription');
-  editTaskDescription.value = userData[currentUser].tasks[index].title;
+  editTaskDescription.value = userData[currentUser].tasks[index].description;
 
+ 
   const taskDate = document.getElementById('editTaskDate');
   taskDate.value = userData[currentUser].tasks[index].date;
 
 
   const editEpicHeader = document.getElementById('menuEpicHeader');
   editEpicHeader.value = userData[currentUser].tasks[index].epic;
+  
+  const editAssignedToHeader = document.getElementById('menuAssignedToHeader');
+  
+  let assignedContacts = getAssignedContacts(index, task_id);
+  editAssignedToHeader.value = assignedContacts;
+
 
   
   const editCategoryHeader = document.getElementById('menuCategoryHeader');
@@ -186,63 +192,78 @@ function openTask(task_id) {
   const editTaskButtons = document.getElementById('editTaskButtons');
   editTaskButtons.innerHTML = '';
   editTaskButtons.innerHTML = /*html*/ `
-    <button id="btnSaveTask" onclick="deleteTask(${task_id}); closeOverlay('editTaskOverlay', 'editTaskContainer');" class="button button-darkblue">Delete Task
+    <button id="btnDeleteTask" onclick="deleteTask(${task_id}); closeOverlay('editTaskOverlay', 'editTaskContainer');" class="button button-white">Delete Task
     </button>
-    <button id="btnSaveTask" onclick="saveEditedTask()" class="button button-darkblue">Save Task
+    <button id="btnSaveTask" onclick="saveEditedTask(${index})" class="button button-darkblue">Save Task
     </button>
   `;
 
 renderTaskPriority(index);
 }
 
+
+
+function getAssignedContacts(index, task_id) {
+  let contactIDs = userData[currentUser].tasks[index].assign_to_contacts;
+  let names = [];
+
+  for (let i = 0; i < contactIDs.length; i++) { // Iteration durch contactIDs
+    for (let j = 0; j < userData[currentUser].contacts.length; j++) {
+      if (userData[currentUser].contacts[j].contactID == contactIDs[i]) {
+        let name = userData[currentUser].contacts[j].firstName;
+        names.push(name);
+      }
+    }
+  }
+  let nameString = names.join(' ');
+  return nameString;
+}
+
+
+
 function renderTaskPriority(index) {
   const taskPriority = userData[currentUser].tasks[index].priority;
-  console.log(taskPriority);
- 
+  const btnUrgent = document.getElementById('editTaskButtonUrgent');
+  const btnMedium = document.getElementById('editTaskButtonMedium');
+  const btnLow = document.getElementById('editTaskButtonLow');
+
+  btnUrgent.classList.remove('active','bg-urgent');
+  btnMedium.classList.remove('active','bg-medium');
+  btnLow.classList.remove('active','bg-low');
+
   if(taskPriority == 'urgent') {
-  const btn = document.getElementById('editTaskButtonUrgent');
-  editTaskButtonUrgent.classList.add('active');
-  editTaskButtonUrgent.classList.add('bg-urgent');
+  btnUrgent.classList.add('active','bg-urgent');
   }
   if(taskPriority == 'medium') {
-  const btn = document.getElementById('editTaskButtonMedium');
-  btn.classList.add('active');
-  btn.classList.add('bg-medium');
+  btnMedium.classList.add('active', 'bg-medium');
   }
   if(taskPriority == 'low') {
-  const btn = document.getElementById('editTaskButtonLow');
-  btn.classList.add('active');
-  btn.classList.add('bg-low');
+  btnLow.classList.add('active', 'bg-low');
   }
 
 }
 
-function saveEditedTask() {
-console.log('Gespeichert');
+async function saveEditedTask(index) {
+  
+  const currentTask = userData[currentUser].tasks[index];
+ 
+
+  currentTask.title = editTaskTitle.value;
+  currentTask.description = editTaskDescription.value;
+  currentTask.priority = "urgent";
+  currentTask.date = editTaskDate.value;
+  currentTask.boardList = menuCategoryHeader.value;
+  currentTask.epic = menuEpicHeader.value;
+  currentTask.assign_to_contacts = assignedToContacts;
 
 
+  await saveToStorage();
+  closeOverlay('editTaskOverlay', 'editTaskContainer');
+  initBoard();
 }
 
 
 
-
-
-function confirmChangeTask(i, j) {
-  document.getElementById('changeTaskWrapper').classList.add('d-none')
-  document.getElementById('workTaskContainerD').classList.remove('d-none');
-  let changeTitle = document.getElementById(`taskTitleD${j}`);
-  let changeDescription = document.getElementById(`taskDescriptionD${j}`);
-  let changeDate = document.getElementById(`taskDateD${j}`);
-  let changeAssignedTo = document.getElementById(`taskAssignedD${j}`);
-
-
-  userData[currentUser].tasks[j].title = changeTitle.value;
-  userData[currentUser].tasks[j].description = changeDescription.value;
-  userData[currentUser].tasks[j].date = changeDate.value;
-  userData[currentUser].tasks[j].assign_to_contacts = changeAssignedTo.value;
-  saveToBackend();
-  setTimeout(generateBoard, 500);
-}
 
 // TODO - DRAG AND DROP /////////////////////////
 

@@ -117,10 +117,9 @@
 
 
 
-    <!-- #################### NOTE EDIT TASK OVERLAY #################### -->
+    <!-- #################### NOTE EDIT TASK OVERLAY #################### onclick="closeOverlay('editTaskOverlay', 'editTaskContainer')"-->
 
-    <div id="editTaskOverlay" class="desktop-overlay d-none"
-      onclick="closeOverlay('editTaskOverlay', 'editTaskContainer')" alt="Close button">
+    <div id="editTaskOverlay" class="desktop-overlay d-none" alt="Close button">
       <div id="editTaskContainer" class="desktop-overlay-container">
 
         <div class="contact-overlay-left-S">
@@ -139,7 +138,7 @@
           <!-- TODO FORM -->
 
           <div id="editTaskWrapper" class="contact-overlay-right-main">
-            <div class="add-task-form-separator-left">
+            <div class="edit-task-form-separator-left">
 
               <div class="add-task-form-item">
                 <label for="editTaskTitle">Title</label>
@@ -158,7 +157,7 @@
               <div class="add-task-form-item">
                 <span>Priority</span>
                 <div class="prio-button-wrapper">
-                  <button onclick="setPriorityUrgent()" id="editTaskButtonUrgent" class="Xprio-button-urgent">Urgent
+                  <button onclick="setPriorityTo('urgent');" id="editTaskButtonUrgent" class="prio-button-urgent">Urgent
                     <img src="assets/img/prio-urgent.svg">
                   </button>
                   <button onclick="setPriorityMedium()" id="editTaskButtonMedium" class="prio-button-medium">Medium
@@ -173,7 +172,7 @@
 
 
 
-            <div class="add-task-form-separator-right">
+            <div class="edit-task-form-separator-right">
 
               <div class="add-task-form-item">
                 <label for="taskDate">Deadline</label>
@@ -185,7 +184,7 @@
                 <label>Epic</label>
                 <div class="dropdown-menu z-5">
                   <div class="dropdown-header z-5" onclick="toggleMenuEpic()">
-                    <input id="menuEpicHeader" value="Select epic" readonly>
+                    <input id="menuEpicHeader" class="input-dropdown" value="Select epic" readonly>
                     <img src="../assets/img/icon-arrow-down.svg" alt="">
                   </div>
                   <div id="menuEpic" class="dropdown-body z-5 d-none" onmouseleave="toggleMenuEpic()">
@@ -197,7 +196,7 @@
                 <label for="assignedTo">Assigned to</label>
                 <div class="dropdown-menu z-4">
                   <div class="dropdown-header z-4" onclick="toggleMenuAssignedTo()">
-                    <input id="menuAssignedToHeader" value="Select contact" readonly>
+                    <input id="menuAssignedToHeader" class="input-dropdown" value="Select contact" readonly>
                     <img src="../assets/img/icon-arrow-down.svg" alt="">
                   </div>
                   <div id="menuAssignedTo" class="dropdown-body z-4 d-none" onmouseleave="toggleMenuAssignedTo()">
@@ -209,7 +208,7 @@
                 <label for="chooseCategory">Category</label>
                 <div class="dropdown-menu">
                   <div class="dropdown-header" onclick="toggleMenuCategory()">
-                    <input id="menuCategoryHeader" value="Select category" readonly>
+                    <input id="menuCategoryHeader" class="input-dropdown" value="Select category" readonly>
                     <img src="../assets/img/icon-arrow-down.svg" alt="">
                   </div>
                   <div id="menuCategory" class="dropdown-body z-3 d-none" onmouseleave="toggleMenuCategory()">
@@ -217,7 +216,7 @@
                 </div>
               </div>
 
-              <div id="editTaskButtons" class="add-task-form-item-buttons">
+              <div id="editTaskButtons" class="edit-task-form-item-buttons">
 
               </div>
 
