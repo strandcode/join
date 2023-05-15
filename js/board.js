@@ -167,25 +167,25 @@ function openTask(task_id) {
 
   const editTaskTitle = document.getElementById('editTaskTitle');
   editTaskTitle.value = userData[currentUser].tasks[index].title;
-  
+
   const editTaskDescription = document.getElementById('editTaskDescription');
   editTaskDescription.value = userData[currentUser].tasks[index].description;
 
- 
+
   const taskDate = document.getElementById('editTaskDate');
   taskDate.value = userData[currentUser].tasks[index].date;
 
 
   const editEpicHeader = document.getElementById('menuEpicHeader');
   editEpicHeader.value = userData[currentUser].tasks[index].epic;
-  
+
   const editAssignedToHeader = document.getElementById('menuAssignedToHeader');
-  
+
   let assignedContacts = getAssignedContacts(index, task_id);
   editAssignedToHeader.value = assignedContacts;
 
 
-  
+
   const editCategoryHeader = document.getElementById('menuCategoryHeader');
   editCategoryHeader.value = userData[currentUser].tasks[index].boardList;
 
@@ -197,8 +197,8 @@ function openTask(task_id) {
     <button id="btnSaveTask" onclick="saveEditedTask(${index})" class="button button-darkblue">Save Task
     </button>
   `;
+  renderTaskPriorityButtons(index);
 
-renderTaskPriority(index);
 }
 
 
@@ -219,6 +219,29 @@ function getAssignedContacts(index, task_id) {
   return nameString;
 }
 
+function renderTaskPriorityButtons(index) {
+  const prioButtonWrapper = document.getElementById('prioButtonWrapper');
+  prioButtonWrapper.innerHTML = '';
+  prioButtonWrapper.innerHTML += /*html*/ `
+    <button onclick="setPriorityTo(${index}, 'urgent');" 
+      id="editTaskButtonUrgent" class="prio-button-urgent">Urgent
+      <img src="assets/img/prio-urgent.svg">
+    </button>
+    <button onclick="setPriorityTo(${index}, 'medium');" 
+    id="editTaskButtonMedium" class="prio-button-medium">Medium
+      <img src="assets/img/prio-medium.svg">
+    </button>
+    <button onclick="setPriorityTo(${index}, 'low');" 
+    id="editTaskButtonLow" class="prio-button-low">Low
+      <img src="assets/img/prio-low.svg">
+    </button>
+  `;
+
+  renderTaskPriority(index);
+}
+
+
+
 
 
 function renderTaskPriority(index) {
@@ -227,33 +250,38 @@ function renderTaskPriority(index) {
   const btnMedium = document.getElementById('editTaskButtonMedium');
   const btnLow = document.getElementById('editTaskButtonLow');
 
-  btnUrgent.classList.remove('active','bg-urgent');
-  btnMedium.classList.remove('active','bg-medium');
-  btnLow.classList.remove('active','bg-low');
+  btnUrgent.classList.remove('active', 'bg-urgent');
+  btnMedium.classList.remove('active', 'bg-medium');
+  btnLow.classList.remove('active', 'bg-low');
 
-  if(taskPriority == 'urgent') {
-  btnUrgent.classList.add('active','bg-urgent');
+  if (taskPriority == 'urgent') {
+    btnUrgent.classList.add('active', 'bg-urgent');
   }
-  if(taskPriority == 'medium') {
-  btnMedium.classList.add('active', 'bg-medium');
+  if (taskPriority == 'medium') {
+    btnMedium.classList.add('active', 'bg-medium');
   }
-  if(taskPriority == 'low') {
-  btnLow.classList.add('active', 'bg-low');
+  if (taskPriority == 'low') {
+    btnLow.classList.add('active', 'bg-low');
   }
 
 }
 
-async function saveEditedTask(index) {
-  
-  const currentTask = userData[currentUser].tasks[index];
- 
+async function setPriorityTo(index, newPriority) {
+  userData[currentUser].tasks[index].priority = newPriority;
+  renderTaskPriorityButtons(index);
+  await saveToStorage();
+}
 
+async function saveEditedTask(index) {
+
+  const currentTask = userData[currentUser].tasks[index];
   currentTask.title = editTaskTitle.value;
   currentTask.description = editTaskDescription.value;
-  currentTask.priority = "urgent";
+
   currentTask.date = editTaskDate.value;
   currentTask.boardList = menuCategoryHeader.value;
   currentTask.epic = menuEpicHeader.value;
+
   currentTask.assign_to_contacts = assignedToContacts;
 
 
@@ -265,7 +293,7 @@ async function saveEditedTask(index) {
 
 
 
-// TODO - DRAG AND DROP /////////////////////////
+// DRAG AND DROP /////////////////////////
 
 
 let currentDraggedTask;
@@ -343,265 +371,3 @@ function filterTasks() {
   // }
 }
 
-
-// function changeTask(i, j) {
-//   document.getElementById('popUpTaskD').classList.add('d-none');
-//   document.getElementById('changeTaskWrapper').classList.remove('d-none');
-//   let popUp2 = document.getElementById('changeTaskWrapper');
-
-//   popUp2.innerHTML = `
-    
-//       <div class="left-taskfield-D">
-//       <div class="close-work-overlay-D">
-//       <button onclick="closeWorkTask()">x</button>
-//        </div>
-//        <div class="close-work-overlay-mobile">
-//          <button onclick="closeWorkTask()"><img src="assets/img/arrow-left.svg" alt=""></button>
-//       </div>
-//         <span>Title</span>
-//         <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitleD${j}" 
-//         value="${userData[currentUser].tasks[j].title}">
-
-//         <span>Description</span>
-//         <textarea required class="width descript" name="Description" id="taskDescriptionD${j}"
-//         value="${userData[currentUser].tasks[j].description}"cols="30" rows="10"></textarea>
-
-//         <span>Due date</span>
-//         <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDateD${j}"
-//         value="${userData[currentUser].tasks[j].date}">
-//         <span>Prio</span>
-//         <div class="prio-button-wrapper">
-//           <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent<img
-//               src="assets/img/prio-urgent.svg"></button>
-//           <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium<img
-//               src="assets/img/prio-medium.svg"></button>
-//           <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img
-//               src="assets/img/prio-low.svg"></button>
-//         </div>
-
-//         <div class="right-taskfield-D">
-//           <span>Assigned to</span>
-//           <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD${j}"> 
-//           <option value="" disabled selected>Select Contacts to assign</option>
-//           <option value="">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-//           </select></option>
-//        </select>
-//           <div class="button-container-D">
-//           <button onclick="confirmChangeTask(${i},${j})" class="button button-darkblue">Ok
-//             <img src="assets/img/icon-white-create.svg"></button>
-//       </div>
-//       </div>
-//     </div>
-//   </div>
-//   </div>
-// `;
-// }
-
-// filterInProgress();
-// filterToDO();
-// filterFeedback();
-// filterDone();
-// saveToBackend();
-
-// function filterInProgress(i) {
-//   let inProgressTasks = userData[currentUser].tasks.filter(element => element.boardList == 1)
-
-//   let inProgress = document.getElementById(1);
-//   inProgress.innerHTML = '';
-//   for (let index = 0; index < inProgressTasks.length; index++) {
-//     let j = index;
-//     inProgress.innerHTML += `
-//     <div class="boardlist-card" ondragstart="startDragging(${inProgressTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})"
-//     id="${inProgressTasks[j]['task_id']}">
-//   <div class="work-category-D">
-//       ${inProgressTasks[j]['category']}
-//     </div>
-//     <h5 id="workTaskHeadlineD" class="work-task-headline-D">${inProgressTasks[j]['title']}</h5>
-//     <span class="work-task-content-D" id="workTaskContentD">${inProgressTasks[j]['description']}</span>
-//     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-//     <div class="task-user-wrapper" id="taskUserWrapper">
-//     <div class="work-user-D" id="workUserD">
-//       </div>
-//       <div class="urgency-image" id="urgencyImage">
-//       <img id="prioImg2${j}" src="" alt="">
-//       </div>
-//       </div>
-//     </div>`
-//   }
-// }
-
-// function filterToDO(i) {
-//   let toDoTasks = userData[currentUser].tasks.filter(element => element.boardList == 0)
-//   let toDO = document.getElementById(0);
-//   toDO.innerHTML = '';
-//   for (let index = 0; index < toDoTasks.length; index++) {
-//     let j = index;
-//     toDO.innerHTML += `
-//     <div class="boardlist-card" ondragstart="startDragging(${toDoTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})"
-//     id="${toDoTasks[j]['task_id']}">
-//   <div class="work-category-D">
-//       ${toDoTasks[j]['category']}
-//     </div>
-//     <h5 id="workTaskHeadlineD" class="work-task-headline-D">${toDoTasks[j]['title']}</h5>
-//     <span class="work-task-content-D" id="workTaskContentD">${toDoTasks[j]['description']}</span>
-//     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-//     <div class="task-user-wrapper" id="taskUserWrapper">
-//     <div class="work-user-D" id="workUserD">
-//       </div>
-//       <div class="urgency-image" id="urgencyImage">
-//       <img id="prioImg2${j}" src="" alt="">
-//       </div>
-//       </div>
-//     </div>`
-//   }
-// }
-// function filterFeedback(i) {
-//   let feedbackTasks = userData[currentUser].tasks.filter(element => element.boardList == 2)
-//   let feedback = document.getElementById(2);
-//   feedback.innerHTML = '';
-//   for (let index = 0; index < feedbackTasks.length; index++) {
-//     let j = index;
-//     feedback.innerHTML += `
-//     <div class="boardlist-card" ondragstart="startDragging(${feedbackTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})"
-//     id="${feedbackTasks[j]['task_id']}">
-//   <div class="work-category-D">
-//       ${feedbackTasks[j]['category']}
-//     </div>
-//     <h5 id="workTaskHeadlineD" class="work-task-headline-D">${feedbackTasks[j]['title']}</h5>
-//     <span class="work-task-content-D" id="workTaskContentD">${feedbackTasks[j]['description']}</span>
-//     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-//     <div class="task-user-wrapper" id="taskUserWrapper">
-//     <div class="work-user-D" id="workUserD">
-//       </div>
-//       <div class="urgency-image" id="urgencyImage">
-//       <img id="prioImg2${j}" src="" alt="">
-//       </div>
-//       </div>
-//       </div>`
-//   }
-// }
-// function filterDone(i) {
-//   let doneTasks = userData[currentUser].tasks.filter(element => element.boardList == 3)
-//   let done = document.getElementById(3);
-//   done.innerHTML = '';
-//   for (let index = 0; index < doneTasks.length; index++) {
-//     let j = index;
-//     done.innerHTML += `
-//     <div class="boardlist-card" ondragstart="startDragging(${doneTasks[j]['task_id']})" draggable="true" onclick="openTask(${i},${j})"
-//     id="${doneTasks[j]['task_id']}}">
-//   <div class="work-category-D">
-//       ${doneTasks[j]['category']}
-//     </div>
-//     <h5 id="workTaskHeadlineD" class="work-task-headline-D">${doneTasks[j]['title']}</h5>
-//     <span class="work-task-content-D" id="workTaskContentD">${doneTasks[j]['description']}</span>
-//     <span class="d-none"><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span>
-//     <div class="task-user-wrapper" id="taskUserWrapper">
-//     <div class="work-user-D" id="workUserD">
-//       </div>
-//       <div class="urgency-image" id="urgencyImage">
-//       <img id="prioImg2${j}" src="" alt="">
-//       </div>
-//       </div>
-//     </div>`
-//   }
-// }
-
-
-
-/* function slideInAddTask(i, j) {
-  document.getElementById('slideInAddTaskWrapper').classList.remove('d-none')
-
-  document.getElementById('slideInAddTaskWrapper').innerHTML = `
-  <div class="slide-in-add-task desktop-slide-in" id="slideInAddTask">
-  <div class="left-taskfield-J">
-    <h1>Add Task</h1>
-    <select required="" class="width board-list-left" name="Select Contacts to assign" placeholder="Select Board List" id="taskBoardList">
-      <option disabled selected hidden>Select board list</option>
-      <option value="0">To do</option>
-      <option value="1">In Progress</option>
-      <option value="2">Awaiting Feedback</option>
-      <option value="3">Done</option>
-    </select>
-    <span>Title</span>
-    <input required="" type="text" class="input-title-J width" placeholder="Enter a title" name="Title" id="taskTitle">
-
-    <span>Description</span>
-    <textarea required="" class="width descript" placeholder="Enter a Description" name="Description" id="taskDescription" cols="30" rows="10"></textarea>
-    <span>Category</span>
-    <select name="Category" class="category-add" placeholder="Category" id="taskCategory">
-      <option aria-placeholder="" disabled="" selected="" hidden="">Category</option>
-      <option value="Backoffice">Backoffice</option>
-      <option value="Customer Service">Customer Service</option>
-      <option value="Warhouse">Warehouse</option>
-    </select>
-  </div>
-  <div class="right-taskfield-J">
-  <span>Assigned to</span>
-  <select class="assigned-change" placeholder="Select Contacts to assign" id="taskAssignedD">
-  <option value="" disabled selected>Select Contacts to assign</option>
-    <option value="${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}">${userData[currentUser].contacts[0].firstName} ${userData[currentUser].contacts[0].lastName}</option>
-  </select>
-    <span>Due date</span>
-    <input required="" class=" right-taskfield-input-date" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
-    <span>Prio</span>
-    <div class="prio-button-wrapper">
-      <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent active">Urgent<img src="assets/img/prio-urgent.svg"></button>
-      <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium active">
-      Medium<img src="assets/img/prio-medium.svg"></button>
-      <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low<img src="assets/img/prio-low.svg"></button>
-    </div>
-    <div class="button-container-J">
-      <button onclick="cancelButton()" class="button button-white mobile-Button-J">Cancel<img src="assets/img/icon-black-clear.svg"></button>
-      <button onclick="addTaskToUser();createTask()" class="button button-darkblue">Create Task
-        <img src="assets/img/icon-white-create.svg"></button>
-    </div>
-  </div>
-</div>`;
-} */
-
-
-
-
-
-
-
-// function priorityBoard(j) {
-//   let priority = userData[currentUser].tasks[j]['prio'];
-
-
-//   if (priority == 'urgent') {
-//     document.getElementById('prioImg').src = 'assets/img/priority-urgent.svg';
-//   }
-//   if (priority == 'medium') {
-//     document.getElementById('prioImg').src = 'assets/img/priority-medium.svg';
-//   }
-//   if (priority == 'low') {
-//     document.getElementById('prioImg').src = 'assets/img/priority-low.svg';
-//   }
-// }
-
-// function priorityBoard2(j) {
-//   let priority2 = userData[currentUser].tasks[j]['prio'];
-//   if (priority2 == 'urgent') {
-//     document.getElementById('prioImg2' + j).src = 'assets/img/prio-urgent.svg';
-//   } if (priority2 == 'medium') {
-//     document.getElementById('prioImg2' + j).src = 'assets/img/prio-medium.svg';
-//   } if (priority2 == 'low') {
-//     document.getElementById('prioImg2' + j).src = 'assets/img/prio-low.svg';
-//   }
-// }
-
-// /- If abfrage zur generierung der Farben in der Kategorie
-// function categoryColor(j) {
-//   let labelColor = userData[currentUser].tasks[j]['category'];
-
-//   if (labelColor == 'Backoffice') {
-//     document.getElementById('workCategoryD' + j).classList.add('backoffice')
-//   }
-//   if (labelColor == 'Customer Service') {
-//     document.getElementById('workCategoryD' + j).classList.add('customer-service')
-//   }
-//   if (labelColor == 'Warhouse') {
-//     document.getElementById('workCategoryD' + j).classList.add('warhouse')
-//   }
-// }
