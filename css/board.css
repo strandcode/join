@@ -407,7 +407,15 @@ main.board {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    transition: all 250ms ease-in-out;
 }
+
+.drop-zone-waver {
+    color: var(--urgent);
+}
+
+
+
 
 .edit-task input,
 .edit-task textarea {

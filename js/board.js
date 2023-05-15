@@ -36,8 +36,6 @@ function generateBoardListBody() {
   }
 }
 
-// TODO editTask einbauen
-// TODO 
 
 function generateBoardCard(i, j) {
   return /*html*/ `    
@@ -57,8 +55,7 @@ function generateBoardCard(i, j) {
 
       <p id="workTaskContentD">${userData[currentUser].tasks[j]['description']}</p>
       
-      <!-- TODO Subtasks <span class=""><img src="assets/img/icon-progressbar.png" alt="">1/2 Done</span> -->
-      
+         
       <div class="responsible-wrapper">
         <div id="taskResponsibles-${j}" class="responsibles"></div>
         <img id="cardPriority-${j}" src="" alt="">
@@ -300,6 +297,7 @@ let currentDraggedTask;
 
 function startDragging(task_id) {
   currentDraggedTask = task_id;
+  showDropZones();
 }
 
 function dragover_handler(ev) {
@@ -345,6 +343,13 @@ function createTask() {
   document.getElementById('slideInAddTask').classList.add('d-none')
 }
 
+
+function showDropZones() {
+  let dropZones = document.getElementsByClassName('drop-here');
+  for (let i = 0; i < dropZones.length; i++) {
+    dropZones[i].classList.add('drop-zone-waver');
+  }
+}
 
 // TODO Search function
 

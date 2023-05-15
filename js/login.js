@@ -7,14 +7,11 @@ const loginMessage = document.getElementById('loginMessage');
 
 
 // NOTE Erstmal nur demoUser
-function loginDemoUser() {
+async function loginDemoUser() {
   setItem('currentUser', '0');
-  // TODO resetDemoUser();
+  await resetDemoUser();
   window.location.href = 'summary.html';
 }
-
-
-
 
 async function loginUser() {
 
